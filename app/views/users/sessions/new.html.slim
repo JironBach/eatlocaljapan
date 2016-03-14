@@ -1,0 +1,37 @@
+- provide :title, t('.title')
+.page-container.page-container-auth.row-space-top-6.row-space-8
+  .row
+    .pop
+      .card
+        .card-body
+          .sns-buttons
+            - resource_class.omniauth_providers.each do |provider|
+              /= link_to omniauth_authorize_path(resource_name, provider), class: 'btn btn-fb btn-large btn-block icon-btn' do
+              = link_to localized_omniauth_path(provider), class: 'btn btn-fb btn-large btn-block icon-btn' do
+                i.fa.fa-facebook
+                = t '.facebook'
+          .text-include-separator
+            h6.text
+              = t '.or'
+            hr
+          = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .signin-form
+              = f.error_notification
+              .control-group.row-space-1
+                = f.input_field :email, class: "decorative-input", placeholder: t('.placeholder.mail'), required: true
+              .control-group.row-space-2
+                = f.input_field :password, class: "decorative-input", placeholder: t('.placeholder.pw'), required: false
+              .clearfix.checkbox.row-space-2
+                label.remember-me[for="remember_me2"]
+                  = f.input_field :remember_me, as: :boolean, boolean_style: :inline, id: "remember_me2", class: "remember-me" if devise_mapping.rememberable?
+                  = t '.remember'
+                = link_to t('.forgot_pw'), new_password_path(resource_name), class: "pull-right row-space-top-2"
+              .form-actions
+                = f.button :submit, t('.login'), class: "btn btn-primary btn-large btn-block"
+        .card-body
+          p.small1.row-space-2
+            = t '.account'
+            = link_to t('.regist'), new_user_registration_path, class: ''
+          p.small1
+            = t '.confirmation'
+            = link_to t('.resend'), new_confirmation_path(resource_name), class: ''

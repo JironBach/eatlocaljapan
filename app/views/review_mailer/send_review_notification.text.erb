@@ -1,0 +1,16 @@
+<%= t '.greeting1' %><%= @to_user_name %><%= t 'prefix' %><%= t '.greeting2' %>
+
+<%= t('.msg1', host: @host_user_name, listing: Listing.model_name.human, listing_title: @listing.title, schedule: @reservation.schedule, review: Review.model_name.human) %>
+
+<%= t('.msg2', review: Review.model_name.human) %>
+
+<%= new_reservation_reviews_url(nil, @reservation.id) %>
+
+<%= t('.msg3', review: Review.model_name.human, host: t('name.host')) %>
+
+<%= t('.msg4', review_reply: ReviewReply.model_name.human, review: Review.model_name.human) %>
+
+<%= t('.msg5', review: Review.model_name.human, term: Settings.review.expiration_date) %>
+
+--
+<%= t 'basic_info.service_name' %>

@@ -1,0 +1,12 @@
+.row.row-space-2
+  .col-sm-4.show--sp
+    .media-photo.media-photo-block.media-round
+      = image_tag(user_id_to_profile_image(profile.user_id), class: 'img-responsive', width: 225, height: 225)
+  .col-sm-8.col-md-12.col-lg-12
+    .h2.row-space-3
+      = t('.msg', name: user_id_to_name(profile.user_id))
+    p.text-lead.text-muted.row-space-2
+      = profile.try('location') || ''
+div
+  p
+    = simple_format(profile.try('self_introduction') || '')

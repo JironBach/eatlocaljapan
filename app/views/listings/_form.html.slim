@@ -1,0 +1,118 @@
+= simple_form_for(@listing, html: {class: "form--sp"}) do |f|
+  = f.error_notification
+  = f.hidden_field :user_id, value: current_user.id
+  = f.hidden_field :open, value: false
+  -if false
+    = f.input_field :longitude, as: :string, placeholder: t('activerecord.placeholders.listing.longitude')
+    = f.input_field :latitude, as: :string, placeholder: t('activerecord.placeholders.listing.latitude')
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :title
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :title, placeholder: t('activerecord.placeholders.listing.title')
+  / .row.row-space-5.row-space-top-5.row-table
+  /   .col-xs-4.text-right.col-middle
+  /     .h4.text-light
+  /       |  ゲストとしての出張は？
+  /   .col-xs-8.fieldset.col-middle
+  /     .row
+  /       .col-xs-11.checkbox
+  /         = f.input_field :delivery_flg, boolean_style: :inline
+  /         label[for="listing_delivery_flg"]
+  /           | 可能です
+  /         .question-icon-container.inline
+  /           i#togo-tooltip.fa.fa-question-circle.tooltip-trigger[data-placement="bottom"]
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :capacity
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-6.col-md-3
+          .select.select-block
+            - arr = (1..15).map{|p| ["#{p}#{t('unit.people')}",p] }
+            - arr <<  ["#{t('.capacity.more_than', num: 16, unit: t('unit.people'))}", :"16+"]
+            = f.input_field :capacity, as: :select, collection: arr, default:  [1]
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :price
+        = t('.price', unit: t('unit.price'))
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-5.add-value--price.add--help
+          = f.input_field :price, as: :string, value: (@listing.price > 0 ? @listing.price : "" ), placeholder: t('activerecord.placeholders.listing.price')
+          p.help.text-pink #{t('.caution.price')}
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        | #{Listing.human_attribute_name :description}
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :description, rows: "6", placeholder: t('activerecord.placeholders.listing.description')
+  - if @listing.cover_image.present?
+    .row.row-space-5.row-space-top-5.row-table
+      .col-xs-4.text-right.col-middle
+        .h4.text-light
+          = Listing.human_attribute_name :cover_image
+      .col-xs-8.fieldset.col-middle
+        .row
+          .col-xs-11.regist-pics
+            = image_tag(@listing.cover_image.thumb)
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :cover_image
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11.regist-pics
+          = f.file_field :cover_image, as: :file
+          /= f.input_field :cover_image_caption, placeholder: "イメージ画像の説明を入力できます", class: "row-space-top-2"
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :zipcode
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-6.col-md-4
+          = f.input_field :zipcode, placeholder: t('activerecord.placeholders.listing.zipcode'), class: "zip-format"
+        .question-icon-container
+          i#zipcode-tooltip.fa.fa-question-circle.tooltip-trigger
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :location
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :location, placeholder: t('activerecord.placeholders.listing.location'), class: "zip-address"
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :direction
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :direction, rows: "4", placeholder: t('activerecord.placeholders.listing.direction')
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = t('.delivery.label')
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11.checkbox
+          = f.input_field :delivery_flg, boolean_style: :inline
+          label[for="listing_delivery_flg"]
+            = t('.delivery.name')
+          .question-icon-container.inline
+            i#togo-tooltip.fa.fa-question-circle.tooltip-trigger[data-placement="bottom"]
+  .row
+    .col-xs-9.col-offset-3.text-reset-center
+      - if 'edit' == controller.action_name
+        = f.button :submit, t('.submit.update'), class: "btn-primary btn-large", id: 'listing-manager-listing-submit'
+      - else
+        = f.button :submit, t('.submit.next'), class: "btn-primary btn-large"

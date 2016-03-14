@@ -1,0 +1,14 @@
+.manage-listing-header
+  .subnav.ml-header-subnav[data-sticky="true"]
+    = link_to listings_path, class: "subnav-item pull-left-absolute"
+      i.fa.fa-long-arrow-left
+      span 
+        = t '.to_my_listings'
+    .h5.text-center.text-contrast
+      = listing.title
+    - unless @listing.open.blank? 
+      = link_to listing_path(listing.id), class: "subnav-item pull-right-absolute"
+        i.fa.fa-eye
+        span 
+          = t '.preview'
+  .subnav-placeholder.hide

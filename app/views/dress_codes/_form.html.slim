@@ -1,0 +1,23 @@
+= simple_form_for([@listing, @dress_code], html: {class: "form--sp"}) do |f|
+  = f.error_notification
+  = f.hidden_field :listing_id, value: @listing.id
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = DressCode.human_attribute_name :wafuku
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11.checkbox
+          = f.input_field :wafuku, as: :boolean, boolean_style: :inline, id: 'wafuku_only'
+          label[for="wafuku_only"] = t '.label1'
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = DressCode.human_attribute_name :note
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :note, as: :text, placeholder: t('activerecord.placeholders.dress_code.note'), rows: "4"
+  .row
+    .col-xs-9.col-offset-3.text-reset-center
+      = f.button :submit, t('.submit'), class: "btn-primary btn-large", id: 'listing-manager-dress-code-submit'

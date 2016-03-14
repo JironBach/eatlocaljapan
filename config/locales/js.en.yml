@@ -1,0 +1,114 @@
+en:
+  js:
+    common:
+      share:
+        twitter:
+          introduction: Introduction of Service
+          label:
+            service_name: Service Name
+        line:
+          introduction: Introduction of Service
+    calendar:
+      title_format:
+        month: MMM YYYY
+        week: "MMM D YYYY{ ～ }{[yyyy]}{[M]d}"
+        day: "MMM D YYYY'('ddd')'"
+      button_text:
+        today: Today
+        year: Year
+        month: Month
+        week: Week
+        day: Day
+      month_names:
+        jan: January
+        feb: February
+        mar: March
+        apr: April
+        may: May
+        jun: June
+        jul: July
+        aug: August
+        sep: September
+        oct: October
+        nov: November
+        dec: December
+      month_names_short:
+        jan: Jan
+        feb: Feb
+        mar: Mar
+        apr: Apr
+        may: May
+        jun: Jun
+        jul: Jul
+        aug: Aug
+        sep: Sep
+        oct: Oct
+        nov: Nov
+        dec: Dec
+      day_names:
+        mon: Monday
+        tue: Tuesday
+        wed: Wednesday
+        thu: Thursday
+        fri: Friday
+        sat: Saturday
+        sun: Sunday
+      day_names_short:
+        mon: Mon
+        tue: Tue
+        wed: Wed
+        thu: Thu
+        fri: Fri
+        sat: Sat
+        sun: Sun
+      remove_event:
+        alert: 'Do you really want to delete this?'
+      delete_button:
+        on_mode:
+          label: On Delete Mode
+          alert: Click event you want to delete
+        off_mode:
+          label: Switch to Delete Mode
+    listingmanager:
+      listing_image:
+        submit:
+          alert:
+            success: Image Successfully Uploaded!
+            failure: Image could not be uploaded.
+      listing:
+        submit:
+          alert:
+            success: Successfully registered!
+            failure: Registration was failed.
+      confection:
+        submit:
+          alert:
+            success: Successfully registered!
+            failure: Registration was failed.
+      tool:
+        submit:
+          alert:
+            success: Successfully registered!
+            failure: Registration was failed.
+      dress_code:
+        submit:
+          alert:
+            success: Successfully registered!
+            failure: Registration was failed.
+      publish:
+        submit:
+          alert:
+            success: Published.
+            failure: Failed to publish.
+    listings:
+      manage:
+        url: Input URL
+    message:
+      validates:
+        msg:
+          required: Input message
+      send:
+        success: Message was successfully sent.
+        failure: Message was failed to be sent.
+    reservation:
+      receipt: To be prepared

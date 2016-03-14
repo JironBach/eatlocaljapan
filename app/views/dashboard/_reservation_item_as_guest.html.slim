@@ -1,0 +1,34 @@
+- @reservations.each do |r|
+  - listing = reservation_to_listing(r)
+  - host = reservation_to_host(r)
+  li.card-body
+    .row.row-table
+      .col-md-3
+        - if r.requested?
+          span.label.text-blue = t '.progress.requested'
+        - elsif r.canceled?
+          span.label.text-light-gray = t '.progress.canceled'
+        - elsif r.accepted?
+          span.label.text-green = t '.progress.accepted'
+        - elsif r.rejected?
+          span.label = t '.progress.rejected'
+        - elsif r.holded?
+          span.label.text-starlight = t '.progress.holded'
+        - else
+          span.label.text-danger = t '.progress.unpublished'
+      .col-md-5
+        = link_to listing.title, listing_path(r.listing_id)
+        br
+        = listing.location
+      .col-md-2
+        = link_to user_id_to_name(host.id), profile_path(host.profile.id)
+      .col-md-2
+        = r.schedule.strftime("%y/%m/%d")
+      .link-group
+        = link_to "#", id: "reservation-item-as-guest-launch-message-#{r.id}", data: { num: r.id } do
+          i.fa.fa-envelope-o
+          = t('.msg', model: Message.model_name.human)
+        = link_to "#", id: "reservation-item-show-receipt-#{r.id}", data: { num: r.id } do
+          i.fa.fa-jpy
+          = t '.receipt'
+    = render partial: 'shared/modals/message_to_host_from_reservation_manger', locals: { r: r, listing: reservation_to_listing(r) }

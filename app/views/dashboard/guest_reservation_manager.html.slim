@@ -1,0 +1,37 @@
+- provide :title, t('.title', listing: Listing.model_name.human)
+= render 'shared/subnav'
+.page-container.row-space-top-4.row-space-4
+  .row
+    .col-md-3
+      = render partial: "shared/guest_sidenav"
+
+    - if @reservations.size.zero?
+      .col-md-9
+        .card
+          .card-header
+            = t('.title', listing: Listing.model_name.human)
+          .card-body
+            p.text-lead.row-space-4
+              = t '.no_schedule'
+            form.hero-searchForm[action="/listings/search", method="get"]
+              input[type="hidden" name="search[where]" value="top"]
+              input[type="hidden" name="search[num_of_guest]" value="1"]
+              .search-form-wrapper
+                .location-wrapper
+                  input#location2.location-width.location[type="text" autocomplete="off" name="search[location]" placeholder=t('.form.placeholder')]
+              = button_tag("", type: "submit", class: "btn btn-primary btn-large", id: "submit_location") do
+                = t '.form.submit'
+    - else
+      .col-lg-9
+        .card
+          .card-header
+            = t('.title', listing: Listing.model_name.human)
+          .responsive-table-container
+            ul.list-unstyled.list-layout
+              li.card-body.hide--sp
+                .row.row-table.row-table-header
+                  .col-xs-4.col-md-3 = Reservation.human_attribute_name :progress
+                  .col-xs-8.col-md-5 = Listing.human_attribute_name :title
+                  .col-xs-12.col-md-2 = t 'name.host'
+                  .col-xs-12.col-md-2 = Reservation.human_attribute_name :schedule
+                  = render partial: 'reservation_item_as_guest', locals: { reservations: @reservations }

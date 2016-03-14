@@ -1,0 +1,22 @@
+- provide :title, t('.title')
+.page-container.page-container-auth.row-space-top-6.row-space-8
+  .row
+    .pop
+      .card
+        .card-header = t '.header'
+        .card-body
+          = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+            .signin-form
+              = f.error_notification
+              = f.input :reset_password_token, as: :hidden
+              = f.full_error :reset_password_token
+              p.row-space-2
+                = t '.msg_html'
+              .control-group.row-space-2
+                = f.input_field :email, placeholder: t('.placeholder'), required: true, autofocus: true
+              .form-actions
+                = f.button :submit, t('.submit'), class: "btn btn-primary btn-large btn-block"
+        .card-body
+          p.small1.row-space-2
+            = t '.back_text'
+            = link_to t('.back'), new_user_session_path

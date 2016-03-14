@@ -1,0 +1,61 @@
+- provide :title, t('.title')
+.page-container.page-container-auth.row-space-top-6.row-space-8
+  .row
+    .pop
+      .card
+        .card-body
+          .sns-buttons
+            - resource_class.omniauth_providers.each do |provider|
+              /= link_to omniauth_authorize_path(resource_name, provider), class: 'btn btn-fb btn-large btn-block icon-btn' do
+              = link_to localized_omniauth_path(provider), class: 'btn btn-fb btn-large btn-block icon-btn' do
+                i.fa.fa-facebook
+                = t '.facebook.title'
+          .text-center.social-links.hide
+            - resource_class.omniauth_providers.each do |provider|
+              = link_to "facebook", omniauth_authorize_path(resource_name, provider), class: ''
+              = t '.facebook.sub'
+          .text-include-separator
+            h6.text
+              = t '.or'
+            hr
+          .text-center
+            = link_to "#", id: "to-signup-form", class: 'btn btn-primary btn-large btn-block' do
+              i.fa.fa-envelope-o
+              = t '.mail.title'
+          = simple_form_for(resource, as: resource_name, url: user_registration_path) do |f|
+            .signup-form.hide
+              = f.error_notification
+              .control-group.row-space-1
+                = f.input_field :email, class: "decorative-input", placeholder: t('.mail.placeholder.mail'), required: true
+              .control-group.row-space-1
+                = f.input_field :password, class: "decorative-input", placeholder: t('.mail.placeholder.pw'), required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable)
+              .control-group.row-space-1
+                = f.input_field :password_confirmation, class: "decorative-input", placeholder: t('.mail.placeholder.pw_confirm'), required: true
+              .row-space-2.row-space-top-2
+                small
+                  = t '.text0'
+                  = link_to t('.terms_of_use'), "#"
+                  | 、
+                  = link_to t('.privacy'), "#"
+                  | 、
+                  = link_to t('.payback'), "#"
+                  | 、
+                  = link_to t('.host'), "#"
+                  = t '.text1'
+              .form-actions
+                = f.button :submit, t('.submit'), class: "btn btn-primary btn-large btn-block"
+          .policy-wrapper.row-space-top-2
+            small
+              = t '.text0'
+              = link_to t('.terms_of_use'), "#"
+              | 、
+              = link_to t('.privacy'), "#"
+              | 、
+              = link_to t('.payback'), "#"
+              | 、
+              = link_to t('.host'), "#"
+              = t '.text1'
+        .card-body
+          p.small1
+            = t '.registered'
+            = link_to t('.login'), new_user_session_path, class: ''

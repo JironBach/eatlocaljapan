@@ -1,0 +1,29 @@
+- reservation_obj = reservation_id_to_reservation_obj(m.reservation_id)
+- listing_obj = listing_id_to_listing_obj(m.listing_id)
+- progress = Reservation.human_attribute_name :progress
+- schedule = Reservation.human_attribute_name :schedule
+- num_of_people = Reservation.human_attribute_name :num_of_people
+li#question2_post_383275631.thread-list-item
+  .row.row-condensed
+    .col-md-10.col-md-offset-1
+      .card.row-space-4
+        .card-body.card-dark
+          .h5.row-space-2
+            = t('.name', model: Listing.model_name.human)
+            = link_to listing_path m.listing_id do
+              = listing_obj.title
+          p.text-muted.row-space-1
+
+            = t('.progress', progress: progress)
+            = render partial: '/dashboard/progress', locals: { r: reservation_obj }
+            br
+            = t('.schedule',  title: schedule, schedule: reservation_obj.schedule)
+            br
+            = t('.num_of_people', title: num_of_people, num: reservation_obj.num_of_people, unit: t('unit.people'))
+            br
+            b = t '.price.title'
+            | ¥&nbsp;
+            = listing_obj.price * reservation_obj.num_of_people
+            = t '.price.text'
+          = link_to each_manager_link(reservation_obj) do
+            b = t '.show_detail'

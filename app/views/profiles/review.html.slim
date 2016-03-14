@@ -1,0 +1,34 @@
+- model = Review.model_name.human
+= render partial: 'shared/subnav'
+.page-container.row-space-top-4.row-space-4
+  .row
+    .col-lg-3
+      = render partial: 'shared/profile_sidenav'
+    .col-lg-9
+      ul.tabs[role="tablist"]
+        li.active
+          = link_to t('.tab.to_you', model: model), "#received", class: "tab-item", role: "tab", aria: {controls: "received"}, data: {toggle: "tab"}
+        li
+          = link_to t('.tab.from_you', model: model), "#sent", class: "tab-item", role: "tab", aria: {controls: "sent"}, data: {toggle: "tab"}
+
+      .tab-content
+        .row-space-top-4
+          .tab-panel.active[role="tabpanel" id="received"]
+            .card
+              .card-header = model
+              .card-body
+                p.text-lead = t('.text', model: model, listing: Listing.model_name.human, profile: Profile.model_name.human)
+                ul.list-layout.reviews-list.row-space-top-4
+                  li.reviews-list-item = t('.no_review', model: model, unit: t('unit.review'))
+          .tab-panel[role="tabpanel" id="sent"]
+            .card
+              .card-header = t('.to_you', model: model)
+              .card-body
+                ul.list-layout.reviews-list
+                  li.reviews-list-item = t('.no_target', model: model)
+
+            .card.row-space-top-4
+              .card-header = t('.old')
+              .card-body
+                ul.list-layout.reviews-list
+                  li.reviews-list-item = t('.no_old')

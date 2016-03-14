@@ -1,0 +1,28 @@
+- listings.each do |listing|
+  .col-sm-12.col-md-6.row-space-2
+    .listing
+      .card-image.listing-img
+        = link_to listing_path(listing.id), class: "media-photo media-cover"
+          .listing-img-container.media-cover.text-center
+            = image_tag(listing.cover_image, class: "img-responsive-height")
+        .card-overlay-bottom-left.card-overlay-label.card-overlay-listing-label
+          div
+            sup.h5.text-contrast ¥
+            span.h3.price-amount
+              = listing.price
+              /= number_to_yen(listing.price)
+            /sup.h6.text-contrast
+        /.card-overlay-top-right.wl-social-connection-card
+          span.rich-toggle.wishlist-button
+            input#wishlist-widget-1 name="" type="checkbox"
+            label.hide--sp for="wishlist-widget-1"
+              i.fa.fa-heart.wishlist-heart-unchecked.fa-size-2
+              i.fa.fa-heart-o.fa-white.fa-size-2
+      .card-body.card-card-section
+        .media
+          = link_to listing_path(listing.id, anchor: 'host-profile'), class: "pull-right media-photo media-round card-profile-picture card-profile-picture-offset" do
+            = image_tag(user_id_to_profile_image(listing.user_id))
+          .h5.listing-name.text-truncate.row-space-top-1
+            = link_to listing.title, listing_path(listing.id), class: "text-normal"
+          .text-muted.listing-location.text-truncate
+            = link_to listing.location, listing_path(listing.id), class: "text-normal link-reset small1"

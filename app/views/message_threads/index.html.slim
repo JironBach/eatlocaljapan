@@ -1,0 +1,44 @@
+- provide :title, t('.title', model: Message.model_name.human)
+= render partial: 'shared/subnav'
+.page-container.page-container-inbox.row-space-6.row-space-top-4
+  .row
+    #inbox.threads.col-sm-12
+      .card
+        - if @message_threads.blank?
+          .card-body
+            p = t('.msg', host: t('name.host'),msg1: Message.model_name.human, msg2: t('name.reservation_request'))
+        - else
+          ul.list-layout.card-body
+            - @message_threads.each do |mt|
+              - counterpart_id = counterpart_user_id(mt)
+              - lm = latest_message(mt)
+              - sender_flg = sender?(current_user.id, lm.from_user_id)
+              li.card-body.thread
+                .row
+                  .col-sm-9.col-md-4.thread-author
+                    .row.row-table
+                      .thread-avatar.col-md-4
+                        = link_to message_thread_path(mt)
+                          = image_tag(user_id_to_profile_image(counterpart_id), class: "media-round media-photo size50")
+                          /img.media-round.media-photo.size50 alt="" src="#{user_id_to_profile_image(counterpart_id)}"
+                      .col-sm-8.thread-name
+                        = user_id_to_name(counterpart_id)
+                        br
+                        span.thread-date
+                          = mt.updated_at.strftime("%Y/%m/%d %H:%M")
+                  = link_to message_thread_path(mt), class: "thread-link link-reset" do
+                    .col-sm-7.col-md-6.thread-body
+                      .message-content.text-truncate.hide--sp
+                        = lm.content
+                      .address.text-muted
+                        - if lm.listing_id.present? && !lm.listing_id.zero?
+                          = listing_id_to_listing_obj(lm.listing_id).location
+                  .col-sm-7.col-md-2.thread-label
+                    .row
+                      .col-sm-12.col-md-6
+                        - if lm.read.present?
+                          span.label.status-contact.text-starlight
+                            = string_of_read(lm.read, sender_flg)
+                        - else
+                          span.label.status-contact.text-danger
+                            = string_of_read(lm.read, sender_flg)

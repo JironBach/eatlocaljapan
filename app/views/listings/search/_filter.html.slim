@@ -1,0 +1,92 @@
+= simple_form_for(:search, url: '/listings/search', html: {class: "trip-form", method: 'get'}) do |f|
+  .filters.collapse
+    = f.error_notification
+    = f.hidden_field :where, value: 'listing_search'
+    = f.hidden_field :location, value: @conditions['location']
+    .card-header.filters-section.show--sp
+      a.modal-close.js-small-filters-close href="#"
+      = t '.search_word'
+    .filters-section.intro-filter.card-body
+      .row
+        .col-lg-2.col-md-12.text-center-sm.text-center-md.row-space-1--sp.filter-label
+          label
+            = t '.search_word'
+        .col-lg-9
+          .row.row-condensed
+            .col-md-4.col-sm-6.row-space-1--sp
+              = f.input_field :schedule, placeholder: t('activerecord.placeholders.listing.schedule'), class: "tour-target datepicker"
+            .col-md-4.col-sm-12
+              .select.select-block
+                - arr = (1..15).map{|p| ["#{p}#{t('unit.people')}",p] }
+                - arr <<  ["#{t'.num_of_guest.more_than', num: 16, unit: t('unit.people')}", :"16+"]
+                = f.input_field :num_of_guest, as: :select, class: "guest-select", collection: arr, default:  [1]
+    .filters-section.intro-filter.card-body
+      .row
+        .col-lg-2.col-md-12.text-center-sm.text-center-md.filter-label
+          label= Listing.human_attribute_name :price
+        .col-lg-9.col-md-12
+          = f.input_field :price, id: "price-range"
+    .checkbox-group.hosting_amenities.filters-section.card-body
+      .row
+        .col-lg-2.col-md-12.filter-label
+          label
+            - model1 = Confection.human_attribute_name :name
+            = model1
+            = t '.option1'
+        .col-lg-9.col-md-11
+          .row.row-condensed.filters-columns
+            .col-md-8
+              label.media.checkbox.text-truncate title=t('.option1')
+                = f.input_field :confection, as: :boolean, boolean_style: :inline, class: "pull-left"
+                = t '.text', model: model1, opt: t('.option1')
+    .chieckbox-group.hosting_amenities.filters-section.card-body
+      .row
+        .col-lg-2.col-md-12.filter-label
+          label
+            - model2 = Tool.human_attribute_name :name
+            = model2
+            = t '.option2'
+        .col-lg-9.col-md-11
+          .row.row-condensed.filters-columns
+            .col-md-8
+              label.media.checkbox.text-truncate title=t('.option2')
+                = f.input_field :tool, as: :boolean, boolean_style: :inline, class: "pull-left"
+                = t '.text', model: model2, opt: t('.option2')
+    .checkbox-group.property_type_id.filters-section.card-body
+      .row
+        .col-lg-2.col-md-12.filter-label
+          label
+            - model3 = DressCode.human_attribute_name :wafuku
+            = model3
+            = t '.option3'
+        .col-lg-9.col-md-11
+          .row.row-condensed.filters-columns
+            .col-md-8
+              label.media.checkbox.text-truncate title=t('.option3')
+                = f.input_field :wafuku, as: :boolean, boolean_style: :inline, class: "pull-left"
+                = t '.text3', model: model3, opt: t('.option3')
+    .keywords.filters-section.card-body
+      .row
+        .col-lg-2.col-md-12.filter-label
+          label
+            = t '.others.label'
+        .col-lg-9
+          .row.row-condensed
+            .col-md-12
+              = f.input_field :keywords, placeholder: t('.others.placeholder'), class: "input-block"
+    .filters-footer.card-btn--sp
+      = f.button :submit, t('.submit'), class: "btn btn-block btn-large btn-primary search-button row-space-4--sp"
+  .filters-placeholder.hide.hide--sp
+
+
+  .sidebar-header.card-body.card-bg-medium.hide--sp.clearfix
+    = link_to "#", class: "btn show-filters pull-left" do
+      span.text-more-filters
+        = t '.add_search_condition'
+    = f.button :submit, t('.submit_sp'), class: "btn btn-primary pull-left"
+    .results-count-item.pull-right.text-right
+      h1.results-count.h5
+        = hit_count
+        = t 'unit.hit_count'
+        = t '.hit_count.dot'
+        = conditions['location']

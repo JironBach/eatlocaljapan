@@ -1,0 +1,51 @@
+oauth:
+  facebook:
+    scope: "public_profile,email,user_friends"
+    info_fields: "name, first_name, last_name, email"
+    image_size: 'large'
+meta_tags:
+  og:
+    type: 'website'
+  fb:
+    admins: '1081639010'
+    image: 'http://yourdomain.jp/og.png'
+  viewport: 'width=device-width,initial-scale=1,user-scalable=no'
+  charset: 'utf-8'
+  format:
+    detection: 'telephone=no, address=no, email=no'
+images:
+  welcome:
+    flow:
+      no_illust: "illust/no-illust01.jpg"
+    cover:
+      active: "sample/pic/pic001.jpg"
+      inactive: "sample/pic/pic002.jpg"
+  noimage:
+    url: 'no-image-1024x640.gif'
+  noimage2:
+    url: 'no-image-225x225.gif'
+listing_ngevents:
+  color:
+    holiday: "gray"
+    reserved: "#FA8B9F"
+    canceled: "#ccc"
+# user:
+#   host:
+#     noname: "ホスト"
+#     noname2: '名無し'
+#     this: 'こちらのホスト'
+#   noname: '名無し'
+#   left: '退会済みユーザー'
+devise:
+  mailer:
+    sender: 'please-change-me-at-config-initializers-devise@example.com'
+mailer:
+  from:
+    default: "default-from-email@example.com"
+left_steps:
+  listing_image: "listing_image"
+  confection: "confection"
+  tool: "tool"
+  dress_code: "dress_code"
+review:
+  expiration_date: 14

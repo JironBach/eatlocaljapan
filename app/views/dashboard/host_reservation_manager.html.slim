@@ -1,0 +1,31 @@
+- rsrv = Reservation.model_name.human
+- provide :title, t('.title', rsrv: rsrv)
+= render 'shared/subnav'
+.page-container.row-space-top-4.row-space-4
+  .row
+    .col-md-3
+      = render partial: "shared/host_sidenav"
+
+    - if @reservations.blank?
+      .col-md-9
+        .card
+          .card-header
+            = t('.title', rsrv: rsrv)
+          .card-body
+            p.text-lead.row-space-4
+              = t('.no_req', rsrv_req: rsrv)
+    - else
+      .col-md-9
+        .card
+          .card-header
+            = t('.title', rsrv: rsrv)
+          .responsive-table-container
+            ul.list-unstyled.list-layout
+              li.card-body.hide--sp
+                .row.row-table.row-table-header
+                  .col-xs-4.col-md-3 = Reservation.human_attribute_name :progress
+                  .col-xs-8.col-md-3 = Listing.human_attribute_name :title
+                  .col-xs-12.col-md-2 = t 'name.guest'
+                  .col-xs-12.col-md-2 = Reservation.human_attribute_name :schedule
+                  .col-xs-12.col-md-2 = Reservation.human_attribute_name :num_of_people
+                  = render partial: 'reservation_item_as_host', locals: { reservations: @reservations }

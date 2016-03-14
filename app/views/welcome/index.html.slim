@@ -1,0 +1,27 @@
+- provide :title, t('.title')
+- provide :description, t('.description')
+- provide :keywords, t('.keywords')
+.hero-wrapper
+  #hero
+    ul#slideshow.list-unstyled
+      li.active
+        = image_tag Settings.images.welcome.cover.active
+      li
+        = image_tag Settings.images.welcome.cover.inactive
+  .hero-contents.text-center
+    .va-container.va-container-wh
+      .hero-inner
+        h1#tagline.uppercase.text-jumbo.text-contrast.row-space-1 = t('.tagline')
+        .col-sm-12
+          #subtitle.h4.text-contrast.row-space-4 = t('.subtitle')
+          .search--sp.show--sp
+            #sp-search-field.input-addon
+              span.input-stem.input-large.fake-search-field
+                = t '.search'
+              i.input-suffix.btn.btn-primary.fa.fa-full.fa-search
+          a.guest-flow-trigger.btn.btn-large.btn-transparent.hide--sp[href="#"]
+            = t '.flow'
+        .hero-search.hide--sp
+          .col-xs-12
+            = render partial: 'form'
+= render partial: 'discovery'

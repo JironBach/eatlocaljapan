@@ -1,0 +1,13 @@
+- provide :title, t('.title', model: DressCode.model_name.human)
+.manage-listings
+  = render partial: 'shared/manage_listing_header', locals: { listing: @listing }
+  .manage-listing-row-container
+    .manage-listing-content.col-md-9.col-offset-3
+      .row-space-top-4
+        h3.text-center.row-space-2
+          = t('.title', model: DressCode.model_name.human)
+        p.text-center.row-space-6
+          = t '.text'
+      = render 'form'
+
+    = render partial: 'shared/manage_listing_nav'

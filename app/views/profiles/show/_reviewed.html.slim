@@ -1,0 +1,51 @@
+#reviews.reviews.row-space-4
+  h2.h3.row-space-2
+    = Review.model_name.human
+    small
+      = t('.reviewed_num', num: reviewed_count)
+  div
+    .reviews_section.as_host
+      .reviews
+        - reviewed.each do |r|
+          .row.text-center-sm
+            .col-md-2.col-sm-12
+              .avatar-wrapper
+                = link_to profile_path(r.guest_id), class: "text-muted" do
+                  .media-photo.media-round.row-space-1.text-center
+                    = image_tag(user_id_to_profile_image(r.guest_id), width: 68)
+                  .text-center.profile-name.text-wrap
+                    = user_id_to_name(r.guest_id)
+                /.text-muted.date.show-sm
+                  = r.created_at.strftime("%y年%m月%d日")
+            .col-md-10.col-sm-12
+              .row-space-2
+                .comment-container.expandable.row-space-2
+                  .expandable-trigger-more
+                    .expandable-content
+                      .expandable-inner
+                        p
+                          = simple_format(r.msg)
+                      .expandable-indicator
+                  = link_to "#", class: "expandable-trigger-more strong" do
+                    = t '.show_all'
+                  /a.expandable-trigger-more.text-muted href="#"
+                    /strong もっと詳しく
+              /.text-muted.date.hide-sm
+                - reserv = reservation_id_to_reservation_obj(r.reservation_id)
+                - l = listing_id_to_listing_obj(r.listing_id)
+                /= reserv.schedule
+              .media
+                .media-photo.media-round.pull-left
+                  = link_to profile_path(r.host_id)
+                    = image_tag(user_id_to_profile_image(r.host_id), width: 36)
+                .media-body
+                  strong
+                    = t '.reply'
+                  p
+                    = simple_format(review_id_to_review_reply_msg(r.id))
+              .listing-name.text-center--sp
+                = link_to listing_path(l.id)
+                  = l.title
+          .row.row-space-2.line-separation
+            .col-10.col-offset-2
+              hr

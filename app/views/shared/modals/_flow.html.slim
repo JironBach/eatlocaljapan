@@ -1,0 +1,23 @@
+/ modal guest-flow
+#guest-flow.modal[role="dialog" aria-hidden="true"]
+  .modal-paper
+    .page-container
+      .row
+        .col-md-4.row-space-4
+          .illust-box.text-center
+            = image_tag Settings.images.welcome.flow.no_illust
+            .h3.row-space-top-3.row-space-2 = t '.step1.title'
+            p = t '.step1.text'
+        .col-md-4.row-space-4
+          .illust-box.text-center
+            = image_tag Settings.images.welcome.flow.no_illust
+            .h3.row-space-top-3.row-space-2 = t '.step2.title'
+            p = t '.step2.text'
+        .col-md-4.row-space-4
+          .illust-box.text-center
+            = image_tag Settings.images.welcome.flow.no_illust
+            .h3.row-space-top-3.row-space-2 = t '.step3.title'
+            p = t '.step3.text'
+    = link_to "#", class: "panel-close close-guest-flow", data: { dismiss: "modal" } do
+      i.fa.fa-times
+      = t '.close'

@@ -1,0 +1,17 @@
+- # shared#facebook_connect_bar
+.page-container.facebook-connect-bar.row-space-top-4
+  .card
+    .card-body
+      .row.row-table.prompt-area
+        .col-xs-12
+          .pull-right.pull-reset.text-center
+            = button_tag type: "button", class: "btn btn-fb" do
+              i.fa.fa-facebook
+              = t '.connect'
+            = link_to t('.read_next'), "#", class: "btn hide--sp" 
+          .media-body
+            h5
+              = t('.msg')
+      .row.loading-area.hide
+        h4.text-center
+          = t '.logging_in'

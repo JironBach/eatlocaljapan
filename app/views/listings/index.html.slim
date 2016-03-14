@@ -1,0 +1,63 @@
+- provide :title, t('.title')
+= render 'shared/subnav'
+.page-container.row-space-top-4.row-space-4
+  .row
+    .col-md-3
+      = render partial: "shared/host_sidenav"
+
+    - if @listings.blank?
+      .col-md-9
+        .card
+          .card-body
+            h3
+              = t('.no_listing.title')
+            p.text-lead.row-space-4
+              = t('.no_listing.guests_waiting')
+              br
+              = t('.no_listing.invitation')
+            = link_to new_listing_path, class: "btn btn-host" do
+              = t('.make_listing')
+    - else
+      .col-md-9
+        .card
+          .card-header
+            .row
+              .col-sm-12
+                = t('.title')
+              /.col-sm-7.col-md-6
+                .select
+                  form#select-listings-filter[action=""]
+                    select#f[name="f"]
+                      option[value="all"]
+                        = t('.all.long')
+                      option[value="active"]
+                        = t('.open.long')
+                      option[value="inactive"]
+                        = t('.closed.long')
+              /.col-sm-5.col-md-6.add-new
+                = link_to t('.edit'), new_listing_path, class: "btn btn-host pull-right show--sp"
+          .suspension-container
+            ul.list-unstyled.list-layout
+              - @listings.each do |listing|
+                li.listing.card-body
+                  .row.row-table
+                    .col-xs-4.col-lg-2
+                      .media-photo.media-photo-block
+                        .media-cover.text-center
+                          = image_tag(listing_cover_image_url(listing.id), class: "img-responsive-height")
+                    .col-xs-8.col-lg-6
+                      span.h4
+                        = link_to listing, class: "text-normal trans" do
+                          = listing.title
+                      .actions.row-space-top-1
+                        = link_to t('.edit'), edit_listing_path(listing)
+                    .col-md-12.col-lg-4
+                      .pull-right.pull-change
+                        .listing-criteria-header.activation-notification
+                          .listing-criteria-header-message
+                            - if listing.open?
+                              = link_to edit_listing_path(listing), class: "btn btn-primary" do
+                                = t('.open.short')
+                            - else
+                              = link_to edit_listing_path(listing), class: "btn" do
+                                = t('.closed.short')

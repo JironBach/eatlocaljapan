@@ -1,0 +1,12 @@
+- provide :title, t('.title', model: Tool.model_name.human)
+.manage-listings
+  = render partial: 'shared/manage_listing_header', locals: { listing: @listing }
+  .manage-listing-row-container
+    .manage-listing-content.col-md-9.col-offset-3
+      .row-space-top-4
+        h3.text-center.row-space-2 = t('.title', model: Tool.model_name.human)
+        p.text-center.row-space-6
+          = t('.msg_html', model: Tool.model_name.human, guest: t('name.guest'))
+      = render 'form'
+
+    = render partial: 'shared/manage_listing_nav'

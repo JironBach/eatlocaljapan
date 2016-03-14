@@ -1,0 +1,8 @@
+- provide :title, t('.title', model: ProfileImage.model_name.human)
+= render partial: 'shared/subnav'
+.page-container.row-space-top-4.row-space-8
+  .row
+    .col-lg-3
+      = render partial: 'shared/profile_sidenav'
+    .col-lg-9
+      = render 'form'

@@ -1,0 +1,90 @@
+- provide :title, t('.title')
+= render partial: 'shared/subnav'
+- model = Message.model_name.human
+- profile = Profile.model_name.human
+.page-container.row-space-top-4.row-space-8
+  .row
+    .col-lg-3.hide--md.hide--sp
+      .card.row-space-4
+        .media.media-photo-block.dashboard-profile-photo.panel-image
+          = link_to profile_path(current_user.profile.id)
+            = image_tag(profile_image, class: 'img-responsive')
+        .card-body
+          h2.h3.text-center.row-space-1
+            = user_id_to_name(current_user.id)
+          ul.list-unstyled.text-center
+            li
+              = link_to t('.profile.show', profile: profile), profile_path(current_user.profile.id)
+            li
+              = link_to t('.profile.edit', profile: profile), edit_profile_path
+
+    .col-lg-9.col-md-12
+      #alert-panel.card.row-space-4
+        .card-header
+          = t '.alert.header'
+        .card-body
+          ul.list-unstyled.list-smooth
+            - unless @never_replied_reservations.count.zero?
+              li
+                = link_to dashboard_host_reservation_manager_path do
+                  = t('.alert.host_reservation_manager_link', rsrv_req: t('name.reservation_request'), num: @never_replied_reservations.count)
+                  i.fa.fa-chevron-right
+            - unless @unread_messages.count.zero?
+              li
+                = link_to message_threads_path do
+                  = t('.alert.message_thread_link', model: model, num: @unread_messages.count)
+                  i.fa.fa-chevron-right
+            - if @never_replied_reservations.count.zero? && @unread_messages.count.zero?
+              .text-center
+                p.h5.row-space-2.row-space-top-2
+                  = t '.alert.all_read'
+      #message-panel.card.row-space-4
+        .card-header
+          = t('.message.unread_html', model: model, num: @unread_messages.count)
+        - if @unread_messages.count.zero?
+          .card-body
+            .text-center
+              p.h5.row-space-top-2.row-space-2
+                = t('.message.all_read_html', model: model)
+        - else
+          ul.list-layout
+            - @unread_messages.each do |um|
+              - from_user = user_id_to_user_obj(um.from_user_id)
+              - from_user_profile = from_user.profile
+              li.card-body.thread
+                .row
+                  .col-md-4
+                    .row.row-table
+                      .col-xs-3.col-md-5
+                        = link_to message_thread_path(um.message_thread_id) do
+                          = image_tag(user_id_to_profile_image(um.from_user_id), class: 'img-round size50')
+                      .col-xs-9.col-md-7
+                        = user_obj_to_name(from_user)
+                        .small2
+                          = um.created_at.strftime("%m/%d %H:%M")
+                  = link_to message_thread_path(um.message_thread_id), class: "link-reset" do
+                    .col-md-5
+                      .text-muted
+                        = um.content
+                      .text-muted
+                        = from_user_profile.location
+                  - if um.reservation_id.present? && !um.reservation_id.zero?
+                    - r = reservation_id_to_reservation_obj(um.reservation_id)
+                    - l = listing_id_to_listing_obj(um.listing_id)
+                    .col-md-3
+                      = render partial: 'progress', locals: { r: r }
+                      .small1
+                        b
+                          = t 'unit.price'
+                          = l.price
+                        span.col-space-left-1
+                          = r.num_of_people
+                          = t 'unit.people'
+                        br
+                        = r.schedule.strftime("%m/%d")
+                  - else
+                    .col-mod-2
+                      span.label.status-contact.text-starlight
+                        = Settings.message.unread.string
+        .card-body
+          = link_to t('.message.all', model: model), message_threads_path

@@ -1,0 +1,14 @@
+<%= t '.greeting1' %><%= @to_user_name %><%= t 'prefix' %><%= t '.greeting2' %>
+
+<%= t '.msg1' %><%= @from_user_name %><%= t 'prefix' %><%= t '.msg2' %>
+
+<%= t '.msg3' %>
+
+<% if @dest == "host" %>
+  <%= dashboard_host_reservation_manager_url %>
+<% elsif @dest == "guest" %>
+  <%= dashboard_guest_reservation_manager_url %>
+<% end %>
+
+--
+<%= t 'basic_info.service_name' %>

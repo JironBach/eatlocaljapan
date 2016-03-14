@@ -1,0 +1,1 @@
+json.array! @ng_days

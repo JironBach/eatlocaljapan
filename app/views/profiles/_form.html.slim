@@ -1,0 +1,64 @@
+    = simple_form_for(@profile, url: '/profile', method: :patch, html: { class: "form--sp" }) do |f|
+      = f.error_notification
+      = f.hidden_field :user_id, value: current_user.id
+      .card.row-space-4
+        .card-header = t '.header'
+        .card-body
+          .row.row-condensed.row-space-4
+            label.text-right.col-3
+              = Profile.human_attribute_name :last_name
+            .col-8
+              = f.input_field :last_name
+          .row.row-condensed.row-space-4
+            label.text-right.col-3
+              = Profile.human_attribute_name :first_name
+            .col-8
+              = f.input_field :first_name
+          .row.row-condensed.row-space-4
+            label.text-right.col-3[for="user_gender"]
+              = Profile.human_attribute_name :gender
+              i.fa.fa-lock.fa-green
+            .col-9
+              .select
+                = f.input_field :gender, as: :select, :collection => [[t('.gender.female'), :"female"], [t('.gender.male'), :"male"], [t('.gender.others'), :"others"], [t('.gender.not_specified'), :"not_specified"]], :default => ["female"]
+              .text-muted.row-space-top-1 = t '.text_closed'
+          .row.row-condensed.row-space-4
+            label.text-right.col-3[for="user_birthdate"]
+              = Profile.human_attribute_name :birthday
+              i.fa.fa-lock.fa-green
+            .col-9
+              .select.select-opt
+                /= f.input_field :birthday, as: :date, use_month_numbers: true, start_year: Date.today.year - 120, end_year: Date.today.year - 12, order: [:year, :month, :day], date_separator: '/'
+                = raw sprintf(f.date_select(:birthday,use_month_numbers: true,start_year: (Time.zone.today.year - 120),end_year: (Time.zone.today.year - 12),default: Date.new(1986, 1, 1),order: [:year,:month,:day],date_separator: '%s'),'<span>' + t(".year") + '</span></div><div class="select select-opt">', '<span>' + t(".month") + '</span></div><div class="select select-opt">') + '<span>' + t(".day") + '</span>'
+                /= f.input_field :birthday, as: :date,
+                                        :use_month_numbers => true,
+                                        start_year: Date.today.year - 120,
+                                        end_year: Date.today.year - 12,
+                                        discard_day: false,
+                                        order: [:day, :month, :year]
+          .row.row-condensed.row-space-4
+            label.text-right.col-3[for="user_phone"]
+              = Profile.human_attribute_name :phone
+              i.fa.fa-lock.fa-green
+            .col-7
+              = f.input_field :phone, placeholder: t('.placeholder.phone')
+              .text-muted.row-space-top-1 = t '.text_limited'
+          .row.row-condensed.row-space-4
+            label.text-right.col-3[for="user_phone"]
+              = Profile.human_attribute_name :zipcode
+              i.fa.fa-lock.fa-green
+            .col-6
+              = f.input_field :zipcode, id: 'user-zipcode', placeholder: t('.placeholder.zipcode'), class: "zip-format"
+              .text-muted.row-space-top-1 = t '.text_closed'
+          .row.row-condensed.row-space-4
+            label.text-right.col-3[for="user_phone"]
+              = Profile.human_attribute_name :location
+            .col-7
+              = f.input_field :location, placeholder: t('.placeholder.location'), class: "zip-address"
+          .row.row-condensed.row-space-4
+            label.text-right.col-3[for="user_self_introduction"]
+              = Profile.human_attribute_name :self_introduction
+            .col-8
+              = f.input_field :self_introduction, as: :text, cols: "30", rows: "5"
+              .text-muted.row-space-top-1 = t('.intro', listing: Listing.model_name.human)
+      = f.button :submit, t('.submit'), class: "btn btn-primary btn-large row-space-4"

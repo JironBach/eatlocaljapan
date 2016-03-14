@@ -1,0 +1,28 @@
+= simple_form_for([@profile, @profile_image], url: '/profile/profile_image', method: :patch, html: { class: "form--sp" }) do |f|
+  = f.error_notification
+  = f.hidden_field :user_id, value: current_user.id
+  = f.hidden_field :profile_id, value: current_user.profile.id
+  .card.row-space-4
+    .card-header
+      = t '.header'
+    .card-body
+      - if profile_image_exists?
+        .row.row-condensed.row-space-4
+          label.text-right.col-3
+            = ProfileImage.human_attribute_name :image
+          = image_tag(profile_image, width: '120px')
+      .row.row-condensed.row-space-4
+        label.text-right.col-3
+          = ProfileImage.human_attribute_name :image
+        .col-8
+          = f.file_field :image, class: "row-space-top-1-file"
+          span.text-pink
+            = t('.text1')
+      /.row.row-condensed.row-space-4
+        label.text-right.col-3
+          = t('.text2')
+        .col-8
+          = f.input_field :caption
+          .text-muted.row-space-top-1
+            = t '.text3'
+  = f.button :submit, t('.submit'), class: "btn btn-primary btn-large row-space-4"

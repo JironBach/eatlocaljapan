@@ -1,0 +1,39 @@
+.nav-menu-wrapper
+  .va-container.va-container-v.va-container-h
+    .va-middle.nav-menu.card-body
+      ul.menu-group.list-unstyled.row-space-3
+        - if user_signed_in?
+          li
+            = link_to t('.home'), root_path, class: "link-reset menu-item", rel: "nofollow"
+          li
+            = link_to t('.dashboard'), dashboard_path, class: "link-reset menu-item", rel: "nofollow"
+          li
+            = link_to t('.new_listing'), new_listing_path, class: "link-reset menu-item", rel: "nofollow"
+          li
+            = link_to message_threads_path, class: "link-reset menu-item", rel: "nofollow" do
+              = t '.message'
+              i.alert-count.unread-count--sp.fade.text-center
+              = t('.unread_msg', num: unread_messages)
+          li
+            = link_to t('.host_reservation_manager'), dashboard_host_reservation_manager_path, class: "link-reset menu-item", rel: "nofollow"
+          /li
+            /= link_to t('.wishlists'), wishlists_path, class: "link-reset menu-item", rel: "nofollow"
+          li
+            = link_to t('.profile'), edit_profile_path, class: "link-reset menu-item", rel: "nofollow" 
+          li
+            = link_to t('.account'), edit_user_registration_path, class: "link-reset menu-item", rel: "nofollow"
+        - else
+          li
+            = link_to t('.home'), root_path, class: "link-reset menu-item", rel: "nofollow"
+          li
+            = link_to t('.login'), new_user_session_path, class: "link-reset menu-item", rel: "nofollow"
+          li
+            = link_to t('.guest_flow'), "#", class: "link-reset menu-item guest-flow-trigger", rel: "nofollow"
+        li
+          = link_to t('.search'), "#", class: "search-modal-trigger link-reset menu-item", rel: "nofollow"
+      ul.menu-group.list-unstyled.row-space-3
+        li.hide
+          = link_to t('.help'), "#", class: "link-reset menu-item", rel: "nofollow"
+        - if user_signed_in?
+          li
+            = link_to t('.logout'), destroy_user_session_path, method: :delete, class: "link-reset menu-item", rel: "nofollow"

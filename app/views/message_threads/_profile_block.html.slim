@@ -1,0 +1,15 @@
+.col-lg-4
+  .card.row-space-4
+    .mini-profile.va-container.media
+      .va-top.pull-left
+        = link_to profile_path(counterpart.profile.id), class: 'media-photo' do
+          = image_tag(their_profile_image, class: "size100", alt: "")
+      .va-middle.msg-pic
+        .h4.row-space-1
+          = link_to profile_path(counterpart.profile.id), class: 'text-normal' do
+            = t('.name', name: user_id_to_name(counterpart.id))
+        small
+          = counterpart.profile.try('location') || t('.no_location')
+        small
+          = t '.joined'
+          = counterpart.created_at.strftime("%Y年")

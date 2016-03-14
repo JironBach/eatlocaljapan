@@ -1,0 +1,7 @@
+.alert.alert-absolute
+  div
+    = t('.title', profile: Profile.model_name.human)
+    = link_to edit_profile_path do
+      = t('.edit', profile: Profile.model_name.human)
+      '
+      i.fa.fa-chevron-right

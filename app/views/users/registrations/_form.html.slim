@@ -1,0 +1,42 @@
+  .row
+    .col-lg-3
+      ul.sidenav-list
+        li
+          a.sidenav-item[href="#" aria-selected="true"]
+            = t '.sidenav_item'
+    .col-lg-9
+      .card.row-space-4
+        = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+          = f.error_notification
+          #change_your_password
+            .card-header
+              = t '.header'
+            .card-body
+              .row
+                .col-md-10
+                  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+                    p
+                      = t '.confirm_msg'
+                      = resource.unconfirmed_email
+                  .row.row-condensed.row-space-2
+                    .col-md-5.text-right.text-left--md
+                      label[for="old_password"]
+                        = t '.current_pw'
+                    .col-md-7
+                      = f.input_field :current_password, required: true
+                  .row.row-condensed.row-space-2
+                    .col-md-5.text-right.text-left--md
+                      label[for="user_password"]
+                        = t '.new_pw'
+                    .col-md-7
+                      = f.input_field :password, autocomplete: "off", required: true, class: "input-block", size: "30"
+                  .row.row-condensed.row-space-2
+                    .col-md-5.text-right.text-left--md
+                      label[for="user_password_confirmation"]
+                        = t '.new_pw_confirm'
+                    .col-md-7
+                      = f.input_field :password_confirmation, hint: "we need your current password to confirm your changes", required: true, class: "input-block", size: "30"
+                .col-md-5
+
+            .card-footer
+              = f.button :submit, t('.update'), class: "btn btn-primary"

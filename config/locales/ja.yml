@@ -1,0 +1,983 @@
+ja:
+  activerecord:
+    models:
+      admin_user: 管理者
+      auth: 外部サービスとの連携
+      browsing_history: 閲覧履歴
+      comment: コメント
+      confection: お菓子
+      dress_code: 服装
+      emergency: 緊急連絡先
+      listing: リスティング
+      listing_image: リスティングのイメージ画像
+      listing_pv: リスティングの閲覧数
+      listing_video: リスティングのビデオ
+      message: メッセージ
+      message_thread: メッセージスレッド
+      message_thread_user: メッセージスレッドのユーザー
+      profile: プロフィール
+      profile_image: プロフィールのイメージ画像
+      profile_video: プロフィールのイメージ動画
+      reservation: 予約
+      review: レビュー
+      review_reply: レビューの返答
+      tool: お道具
+      user: ユーザー
+      user_ngevent: 都合の悪い日
+      wishlist: お気に入り
+    attributes:
+      admin_user:
+        email: メールアドレス
+        encrypted_password: パスワード
+        reset_password_sent_at: パスワードリセットメール送信日時
+        sign_in_count: ログイン回数
+        current_sign_in_at: 現在のログイン日時
+        last_sign_in_at: 前回のログイン日時
+        current_sign_in_ip: 現在のログイン時のIP
+        last_sign_in_ip: 前回のログイン時のIP
+      auth:
+        provider: 連携サービス
+        uid: UID
+        access_token: アクセストークン
+      confection:
+        name: お菓子
+        image: お菓子画像
+        url: 参考ウェブサイトのURL
+      dress_code:
+        wafuku: 和服
+        note: 注釈
+      emergency:
+        name: 名前
+        phone: 電話番号
+        email: メールアドレス
+        relationship: 関係性
+      listing:
+        title: リスティングのタイトル
+        zipcode: 開催場所の郵便番号
+        location: 開催場所の住所
+        longitude: 軽度
+        latitude: 緯度
+        delivery_flg: 出張は？
+        description: リスティングの説明
+        price: 料金
+        capacity: 最大可能人数
+        title: リスティングのタイトル
+        direction: 開催場所までの道順の説明
+        cover_image: 現在のリスティングのカバー画像
+        cover_image_caption: リスティングのカバーの説明文
+        schedule: 日程
+        ave_total: 合計値の平均
+        ave_accuracy: 正確性値の平均
+        ave_communication: コミュニケーション値の平均
+        ave_cleanliness: 清潔性値の平均
+        ave_location: 場所性値の平均
+        ave_check_in: チェックイン値の平均
+        ave_cost_performance: コスパ値の平均
+      listing_image:
+        image: リスティングのイメージ画像
+        caption: 写真の説明
+        order_num: 順番
+      listing_pv:
+        pv: 閲覧数
+      message:
+        to_user: 送信宛ユーザー
+        from_user: 送信元ユーザー
+        read_at: 既読日時
+        content: 内容
+        read: ステータス
+      profile:
+        first_name: 名
+        last_name: 姓
+        birthday: 生年月日
+        gender: 性別
+        phone: 電話番号
+        zipcode: 郵便番号
+        location: 住所
+        self_introduction: 自己紹介
+        phone_verification: 電話番号の認証
+        school: 流派
+        work: 職業
+        timezone: タイムゾーン
+        ave_total: 合計値の平均
+        ave_accuracy: 正確性値の平均
+        ave_communication: コミュニケーション値の平均
+        ave_cleanliness: 清潔性値の平均
+        ave_location: 場所性値の平均
+        ave_check_in: チェックイン値の平均
+        ave_cost_performance: コスパ値の平均
+      profile_image:
+        caption: キャプション
+        image: 現在のプロフィール画像
+      reservation:
+        schedule: 日程
+        num_of_people: 人数
+        msg: メッセージ
+        progress: 予約進捗
+        reason: 理由
+        price: 価格
+        review_mail_sent_at: レビューメール依頼送信日時
+        review_expiration_date: レビュー書き込み可能期限
+        review_landed_at: レビューページ訪問日時
+        reviewed_at: レビュー作成日時
+        reply_mail_sent_at: レビュー返信依頼メール送信日時
+        reply_landed_at: レビュー返信ページ訪問日時
+        replied_at: レビュー返信作成日時
+        review_opened_at: レビュー公開日時
+        host: ホスト
+        guest: ゲスト
+        ngevent: NG日
+      review:
+        msg: メッセージ
+        total: 合計値
+        accuracy: 正確性値
+        communication: コミュニケーション値
+        cleanliness: 清潔性値
+        location: 場所性値
+        check_in: チェックイン値
+        cost_performance: コスパ値
+      review_reply:
+        msg: メッセージ
+      tool:
+        name: お道具
+        image: お道具画像
+        url: 参考ウェブサイトのURL
+      user:
+        email: メールアドレス
+        username: ユーザー名
+        encrypted_password: 暗号化されたパスワード
+        reset_password_token: パスワードリセットトークン
+        reset_password_sent_at: パスワードリセットの為のメール送信日時
+        remember_created_at: 登録情報の保存が登録された日時
+        current_sign_in_at: 現在のログイン日時
+        last_sign_in_at: 前回のログイン日時
+        current_sign_in_ip: 現在のログインIP
+        last_sign_in_ip: 前回のログインIP
+        confirmation_token: アカウント有効化トークン
+        confirmed_at: アカウント有効化日時
+        confirmation_sent_at: アカウント有効化の為のメール送信日時
+        unconfirmed_email: 無効になったメールアドレス
+        failed_attempts: ログイン失敗回数
+        unlock_token: アカウントをアンロックする為のトークン
+        locked_at: アカウントをロックした日時
+        uid: ユニークID
+        provider: 現在の認証サービス
+      wishlist:
+        name: お気に入りリストの名前
+    placeholders:
+      listing:
+        title: 例) 初心者でも楽しめるリスティング
+        price: "例) 5000"
+        longitude: 軽度
+        latitude: 緯度
+        description: 例) 初心者の方でも気軽に楽しめるリスティングです。ぜひお友達も誘ってお越しください。
+        zipcode: "例) 012-3456"
+        location: 郵便番号を入力すれば自動で出力されます
+        direction: 開催場所までのオススメの移動方法や、迷いそうなポイントなど記入ください
+        schedule: 参加する日程
+      listing_image:
+        caption: "例) こんな感じです"
+      confection:
+        url: http://okashi.com
+      tool:
+        url: "http://odougu.com"
+      reservation:
+        schedule: "年/月/日"
+      review:
+        msg: "例）こちらこそ楽しいひと時を過ごさせていただきました。どうぞまたご参加ください。"
+      dress_code:
+       note: "特別に注意していただきたい点などある場合はこちらに注意点やお願いなどをご記入ください。"
+  attributes:
+    id: ID
+    user: ユーザー
+    auths: 外部サービスとの連携
+    profile: プロフィール
+    profile_image: プロフィール画像
+    profile_video: プロフィール動画
+    listing: リスティング
+    listings: リスティングたち
+    listings_images: リスティング画像たち
+    listing_ngevents: リスティングNG日々
+    open: 公開中
+    confection: お菓子
+    tool: お道具
+    dress_code: 服装
+    reservation: 予約
+    reservations: 予約たち
+    review: レビュー
+    reviews: レビューたち
+    review_reply: レビューへの返信
+    listing_id: &LISTING_NAME リスティング
+    guest_id: &GUEST ゲスト
+    host_id: &HOST ホスト
+    user_id: ユーザー
+    video: 動画
+    message_thread: メッセージスレッド
+    message_threads: メッセージスレッドたち
+    messages: メッセージ
+    message_thread_users: メッセージスレッドのユーザーたち
+    users: ユーザーたち
+    caption: キャプション
+    viewed_at: 閲覧日時
+    created_at: 作成日時
+    updated_at: 更新日時
+  basic_info:
+    service_name: サービス名
+  meta_tags:
+    og:
+      title: サービス名
+      site_name: サイト名
+      description: 説明
+    title:
+      base_title: 基本タイトル
+      separator: " | "
+    description:
+      base_description: 基本説明
+    keywords:
+      base_keywords: 基本キーワード
+    author: 作成者
+  shared:
+    modals:
+      flow:
+        step1:
+          title: 1. 検索する
+          text: 近くのリスティング、お気に入りのホスト、あなた好みのリスティングを見つけてください。
+        step2:
+          title: 2. 予約する
+          text: 簡単に予約ができます。ホストにお願いがある場合など、メッセージを送ってやりとりが可能です。
+        step3:
+          title: 3. 楽しむ
+          text: あなたの近くにあなたの知らない至高の時間があなたを待っています。ぜひ新しいリスティングに挑戦ください。
+        close: 閉じる
+      message_to_host:
+        label: "%{host}に連絡する"
+        placeholder: "例）このリスティングはまだ参加できますか？"
+        submit: "%{msg}を送信する"
+      message_to_host_from_reservation_manger:
+        label: "%{host}に連絡をする"
+        placeholder: 例）どうぞよろしくおねがいします。
+        submit: 送信
+        cancel: キャンセル
+        to1: ""
+        to2: "さんへ"
+        progress:
+          select: 予約を承認しますか？
+          select_by_guest: 予約をキャンセルする場合は、選択してください。
+      message_to_guest_from_reservation_manger:
+        title: "%{rsrv}依頼に回答する"
+        placeholder: 例）当日は公共交通機関でおこしください。よろしくお願いいたします。
+        submit: 回答する
+        to1: ""
+        to2: "さんへ"
+        selected:
+          continued: 予約を承諾しますか？
+          accepted: 予約は成立しております。変更しますか？
+          rejected: 予約は不成立しております。変更しますか？
+        text:
+          hold: 保留
+          accept: 承諾
+          reject: 拒否
+    facebook_connect_bar:
+      connect: コネクトする
+      read_next: 続きを読む
+      msg: Facebookのタイムラインに追加して、友達にシェアしよう！
+      logging_in: "ログインしています..."
+    footer:
+      corporate:
+        title: 企業情報
+        about: このサービスについて
+        blog: ブログ
+        help: ヘルプ
+        privacy: プライバシーポリシー
+        terms_of_use: 利用規約
+      recommend:
+        title: オススメ情報
+        one: オススメです
+        two: 初心者お助け帳
+        three: グループ
+        four: 友だちを招待
+        five: サイトマップ
+      for_hosts:
+        title: ホストの方へ
+        one: ホストになる理由
+        two: おもてなしの心
+        three: ホストの責任
+        four: こころがけ
+        five: サービスの様子
+      social_media:
+        title: ソーシャルメディア
+      copyright: © 会社名
+    guest_sidenav:
+      link: 参加したリスティング
+      guest_reservation_manager: 参加する
+    header:
+      search: どこで探しますか？
+      new_listing: リスティングを作る
+      dashboard: ダッシュボード
+      listings: リスティング
+      host_reservation_manager: 予約管理
+      guest_reservation_manager: 参加する
+      profile: プロフィール
+      account: アカウント
+      logout: ログアウト
+      login: ログイン
+      signup: 新規登録
+      messages: "メッセージ "
+      help: ヘルプ
+    header_form:
+      location:
+        placeholder: どこで探しますか？
+    header_form_sp:
+      num_of_guest:
+        unit_text: "参加 %{num}%{unit}"
+        more_than: "参加 %{num}%{unit}以上"
+      location:
+        placeholder: どこで探しますか？
+      schedule:
+        placeholder: 日付
+      submit: Search
+    host_sidenav:
+      text1: リスティングを
+      text2: 追加
+      listing: リスティング
+      host_reservation_manager: 予約管理
+    manage_listing_header:
+      to_my_listings: 自分のリスティング一覧へ
+      preview: プレビュー
+    manage_listing_nav:
+      header: リスティング情報
+      basic_info: 基本情報
+      image: イメージ画像
+      cal: カレンダーの設定
+      item: "%{model}%{opt}"
+      opt1: （オプション１）
+      opt2: （オプション２）
+      opt3: （オプション３）
+      publish: この内容で公開する
+      step: "あと%{num}ステップ"
+      unpublish: 一時的に非公開にする
+      unpublished: 現在非公開中です
+    profile_sidenav:
+      edit: プロフィール編集
+      edit_image: プロフィール画像編集
+    sidebar_nav_sp:
+      home: ホーム
+      dashboard: ダッシュボード
+      new_listing: リスティング作成
+      message: メッセージ
+      unread_msg: "未読%{num}"
+      host_reservation_manager: 予約管理
+      profile: プロフィール
+      account: アカウント
+      login: ログイン
+      guest_flow: サービスの流れ
+      search: リスティングを検索
+      help: ヘルプ
+      logout: ログアウト
+    subnav:
+      dashboard: ダッシュボード
+      messages: メッセージ
+      listings: リスティング
+      guest_reservation_manager: 参加する
+      profile: プロフィール
+      account: アカウント
+    tooltip:
+      all_user:
+        title: すべてのユーザー
+        text: 全員に公開され、あなたの公開プロフィールに掲載されます。
+      only_me:
+        title: 自分のみ
+        text: あなたにだけ見え、どこにも共有されません。
+      zipcode: 正しい郵便番号を入力することで、住所欄に該当する住所が自動で出力されます。
+      delivery:
+        title: 出張について
+        text: 依頼があれば、出張できるホストの方はチェックを入れてください。
+      reliability:
+        title: ご安心ください
+        text_html: "出張可能な範囲など、依頼したゲストとのやりとりで決定します。<br>無理な出張などはその段階でお断りできます。"
+    triplets:
+      first:
+        title: ゲストを自分で選ぶ
+        text: レビューを読み、要件を設定し、事前にゲストと対話する。 心地よい相手だけをゲストとしてあなたのリスティングに迎えてください。
+      second:
+        title: "最大number_to_yen(80,000,00)のホスト保証"
+        text1:  事故は稀にですが起こることもあります。
+        link: ホスト保証
+        link_text: " は、要件を満たす予約で物件に損害があった場合には、最大number_to_yen(80,000,00)まで保証します―あなたのご負担はゼロです。"
+      third:
+        title: セキュアな支払い
+        text: 迅速で融通が利く支払いシステムではお支払い方法をお選びいただけます。ホストの受取金は、ゲストがチェックインして24時間後に送金致します。
+  confections:
+    manage:
+      title: "%{model}（オプション1）の情報を登録しましょう。"
+      text_html: "%{model}はリスティングの大きな魅力です。<br>ぜひ登録して写真も載せてみたらいかがでしょう？"
+    form:
+      submit: この内容で保存する
+  dashboard:
+    index:
+      title: ダッシュボード
+      profile:
+        show: "%{profile}を見る"
+        edit: "%{profile}を編集する"
+      alert:
+        header: ご案内
+        host_reservation_manager_link: "%{rsrv_req}が%{num}件届いています"
+        message_thread_link: "%{model}が%{num}件届いています"
+        all_read: すべて確認いただいています。
+      message:
+        unread_html: "未読の%{model} 新着<b class='count'>%{num}</b>件"
+        all_read_html: "読んでいない%{model}はないようです。"
+        all: "すべての%{model}"
+    host_reservation_manager:
+      title: "%{rsrv}状況一覧"
+      no_req: "%{rsrv_req}はありません"
+    guest_reservation_manager:
+      title: "参加する予定の%{listing}"
+      no_schedule: 予定がありません。
+      form:
+        placeholder: どこで探しますか？
+        submit: 検索
+    reservation_item_as_guest:
+      progress:
+        requested: 回答待ち
+        canceled: キャンセルしました
+        accepted: 承諾されました
+        rejected: 拒否されました
+        holded: 保留中
+        unpublished: 非公開になりました
+      msg: "  %{model}"
+      receipt: " 領収書 "
+    reservation_item_as_host:
+      progress:
+        requested: 回答してください
+        canceled: キャンセルされました
+        accepted: 承諾しました
+        rejected: 拒否しました
+        holded: 保留中です
+        unpublished: 非公開にしました
+      reply: " 返答する "
+      contact: " %{model}を送る"
+  dress_codes:
+    manage:
+      title: "%{model}（オプション3）に関して"
+      text: 必要があれば下のチェックボックスにチェックを入れてください。
+    form:
+      label1: 和服のみ
+      submit: 保存する
+  listing_images:
+    manage:
+      title: "%{listing_image}をもう一枚追加しましょう。"
+      text_html: "%{guest}にあなたの%{listing}の魅力をよく伝えるために、あなたの%{listing}をイメージできる写真を使うことをおすすめします。<br>あなた自身が参加したいと思うような%{listing_image}があれば完璧です。"
+    form:
+      submit: 保存する
+  listing_ngevents:
+    manage:
+      title: "%{model}を設定しましょう"
+      text: "カレンダーの日付をクリック、またはドラッグすると%{model}を設定できます。"
+      label1: 設定済みの予約不可能日
+      label2: 予約済み
+    form:
+      button: "日程を削除する"
+  listings:
+    index:
+      no_listing:
+        title: リスティングを開く予定はありません。
+        guests_waiting: あなたのリスティングを待っているゲストがいます。
+        invitation: あなたの好きな人を招いてリスティングを楽しくしましょう。
+        make_listing: 新しくリスティングを作る
+      title: リスティング一覧
+      all:
+        long: すべてのリスティング
+        short: すべて
+      open:
+        long: 公開中のリスティング
+        short: 公開中
+      closed:
+        long: 非公開のリスティング
+        short: 非公開中
+      add: 追加
+      edit: このリスティングを編集する
+      make_listing: リスティングを作成
+    new:
+      title: リスティングを作成しましょう
+      subtitle: 自分のリスティングは簡単に作れます
+    search:
+      title: 検索
+      no_match:
+        sidebar:
+          text1: 条件に該当がないようです。
+          text2: 条件を変えて検索してみましょう。
+        map:
+          text: 該当がありません。
+      map:
+        search: 再検索
+        search_on_map: マップを動かして自動検索
+      filter:
+        num_of_guest:
+          more_than: "%{num}%{unit}以上"
+        text: "%{model}%{opt}の情報があるものだけ表示"
+        text3: "%{model}のみ %{opt}"
+        search_word: 検索条件
+        option1: （オプション１）
+        option2: （オプション２）
+        option3: （オプション３）
+        others:
+          label: その他
+          placeholder: キーワード情報
+        submit: リスティングを表示
+        add_search_condition: 検索条件を追加
+        submit_sp: 再検索する
+        hit_count:
+          dot: ・
+    delivery_ok_button:
+      text: 出張可
+    detail:
+      about_this_listing: このリスティングについて
+      contact_to_host: こちらのホストに連絡
+      delivery: 出張
+      option:
+        option1: オプション１
+        option2: オプション２
+        option3: オプション３
+      dress_codes:
+        wafuku_only: 和服でお願いします。
+        any: 和服でなくて結構です。
+    edit:
+      title: リスティング編集
+    edit_link:
+      title: あなたのリスティングです。
+      edit: このリスティングを編集する。
+      contact_to_this_host: こちらのホストに連絡
+    form:
+      price: "(%{unit})"
+      submit:
+        update: この内容で保存する
+        next: 次へ
+      caution:
+        price: "カンマ( , )は使わないでください"
+      delivery:
+        label: 出張は？
+        name: 可能です
+      capacity:
+        more_than: "%{num}%{unit}以上"
+    host_info:
+      name:
+        after: さんの紹介
+      profile:
+        link: プロフィールを表示
+      show_all: すべてを表示
+      joined_date: "メンバー登録: "
+      reply_rate: "返答率: "
+      latest_msg: （最新の連絡10件）
+      reply_time: "返答時間: "
+      review_num: "レビュー数: "
+      contact_to_this_host: こちらのホストに連絡
+    name_bar:
+      surfix: さん
+    review_item:
+      show_all: すべて見る
+      reply_from_host: "ホストの方より返答: "
+    request_block:
+      price:
+        per_attend: 1回の料金
+      submit: 予約をリクエスト
+      pv:
+        text: "こちらのリスティングは今週%{num}回閲覧されております。"
+      share:
+        title: シェア：
+        line:
+          text: LINEで送る
+      cancel:
+        text: キャンセルをすると全額返金を求めることができます。
+    similar_listings:
+      title: 近くのリスティング
+    subnav:
+      my_listing: 自分のリスティングリスト
+      photos: 写真
+      details: このリスティングについて
+      reviews: レビュー
+      host_profile: ホスト紹介
+      neighborhood: 開催地
+      request: 予約をリクエスト
+    show:
+      title: リスティング詳細
+      request: "%{rsrv}をリクエスト"
+  message_threads:
+    form:
+      placeholder: ここにメッセージをご記入下さい
+      submit: "%{msg_model}を送信"
+    listing_block:
+      name: "%{model}名: "
+      progress: "%{progress}: "
+      schedule: "%{title}: %{schedule}"
+      num_of_people: "%{title}: %{num}%{unit}"
+      price:
+        title: "予想お支払い額 "
+        text: （金額は予約が成立次第、確定します）
+      show_detail: 予約詳細を見る
+    profile_block:
+      name: "%{name}さん"
+      no_location: 住所未登録
+      joined: "メンバー登録: "
+    index:
+      title: "%{model}一覧"
+      msg: "%{host}に%{msg1}または%{msg2}を送信した場合、ここで%{host}からの返信を見られます。"
+    show:
+      title: "%{name}さんとの会話"
+    my_msg:
+      read: 既読
+  profile_images:
+    edit:
+      title: "%{model}の編集"
+    form:
+      header: 必須項目
+      text1: 正方形の画像だときれいに表示されます。
+      text2: 画像にひとこと
+      text3: この情報は参加が確定したユーザーのみに公開されます。
+      submit: 保存する
+  profiles:
+    edit:
+      title: "%{model}編集"
+    show:
+      review: "%{model}数<span><h5>{num}"
+      self_introduction:
+        msg: こんにちは、%{name}と申します。
+      reviewed:
+        reviewed_num: "（%{num}）"
+        show_all: すべて表示
+        reply: "返信: "
+      left_column:
+        title: "開催している%{listing}"
+        listing_num: （num）
+        delivery_ok: 出張可
+    review:
+      tab:
+        to_you: "あなた宛の%{model}"
+        from_you: "あなたが書いた%{model}"
+      text: "%{model}は%{listing}の予定が終わってから書かれます。あなたに関する%{model}は、こことあなたの%{profile}の両方に表示されます。"
+      no_review: "あなたに関する%{model}はまだ0%{unit}です。"
+      to_you: "あなたに関する%{model}。"
+      no_target: "%{model}を書く相手は今はおりません。"
+      old: "過去に書いた%{model}"
+      no_old: "%{model}を書いた相手はおりません。"
+    form:
+      header: 必須項目
+      text_closed: この情報は他のユーザーに公開されません。
+      text_limited: この情報は参加が確定したユーザーのみに公開されます。
+      year: 年
+      month: 月
+      day: 日
+      gender:
+        female: 女性
+        male: 男性
+        others: その他
+        not_specified: 指定しない
+      placeholder:
+        phone: 例) +83 80 1111 xxxx
+        zipcode: 例） 012-3456
+        location: "郵便番号を入力すると自動で町名まで出力されます"
+      intro: "自己紹介を充実させることであなたの人柄、%{listing}の内容など詳しく知ってもらいましょう。"
+      submit: 保存する
+    edit_link:
+      title: "あなたの%{profile}です。"
+      edit: "%{profile}を編集する"
+  review_replies:
+    new:
+      text0: ""
+      name: "%{name}さん"
+      text1: に返信しましょう。
+      text2_html: "先日の%{listing}の%{review}が届いています。<br>ぜひ返信しましょう。"
+    form:
+      submit: この内容で返信する
+  reviews:
+    new:
+      text0: ""
+      name: "%{name}さん"
+      text1: に%{review}を送りましょう！
+      msg_html: "先日の%{listing}の%{review}や感想を%{host}の方に送ることができます。<br>あまり難しく考えず、あなたの率直な感想をお伝えしましょう。<br>感謝の内容や、改善の希望など、次回この%{listing}に参加される方に大変役立ちます。<br>ぜひ一筆お願いします。"
+    form:
+      placeholder: 例）先日は大変楽しく過ごすことができました。ありがとうございます。ぜひまた参加させていただきたいと思います。
+      msg: "あなたの判断で%{listing}の評価を最高星5つでつけてみてください"
+      submit: この内容で送る
+  tools:
+    manage:
+      title: "%{model}（オプション2）の情報を登録しましょう。"
+      msg_html: "%{model}を重視する%{guest}も大勢います。<br>ぜひ登録して写真も載せてみたらいかがでしょう？"
+    form:
+      submit: この内容で保存する
+  users:
+    confirmations:
+      new:
+        title: 確認メールの再送信
+        header: 確認メールの再送信
+        msg_html: "登録用の確認メールを再送信できます。<br>下のボックス内に送信したいメールアドレスを入力して「再送信する」をクリックしてください。"
+        placeholder: メールアドレス
+        submit: 再送信する
+        back_text: ログイン画面に戻りますか？
+        back: 戻る
+    passwords:
+      new:
+        title: パスワード変更
+        header: パスワードを変更する
+        msg_html: "パスワードを再設定します。<br>再設定用のメールをお送りしますので、メールアドレスを下に入力し、「送信する」ボタンをクリックしてください。"
+        placeholder: メールアドレス
+        submit: 送信する
+        back_text: ログイン画面に戻りますか？
+        back: 戻る
+      edit:
+        header: パスワードを変更する
+        title: パスワードを変更します
+        placeholder_password: パスワード
+        placeholder_password_confirmation: パスワード（確認）
+        submit: 変更する
+        back_text: ログイン画面に戻りますか？
+        back: 戻る
+    registrations:
+      new:
+        title: 新規登録
+        facebook:
+          title: Facebookで登録する
+          sub: で登録
+        or: または
+        mail:
+          title: メールアドレスで新規登録
+          placeholder:
+            mail: メールアドレス
+            pw: パスワード
+            pw_confirm: パスワード（確認）
+        submit: 登録する
+        text0: 登録することで、
+        text1: に同意したことになります。
+        terms_of_use: サービス利用規約
+        privacy: 個人情報保護ポリシー
+        payback: 返金ポリシー
+        host: ホスト保証規約
+        registered: すでにメンバーですか？
+        login: ログイン
+      edit:
+        title: 登録情報編集
+      form:
+        sidenav_item: 基本情報
+        header: パスワードを変更
+        confirm_msg: "現在以下のアドレスにアカウント有効化メールを送信しておりますので、そちらからアカウントを有効化してください。: "
+        current_pw: 現在のパスワード
+        new_pw: 新しいパスワード
+        new_pw_confirm: 新しいパスワード（確認）
+        update: パスワードの更新
+    sessions:
+      new:
+        title: ログイン
+        facebook: Facebookでログイン
+        or: または
+        remember: 登録情報を保存する
+        login: ログイン
+        placeholder:
+          mail: メールアドレス
+          pw: パスワード
+        forgot_pw: パスワードをお忘れですか？
+        account: アカウントはお持ちですか？
+        confirmation: 確認メールが届かないですか？
+        regist: 登録
+        resend: 再送信
+  welcome:
+    index:
+      title: トップページのタイトル
+      description: トップページの説明
+      keywords: トップページのキーワード
+      tagline: タグライン
+      subtitle: サイトのサブタイトルはこちら
+      search: 検索してみましょう
+      flow: サービスの流れ
+    form:
+      num_of_guest:
+        unit_text: "参加人数 %{num}%{unit}"
+        more_than: "参加人数 %{num}%{unit}以上"
+      placeholder:
+        schedule: 日時
+        location: 探す場所
+      submit: 検索
+    discovery:
+      title: ディスカバリー
+      note: いろいろな候補を見ていかれませんか？
+      item:
+        price:
+          value: 3,000
+        title: 阿部さんの候補
+        category_name: カテゴリ名
+  message_mailer:
+    send_new_message_notification:
+      subject: 新しいメッセージが届きました！
+      greeting1: ""
+      greeting2: "、こんにちは！"
+      msg1: ""
+      msg2: さんからメッセージが届きました！
+      msg3: 以下のリンクから、内容をご確認ください。
+  reservation_mailer:
+    send_new_reservation_notification:
+      subject: "新しい予約リクエストが届きました！"
+      greeting1: ""
+      greeting2: "、こんにちは！"
+      msg1: ""
+      msg2: さんから予約リクエストが届きました！
+      msg3: 以下のリンクから、内容をご確認ください。
+    send_update_reservation_notification:
+      subject:
+        canceled: "予約がキャンセルされました。"
+        holded: "予約が保留されました。"
+        accepted: "予約が成立しました！"
+        rejected: "予約が不成立となりました。"
+      greeting1: ""
+      greeting2: "、こんにちは！"
+      msg1: ""
+      msg2: さんが予約リクエストを更新しました！
+      msg3: 以下のリンクから、内容をご確認ください。
+  review_mailer:
+    send_review_mail:
+      subject: レビューの記入をしませんか？
+    send_review_notification:
+      greeting1: ""
+      greeting2: " こんにちは！"
+      msg1: "%{host}さん主催の%{listing}、%{listing_title} (%{schedule})への%{review}の記入をしませんか？"
+      msg2: "以下のリンクから、%{review}の記入ができます。"
+      msg3: "%{review}を記入すると、%{host}の方より返信がきます。"
+      msg4: "%{review_reply}が来ると、%{review}は公開されます。"
+      msg5: "なお%{review}の書き込みは、%{term} 日間有効です。"
+    send_review_reply_mail:
+      subject: レビューへの返信を記入しましょう。
+    send_review_reply_notification:
+      greeting1: ""
+      greeting2: " こんにちは！"
+      msg1: "%{listing_title} (%{schedule})に参加していただいた %{guest} さんへの%{review}を記入しましょう。"
+      msg2: "以下のリンクから、%{review}の記入ができます。"
+      msg3: "%{review}は、記入すると、%{profile}ページなどに公開されます。"
+  kaminari:
+    first_page:
+      first: First
+    gap:
+      truncate: " ... "
+    last_page:
+      last: Last
+    next_page:
+      next: " > "
+    prev_page:
+      previous: " < "
+  unit:
+    price: ￥
+    people: 人
+    listing: 件
+    review: 件
+    hit_count: 件
+  name:
+    reservation_request: 参加希望
+    guest: ゲスト
+    host: ホスト
+  prefix: さん
+  to1: ""
+  to2: "さんへ"
+  message:
+    save:
+      success: "送信完了しました。"
+      failure: "送信できませんでした。"
+    read:
+      string: "既読 "
+    unread:
+      string: "未読 "
+    waiting_for_read:
+      string: "既読待ち"
+    already_read:
+      string: "既読済"
+  string_of_progress:
+    requested: "参加希望"
+    canceled: "キャンセル"
+    holded: "保留"
+    accepted: "承諾"
+    rejected: "拒否"
+    unpublished: "非公開"
+  alerts:
+    profile:
+      save:
+        success: "%{model}を更新しました。"
+    profile_images:
+      save:
+        success: "%{model}を更新しました。"
+    listings:
+      save:
+        success: "%{model}の登録に成功しました。次に、他の情報も入力してください。"
+      update:
+        success: "%{model}の登録に成功しました。"
+        failure: "%{model}の登録に失敗しました。"
+      set_lon_lat:
+        error: "緯度経度情報の取得に失敗しました。以下より正確な場所を入力してください。"
+      publish:
+        success: "%{model}を公開しました。"
+        failure: "%{model}の公開にはもう少し準備が必要です。"
+      unpublish:
+        success: "%{model}を非公開にしました。"
+        failure: "%{model}の非公開に失敗しました。"
+      error:
+        invalid_listing_id: "該当の%{model}が見つかりません。"
+    listing_images:
+      save:
+        success: "%{model}の登録に成功しました。"
+        failure: "%{model}の登録に失敗しました。"
+    confections:
+      save:
+        success: "%{model}の情報を登録しました。"
+        failure: "%{model}の情報の登録に失敗しました。"
+    tools:
+      save:
+        success: "%{model}の情報を登録しました。"
+        failure: "%{model}情報の登録に失敗しました。"
+    dress_codes:
+      save:
+        success: "%{model}に関する情報を登録しました。"
+        failure: "%{model}に関する情報の登録に失敗しました。"
+      wafuku:
+        only: "%{model}でお願いします。"
+        not_only: "%{model}でなくて結構です。"
+    listing_ngevents:
+      reason:
+        holiday: "予約不可能日"
+        reserved: "予約済みです"
+        canceled: "予約はキャンセルされました"
+    reservation:
+      save:
+        success: "%{model}を申し込みました。ご確認いただき、%{host}の方からの%{msg}をお待ちください。"
+        failure:
+          no_date: "%{model}する日付を入力してください。"
+      update:
+        success: "%{model}を更新しました。"
+        success: "%{model}を更新に失敗しました。"
+      requirement:
+        profile:
+          not_yet: "%{model}を完成させてください。"
+        profile_image:
+          not_yet: "%{model}をアップロードしてください。"
+      msg:
+        request: "%{model}リクエストをお送りしました。"
+    review:
+      save:
+        success: "%{model}を投稿しました。%{host}の方からの返信をお待ちください。"
+        failure: "%{model}を投稿できませんでした。"
+    review_reply:
+      save:
+        success: "%{model}をしました。%{review}が公開されましたので、ご確認ください。"
+        failure: "%{model}ができませんでした。"
+    regulate_user:
+      reservation_id:
+        failure: "このページにはアクセスできません。%{rsrv}IDが不正です。"
+      user_id:
+        failure: "このページにはアクセスできません。IDが不正です。"
+      entry:
+        duplicated: "既に投稿済みです。"
+      review_not_found: "このページにはアクセスできません。%{review}が見つかりません。"
+      cancan:
+        failure: "このページにはアクセスできません。アクセス権限がありません。"
+    regulate_term:
+      expired: "%{review}の書き込み期間が経過しました。"
+  # views:
+  #   pagination:
+  #     first: "&laquo;"
+  #     last: "&raquo;"
+  #     previous: "&lsaquo;"
+  #     next: "&rsaquo;"
+  #     truncate: "..."

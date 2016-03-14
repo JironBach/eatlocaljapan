@@ -1,0 +1,59 @@
+.page-container.row-space-2
+  .row
+    .col-lg-8
+      .row-space-4.row-space-top-8
+        h4.row-space-4.text-center--sp
+          = host_info.try('name') || t('name.host')
+          = t('.name.after')
+        .row
+          .col-md-3.text-center
+            a.media-photo.media-round
+              = image_tag(host_image.try('image') || Settings.images.noimage2.url, class: "size90")
+          .col-md-9
+            .expandable.row-space-3
+              .expandable-trigger-more
+                .expandable-content
+                  .expandable-inner
+                    p
+                      = simple_format(host_info.try('self_introduction') || '')
+                    div
+                      = link_to profile_path(host_info.id), class: "strong" do
+                        = t('.profile.link')
+                      .expandable-indicator
+              = link_to "#", class: "expandable-trigger-more strong" do
+                = t('.show_all')
+            .row.row-condensed.row-space-2
+              .col-md-6
+                div
+                  = host_info.try('location') || ''
+                div
+                  = t('.joined_date')
+                  = host_info.created_at.strftime("%Y年%m月")
+              .col-md-6
+                div
+                  = t('.reply_rate')
+                  b
+                    | 100%
+                  small.response-details.text-muted.hide
+                    = t('.latest_msg')
+                div
+                  = t('.reply_time')
+                  b
+                    | 数時間以内
+              .col-md-12.row-space-top-2
+                .row-space-1
+                  = link_to profile_path(host_info.id), class: "btn btn-guest", rel: "nofollow" do
+                    = t('.review_num')
+                    = review_count_of_host(@host_info.id)
+                .row-space-2
+                  - if user_signed_in?
+                    - if current_user.id == listing.user_id
+                      button.btn.btn-small.btn-primary.disabled
+                        = t('.contact_to_this_host')
+                    - else
+                      button#message-host-link-bottom.btn.btn-small.btn-primary
+                        = t('.contact_to_this_host')
+                  - else
+                    = link_to new_user_session_path do
+                      button.btn.btn-small.btn-primary
+                        = t('.contact_to_this_host')

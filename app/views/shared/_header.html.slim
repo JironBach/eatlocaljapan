@@ -1,0 +1,92 @@
+#header.common-header
+  .header--sp
+    = link_to "#", class: "burger--sp" do
+      i.fa.fa-reorder
+    - unless controller_name == "welcome"
+      .title--sp.text-center
+        = link_to "javascript:void(0)", class: "header-search-dummy" do
+          i.fa.fa-search
+          = t '.search'
+    - else
+      .title--sp.text-center
+        = link_to "", root_path, class: "header-logo"
+    .action--sp
+    nav.nav--sp
+      .nav-mask--sp
+      - if user_signed_in?
+        .nav-content--sp.card.text-contrast.logged-in
+          .nav-header
+            .nav-profile.clearfix
+              .user-item.pull-left
+                = link_to edit_profile_path, class: "link-reset user-profile-link" do
+                  .media-photo.media-round.user-profile-image
+                    = image_tag profile_image, class: 'size28'
+                  = current_user.email
+            hr
+          = render partial: "/shared/sidebar_nav_sp"
+      - else
+        .nav-content--sp.card.text-contrast
+          = render partial: "/shared/sidebar_nav_sp"
+    .search-modal-container
+      #search-modal--sp.modal[role="dialog" aria-hidden="true"]
+        .modal-table
+          .modal-cell
+            .modal-content
+              .card-header.modal-header
+                = link_to "", "#", class: "modal-close", data: { dismiss: "modal" }
+                .h4 = t '.search'
+              .card-body
+                .modal-search-wrapper--sp
+                  = render partial: '/shared/header_form_sp'
+  .header.clearfix.hide--sp
+    = link_to "", root_path, class: "header-logo pull-left"
+    - unless controller_name == "welcome"
+      = render partial: '/shared/header_form'
+    ul.nav.pull-right
+      li.help-menu.pull-left.hide
+        = link_to "#", class: "" do
+          = t '.help'
+      li.list-your-thing.pull-left
+        = link_to t('.new_listing'), new_listing_path, class: "btn btn-host"
+    - if user_signed_in?
+      ul.nav.pull-right
+        li.user-item.pull-left
+          = link_to profile_path(current_user.id), class: "", data: { toggle: "dropdown" } do
+            .media-photo.media-round.user-profile-image
+              = image_tag(profile_image, class: 'size28')
+            span.name
+              = current_user.email
+            i.fa.fa-caret-down
+          ul.dropdown-menu.dropdown-menu-top-right[aria-hidden="true"]
+            li
+              = link_to t('.dashboard'), dashboard_path, rel: "nofollow"
+            li
+              = link_to t('.listings'), listings_path, rel: "nofollow"
+            li
+              = link_to t('.host_reservation_manager'), dashboard_host_reservation_manager_path, rel: "nofollow"
+            li
+              = link_to t('.guest_reservation_manager'), dashboard_guest_reservation_manager_path, rel: "nofollow"
+            /li
+              /= link_to t('.wishlists'), wishlists_path, rel: "nofollow"
+            li
+              = link_to t('.profile'), edit_profile_path, rel: "nofollow"
+            li
+              = link_to t('.account'), edit_user_registration_path, rel: "nofollow"
+            li
+              = link_to t('.logout'), destroy_user_session_path, method: :delete, rel: "nofollow"
+        li.pull-left
+          = link_to message_threads_path, rel: "nofollow", class: "alert-sign" do
+            i.fa.fa-envelope-o
+              span.hidden
+                = t('.messages')
+            - unless unread_messages == 0
+              i.alert-count
+                = unread_messages
+    - else
+      ul.nav.pull-right
+        li#sign_up.pull-left
+          = link_to new_user_registration_path, rel: "nofollow" do
+            = t '.signup'
+        li#login.pull-left
+          = link_to new_user_session_path, rel: "nofollow" do
+            = t '.login'
