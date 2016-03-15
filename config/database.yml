@@ -7,7 +7,7 @@ default: &default
 
 development:
   <<: *default
-  host: jironbach.iobb.net
+  host: localhost
   username: airbnb_clone
   password: airbnb_clone
   database: airbnb_clone_development
@@ -17,7 +17,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  host: jironbach.iobb.net
+  host: localhost
   username: airbnb_clone
   password: airbnb_clone
   database: airbnb_clone_test

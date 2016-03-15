@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/activeadmin/activeadmin.git
-  revision: 2635bdb2bc37f3eb103d5ba6dee16b2c7e4da2a6
+  revision: 1c85c5654a2ce1d43d4c64d98b928ff133d46406
   specs:
     activeadmin (1.0.0.pre2)
       arbre (~> 1.0, >= 1.0.2)
@@ -133,7 +133,7 @@ GEM
       http_parser.rb (~> 0.6.0)
     equalizer (0.0.11)
     erubis (2.7.0)
-    eventmachine (1.0.9.1)
+    eventmachine (1.2.0)
     excon (0.48.0)
     execjs (2.6.0)
     factory_girl (4.5.0)
@@ -685,4 +685,4 @@ DEPENDENCIES
   whenever (= 0.9.4)
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
