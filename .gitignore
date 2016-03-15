@@ -68,4 +68,4 @@ config/environments/*.local.yml
 */.DS_Store
 
 # config/database.ymlは各環境で変わるので除外
-#config/database.yml
+config/database.yml
