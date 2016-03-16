@@ -55,8 +55,8 @@ Rails.application.configure do
     :port => 25, #for mailcatcher
     :domain => 'gmail.com',
     :authentication => :plain,
-    :user_name => Rails.application.secrets.action_mailer_user_name,
-    :password => Rails.application.secrets.action_mailer_password
+    :user_name => 'js', #Rails.application.secrets.action_mailer_user_name,
+    :password => 'pa2010', #Rails.application.secrets.action_mailer_password,
   }
 
   config.action_controller.action_on_unpermitted_parameters = :raise
