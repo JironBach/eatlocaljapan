@@ -1,3 +1,5 @@
+require 'omniauth-facebook'
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -241,9 +243,9 @@ Devise.setup do |config|
                   Rails.application.secrets.facebook_app_id,
                   Rails.application.secrets.facebook_app_secret,
                   scope: Settings.oauth.facebook.scope, # change scope as your service's aim
-                  info_fields: Settings.oauth.facebook.info_fields,
-                  image_size: Settings.oauth.facebook.image_size
-                  #display: 'popup'
+                  #info_fields: Settings.oauth.facebook.info_fields,
+                  #image_size: Settings.oauth.facebook.image_size
+                  display: 'popup'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
