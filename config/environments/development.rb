@@ -44,15 +44,15 @@ Rails.application.configure do
   # Raises error for missing translations
   config.action_view.raise_on_missing_translations = true
   # Mailer
-  config.action_mailer.default_url_options = { :host => 'airbnb-demo.mydns.jp' }
+  config.action_mailer.default_url_options = { :host => 'aitbnb-demo.mydns.jp' }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     #:enable_starttls_auto => false,
     #:address => 'smtp.gmail.com',
-    :address => Rails.application.secrets.action_mailer_host, #for mailcatcher,
+    :address => '192.168.204.101', #for mailcatcher
     #:port => 587,
-    :port => Rails.application.secrets.action_mailer_port, #for mailcatcher,
+    :port => 25, #for mailcatcher
     :domain => 'gmail.com',
     :authentication => :plain,
     :user_name => Rails.application.secrets.action_mailer_user_name,
