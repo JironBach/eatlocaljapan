@@ -22,7 +22,7 @@ Rails.application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  config.assets.debug = true        # Re-read each assets file 
+  config.assets.debug = true        # Re-read each assets file
   config.assets.compile = true
   config.assets.digest = true       # Add md5 value on every static file
   config.serve_static_files = true
@@ -44,15 +44,15 @@ Rails.application.configure do
   # Raises error for missing translations
   config.action_view.raise_on_missing_translations = true
   # Mailer
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'airbnb-demo.mydns.jp' }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     #:enable_starttls_auto => false,
-    :address => 'smtp.gmail.com',
-    #:address => 'localhost', for mailcatcher
-    :port => 587,
-    #:port => 1025, for mailcatcher
+    #:address => 'smtp.gmail.com',
+    :address => 'airbnb-demo.mydns.jp', for mailcatcher
+    #:port => 587,
+    :port => 25, for mailcatcher
     :domain => 'gmail.com',
     :authentication => :plain,
     :user_name => Rails.application.secrets.action_mailer_user_name,

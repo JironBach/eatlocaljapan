@@ -38,10 +38,10 @@ listing_ngevents:
 #   left: '退会済みユーザー'
 devise:
   mailer:
-    sender: 'please-change-me-at-config-initializers-devise@example.com'
+    sender: 'admin@airbnb.mydns.jp'
 mailer:
   from:
-    default: "default-from-email@example.com"
+    default: "admin@airbnb.mydns.jp"
 left_steps:
   listing_image: "listing_image"
   confection: "confection"
