@@ -38,10 +38,10 @@ listing_ngevents:
 #   left: '退会済みユーザー'
 devise:
   mailer:
-    sender: 'admin@airbnb.mydns.jp'
+    sender: 'no-reply@agilebooster.com'
 mailer:
   from:
-    default: "admin@airbnb.mydns.jp"
+    default: "no-reply@agilebooster.com"
 left_steps:
   listing_image: "listing_image"
   confection: "confection"

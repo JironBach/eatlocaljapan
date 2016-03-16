@@ -48,17 +48,13 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    #:enable_starttls_auto => false,
-    #:address => 'smtp.gmail.com',
-    :address => '192.168.204.101', #for mailcatcher
-    #:port => 587,
-    :port => 25, #for mailcatcher
-    :domain => 'gmail.com',
+    :enable_starttls_auto => true,
+    :address => 'smtp.gmail.com',
+    :port => 587,
     :authentication => :plain,
-    :user_name => 'js', #Rails.application.secrets.action_mailer_user_name,
-    :password => 'pa2010', #Rails.application.secrets.action_mailer_password
+    :user_name => Rails.application.secrets.action_mailer_user_name,
+    :password => Rails.application.secrets.action_mailer_password,
   }
 
   config.action_controller.action_on_unpermitted_parameters = :raise
-
 end
