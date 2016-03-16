@@ -44,7 +44,7 @@ Rails.application.configure do
   # Raises error for missing translations
   config.action_view.raise_on_missing_translations = true
   # Mailer
-  config.action_mailer.default_url_options = { :host => 'aitbnb-demo.mydns.jp' }
+  config.action_mailer.default_url_options = { :host => 'airbnb-demo.mydns.jp' }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
@@ -56,7 +56,7 @@ Rails.application.configure do
     :domain => 'gmail.com',
     :authentication => :plain,
     :user_name => 'js', #Rails.application.secrets.action_mailer_user_name,
-    :password => 'pa2010', #Rails.application.secrets.action_mailer_password,
+    :password => 'pa2010', #Rails.application.secrets.action_mailer_password
   }
 
   config.action_controller.action_on_unpermitted_parameters = :raise
