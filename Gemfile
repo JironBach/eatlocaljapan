@@ -113,7 +113,9 @@ gem 'date_validator', '~> 0.7.0'
 gem 'fullcalendar-rails', '~> 2.4.0'
 gem 'momentjs-rails', '~> 2.10.6'
 
+#JironBach addition
 gem 'net-ssh'
+gem 'dotenv-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
