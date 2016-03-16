@@ -50,9 +50,9 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     #:enable_starttls_auto => false,
     #:address => 'smtp.gmail.com',
-    :address => 'airbnb-demo.mydns.jp', #for mailcatcher,
+    :address => Rails.application.secrets.action_mailer_host, #for mailcatcher,
     #:port => 587,
-    :port => 25, #for mailcatcher,
+    :port => Rails.application.secrets.action_mailer_port, #for mailcatcher,
     :domain => 'gmail.com',
     :authentication => :plain,
     :user_name => Rails.application.secrets.action_mailer_user_name,
