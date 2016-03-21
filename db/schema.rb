@@ -17,12 +17,12 @@ ActiveRecord::Schema.define(version: 20151021111900) do
   enable_extension "plpgsql"
 
   create_table "active_admin_comments", force: :cascade do |t|
-    t.string   "namespace",     limit: 255
+    t.string   "namespace"
     t.text     "body"
-    t.string   "resource_id",   limit: 255, null: false
-    t.string   "resource_type", limit: 255, null: false
+    t.string   "resource_id",   null: false
+    t.string   "resource_type", null: false
     t.integer  "author_id"
-    t.string   "author_type",   limit: 255
+    t.string   "author_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,16 +32,16 @@ ActiveRecord::Schema.define(version: 20151021111900) do
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "admin_users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -284,9 +284,9 @@ ActiveRecord::Schema.define(version: 20151021111900) do
 
   create_table "review_replies", force: :cascade do |t|
     t.integer  "review_id"
-    t.text     "msg"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "msg",        default: ""
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "review_replies", ["review_id"], name: "index_review_replies_on_review_id", using: :btree
@@ -329,12 +329,12 @@ ActiveRecord::Schema.define(version: 20151021111900) do
     t.integer  "user_id"
     t.integer  "listing_id"
     t.integer  "reservation_id"
-    t.string   "reason",         limit: 255,                null: false
-    t.datetime "start",                                     null: false
-    t.datetime "end",                                       null: false
-    t.boolean  "active",                     default: true
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.string   "reason",                        null: false
+    t.datetime "start",                         null: false
+    t.datetime "end",                           null: false
+    t.boolean  "active",         default: true
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   add_index "user_ngevents", ["listing_id"], name: "index_user_ngevents_on_listing_id", using: :btree

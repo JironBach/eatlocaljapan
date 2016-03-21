@@ -49,11 +49,11 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :enable_starttls_auto => true,
-    :address => 'smtp.gmail.com',
-    :port => 587,
+    :address => Rails.application.secrets.action_mailer_host, #'smtp.gmail.com',
+    :port => Rails.application.secrets.action_mailer_port.to_i, #587,
     :authentication => :plain,
-    :user_name => Rails.application.secrets.action_mailer_user_name,
-    :password => Rails.application.secrets.action_mailer_password,
+    :user_name => 'no-reply@agilebooster.com',
+    :password => 'Agile51Booster55',
   }
 
   config.action_controller.action_on_unpermitted_parameters = :raise
