@@ -49,10 +49,10 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :enable_starttls_auto => true,
-    :address => Rails.application.secrets.action_mailer_host, #'smtp.gmail.com',
-    :port => Rails.application.secrets.action_mailer_port.to_i, #587,
+    :address => 'jironbach.iobb.net',
+    :port => 10025,
     :authentication => :plain,
-    :user_name => 'no-reply@agilebooster.com',
+    :user_name => 'no-reply@airbnb-demo.mydns.jp',
     :password => 'Agile51Booster55',
   }
 
