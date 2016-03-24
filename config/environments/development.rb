@@ -49,12 +49,13 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :enable_starttls_auto => true,
-    :address => Rails.application.secrets.action_mailer_host, #'smtp.gmail.com',
-    :port => Rails.application.secrets.action_mailer_port.to_i, #587,
+    :address => Rails.application.secrets.action_mailer_host,
+    :port => Rails.application.secrets.action_mailer_port,
     :authentication => :plain,
-    :user_name => 'no-reply@agilebooster.com',
-    :password => 'Agile51Booster55',
+    :user_name => Rails.application.secrets.action_mailer_user_name,
+    :password => Rails.application.secrets.action_mailer_password,
   }
+  puts "JironBach:env=#{ENV['MAILER_PORT'].to_i.inspect}"
 
   config.action_controller.action_on_unpermitted_parameters = :raise
 end
