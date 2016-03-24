@@ -50,7 +50,8 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :enable_starttls_auto => true,
     :address => 'jironbach.iobb.net',
-    :port => ENV['MAILER_PORT'].to_i,
+    #:port => ENV['MAILER_PORT'].to_i,
+    :port => Rails.application.secrets.action_mailer_port,
     :authentication => :plain,
     :user_name => 'no-reply',
     :password => 'Agile51Booster55',
