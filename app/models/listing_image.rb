@@ -4,9 +4,9 @@
 #
 #  id         :integer          not null, primary key
 #  listing_id :integer
-#  image      :string(255)      default("")
+#  image      :string           default("")
 #  order_num  :integer
-#  caption    :string(255)      default("")
+#  caption    :string           default("")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

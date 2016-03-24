@@ -8,9 +8,9 @@
 #  listing_id             :integer
 #  schedule               :date             not null
 #  num_of_people          :integer          not null
-#  msg                    :text
+#  msg                    :text             default("")
 #  progress               :integer          default(0), not null
-#  reason                 :text
+#  reason                 :text             default("")
 #  review_mail_sent_at    :datetime
 #  review_expiration_date :datetime
 #  review_landed_at       :datetime

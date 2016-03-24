@@ -50,11 +50,12 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :enable_starttls_auto => true,
     :address => 'jironbach.iobb.net',
-    :port => 10025,
+    :port => ENV['MAILER_PORT'].to_i,
     :authentication => :plain,
-    :user_name => 'no-reply@airbnb-demo.mydns.jp',
+    :user_name => 'no-reply',
     :password => 'Agile51Booster55',
   }
+  puts "JironBach:env=#{ENV['MAILER_PORT'].to_i.inspect}"
 
   config.action_controller.action_on_unpermitted_parameters = :raise
 end
