@@ -8,10 +8,10 @@ ja:
       confection: お菓子
       dress_code: 服装
       emergency: 緊急連絡先
-      listing: リスティング
-      listing_image: リスティングのイメージ画像
-      listing_pv: リスティングの閲覧数
-      listing_video: リスティングのビデオ
+      listing: 店舗情報
+      listing_image: 店舗情報のイメージ画像
+      listing_pv: 店舗情報の閲覧数
+      listing_video: 店舗情報のビデオ
       message: メッセージ
       message_thread: メッセージスレッド
       message_thread_user: メッセージスレッドのユーザー
@@ -52,19 +52,19 @@ ja:
         email: メールアドレス
         relationship: 関係性
       listing:
-        title: リスティングのタイトル
+        title: 店舗情報のタイトル
         zipcode: 開催場所の郵便番号
         location: 開催場所の住所
         longitude: 軽度
         latitude: 緯度
         delivery_flg: 出張は？
-        description: リスティングの説明
+        description: 店舗情報の説明
         price: 料金
         capacity: 最大可能人数
-        title: リスティングのタイトル
+        title: 店舗情報のタイトル
         direction: 開催場所までの道順の説明
-        cover_image: 現在のリスティングのカバー画像
-        cover_image_caption: リスティングのカバーの説明文
+        cover_image: 現在の店舗情報のカバー画像
+        cover_image_caption: 店舗情報のカバーの説明文
         schedule: 日程
         ave_total: 合計値の平均
         ave_accuracy: 正確性値の平均
@@ -74,7 +74,7 @@ ja:
         ave_check_in: チェックイン値の平均
         ave_cost_performance: コスパ値の平均
       listing_image:
-        image: リスティングのイメージ画像
+        image: 店舗情報のイメージ画像
         caption: 写真の説明
         order_num: 順番
       listing_pv:
@@ -165,11 +165,11 @@ ja:
         name: お気に入りリストの名前
     placeholders:
       listing:
-        title: 例) 初心者でも楽しめるリスティング
+        title: 例) 初心者でも楽しめる店舗情報
         price: "例) 5000"
         longitude: 軽度
         latitude: 緯度
-        description: 例) 初心者の方でも気軽に楽しめるリスティングです。ぜひお友達も誘ってお越しください。
+        description: 例) 初心者の方でも気軽に楽しめる店舗情報です。ぜひお友達も誘ってお越しください。
         zipcode: "例) 012-3456"
         location: 郵便番号を入力すれば自動で出力されます
         direction: 開催場所までのオススメの移動方法や、迷いそうなポイントなど記入ください
@@ -193,10 +193,10 @@ ja:
     profile: プロフィール
     profile_image: プロフィール画像
     profile_video: プロフィール動画
-    listing: リスティング
-    listings: リスティングたち
-    listings_images: リスティング画像たち
-    listing_ngevents: リスティングNG日々
+    listing: 店舗情報
+    listings: 店舗情報たち
+    listings_images: 店舗情報画像たち
+    listing_ngevents: 店舗情報NG日々
     open: 公開中
     confection: お菓子
     tool: お道具
@@ -206,7 +206,7 @@ ja:
     review: レビュー
     reviews: レビューたち
     review_reply: レビューへの返信
-    listing_id: &LISTING_NAME リスティング
+    listing_id: &LISTING_NAME 店舗情報
     guest_id: &GUEST ゲスト
     host_id: &HOST ホスト
     user_id: ユーザー
@@ -240,17 +240,17 @@ ja:
       flow:
         step1:
           title: 1. 検索する
-          text: 近くのリスティング、お気に入りのホスト、あなた好みのリスティングを見つけてください。
+          text: 近くの店舗情報、お気に入りのホスト、あなた好みの店舗情報を見つけてください。
         step2:
           title: 2. 予約する
           text: 簡単に予約ができます。ホストにお願いがある場合など、メッセージを送ってやりとりが可能です。
         step3:
           title: 3. 楽しむ
-          text: あなたの近くにあなたの知らない至高の時間があなたを待っています。ぜひ新しいリスティングに挑戦ください。
+          text: あなたの近くにあなたの知らない至高の時間があなたを待っています。ぜひ新しい店舗情報に挑戦ください。
         close: 閉じる
       message_to_host:
         label: "%{host}に連絡する"
-        placeholder: "例）このリスティングはまだ参加できますか？"
+        placeholder: "例）この店舗情報はまだ参加できますか？"
         submit: "%{msg}を送信する"
       message_to_host_from_reservation_manger:
         label: "%{host}に連絡をする"
@@ -307,13 +307,13 @@ ja:
         title: ソーシャルメディア
       copyright: © 会社名
     guest_sidenav:
-      link: 参加したリスティング
+      link: 参加した店舗情報
       guest_reservation_manager: 参加する
     header:
       search: どこで探しますか？
-      new_listing: リスティングを作る
+      new_listing: 店舗情報を作る
       dashboard: ダッシュボード
-      listings: リスティング
+      listings: 店舗情報
       host_reservation_manager: 予約管理
       guest_reservation_manager: 参加する
       profile: プロフィール
@@ -336,15 +336,15 @@ ja:
         placeholder: 日付
       submit: Search
     host_sidenav:
-      text1: リスティングを
+      text1: 店舗情報を
       text2: 追加
-      listing: リスティング
+      listing: 店舗情報
       host_reservation_manager: 予約管理
     manage_listing_header:
-      to_my_listings: 自分のリスティング一覧へ
+      to_my_listings: 自分の店舗情報一覧へ
       preview: プレビュー
     manage_listing_nav:
-      header: リスティング情報
+      header: 店舗情報情報
       basic_info: 基本情報
       image: イメージ画像
       cal: カレンダーの設定
@@ -362,7 +362,7 @@ ja:
     sidebar_nav_sp:
       home: ホーム
       dashboard: ダッシュボード
-      new_listing: リスティング作成
+      new_listing: 店舗情報作成
       message: メッセージ
       unread_msg: "未読%{num}"
       host_reservation_manager: 予約管理
@@ -370,13 +370,13 @@ ja:
       account: アカウント
       login: ログイン
       guest_flow: サービスの流れ
-      search: リスティングを検索
+      search: 店舗情報を検索
       help: ヘルプ
       logout: ログアウト
     subnav:
       dashboard: ダッシュボード
       messages: メッセージ
-      listings: リスティング
+      listings: 店舗情報
       guest_reservation_manager: 参加する
       profile: プロフィール
       account: アカウント
@@ -397,7 +397,7 @@ ja:
     triplets:
       first:
         title: ゲストを自分で選ぶ
-        text: レビューを読み、要件を設定し、事前にゲストと対話する。 心地よい相手だけをゲストとしてあなたのリスティングに迎えてください。
+        text: レビューを読み、要件を設定し、事前にゲストと対話する。 心地よい相手だけをゲストとしてあなたの店舗情報に迎えてください。
       second:
         title: "最大number_to_yen(80,000,00)のホスト保証"
         text1:  事故は稀にですが起こることもあります。
@@ -409,7 +409,7 @@ ja:
   confections:
     manage:
       title: "%{model}（オプション1）の情報を登録しましょう。"
-      text_html: "%{model}はリスティングの大きな魅力です。<br>ぜひ登録して写真も載せてみたらいかがでしょう？"
+      text_html: "%{model}は店舗情報の大きな魅力です。<br>ぜひ登録して写真も載せてみたらいかがでしょう？"
     form:
       submit: この内容で保存する
   dashboard:
@@ -480,26 +480,26 @@ ja:
   listings:
     index:
       no_listing:
-        title: リスティングを開く予定はありません。
-        guests_waiting: あなたのリスティングを待っているゲストがいます。
-        invitation: あなたの好きな人を招いてリスティングを楽しくしましょう。
-        make_listing: 新しくリスティングを作る
-      title: リスティング一覧
+        title: 店舗情報を開く予定はありません。
+        guests_waiting: あなたの店舗情報を待っているゲストがいます。
+        invitation: あなたの好きな人を招いて店舗情報を楽しくしましょう。
+        make_listing: 新しく店舗情報を作る
+      title: 店舗情報一覧
       all:
-        long: すべてのリスティング
+        long: すべての店舗情報
         short: すべて
       open:
-        long: 公開中のリスティング
+        long: 公開中の店舗情報
         short: 公開中
       closed:
-        long: 非公開のリスティング
+        long: 非公開の店舗情報
         short: 非公開中
       add: 追加
-      edit: このリスティングを編集する
-      make_listing: リスティングを作成
+      edit: この店舗情報を編集する
+      make_listing: 店舗情報を作成
     new:
-      title: リスティングを作成しましょう
-      subtitle: 自分のリスティングは簡単に作れます
+      title: 店舗情報を作成しましょう
+      subtitle: 自分の店舗情報は簡単に作れます
     search:
       title: 検索
       no_match:
@@ -523,7 +523,7 @@ ja:
         others:
           label: その他
           placeholder: キーワード情報
-        submit: リスティングを表示
+        submit: 店舗情報を表示
         add_search_condition: 検索条件を追加
         submit_sp: 再検索する
         hit_count:
@@ -531,7 +531,7 @@ ja:
     delivery_ok_button:
       text: 出張可
     detail:
-      about_this_listing: このリスティングについて
+      about_this_listing: この店舗情報について
       contact_to_host: こちらのホストに連絡
       delivery: 出張
       option:
@@ -542,10 +542,10 @@ ja:
         wafuku_only: 和服でお願いします。
         any: 和服でなくて結構です。
     edit:
-      title: リスティング編集
+      title: 店舗情報編集
     edit_link:
-      title: あなたのリスティングです。
-      edit: このリスティングを編集する。
+      title: あなたの店舗情報です。
+      edit: この店舗情報を編集する。
       contact_to_this_host: こちらのホストに連絡
     form:
       price: "(%{unit})"
@@ -581,7 +581,7 @@ ja:
         per_attend: 1回の料金
       submit: 予約をリクエスト
       pv:
-        text: "こちらのリスティングは今週%{num}回閲覧されております。"
+        text: "こちらの店舗情報は今週%{num}回閲覧されております。"
       share:
         title: シェア：
         line:
@@ -589,17 +589,17 @@ ja:
       cancel:
         text: キャンセルをすると全額返金を求めることができます。
     similar_listings:
-      title: 近くのリスティング
+      title: 近くの店舗情報
     subnav:
-      my_listing: 自分のリスティングリスト
+      my_listing: 自分の店舗情報リスト
       photos: 写真
-      details: このリスティングについて
+      details: この店舗情報について
       reviews: レビュー
       host_profile: ホスト紹介
       neighborhood: 開催地
       request: 予約をリクエスト
     show:
-      title: リスティング詳細
+      title: 店舗情報詳細
       request: "%{rsrv}をリクエスト"
   message_threads:
     form:

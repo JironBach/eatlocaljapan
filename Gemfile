@@ -85,7 +85,7 @@ gem 'meta-tags', '2.0.0'
 gem 'sitemap_generator', '5.0.5'
 
 # Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'capistrano-rails', group: :development
 
 # cron management
 gem 'whenever', '0.9.4', :require => false
