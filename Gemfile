@@ -84,6 +84,8 @@ gem 'meta-tags', '2.0.0'
 # sitemap
 gem 'sitemap_generator', '5.0.5'
 
+gem 'seed-fu'
+
 # Use Capistrano for deployment
 group :development, :staging, :production do
   # Use Capistrano for deployment
