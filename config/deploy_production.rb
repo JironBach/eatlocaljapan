@@ -6,7 +6,7 @@ lock '3.4.0'
 #アプリケーション名
 set :application, 'eatlocaljapan'
 #レポジトリURL
-set :repo_url, 'git@bitbucket.org:JironBach/eatlocaljapan.git'
+set :repo_url, 'git@github.com:JironBach/eatlocaljapan.git'
 #対象ブランチ
 set :branch, 'master'
 #デプロイ先ディレクトリ フルパスで指定
@@ -43,9 +43,9 @@ namespace :deploy do #タスクnamespace
   desc 'Restart application'
   task :database do
     on roles(:app) do
-      execute "cp #{shared_path}/config/database.yml #{release_path}/config"
       execute "cp #{shared_path}/config/.env #{release_path}"
       execute "cp #{shared_path}/config/secrets.yml #{release_path}/config"
+      execute "cp #{shared_path}/config/database.yml #{release_path}/config"
       execute "cp -r #{shared_path}/public/images #{release_path}/public"
       execute "cp -r #{shared_path}/public/javascripts #{release_path}/public"
       execute "cp -r #{shared_path}/public/stylesheets #{release_path}/public"

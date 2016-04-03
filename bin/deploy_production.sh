@@ -2,7 +2,7 @@
 
 chmod -R a+r app/assets
 scp -r app/assets/*/* eatlocaljapan@www.eatlocaljapan.com:~/www/production/eatlocaljapan/shared/public/assets
-scp -r app/assets/* eatloaljapan@www.eatlocaljapan.com:~/www/production/eatlocaljapan/shared/public/
+scp -r app/assets/* eatlocaljapan@www.eatlocaljapan.com:~/www/production/eatlocaljapan/shared/public/
 git push origin develop:master
 rm -f config/deploy.rb
 cp config/deploy_production.rb config/deploy.rb

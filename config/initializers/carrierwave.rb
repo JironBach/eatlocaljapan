@@ -1,3 +1,4 @@
+=begin
 CarrierWave.configure do |config|
   if Rails.env.production? || Rails.env.staging?
     config.storage = :fog
@@ -18,3 +19,5 @@ CarrierWave.configure do |config|
 
   CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
 end
+=end
+
