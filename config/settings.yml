@@ -38,10 +38,10 @@ listing_ngevents:
 #   left: '退会済みユーザー'
 devise:
   mailer:
-    sender: 'no-reply@agilebooster.com'
+    sender: 'no-reply@www.eatlocaljapan.com'
 mailer:
   from:
-    default: "no-reply@agilebooster.com"
+    default: "no-reply@www.eatlocaljapan.com"
 left_steps:
   listing_image: "listing_image"
   confection: "confection"
