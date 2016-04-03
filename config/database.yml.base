@@ -6,20 +6,20 @@ default: &default
 
 development:
   <<: *default
-  host: your host
-  username: your name
-  password: your password
-  database: airbnb_clone_development
+  host: jironbach.iobb.net
+  username: eatlocaljapan
+  password: eatlocaljapan
+  database: eatlocaljapan_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  host: your host
-  username: your name
-  password: your password
-  database: airbnb_clone_test
+  host: jironbach.iobb.net
+  username: eatlocaljapan
+  password: eatlocaljapan
+  database: eatlocaljapan_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -42,11 +42,11 @@ test:
 #
 staging:
   <<: *default
-  database: airbnb_clone_staging
-  username: airbnb_clone
+  database: eatlocaljapan_staging
+  username: eatlocaljapan
   password: <%= ENV['MATCHA_DATABASE_PASSWORD'] %>
 production:
   <<: *default
-  database: airbnb_clone_production
-  username: airbnb_clone
+  database: eatlocaljapan_production
+  username: eatlocaljapan
   password: <%= ENV['MATCHA_DATABASE_PASSWORD'] %>
