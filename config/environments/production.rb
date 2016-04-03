@@ -99,15 +99,15 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { :host => "airbnb-clones.herokuapp.com" }
+  config.action_mailer.default_url_options = { :host => 'eatlocaljapan.mydns.jp' }
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :user_name      => ENV['SENDGRID_USERNAME'],
-    :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => "heroku.com",
-    :address        => "smtp.sendgrid.net",
-    :port           => 25, # ssl:587, plain:25
+    :enable_starttls_auto => true,
+    :address => Rails.application.secrets.action_mailer_host,
+    :port => Rails.application.secrets.action_mailer_port,
     :authentication => :plain,
-    :enable_starttls_auto => true
+    :user_name => Rails.application.secrets.action_mailer_user_name,
+    :password => Rails.application.secrets.action_mailer_password,
   }
 end
