@@ -85,7 +85,19 @@ gem 'meta-tags', '2.0.0'
 gem 'sitemap_generator', '5.0.5'
 
 # Use Capistrano for deployment
-gem 'capistrano-rails', group: :development
+group :development, :staging, :production do
+  # Use Capistrano for deployment
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-unicorn-nginx'
+  gem 'capistrano3-unicorn'
+  gem 'capistrano-passenger'
+  gem 'capistrano-sidekiq'
+  #gem 'capistrano-postgresql'
+end
+
 
 # cron management
 gem 'whenever', '0.9.4', :require => false
