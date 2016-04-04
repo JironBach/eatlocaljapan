@@ -21,12 +21,12 @@
         li
           = link_to t('.listings'), listings_path
 
-      - if action_name =="guest_reservation_manager"
-        li.active
-          = link_to t('.guest_reservation_manager'), dashboard_guest_reservation_manager_path
-      - else
-        li
-          = link_to t('.guest_reservation_manager'), dashboard_guest_reservation_manager_path
+      /- if action_name =="guest_reservation_manager"
+      /  li.active
+      /    = link_to t('.guest_reservation_manager'), dashboard_guest_reservation_manager_path
+      /- else
+      /  li
+      /    = link_to t('.guest_reservation_manager'), dashboard_guest_reservation_manager_path
 
       /- if controller_name =="wishlists"
         /li.active
