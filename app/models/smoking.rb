@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: shop_categories
+# Table name: smokings
 #
 #  id         :integer          not null, primary key
 #  created_at :datetime         not null
@@ -9,9 +9,5 @@
 #  name_en    :string           not null
 #
 
-FactoryGirl.define do
-  factory :shop_category do
-    
-  end
-
+class Smoking < ActiveRecord::Base
 end

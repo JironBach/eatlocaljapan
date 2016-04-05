@@ -5,10 +5,10 @@
 #  id           :integer          not null, primary key
 #  user_id      :integer
 #  profile_id   :integer
-#  name         :string(255)      not null
-#  phone        :string(255)
-#  email        :string(255)
-#  relationship :string(255)      not null
+#  name         :string           not null
+#  phone        :string
+#  email        :string
+#  relationship :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #

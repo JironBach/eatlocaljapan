@@ -1,6 +1,6 @@
-class CreateShopCategories < ActiveRecord::Migration
+class CreateSmokings < ActiveRecord::Migration
   def change
-    create_table :shop_categories do |t|
+    create_table :smokings do |t|
       t.timestamps null: false
 
       t.string :name, null: false

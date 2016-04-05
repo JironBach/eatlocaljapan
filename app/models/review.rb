@@ -14,7 +14,7 @@
 #  check_in         :integer          default(0)
 #  cost_performance :integer          default(0)
 #  total            :integer          default(0)
-#  msg              :text
+#  msg              :text             default("")
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #

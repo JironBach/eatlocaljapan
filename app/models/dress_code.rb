@@ -5,7 +5,7 @@
 #  id         :integer          not null, primary key
 #  listing_id :integer
 #  wafuku     :boolean          default(FALSE)
-#  note       :text
+#  note       :text             default("")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
