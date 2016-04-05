@@ -6,7 +6,7 @@
 #  message_thread_id :integer          not null
 #  from_user_id      :integer          not null
 #  to_user_id        :integer          not null
-#  content           :text             default(""), not null
+#  content           :text
 #  read              :boolean          default(FALSE)
 #  read_at           :datetime
 #  listing_id        :integer          default(0), not null
