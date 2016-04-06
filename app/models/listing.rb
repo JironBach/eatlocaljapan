@@ -2,31 +2,46 @@
 #
 # Table name: listings
 #
-#  id                   :integer          not null, primary key
-#  user_id              :integer
-#  review_count         :integer          default(0)
-#  ave_total            :float            default(0.0)
-#  ave_accuracy         :float            default(0.0)
-#  ave_communication    :float            default(0.0)
-#  ave_cleanliness      :float            default(0.0)
-#  ave_location         :float            default(0.0)
-#  ave_check_in         :float            default(0.0)
-#  ave_cost_performance :float            default(0.0)
-#  open                 :boolean          default(FALSE)
-#  zipcode              :string(255)
-#  location             :string(255)      default("")
-#  longitude            :decimal(9, 6)    default(0.0)
-#  latitude             :decimal(9, 6)    default(0.0)
-#  delivery_flg         :boolean          default(FALSE)
-#  price                :integer          default(0)
-#  description          :text
-#  title                :string(255)      default("")
-#  capacity             :integer          default(0)
-#  direction            :text
-#  cover_image          :string(255)      default("")
-#  cover_image_caption  :string(255)      default("")
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
+#  id                     :integer          not null, primary key
+#  user_id                :integer
+#  review_count           :integer          default(0)
+#  ave_total              :float            default(0.0)
+#  ave_accuracy           :float            default(0.0)
+#  ave_communication      :float            default(0.0)
+#  ave_cleanliness        :float            default(0.0)
+#  ave_location           :float            default(0.0)
+#  ave_check_in           :float            default(0.0)
+#  ave_cost_performance   :float            default(0.0)
+#  open                   :boolean          default(FALSE)
+#  zipcode                :string(255)
+#  location               :string(255)      default("")
+#  longitude              :decimal(9, 6)    default(0.0)
+#  latitude               :decimal(9, 6)    default(0.0)
+#  delivery_flg           :boolean          default(FALSE)
+#  price                  :integer          default(0)
+#  description            :text
+#  title                  :string(255)      default("")
+#  capacity               :integer          default(0)
+#  direction              :text
+#  cover_image            :string(255)      default("")
+#  cover_image_caption    :string(255)      default("")
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  smoking_id             :integer
+#  english_id             :integer
+#  business_hours_id      :string
+#  shop_description       :text
+#  shop_description_en    :text
+#  price_low              :integer
+#  price_high             :integer
+#  address                :string
+#  tel                    :string
+#  url                    :string
+#  review_url             :string
+#  recommended            :text
+#  recommended_en         :text
+#  visit_benefits         :string
+#  visit_benefits_another :string
 #
 # Indexes
 #

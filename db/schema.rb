@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405071605) do
+ActiveRecord::Schema.define(version: 20160406075917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,20 @@ ActiveRecord::Schema.define(version: 20160405071605) do
     t.string "name_en", null: false
   end
 
+  create_table "listing_business_hours", force: :cascade do |t|
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "listing_id",       null: false
+    t.integer  "business_hour_id", null: false
+  end
+
+  create_table "listing_englishes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "listing_id", null: false
+    t.integer  "english_id", null: false
+  end
+
   create_table "listing_images", force: :cascade do |t|
     t.integer  "listing_id"
     t.string   "image",      limit: 255, default: ""
@@ -143,31 +157,60 @@ ActiveRecord::Schema.define(version: 20160405071605) do
   add_index "listing_pvs", ["listing_id"], name: "index_listing_pvs_on_listing_id", using: :btree
   add_index "listing_pvs", ["viewed_at", "listing_id"], name: "index_listing_pvs_on_viewed_at_and_listing_id", unique: true, using: :btree
 
+  create_table "listing_shop_categories", force: :cascade do |t|
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "listing_id",       null: false
+    t.integer  "shop_category_id", null: false
+  end
+
+  create_table "listing_shop_services", force: :cascade do |t|
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "listing_id",      null: false
+    t.integer  "shop_service_id", null: false
+  end
+
   create_table "listings", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "review_count",                                             default: 0
-    t.float    "ave_total",                                                default: 0.0
-    t.float    "ave_accuracy",                                             default: 0.0
-    t.float    "ave_communication",                                        default: 0.0
-    t.float    "ave_cleanliness",                                          default: 0.0
-    t.float    "ave_location",                                             default: 0.0
-    t.float    "ave_check_in",                                             default: 0.0
-    t.float    "ave_cost_performance",                                     default: 0.0
-    t.boolean  "open",                                                     default: false
-    t.string   "zipcode",              limit: 255
-    t.string   "location",             limit: 255,                         default: ""
-    t.decimal  "longitude",                        precision: 9, scale: 6, default: 0.0
-    t.decimal  "latitude",                         precision: 9, scale: 6, default: 0.0
-    t.boolean  "delivery_flg",                                             default: false
-    t.integer  "price",                                                    default: 0
+    t.integer  "review_count",                                               default: 0
+    t.float    "ave_total",                                                  default: 0.0
+    t.float    "ave_accuracy",                                               default: 0.0
+    t.float    "ave_communication",                                          default: 0.0
+    t.float    "ave_cleanliness",                                            default: 0.0
+    t.float    "ave_location",                                               default: 0.0
+    t.float    "ave_check_in",                                               default: 0.0
+    t.float    "ave_cost_performance",                                       default: 0.0
+    t.boolean  "open",                                                       default: false
+    t.string   "zipcode",                limit: 255
+    t.string   "location",               limit: 255,                         default: ""
+    t.decimal  "longitude",                          precision: 9, scale: 6, default: 0.0
+    t.decimal  "latitude",                           precision: 9, scale: 6, default: 0.0
+    t.boolean  "delivery_flg",                                               default: false
+    t.integer  "price",                                                      default: 0
     t.text     "description"
-    t.string   "title",                limit: 255,                         default: ""
-    t.integer  "capacity",                                                 default: 0
+    t.string   "title",                  limit: 255,                         default: ""
+    t.integer  "capacity",                                                   default: 0
     t.text     "direction"
-    t.string   "cover_image",          limit: 255,                         default: ""
-    t.string   "cover_image_caption",  limit: 255,                         default: ""
-    t.datetime "created_at",                                                               null: false
-    t.datetime "updated_at",                                                               null: false
+    t.string   "cover_image",            limit: 255,                         default: ""
+    t.string   "cover_image_caption",    limit: 255,                         default: ""
+    t.datetime "created_at",                                                                 null: false
+    t.datetime "updated_at",                                                                 null: false
+    t.integer  "smoking_id"
+    t.integer  "english_id"
+    t.string   "business_hours_id"
+    t.text     "shop_description"
+    t.text     "shop_description_en"
+    t.integer  "price_low"
+    t.integer  "price_high"
+    t.string   "address"
+    t.string   "tel"
+    t.string   "url"
+    t.string   "review_url"
+    t.text     "recommended"
+    t.text     "recommended_en"
+    t.string   "visit_benefits"
+    t.string   "visit_benefits_another"
   end
 
   add_index "listings", ["capacity"], name: "index_listings_on_capacity", using: :btree
