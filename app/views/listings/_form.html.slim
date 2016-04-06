@@ -110,6 +110,129 @@
             = t('.delivery.name')
           .question-icon-container.inline
             i#togo-tooltip.fa.fa-question-circle.tooltip-trigger[data-placement="bottom"]
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :smoking_id
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :smoking_id, placeholder: t('activerecord.placeholders.listing.smoking_id')
+  .row
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :english_id
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :english_id, placeholder: t('activerecord.placeholders.listing.english_id')
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :business_hours_id
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :business_hours_id, placeholder: t('activerecord.placeholders.listing.business_hours_id')
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :shop_description
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :shop_description, rows: "4", placeholder: t('activerecord.placeholders.listing.shop_description')
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :shop_description_en
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :shop_description_en, rows: "4", placeholder: t('activerecord.placeholders.listing.shop_description_en')
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :price_low
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          /= f.input_field :price_low, as: :string, value: (@listing.price_low > 0 ? @listing.price_low : "" ), placeholder: t('activerecord.placeholders.listing.price_low')
+          = f.input_field :price_low, as: :string, placeholder: t('activerecord.placeholders.listing.price_low')
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :price_high
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          /= f.input_field :price_high, as: :string, value: (@listing.price_high > 0 ? @listing.price_high : "" ), placeholder: t('activerecord.placeholders.listing.price_high')
+          = f.input_field :price_high, as: :string, placeholder: t('activerecord.placeholders.listing.price_high')
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :address
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :address, placeholder: t('activerecord.placeholders.listing.address')
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :tel
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :tel, placeholder: t('activerecord.placeholders.listing.tel')
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :url
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :url, placeholder: t('activerecord.placeholders.listing.url')
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :review_url
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :review_url, placeholder: t('activerecord.placeholders.listing.review_url')
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :recommended
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :recommended, rows: "4", placeholder: t('activerecord.placeholders.listing.recommended')
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :recommended_en
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :recommended_en, rows: "4", placeholder: t('activerecord.placeholders.listing.recommended_en')
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :visit_benefits
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :visit_benefits, placeholder: t('activerecord.placeholders.listing.visit_benefits')
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :visit_benefits_another
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :visit_benefits_another, placeholder: t('activerecord.placeholders.listing.visit_benefits_another')
   .row
     .col-xs-9.col-offset-3.text-reset-center
       - if 'edit' == controller.action_name
