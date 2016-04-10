@@ -25,27 +25,27 @@
   /           | 可能です
   /         .question-icon-container.inline
   /           i#togo-tooltip.fa.fa-question-circle.tooltip-trigger[data-placement="bottom"]
-  .row.row-space-5.row-space-top-5.row-table
-    .col-xs-4.text-right.col-middle
-      .h4.text-light
-        = Listing.human_attribute_name :capacity
-    .col-xs-8.fieldset.col-middle
-      .row
-        .col-xs-6.col-md-3
-          .select.select-block
-            - arr = (1..15).map{|p| ["#{p}#{t('unit.people')}",p] }
-            - arr <<  ["#{t('.capacity.more_than', num: 16, unit: t('unit.people'))}", :"16+"]
-            = f.input_field :capacity, as: :select, collection: arr, default:  [1]
-  .row.row-space-5.row-space-top-5.row-table
-    .col-xs-4.text-right.col-middle
-      .h4.text-light
-        = Listing.human_attribute_name :price
-        = t('.price', unit: t('unit.price'))
-    .col-xs-8.fieldset.col-middle
-      .row
-        .col-xs-5.add-value--price.add--help
-          = f.input_field :price, as: :string, value: (@listing.price > 0 ? @listing.price : "" ), placeholder: t('activerecord.placeholders.listing.price')
-          p.help.text-pink #{t('.caution.price')}
+  /.row.row-space-5.row-space-top-5.row-table
+  /  .col-xs-4.text-right.col-middle
+  /    .h4.text-light
+  /      = Listing.human_attribute_name :capacity
+  /  .col-xs-8.fieldset.col-middle
+  /    .row
+  /      .col-xs-6.col-md-3
+  /        .select.select-block
+  /          - arr = (1..15).map{|p| ["#{p}#{t('unit.people')}",p] }
+  /          - arr <<  ["#{t('.capacity.more_than', num: 16, unit: t('unit.people'))}", :"16+"]
+  /          = f.input_field :capacity, as: :select, collection: arr, default:  [1]
+  /.row.row-space-5.row-space-top-5.row-table
+  /  .col-xs-4.text-right.col-middle
+  /    .h4.text-light
+  /      = Listing.human_attribute_name :price
+  /      = t('.price', unit: t('unit.price'))
+  /  .col-xs-8.fieldset.col-middle
+  /    .row
+  /      .col-xs-5.add-value--price.add--help
+  /        = f.input_field :price, as: :string, value: (@listing.price > 0 ? @listing.price : "" ), placeholder: t('activerecord.placeholders.listing.price')
+  /        p.help.text-pink #{t('.caution.price')}
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
