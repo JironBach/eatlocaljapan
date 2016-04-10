@@ -4,18 +4,18 @@
 #
 #  id                   :integer          not null, primary key
 #  user_id              :integer          not null
-#  first_name           :string(255)      default("")
-#  last_name            :string(255)      default("")
+#  first_name           :string           default("")
+#  last_name            :string           default("")
 #  birthday             :date
 #  gender               :integer
-#  phone                :string(255)      default("")
+#  phone                :string           default("")
 #  phone_verification   :boolean          default(FALSE)
-#  zipcode              :string(255)      default("")
-#  location             :string(255)      default("")
-#  self_introduction    :text
-#  school               :string(255)      default("")
-#  work                 :string(255)      default("")
-#  timezone             :string(255)      default("")
+#  zipcode              :string           default("")
+#  location             :string           default("")
+#  self_introduction    :text             default("")
+#  school               :string           default("")
+#  work                 :string           default("")
+#  timezone             :string           default("")
 #  listing_count        :integer          default(0)
 #  wishlist_count       :integer          default(0)
 #  bookmark_count       :integer          default(0)
