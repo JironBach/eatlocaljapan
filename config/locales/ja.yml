@@ -53,6 +53,7 @@ ja:
         relationship: 関係性
       listing:
         title: 店舗情報のタイトル
+        shop_category: カテゴリー
         zipcode: 店舗の郵便番号
         location: 店舗の住所
         longitude: 軽度
@@ -62,7 +63,7 @@ ja:
         price: 料金
         capacity: 最大可能人数
         title: 店舗情報のタイトル
-        direction: 開催場所までの道順の説明
+        direction: 店舗までの道順の説明
         cover_image: 現在の店舗情報のカバー画像
         cover_image_caption: 店舗情報のカバーの説明文
         schedule: 日程

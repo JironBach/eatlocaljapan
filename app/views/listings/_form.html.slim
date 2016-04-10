@@ -16,11 +16,11 @@
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
-        = Listing.human_attribute_name :shop_category_id
+        = Listing.human_attribute_name :shop_category
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = f.collection_check_boxes :shop_category_id, ShopCategory.all, :id, :name do |b|
+          = f.collection_check_boxes :id, ShopCategory.all, :id, :name do |b|
             = b.label { b.check_box + b.text }
   / .row.row-space-5.row-space-top-5.row-table
   /   .col-xs-4.text-right.col-middle
@@ -107,18 +107,18 @@
       .row
         .col-xs-11
           = f.input_field :direction, rows: "4", placeholder: t('activerecord.placeholders.listing.direction')
-  .row.row-space-5.row-space-top-5.row-table
-    .col-xs-4.text-right.col-middle
-      .h4.text-light
-        = t('.delivery.label')
-    .col-xs-8.fieldset.col-middle
-      .row
-        .col-xs-11.checkbox
-          = f.input_field :delivery_flg, boolean_style: :inline
-          label[for="listing_delivery_flg"]
-            = t('.delivery.name')
-          .question-icon-container.inline
-            i#togo-tooltip.fa.fa-question-circle.tooltip-trigger[data-placement="bottom"]
+  /.row.row-space-5.row-space-top-5.row-table
+  /  .col-xs-4.text-right.col-middle
+  /    .h4.text-light
+  /      = t('.delivery.label')
+  /  .col-xs-8.fieldset.col-middle
+  /    .row
+  /      .col-xs-11.checkbox
+  /        = f.input_field :delivery_flg, boolean_style: :inline
+  /        label[for="listing_delivery_flg"]
+  /          = t('.delivery.name')
+  /        .question-icon-container.inline
+  /          i#togo-tooltip.fa.fa-question-circle.tooltip-trigger[data-placement="bottom"]
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
