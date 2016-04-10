@@ -53,8 +53,8 @@ ja:
         relationship: 関係性
       listing:
         title: 店舗情報のタイトル
-        zipcode: 開催場所の郵便番号
-        location: 開催場所の住所
+        zipcode: 店舗の郵便番号
+        location: 店舗の住所
         longitude: 軽度
         latitude: 緯度
         delivery_flg: 出張は？
@@ -80,7 +80,7 @@ ja:
         shop_description_en: レストランの説明　英語
         price_low: 価格　低
         price_high: 価格　高
-        address: 所在地
+        #address: 所在地
         tel: 電話番号
         url: 自社ウェブサイト
         review_url: レビューサイトへのリンク

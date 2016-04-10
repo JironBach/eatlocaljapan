@@ -7,7 +7,7 @@ class AddColumnsToListing < ActiveRecord::Migration
     add_column :listings, :shop_description_en, :text
     add_column :listings, :price_low, :integer
     add_column :listings, :price_high, :integer
-    add_column :listings, :address, :string
+    #add_column :listings, :address, :string
     add_column :listings, :tel, :string
     add_column :listings, :url, :string
     add_column :listings, :review_url, :string
