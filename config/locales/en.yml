@@ -53,6 +53,8 @@ en:
         relationship: Relationship
       listing:
         title: Title
+        shop_category: Category
+        shop_service: Service
         zipcode: Zipcode
         location: Location
         longitude: Longitude

@@ -22,6 +22,15 @@
         .col-xs-11
           = f.collection_check_boxes :shop_categories, ShopCategory.all, :id, :name do |b|
             = b.label { b.check_box + b.text }
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :shop_service
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.collection_check_boxes :shop_services, ShopService.all, :id, :name do |b|
+            = b.label { b.check_box + b.text }
   / .row.row-space-5.row-space-top-5.row-table
   /   .col-xs-4.text-right.col-middle
   /     .h4.text-light
