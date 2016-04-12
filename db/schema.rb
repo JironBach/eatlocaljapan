@@ -196,10 +196,7 @@ ActiveRecord::Schema.define(version: 20160406075917) do
     t.string   "cover_image_caption",                            default: ""
     t.datetime "created_at",                                                     null: false
     t.datetime "updated_at",                                                     null: false
-    t.string   "address"
     t.integer  "smoking_id"
-    t.integer  "english_id"
-    t.string   "business_hours_id"
     t.text     "shop_description"
     t.text     "shop_description_en"
     t.integer  "price_low"

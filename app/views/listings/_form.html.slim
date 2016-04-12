@@ -20,7 +20,7 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = f.collection_check_boxes :id, ShopCategory.all, :id, :name do |b|
+          = f.collection_check_boxes :shop_categories, ShopCategory.all, :id, :name do |b|
             = b.label { b.check_box + b.text }
   / .row.row-space-5.row-space-top-5.row-table
   /   .col-xs-4.text-right.col-middle
@@ -122,28 +122,28 @@
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
-        = Listing.human_attribute_name :smoking_id
+        = Listing.human_attribute_name :smoking
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = f.input_field :smoking_id, placeholder: t('activerecord.placeholders.listing.smoking_id')
+          = f.input_field :smoking, placeholder: t('activerecord.placeholders.listing.smoking')
   .row
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
-        = Listing.human_attribute_name :english_id
+        = Listing.human_attribute_name :english
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = f.input_field :english_id, placeholder: t('activerecord.placeholders.listing.english_id')
+          = f.input_field :english, placeholder: t('activerecord.placeholders.listing.english')
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
-        = Listing.human_attribute_name :business_hours_id
+        = Listing.human_attribute_name :business_hours
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = f.input_field :business_hours_id, placeholder: t('activerecord.placeholders.listing.business_hours_id')
+          = f.input_field :business_hours, placeholder: t('activerecord.placeholders.listing.business_hours')
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light

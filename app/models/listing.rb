@@ -28,13 +28,10 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  smoking_id             :integer
-#  english_id             :integer
-#  business_hours_id      :string
 #  shop_description       :text
 #  shop_description_en    :text
 #  price_low              :integer
 #  price_high             :integer
-#  address                :string
 #  tel                    :string
 #  url                    :string
 #  review_url             :string
@@ -76,6 +73,11 @@ class Listing < ActiveRecord::Base
   has_many :reservations
   has_many :reviews
   has_many :listing_ngevents, class_name: "UserNgevent"
+  has_many :shop_categories, dependent: :destroy
+  has_many :shop_services, dependent: :destroy
+  has_one :smoking
+  has_many :english, dependent: :destroy
+  has_many :business_hours, dependent: :destroy
 
   mount_uploader :cover_image, DefaultImageUploader
 
@@ -169,7 +171,8 @@ class Listing < ActiveRecord::Base
 
   def left_step_count_and_elements
     cs = self.complete_steps
-    return_array = [cs.count, cs]
+    #return_array = [cs.count, cs]
+    [cs.count, cs]
   end
 
   def complete_steps
