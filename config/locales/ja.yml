@@ -54,6 +54,7 @@ ja:
       listing:
         title: 店舗情報のタイトル
         shop_category: カテゴリー
+        shop_service: サービス
         zipcode: 郵便番号
         location: 住所
         longitude: 軽度
