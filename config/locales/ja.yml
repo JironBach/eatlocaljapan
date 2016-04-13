@@ -78,6 +78,7 @@ ja:
         smoking: 禁煙・喫煙
         english: 英語対応
         business_hours: 営業時間
+        business_hours_remarks: 営業時間　備考
         shop_description: レストランの説明　日本語
         shop_description_en: レストランの説明　英語
         price_low: 価格　低
@@ -194,6 +195,7 @@ ja:
         smoking: 禁煙・喫煙
         english: 英語対応
         business_hours: 営業時間
+        business_hours_remarks: 営業時間　備考
         shop_description: レストランの説明　日本語
         shop_description_en: レストランの説明　英語
         price_low: 価格　低

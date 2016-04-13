@@ -77,7 +77,8 @@ en:
         ave_cost_performance: Average of Cost Performance Value
         smoking_id: Smoking
         english_id: English
-        business_hours_id: Business hours
+        business_hours: Business hours
+        business_hours_remarks: Business hours remarks
         shop_description: Shop description
         shop_description_en: Shop description
         price_low: Price low
@@ -197,7 +198,8 @@ en:
         schedule: Schedule
         smoking_id: Smoking
         english_id: English
-        business_hours_id: Business hours
+        business_hours: Business hours
+        business_hours_remarks: Business hours remarks
         shop_description: Shop description
         shop_description_en: Shop description
         price_low: Price low
