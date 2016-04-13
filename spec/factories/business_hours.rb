@@ -10,7 +10,6 @@
 #  wday       :integer          not null
 #  start_hour :time
 #  end_hour   :time
-#  remarks    :text
 #
 
 FactoryGirl.define do

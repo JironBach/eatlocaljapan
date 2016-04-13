@@ -80,7 +80,6 @@ ActiveRecord::Schema.define(version: 20160406075917) do
     t.integer  "wday",                      null: false
     t.time     "start_hour"
     t.time     "end_hour"
-    t.text     "remarks"
   end
 
   create_table "confections", force: :cascade do |t|
@@ -200,6 +199,7 @@ ActiveRecord::Schema.define(version: 20160406075917) do
     t.datetime "created_at",                                                     null: false
     t.datetime "updated_at",                                                     null: false
     t.integer  "smoking_id"
+    t.text     "business_hours_remarks"
     t.text     "shop_description"
     t.text     "shop_description_en"
     t.integer  "price_low"

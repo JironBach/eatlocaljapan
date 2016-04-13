@@ -8,7 +8,6 @@ class CreateBusinessHours < ActiveRecord::Migration
       t.integer :wday, null: false
       t.time :start_hour
       t.time :end_hour
-      t.text :remarks
     end
   end
 end

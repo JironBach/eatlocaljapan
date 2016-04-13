@@ -28,6 +28,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  smoking_id             :integer
+#  business_hours_remarks :text
 #  shop_description       :text
 #  shop_description_en    :text
 #  price_low              :integer

@@ -1,6 +1,7 @@
 class AddColumnsToListing < ActiveRecord::Migration
   def change
     add_column :listings, :smoking_id, :integer
+    add_column :listings, :business_hours_remarks, :text
     add_column :listings, :shop_description, :text
     add_column :listings, :shop_description_en, :text
     add_column :listings, :price_low, :integer
