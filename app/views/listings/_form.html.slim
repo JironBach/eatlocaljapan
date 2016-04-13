@@ -144,7 +144,8 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = f.input_field :english, placeholder: t('activerecord.placeholders.listing.english')
+          = f.collection_check_boxes :englishes, English.all, :id, :name do |b|
+            = b.label { b.check_box + b.text }
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
@@ -152,7 +153,9 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = f.input_field :business_hours, placeholder: t('activerecord.placeholders.listing.business_hours')
+          - 7.times do |wday|
+            = time_select :start_hour, {minute_step: 15}
+            = time_select :end_hour, {minute_step: 15}
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light

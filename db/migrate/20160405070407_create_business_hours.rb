@@ -3,9 +3,11 @@ class CreateBusinessHours < ActiveRecord::Migration
     create_table :business_hours do |t|
       t.timestamps null: false
 
+      t.references :listing
+      t.boolean :is_open, true, null: false
       t.integer :wday, null: false
-      t.integer :start_hour, null: false
-      t.integer :end_hour, null: false
+      t.time :start_hour
+      t.time :end_hour
     end
   end
 end

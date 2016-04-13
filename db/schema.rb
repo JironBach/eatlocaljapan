@@ -75,9 +75,12 @@ ActiveRecord::Schema.define(version: 20160406075917) do
   create_table "business_hours", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "listing_id"
+    t.boolean  "is_open",    null: false
+    t.boolean  "true",       null: false
     t.integer  "wday",       null: false
-    t.integer  "start_hour", null: false
-    t.integer  "end_hour",   null: false
+    t.time     "start_hour"
+    t.time     "end_hour"
   end
 
   create_table "confections", force: :cascade do |t|

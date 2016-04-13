@@ -77,7 +77,8 @@ class Listing < ActiveRecord::Base
   has_many :shop_categories, dependent: :destroy
   has_many :shop_services, dependent: :destroy
   has_one :smoking
-  has_many :english, dependent: :destroy
+  has_many :business_hours, dependent: :destroy
+  has_many :englishes, dependent: :destroy
   has_many :business_hours, dependent: :destroy
 
   mount_uploader :cover_image, DefaultImageUploader
