@@ -82,8 +82,6 @@ class Listing < ActiveRecord::Base
   has_many :englishes, dependent: :destroy
   has_many :business_hours, dependent: :destroy
 
-  accepts_nested_attributes_for :shop_categories
-
   mount_uploader :cover_image, DefaultImageUploader
 
   validates :user_id, presence: true
