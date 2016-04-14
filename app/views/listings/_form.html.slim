@@ -131,11 +131,11 @@
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
-        = Listing.human_attribute_name :smoking
+        = Listing.human_attribute_name :smoking_id
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = f.input_field :smoking, placeholder: t('activerecord.placeholders.listing.smoking')
+          = collection_select :smoking_id, nil, Smoking.all, :id, :name
   .row
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
