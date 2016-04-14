@@ -13,20 +13,21 @@
 #  ave_check_in           :float            default(0.0)
 #  ave_cost_performance   :float            default(0.0)
 #  open                   :boolean          default(FALSE)
-#  zipcode                :string
-#  location               :string           default("")
+#  zipcode                :string(255)
+#  location               :string(255)      default("")
 #  longitude              :decimal(9, 6)    default(0.0)
 #  latitude               :decimal(9, 6)    default(0.0)
 #  delivery_flg           :boolean          default(FALSE)
 #  price                  :integer          default(0)
-#  description            :text             default("")
-#  title                  :string           default("")
+#  description            :text
+#  title                  :string(255)      default("")
 #  capacity               :integer          default(0)
-#  direction              :text             default("")
-#  cover_image            :string           default("")
-#  cover_image_caption    :string           default("")
+#  direction              :text
+#  cover_image            :string(255)      default("")
+#  cover_image_caption    :string(255)      default("")
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  address                :string
 #  smoking_id             :integer
 #  business_hours_remarks :text
 #  shop_description       :text
@@ -80,6 +81,8 @@ class Listing < ActiveRecord::Base
   has_many :business_hours, dependent: :destroy
   has_many :englishes, dependent: :destroy
   has_many :business_hours, dependent: :destroy
+
+  accepts_nested_attributes_for :shop_categories
 
   mount_uploader :cover_image, DefaultImageUploader
 

@@ -17,12 +17,12 @@ ActiveRecord::Schema.define(version: 20160406075917) do
   enable_extension "plpgsql"
 
   create_table "active_admin_comments", force: :cascade do |t|
-    t.string   "namespace"
+    t.string   "namespace",     limit: 255
     t.text     "body"
-    t.string   "resource_id",   null: false
-    t.string   "resource_type", null: false
+    t.string   "resource_id",   limit: 255, null: false
+    t.string   "resource_type", limit: 255, null: false
     t.integer  "author_id"
-    t.string   "author_type"
+    t.string   "author_type",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,16 +32,16 @@ ActiveRecord::Schema.define(version: 20160406075917) do
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "admin_users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -51,11 +51,11 @@ ActiveRecord::Schema.define(version: 20160406075917) do
 
   create_table "auths", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "access_token"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string   "provider",     limit: 255
+    t.string   "uid",          limit: 255
+    t.string   "access_token", limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "auths", ["user_id"], name: "index_auths_on_user_id", using: :btree
@@ -86,11 +86,11 @@ ActiveRecord::Schema.define(version: 20160406075917) do
 
   create_table "confections", force: :cascade do |t|
     t.integer  "listing_id"
-    t.string   "name",                    null: false
-    t.string   "url",        default: ""
-    t.string   "image",      default: ""
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "name",       limit: 255,              null: false
+    t.string   "url",        limit: 255, default: ""
+    t.string   "image",      limit: 255, default: ""
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "confections", ["listing_id", "name"], name: "index_confections_on_listing_id_and_name", unique: true, using: :btree
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 20160406075917) do
   create_table "dress_codes", force: :cascade do |t|
     t.integer  "listing_id"
     t.boolean  "wafuku",     default: false
-    t.text     "note",       default: ""
+    t.text     "note"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
@@ -109,12 +109,12 @@ ActiveRecord::Schema.define(version: 20160406075917) do
   create_table "emergencies", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "profile_id"
-    t.string   "name",         null: false
-    t.string   "phone"
-    t.string   "email"
-    t.string   "relationship", null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string   "name",         limit: 255, null: false
+    t.string   "phone",        limit: 255
+    t.string   "email",        limit: 255
+    t.string   "relationship", limit: 255, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "emergencies", ["profile_id"], name: "index_emergencies_on_profile_id", using: :btree
@@ -145,11 +145,11 @@ ActiveRecord::Schema.define(version: 20160406075917) do
 
   create_table "listing_images", force: :cascade do |t|
     t.integer  "listing_id"
-    t.string   "image",      default: ""
+    t.string   "image",      limit: 255, default: ""
     t.integer  "order_num"
-    t.string   "caption",    default: ""
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "caption",    limit: 255, default: ""
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "listing_images", ["listing_id"], name: "index_listing_images_on_listing_id", using: :btree
@@ -185,29 +185,30 @@ ActiveRecord::Schema.define(version: 20160406075917) do
 
   create_table "listings", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "review_count",                                   default: 0
-    t.float    "ave_total",                                      default: 0.0
-    t.float    "ave_accuracy",                                   default: 0.0
-    t.float    "ave_communication",                              default: 0.0
-    t.float    "ave_cleanliness",                                default: 0.0
-    t.float    "ave_location",                                   default: 0.0
-    t.float    "ave_check_in",                                   default: 0.0
-    t.float    "ave_cost_performance",                           default: 0.0
-    t.boolean  "open",                                           default: false
-    t.string   "zipcode"
-    t.string   "location",                                       default: ""
-    t.decimal  "longitude",              precision: 9, scale: 6, default: 0.0
-    t.decimal  "latitude",               precision: 9, scale: 6, default: 0.0
-    t.boolean  "delivery_flg",                                   default: false
-    t.integer  "price",                                          default: 0
-    t.text     "description",                                    default: ""
-    t.string   "title",                                          default: ""
-    t.integer  "capacity",                                       default: 0
-    t.text     "direction",                                      default: ""
-    t.string   "cover_image",                                    default: ""
-    t.string   "cover_image_caption",                            default: ""
-    t.datetime "created_at",                                                     null: false
-    t.datetime "updated_at",                                                     null: false
+    t.integer  "review_count",                                               default: 0
+    t.float    "ave_total",                                                  default: 0.0
+    t.float    "ave_accuracy",                                               default: 0.0
+    t.float    "ave_communication",                                          default: 0.0
+    t.float    "ave_cleanliness",                                            default: 0.0
+    t.float    "ave_location",                                               default: 0.0
+    t.float    "ave_check_in",                                               default: 0.0
+    t.float    "ave_cost_performance",                                       default: 0.0
+    t.boolean  "open",                                                       default: false
+    t.string   "zipcode",                limit: 255
+    t.string   "location",               limit: 255,                         default: ""
+    t.decimal  "longitude",                          precision: 9, scale: 6, default: 0.0
+    t.decimal  "latitude",                           precision: 9, scale: 6, default: 0.0
+    t.boolean  "delivery_flg",                                               default: false
+    t.integer  "price",                                                      default: 0
+    t.text     "description"
+    t.string   "title",                  limit: 255,                         default: ""
+    t.integer  "capacity",                                                   default: 0
+    t.text     "direction"
+    t.string   "cover_image",            limit: 255,                         default: ""
+    t.string   "cover_image_caption",    limit: 255,                         default: ""
+    t.datetime "created_at",                                                                 null: false
+    t.datetime "updated_at",                                                                 null: false
+    t.string   "address"
     t.integer  "smoking_id"
     t.text     "business_hours_remarks"
     t.text     "shop_description"
@@ -262,7 +263,7 @@ ActiveRecord::Schema.define(version: 20160406075917) do
     t.integer  "message_thread_id",                 null: false
     t.integer  "from_user_id",                      null: false
     t.integer  "to_user_id",                        null: false
-    t.text     "content",           default: "",    null: false
+    t.text     "content"
     t.boolean  "read",              default: false
     t.datetime "read_at"
     t.integer  "listing_id",        default: 0,     null: false
@@ -280,10 +281,10 @@ ActiveRecord::Schema.define(version: 20160406075917) do
   create_table "profile_images", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "profile_id"
-    t.string   "image",      default: "", null: false
-    t.string   "caption",    default: ""
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "image",      limit: 255, default: "", null: false
+    t.string   "caption",    limit: 255, default: ""
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "profile_images", ["profile_id"], name: "index_profile_images_on_profile_id", using: :btree
@@ -292,43 +293,43 @@ ActiveRecord::Schema.define(version: 20160406075917) do
   create_table "profile_videos", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "profile_id"
-    t.string   "video",      default: "", null: false
-    t.string   "caption",    default: ""
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "video",      limit: 255, default: "", null: false
+    t.string   "caption",    limit: 255, default: ""
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "profile_videos", ["profile_id"], name: "index_profile_videos_on_profile_id", using: :btree
   add_index "profile_videos", ["user_id"], name: "index_profile_videos_on_user_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
-    t.integer  "user_id",                              null: false
-    t.string   "first_name",           default: ""
-    t.string   "last_name",            default: ""
+    t.integer  "user_id",                                          null: false
+    t.string   "first_name",           limit: 255, default: ""
+    t.string   "last_name",            limit: 255, default: ""
     t.date     "birthday"
     t.integer  "gender"
-    t.string   "phone",                default: ""
-    t.boolean  "phone_verification",   default: false
-    t.string   "zipcode",              default: ""
-    t.string   "location",             default: ""
-    t.text     "self_introduction",    default: ""
-    t.string   "school",               default: ""
-    t.string   "work",                 default: ""
-    t.string   "timezone",             default: ""
-    t.integer  "listing_count",        default: 0
-    t.integer  "wishlist_count",       default: 0
-    t.integer  "bookmark_count",       default: 0
-    t.integer  "reviewed_count",       default: 0
-    t.integer  "reservation_count",    default: 0
-    t.float    "ave_total",            default: 0.0
-    t.float    "ave_accuracy",         default: 0.0
-    t.float    "ave_communication",    default: 0.0
-    t.float    "ave_cleanliness",      default: 0.0
-    t.float    "ave_location",         default: 0.0
-    t.float    "ave_check_in",         default: 0.0
-    t.float    "ave_cost_performance", default: 0.0
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.string   "phone",                limit: 255, default: ""
+    t.boolean  "phone_verification",               default: false
+    t.string   "zipcode",              limit: 255, default: ""
+    t.string   "location",             limit: 255, default: ""
+    t.text     "self_introduction"
+    t.string   "school",               limit: 255, default: ""
+    t.string   "work",                 limit: 255, default: ""
+    t.string   "timezone",             limit: 255, default: ""
+    t.integer  "listing_count",                    default: 0
+    t.integer  "wishlist_count",                   default: 0
+    t.integer  "bookmark_count",                   default: 0
+    t.integer  "reviewed_count",                   default: 0
+    t.integer  "reservation_count",                default: 0
+    t.float    "ave_total",                        default: 0.0
+    t.float    "ave_accuracy",                     default: 0.0
+    t.float    "ave_communication",                default: 0.0
+    t.float    "ave_cleanliness",                  default: 0.0
+    t.float    "ave_location",                     default: 0.0
+    t.float    "ave_check_in",                     default: 0.0
+    t.float    "ave_cost_performance",             default: 0.0
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
@@ -337,11 +338,11 @@ ActiveRecord::Schema.define(version: 20160406075917) do
     t.integer  "host_id"
     t.integer  "guest_id"
     t.integer  "listing_id"
-    t.date     "schedule",                            null: false
-    t.integer  "num_of_people",                       null: false
-    t.text     "msg",                    default: ""
-    t.integer  "progress",               default: 0,  null: false
-    t.text     "reason",                 default: ""
+    t.date     "schedule",                           null: false
+    t.integer  "num_of_people",                      null: false
+    t.text     "msg"
+    t.integer  "progress",               default: 0, null: false
+    t.text     "reason"
     t.datetime "review_mail_sent_at"
     t.datetime "review_expiration_date"
     t.datetime "review_landed_at"
@@ -350,8 +351,8 @@ ActiveRecord::Schema.define(version: 20160406075917) do
     t.datetime "reply_landed_at"
     t.datetime "replied_at"
     t.datetime "review_opened_at"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   add_index "reservations", ["guest_id"], name: "index_reservations_on_guest_id", using: :btree
@@ -360,9 +361,9 @@ ActiveRecord::Schema.define(version: 20160406075917) do
 
   create_table "review_replies", force: :cascade do |t|
     t.integer  "review_id"
-    t.text     "msg",        default: ""
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.text     "msg"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "review_replies", ["review_id"], name: "index_review_replies_on_review_id", using: :btree
@@ -379,9 +380,9 @@ ActiveRecord::Schema.define(version: 20160406075917) do
     t.integer  "check_in",         default: 0
     t.integer  "cost_performance", default: 0
     t.integer  "total",            default: 0
-    t.text     "msg",              default: ""
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.text     "msg"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   add_index "reviews", ["guest_id"], name: "index_reviews_on_guest_id", using: :btree
@@ -412,11 +413,11 @@ ActiveRecord::Schema.define(version: 20160406075917) do
 
   create_table "tools", force: :cascade do |t|
     t.integer  "listing_id"
-    t.string   "name",                    null: false
-    t.string   "url",        default: ""
-    t.string   "image",      default: ""
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "name",       limit: 255,              null: false
+    t.string   "url",        limit: 255, default: ""
+    t.string   "image",      limit: 255, default: ""
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "tools", ["listing_id", "name"], name: "index_tools_on_listing_id_and_name", unique: true, using: :btree
@@ -426,12 +427,12 @@ ActiveRecord::Schema.define(version: 20160406075917) do
     t.integer  "user_id"
     t.integer  "listing_id"
     t.integer  "reservation_id"
-    t.string   "reason",                        null: false
-    t.datetime "start",                         null: false
-    t.datetime "end",                           null: false
-    t.boolean  "active",         default: true
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.string   "reason",         limit: 255,                null: false
+    t.datetime "start",                                     null: false
+    t.datetime "end",                                       null: false
+    t.boolean  "active",                     default: true
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
   end
 
   add_index "user_ngevents", ["listing_id"], name: "index_user_ngevents_on_listing_id", using: :btree
@@ -439,28 +440,28 @@ ActiveRecord::Schema.define(version: 20160406075917) do
   add_index "user_ngevents", ["user_id"], name: "index_user_ngevents_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "confirmation_token",     limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",        default: 0,  null: false
-    t.string   "unlock_token"
+    t.string   "unconfirmed_email",      limit: 255
+    t.integer  "failed_attempts",                    default: 0,  null: false
+    t.string   "unlock_token",           limit: 255
     t.datetime "locked_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "uid",                    default: "", null: false
-    t.string   "provider",               default: "", null: false
-    t.string   "username"
+    t.string   "uid",                    limit: 255, default: "", null: false
+    t.string   "provider",               limit: 255, default: "", null: false
+    t.string   "username",               limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
@@ -472,10 +473,10 @@ ActiveRecord::Schema.define(version: 20160406075917) do
 
   create_table "wishlists", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "name"
-    t.string   "range"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 255
+    t.string   "range",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "wishlists", ["user_id", "name"], name: "index_wishlists_on_user_id_and_name", unique: true, using: :btree

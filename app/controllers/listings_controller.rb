@@ -138,6 +138,10 @@ class ListingsController < ApplicationController
         :zipcode, :location, :longitude, :latitude, :delivery_flg, :price,
         :description, :title, :capacity, :direction, :schedule, :listing_images,
         :cover_image, :cover_image_caption, :cover_video, :cover_video_caption,
+	:shop_category, :shop_service, :smoking, :english,
+	:business_hours_remarks, :shop_description, :shop_description_en,
+	:price_low, :price_high, :tel, :url, :review_url,
+	:recommended, :recommended_en, :visit_benefits, :visit_benefits_another,
         listing_image_attributes: [:listing_id, :image, :order, :capacity]
       ).merge(user_id: current_user.id)
     end
