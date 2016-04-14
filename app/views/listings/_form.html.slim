@@ -1,5 +1,6 @@
 = simple_form_for(@listing, html: {class: "form--sp"}) do |f|
   = f.error_notification
+  = @listing.errors.messages.inspect
   = f.hidden_field :user_id, value: current_user.id
   = f.hidden_field :open, value: false
   -if false
