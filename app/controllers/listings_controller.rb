@@ -39,14 +39,24 @@ class ListingsController < ApplicationController
   def create
     @listing = Listing.new(listing_params)
     if @listing.valid?
-      if @listing.set_lon_lat
-        respond_to do |format|
-          if @listing.save
-            format.html { redirect_to manage_listing_listing_images_path(@listing.id), notice: I18n.t('alerts.listings.save.success', model: Listing.model_name.human) }
-          else
-            format.html { render :new }
-            format.json { render json: @listing.errors, status: :unprocessable_entity }
-          end
+      @listing.save!
+      # 緯度・経度セット
+      @listing.set_lon_lat
+      # カテゴリーセット
+#      unless params[:shop_categories].nil?
+        params[:shop_categories][0].each do |sc|
+          shop_category = ShopCategory.new(listing_id: @listing.id, shop_category_id: sc.value.to_i)
+          @listing.shop_categories << shop_category
+        end
+#      end
+      # サービスセット
+      # 英語セット
+      respond_to do |format|
+        if @listing.save
+          format.html { redirect_to manage_listing_listing_images_path(@listing.id), notice: I18n.t('alerts.listings.save.success', model: Listing.model_name.human) }
+        else
+          format.html { render :new }
+          format.json { render json: @listing.errors, status: :unprocessable_entity }
         end
       end
     else
