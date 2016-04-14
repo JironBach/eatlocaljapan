@@ -104,7 +104,7 @@ class Listing < ActiveRecord::Base
 
   def set_lon_lat
     hash = self.geocode_with_google_map_api
-    if hash['success'].present?
+    if hash['success']#.present?
       self.longitude = hash['lng']
       self.latitude = hash['lat']
       self
@@ -122,9 +122,15 @@ class Listing < ActiveRecord::Base
     case response
     when Net::HTTPSuccess then
       data = JSON.parse(response.body)
-      hash['lat'] = data['results'][0]['geometry']['location']['lat']
-      hash['lng'] = data['results'][0]['geometry']['location']['lng']
-      hash['success'] = true
+      unless data['results'][0].nil?
+        hash['lat'] = data['results'][0]['geometry']['location']['lat']
+        hash['lng'] = data['results'][0]['geometry']['location']['lng']
+        hash['success'] = true
+      else
+        hash['lat'] = 0.00
+        hash['lng'] = 0.00
+        hash['success'] = false
+      end
     else
       hash['lat'] = 0.00
       hash['lng'] = 0.00

@@ -38,17 +38,20 @@ class ListingsController < ApplicationController
   # POST /listings.json
   def create
     @listing = Listing.new(listing_params)
-    if @listing.set_lon_lat
-      respond_to do |format|
-        if @listing.save
-          format.html { redirect_to manage_listing_listing_images_path(@listing.id), notice: I18n.t('alerts.listings.save.success', model: Listing.model_name.human) }
-        else
-          format.html { render :new }
-          format.json { render json: @listing.errors, status: :unprocessable_entity }
+    if @listing.valid?
+      if @listing.set_lon_lat
+        respond_to do |format|
+          if @listing.save
+            format.html { redirect_to manage_listing_listing_images_path(@listing.id), notice: I18n.t('alerts.listings.save.success', model: Listing.model_name.human) }
+          else
+            format.html { render :new }
+            format.json { render json: @listing.errors, status: :unprocessable_entity }
+          end
         end
       end
     else
-      return render :new, notice: Settings.listings.set_lon_lat.error
+      flash[:notice] = I18n.t('alerts.listings.set_lon_lat.error')
+      return render :new#, notice: I18n.t('alerts.listings.set_lon_lat.error')
     end
   end
 
