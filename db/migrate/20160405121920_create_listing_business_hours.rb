@@ -6,5 +6,7 @@ class CreateListingBusinessHours < ActiveRecord::Migration
       t.references :listing, null: false
       t.references :business_hour, null: false
     end
+
+    add_index :listing_business_hours, [:listing_id, :business_hour_id], unique: true
   end
 end

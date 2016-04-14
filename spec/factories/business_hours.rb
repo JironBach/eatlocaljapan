@@ -6,10 +6,14 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  listing_id :integer
-#  is_open    :boolean          default(TRUE), not null
 #  wday       :integer          not null
+#  is_open    :boolean          default(TRUE), not null
 #  start_hour :time
 #  end_hour   :time
+#
+# Indexes
+#
+#  index_business_hours_on_listing_id_and_wday  (listing_id,wday) UNIQUE
 #
 
 FactoryGirl.define do

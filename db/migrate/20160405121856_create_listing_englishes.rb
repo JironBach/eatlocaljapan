@@ -6,5 +6,7 @@ class CreateListingEnglishes < ActiveRecord::Migration
       t.references :listing, null: false
       t.references :english, null: false
     end
+
+    add_index :listing_englishes, [:listing_id, :english_id], unique: true
   end
 end

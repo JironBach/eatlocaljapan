@@ -5,8 +5,8 @@
 #  id         :integer          not null, primary key
 #  user_id    :integer
 #  profile_id :integer
-#  video      :string(255)      default(""), not null
-#  caption    :string(255)      default("")
+#  video      :string           default(""), not null
+#  caption    :string           default("")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

@@ -6,5 +6,7 @@ class CreateListingShopServices < ActiveRecord::Migration
       t.references :listing, null: false
       t.references :shop_service, null: false
     end
+
+    add_index :listing_shop_services, [:listing_id, :shop_service_id], unique: true
   end
 end

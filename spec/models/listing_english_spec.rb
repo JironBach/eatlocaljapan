@@ -8,6 +8,10 @@
 #  listing_id :integer          not null
 #  english_id :integer          not null
 #
+# Indexes
+#
+#  index_listing_englishes_on_listing_id_and_english_id  (listing_id,english_id) UNIQUE
+#
 
 require 'rails_helper'
 

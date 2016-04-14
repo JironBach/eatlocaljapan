@@ -8,6 +8,10 @@
 #  listing_id       :integer          not null
 #  shop_category_id :integer          not null
 #
+# Indexes
+#
+#  index_listing_shop_categories  (listing_id,shop_category_id) UNIQUE
+#
 
 FactoryGirl.define do
   factory :listing_shop_category do

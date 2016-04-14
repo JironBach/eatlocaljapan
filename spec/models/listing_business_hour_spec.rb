@@ -8,6 +8,10 @@
 #  listing_id       :integer          not null
 #  business_hour_id :integer          not null
 #
+# Indexes
+#
+#  index_listing_business_hours_on_listing_id_and_business_hour_id  (listing_id,business_hour_id) UNIQUE
+#
 
 require 'rails_helper'
 

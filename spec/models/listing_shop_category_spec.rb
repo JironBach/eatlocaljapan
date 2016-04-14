@@ -8,6 +8,10 @@
 #  listing_id       :integer          not null
 #  shop_category_id :integer          not null
 #
+# Indexes
+#
+#  index_listing_shop_categories  (listing_id,shop_category_id) UNIQUE
+#
 
 require 'rails_helper'
 
