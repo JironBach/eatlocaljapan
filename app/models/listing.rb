@@ -186,9 +186,9 @@ class Listing < ActiveRecord::Base
   def complete_steps
     result = []
     result << Settings.left_steps.listing_image unless ListingImage.exists?(listing_id: self.id)
-    result << Settings.left_steps.confection unless Confection.exists?(listing_id: self.id)
-    result << Settings.left_steps.tool unless Tool.exists?(listing_id: self.id)
-    result << Settings.left_steps.dress_code unless DressCode.exists?(listing_id: self.id)
+    #result << Settings.left_steps.confection unless Confection.exists?(listing_id: self.id)
+    #result << Settings.left_steps.tool unless Tool.exists?(listing_id: self.id)
+    #result << Settings.left_steps.dress_code unless DressCode.exists?(listing_id: self.id)
     result
   end
 

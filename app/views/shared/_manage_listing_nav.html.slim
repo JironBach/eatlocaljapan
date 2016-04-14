@@ -11,12 +11,12 @@
 - left_step_array.each do |i|
   - if i == 'listing_image'
     - listing_image_active = false
-  - if i == 'confection'
-    - confection_active = false
-  - if i == 'tool'
-    - tool_active = false
-  - if i == 'dress_code'
-    - dress_code_active = false
+  /- if i == 'confection'
+  /  - confection_active = false
+  /- if i == 'tool'
+  /  - tool_active = false
+  /- if i == 'dress_code'
+  /  - dress_code_active = false
 .manage-listing-nav.col-md-3
   .row.nav-sections
     .section-header.row-space-1
@@ -48,64 +48,64 @@
               i.fa.fa-exclamation-circle
             - else
               i.fa.fa-check
-      - if controller_name == "listing_ngevents"
-        li.nav-item.nav-active
-          = link_to manage_listing_listing_ngevents_path(@listing) do
-            = t '.cal'
-            i.fa.fa-plus
-      - else
-        li.nav-item
-          = link_to manage_listing_listing_ngevents_path(@listing) do
-            = t '.cal'
-            i.fa.fa-plus
-      - if controller_name == "confections"
-        li.nav-item.nav-active
-          = link_to manage_listing_confections_path(@listing.id) do
-            = t('.item', model: model1, opt: t('.opt1'))
-            - if confection_active.blank?
-              i.fa.fa-exclamation-circle
-            - else
-              i.fa.fa-check
-      - else
-        li.nav-item
-          = link_to manage_listing_confections_path(@listing.id) do
-            = t('.item', model: model1, opt: t('.opt1'))
-            - if confection_active.blank?
-              i.fa.fa-exclamation-circle
-            - else
-              i.fa.fa-check
-      - if controller_name == "tools"
-        li.nav-item.nav-active
-          = link_to manage_listing_tools_path(@listing.id) do
-            = t('.item', model: model2, opt: t('.opt2'))
-            - if tool_active.blank?
-              i.fa.fa-exclamation-circle
-            - else
-              i.fa.fa-check
-      - else
-        li.nav-item
-          = link_to manage_listing_tools_path(@listing.id) do
-            = t('.item', model: model2, opt: t('.opt2'))
-            - if tool_active.blank?
-              i.fa.fa-exclamation-circle
-            - else
-              i.fa.fa-check
-      - if controller_name == "dress_codes"
-        li.nav-item.nav-active
-          = link_to manage_listing_dress_codes_path(@listing.id) do
-            = t('.item', model: model3, opt: t('.opt3'))
-            - if dress_code_active.blank?
-              i.fa.fa-exclamation-circle
-            - else
-              i.fa.fa-check
-      - else
-        li.nav-item
-          = link_to manage_listing_dress_codes_path(@listing.id) do
-            = t('.item', model: model3, opt: t('.opt3'))
-            - if dress_code_active.blank?
-              i.fa.fa-exclamation-circle
-            - else
-              i.fa.fa-check
+      /- if controller_name == "listing_ngevents"
+      /  li.nav-item.nav-active
+      /    = link_to manage_listing_listing_ngevents_path(@listing) do
+      /      = t '.cal'
+      /      i.fa.fa-plus
+      /- else
+      /  li.nav-item
+      /    = link_to manage_listing_listing_ngevents_path(@listing) do
+      /      = t '.cal'
+      /      i.fa.fa-plus
+      /- if controller_name == "confections"
+      /  li.nav-item.nav-active
+      /    = link_to manage_listing_confections_path(@listing.id) do
+      /      = t('.item', model: model1, opt: t('.opt1'))
+      /      - if confection_active.blank?
+      /        i.fa.fa-exclamation-circle
+      /      - else
+      /        i.fa.fa-check
+      /- else
+      /  li.nav-item
+      /    = link_to manage_listing_confections_path(@listing.id) do
+      /      = t('.item', model: model1, opt: t('.opt1'))
+      /      - if confection_active.blank?
+      /        i.fa.fa-exclamation-circle
+      /      - else
+      /        i.fa.fa-check
+      /- if controller_name == "tools"
+      /  li.nav-item.nav-active
+      /    = link_to manage_listing_tools_path(@listing.id) do
+      /      = t('.item', model: model2, opt: t('.opt2'))
+      /      - if tool_active.blank?
+      /        i.fa.fa-exclamation-circle
+      /      - else
+      /        i.fa.fa-check
+      /- else
+      /  li.nav-item
+      /    = link_to manage_listing_tools_path(@listing.id) do
+      /      = t('.item', model: model2, opt: t('.opt2'))
+      /      - if tool_active.blank?
+      /        i.fa.fa-exclamation-circle
+      /      - else
+      /        i.fa.fa-check
+      /- if controller_name == "dress_codes"
+      /  li.nav-item.nav-active
+      /    = link_to manage_listing_dress_codes_path(@listing.id) do
+      /      = t('.item', model: model3, opt: t('.opt3'))
+      /      - if dress_code_active.blank?
+      /        i.fa.fa-exclamation-circle
+      /      - else
+      /        i.fa.fa-check
+      /- else
+      /  li.nav-item
+      /    = link_to manage_listing_dress_codes_path(@listing.id) do
+      /      = t('.item', model: model3, opt: t('.opt3'))
+      /      - if dress_code_active.blank?
+      /        i.fa.fa-exclamation-circle
+      /      - else
+      /        i.fa.fa-check
     .col-xs-12.text-center
       - if left_step_count.zero?
         = link_to t('.publish'), listing_publish_path(@listing), class: "btn btn-primary btn-block", id: "listing-manager-open"

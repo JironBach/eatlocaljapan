@@ -36,59 +36,59 @@
                 = listing.capacity
                 = t('unit.people')
         hr
-        .row
-          .col-md-3.text-muted
-            = Confection.human_attribute_name :name
-            = t('.option.option1')
-          .col-md-9
-            .row-space-1
-              span
-                - if '' == confection.url
-                  = confection.name
-                - else
-                  = link_to confection.url, target: "_blank" do
-                    b
-                      = confection.name
-              - if confection.image.present?
-                = image_tag(confection.image, class: 'img-responsive row-space-top-2')
-              p.text-muted.pull-left.row-space-top-1
-                = confection.try('caption') || ''
-        hr
-        .row
-          .col-md-3.text-muted
-            = Tool.human_attribute_name :name
-            = t('.option.option2')
-          .col-md-9
-            .row-space-1
-              span
-                - if tool.url.present?
-                  - if '' == tool.url
-                    = tool.name
-                  - else
-                    = link_to tool.url, target: "_blank" do
-                      b
-                        = tool.name
-                - else
-                  = tool.name
-              - if tool.image.present?
-                = image_tag(tool.image, class: 'img-responsive row-space-top-2')
-              p.text-muted.pull-left.row-space-top-1
-                = tool.try('caption') || ''
-        hr
-        .row
-          .col-md-3.text-muted
-            = DressCode.human_attribute_name :wafuku
-            = t('.option.option3')
-          .col-md-9
-            .row-space-1
-              span
-                b
-                  = dress_code.present? && dress_code.wafuku.present? ? t('.dress_codes.wafuku_only') : t('.dress_codes.any')
-            .row-space-1
-              span
-                b
-                  - if dress_code.present? && dress_code.note.present?
-                    = dress_code.note
+        /.row
+        /  .col-md-3.text-muted
+        /    = Confection.human_attribute_name :name
+        /    = t('.option.option1')
+        /  .col-md-9
+        /    .row-space-1
+        /      span
+        /        - if '' == confection.url
+        /          = confection.name
+        /        - else
+        /          = link_to confection.url, target: "_blank" do
+        /            b
+        /              = confection.name
+        /      - if confection.image.present?
+        /        = image_tag(confection.image, class: 'img-responsive row-space-top-2')
+        /      p.text-muted.pull-left.row-space-top-1
+        /        = confection.try('caption') || ''
+        /hr
+        /.row
+        /  .col-md-3.text-muted
+        /    = Tool.human_attribute_name :name
+        /    = t('.option.option2')
+        /  .col-md-9
+        /    .row-space-1
+        /      span
+        /        - if tool.url.present?
+        /          - if '' == tool.url
+        /            = tool.name
+        /          - else
+        /            = link_to tool.url, target: "_blank" do
+        /              b
+        /                = tool.name
+        /        - else
+        /          = tool.name
+        /      - if tool.image.present?
+        /        = image_tag(tool.image, class: 'img-responsive row-space-top-2')
+        /      p.text-muted.pull-left.row-space-top-1
+        /        = tool.try('caption') || ''
+        /hr
+        /.row
+        /  .col-md-3.text-muted
+        /    = DressCode.human_attribute_name :wafuku
+        /    = t('.option.option3')
+        /  .col-md-9
+        /    .row-space-1
+        /      span
+        /        b
+        /          = dress_code.present? && dress_code.wafuku.present? ? t('./dress_codes.wafuku_only') : t('.dress_codes.any')
+        /    .row-space-1
+        /      span
+        /        b
+        /          - if dress_code.present? && dress_code.note.present?
+        /            = dress_code.note
         hr
         .row
           .col-md-3
