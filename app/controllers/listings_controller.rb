@@ -40,10 +40,10 @@ class ListingsController < ApplicationController
     @listing = Listing.new(listing_params)
     if @listing.valid?
       @listing.save!
-      # 緯度・経度セット
+      # 緯度・経度
       @listing.set_lon_lat
-      # カテゴリーセット
-#      unless params[:shop_categories].nil?
+      # カテゴリー
+      unless params[:shop_categories].nil?
         @listing.shop_categories = []
         params[:shop_categories].each do |sc|
           unless sc.blank?
@@ -51,9 +51,28 @@ class ListingsController < ApplicationController
             @listing.shop_categories << shop_category
           end
         end
-#      end
-      # サービスセット
+      end
+      # サービス
+      unless params[:shop_services].nil?
+        @listing.shop_services = []
+        params[:shop_services].each do |ss|
+          unless ss.blank?
+            shop_service = ShopService.find(ss.to_i)
+            @listing.shop_services << shop_service
+          end
+        end
+      end
       # 英語セット
+      unless params[:englishes].nil?
+        @listing.englishes = []
+        params[:englishes].each do |e|
+          unless e.blank?
+            english = English.find(e.to_i)
+            @listing.englishes << english
+          end
+        end
+      end
+      # 保存
       @listing.save!
       respond_to do |format|
         if @listing.save

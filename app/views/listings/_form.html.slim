@@ -30,7 +30,7 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = collection_check_boxes :shop_services, nil, ShopService.all, :id, :name do |b|
+          = collection_check_boxes nil, :shop_services, ShopService.all, :id, :name do |b|
             = b.label { b.check_box + b.text }
   / .row.row-space-5.row-space-top-5.row-table
   /   .col-xs-4.text-right.col-middle
@@ -145,7 +145,7 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = collection_check_boxes :englishes, nil, English.all, :id, :name do |b|
+          = collection_check_boxes nil, :englishes, English.all, :id, :name do |b|
             = b.label { b.check_box + b.text }
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle

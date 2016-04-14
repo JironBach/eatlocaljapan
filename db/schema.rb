@@ -125,6 +125,15 @@ ActiveRecord::Schema.define(version: 20160406075917) do
     t.string "name_en", null: false
   end
 
+  create_table "englishes_listings", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "listing_id", null: false
+    t.integer  "english_id", null: false
+  end
+
+  add_index "englishes_listings", ["listing_id", "english_id"], name: "index_englishes_listings_on_listing_id_and_english_id", unique: true, using: :btree
+
   create_table "listing_images", force: :cascade do |t|
     t.integer  "listing_id"
     t.string   "image",      default: ""
@@ -204,15 +213,6 @@ ActiveRecord::Schema.define(version: 20160406075917) do
   end
 
   add_index "listings_business_hours", ["listing_id", "business_hour_id"], name: "index_listing_business_hours", unique: true, using: :btree
-
-  create_table "listings_englishes", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "listing_id", null: false
-    t.integer  "english_id", null: false
-  end
-
-  add_index "listings_englishes", ["listing_id", "english_id"], name: "index_listings_englishes_on_listing_id_and_english_id", unique: true, using: :btree
 
   create_table "listings_shop_categories", force: :cascade do |t|
     t.datetime "created_at",       null: false
