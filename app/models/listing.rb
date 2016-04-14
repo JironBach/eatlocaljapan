@@ -13,21 +13,20 @@
 #  ave_check_in           :float            default(0.0)
 #  ave_cost_performance   :float            default(0.0)
 #  open                   :boolean          default(FALSE)
-#  zipcode                :string(255)
-#  location               :string(255)      default("")
+#  zipcode                :string
+#  location               :string           default("")
 #  longitude              :decimal(9, 6)    default(0.0)
 #  latitude               :decimal(9, 6)    default(0.0)
 #  delivery_flg           :boolean          default(FALSE)
 #  price                  :integer          default(0)
-#  description            :text
-#  title                  :string(255)      default("")
+#  description            :text             default("")
+#  title                  :string           default("")
 #  capacity               :integer          default(0)
-#  direction              :text
-#  cover_image            :string(255)      default("")
-#  cover_image_caption    :string(255)      default("")
+#  direction              :text             default("")
+#  cover_image            :string           default("")
+#  cover_image_caption    :string           default("")
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  address                :string
 #  smoking_id             :integer
 #  business_hours_remarks :text
 #  shop_description       :text
@@ -75,7 +74,7 @@ class Listing < ActiveRecord::Base
   has_many :reservations
   has_many :reviews
   has_many :listing_ngevents, class_name: "UserNgevent"
-  has_many :shop_categories, dependent: :destroy
+  has_and_belongs_to_many :shop_categories, dependent: :destroy
   has_many :shop_services, dependent: :destroy
   has_one :smoking
   has_many :business_hours, dependent: :destroy

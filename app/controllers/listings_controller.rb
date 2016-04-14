@@ -44,13 +44,17 @@ class ListingsController < ApplicationController
       @listing.set_lon_lat
       # カテゴリーセット
 #      unless params[:shop_categories].nil?
-        params[:shop_categories][0].each do |sc|
-          shop_category = ShopCategory.new(listing_id: @listing.id, shop_category_id: sc.value.to_i)
-          @listing.shop_categories << shop_category
+        @listing.shop_categories = []
+        params[:shop_categories].each do |sc|
+          unless sc.blank?
+            shop_category = ShopCategory.find(sc.to_i)
+            @listing.shop_categories << shop_category
+          end
         end
 #      end
       # サービスセット
       # 英語セット
+      @listing.save!
       respond_to do |format|
         if @listing.save
           format.html { redirect_to manage_listing_listing_images_path(@listing.id), notice: I18n.t('alerts.listings.save.success', model: Listing.model_name.human) }
