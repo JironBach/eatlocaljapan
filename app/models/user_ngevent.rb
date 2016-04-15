@@ -6,7 +6,7 @@
 #  user_id        :integer
 #  listing_id     :integer
 #  reservation_id :integer
-#  reason         :string           not null
+#  reason         :string(255)      not null
 #  start          :datetime         not null
 #  end            :datetime         not null
 #  active         :boolean          default(TRUE)

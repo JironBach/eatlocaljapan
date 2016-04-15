@@ -156,9 +156,10 @@
         .col-xs-11
           - 7.times do |wday|
             = %w(日 月 火 水 木 金 土)[wday]
-            = time_select "start_hour[#{wday}]", nil, {minute_step: 15}
+            = check_box "business_hours[#{wday}]", nil, {checked: true}
+            = time_select "start_hour[#{wday}]", nil, {include_blank: true, minute_step: 15}
             = '〜'
-            = time_select "end_hour[#{wday}]", nil, {minute_step: 15}
+            = time_select "end_hour[#{wday}]", nil, {include_blank: true, minute_step: 15}
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
