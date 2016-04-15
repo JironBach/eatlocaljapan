@@ -21,10 +21,8 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          - shop_categories = @listing.shop_categories.collect {|sc| sc.shop_category_id}
           = collection_check_boxes nil, :shop_categories, ShopCategory.all, :id, :name do |b|
             = b.label(b.checkbox({checked: @listing.shop_categories.collect {|sc| sc.shop_category_id}) + b.text)
-            /= b.label { b.check_box + b.text }
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
