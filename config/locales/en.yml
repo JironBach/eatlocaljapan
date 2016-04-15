@@ -53,6 +53,8 @@ en:
         relationship: Relationship
       listing:
         title: Title
+        shop_category: Category
+        shop_service: Service
         zipcode: Zipcode
         location: Location
         longitude: Longitude
@@ -73,6 +75,22 @@ en:
         ave_location: Average of Location Value
         ave_check_in: Average of Check In Value
         ave_cost_performance: Average of Cost Performance Value
+        smoking_id: Smoking
+        english_id: English
+        business_hours: Business hours
+        business_hours_remarks: Business hours remarks
+        shop_description: Shop description
+        shop_description_en: Shop description
+        price_low: Price low
+        price_high: Price high
+        address: Address
+        tel: Tel
+        url: Web Site
+        review_url: Review Site Link
+        recommended: Recommended
+        recommended_en: Recommended
+        visit_benefits: Visit Benefits
+        visit_benefits_another: Visit Benefits
       listing_image:
         image: Image of Listing
         caption: Caption of Listing Image
@@ -178,6 +196,22 @@ en:
         location: Input zipcode, and the address is automatically show up.
         direction: Write minute direction to your listing location
         schedule: Schedule
+        smoking_id: Smoking
+        english_id: English
+        business_hours: Business hours
+        business_hours_remarks: Business hours remarks
+        shop_description: Shop description
+        shop_description_en: Shop description
+        price_low: Price low
+        price_high: Price high
+        address: Address
+        tel: Tel
+        url: Web Site
+        review_url: Review Site Link
+        recommended: Recommended
+        recommended_en: Recommended
+        visit_benefits: Visit Benefits
+        visit_benefits_another: Visit Benefits
       listing_image:
         caption: e.g. Like this....
       confection:

@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: listing_shop_services
+#
+#  id              :integer          not null, primary key
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  listing_id      :integer          not null
+#  shop_service_id :integer          not null
+#
+# Indexes
+#
+#  index_listing_shop_services_on_listing_id_and_shop_service_id  (listing_id,shop_service_id) UNIQUE
+#
+
+FactoryGirl.define do
+  factory :listing_shop_service do
+    
+  end
+
+end
