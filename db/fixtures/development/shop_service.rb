@@ -1,0 +1,16 @@
+ShopService.seed(
+  { id: 1, name: '予約可', name_en: 'bookable' },
+  { id: 2, name: '個室有り', name_en: 'private room' },
+  { id: 3, name: '出前・デリバリー可', name_en: 'delivery' },
+  { id: 4, name: 'テイクアウト可', name_en: 'take out' },
+  { id: 5, name: 'クレジットカード可', name_en: 'credit card' },
+  { id: 6, name: '駐車場有り', name_en: 'parking' },
+  { id: 7, name: 'アルコール有り', name_en: 'alcohol' },
+  { id: 8, name: 'ハラル認証', name_en: 'halal certification' },
+  { id: 9, name: '車いす対応', name_en: 'wheelchair accessible' },
+  { id: 10, name: 'お子様用椅子あり', name_en: 'chair for children' },
+  { id: 11, name: '屋外テーブルあり', name_en: 'outdoor table' },
+  { id: 12, name: '無料Wi-Fi', name_en: 'Free Wi-Fi' },
+  { id: 13, name: '写真付きメニューあり', name_en: 'photos with menu' },
+  { id: 14, name: 'メニューに材料の表示あり', name_en: 'material display with menu' },
+)

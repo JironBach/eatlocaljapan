@@ -2,31 +2,45 @@
 #
 # Table name: listings
 #
-#  id                   :integer          not null, primary key
-#  user_id              :integer
-#  review_count         :integer          default(0)
-#  ave_total            :float            default(0.0)
-#  ave_accuracy         :float            default(0.0)
-#  ave_communication    :float            default(0.0)
-#  ave_cleanliness      :float            default(0.0)
-#  ave_location         :float            default(0.0)
-#  ave_check_in         :float            default(0.0)
-#  ave_cost_performance :float            default(0.0)
-#  open                 :boolean          default(FALSE)
-#  zipcode              :string
-#  location             :string           default("")
-#  longitude            :decimal(9, 6)    default(0.0)
-#  latitude             :decimal(9, 6)    default(0.0)
-#  delivery_flg         :boolean          default(FALSE)
-#  price                :integer          default(0)
-#  description          :text             default("")
-#  title                :string           default("")
-#  capacity             :integer          default(0)
-#  direction            :text             default("")
-#  cover_image          :string           default("")
-#  cover_image_caption  :string           default("")
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
+#  id                     :integer          not null, primary key
+#  user_id                :integer
+#  review_count           :integer          default(0)
+#  ave_total              :float            default(0.0)
+#  ave_accuracy           :float            default(0.0)
+#  ave_communication      :float            default(0.0)
+#  ave_cleanliness        :float            default(0.0)
+#  ave_location           :float            default(0.0)
+#  ave_check_in           :float            default(0.0)
+#  ave_cost_performance   :float            default(0.0)
+#  open                   :boolean          default(FALSE)
+#  zipcode                :string(255)
+#  location               :string(255)      default("")
+#  longitude              :decimal(9, 6)    default(0.0)
+#  latitude               :decimal(9, 6)    default(0.0)
+#  delivery_flg           :boolean          default(FALSE)
+#  price                  :integer          default(0)
+#  description            :text
+#  title                  :string(255)      default("")
+#  capacity               :integer          default(0)
+#  direction              :text
+#  cover_image            :string(255)      default("")
+#  cover_image_caption    :string(255)      default("")
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  address                :string
+#  smoking_id             :integer
+#  business_hours_remarks :text
+#  shop_description       :text
+#  shop_description_en    :text
+#  price_low              :integer
+#  price_high             :integer
+#  tel                    :string
+#  url                    :string
+#  review_url             :string
+#  recommended            :text
+#  recommended_en         :text
+#  visit_benefits         :string
+#  visit_benefits_another :string
 #
 # Indexes
 #
@@ -61,6 +75,12 @@ class Listing < ActiveRecord::Base
   has_many :reservations
   has_many :reviews
   has_many :listing_ngevents, class_name: "UserNgevent"
+  has_and_belongs_to_many :shop_categories, dependent: :destroy
+  has_and_belongs_to_many :shop_services, dependent: :destroy
+  has_one :smoking
+  has_many :business_hours, dependent: :destroy
+  has_and_belongs_to_many :englishes, dependent: :destroy
+  has_many :business_hours, dependent: :destroy
 
   mount_uploader :cover_image, DefaultImageUploader
 
@@ -84,7 +104,7 @@ class Listing < ActiveRecord::Base
 
   def set_lon_lat
     hash = self.geocode_with_google_map_api
-    if hash['success'].present?
+    if hash['success']#.present?
       self.longitude = hash['lng']
       self.latitude = hash['lat']
       self
@@ -102,9 +122,15 @@ class Listing < ActiveRecord::Base
     case response
     when Net::HTTPSuccess then
       data = JSON.parse(response.body)
-      hash['lat'] = data['results'][0]['geometry']['location']['lat']
-      hash['lng'] = data['results'][0]['geometry']['location']['lng']
-      hash['success'] = true
+      unless data['results'][0].nil?
+        hash['lat'] = data['results'][0]['geometry']['location']['lat']
+        hash['lng'] = data['results'][0]['geometry']['location']['lng']
+        hash['success'] = true
+      else
+        hash['lat'] = 0.00
+        hash['lng'] = 0.00
+        hash['success'] = false
+      end
     else
       hash['lat'] = 0.00
       hash['lng'] = 0.00
@@ -154,15 +180,16 @@ class Listing < ActiveRecord::Base
 
   def left_step_count_and_elements
     cs = self.complete_steps
-    return_array = [cs.count, cs]
+    #return_array = [cs.count, cs]
+    [cs.count, cs]
   end
 
   def complete_steps
     result = []
     result << Settings.left_steps.listing_image unless ListingImage.exists?(listing_id: self.id)
-    result << Settings.left_steps.confection unless Confection.exists?(listing_id: self.id)
-    result << Settings.left_steps.tool unless Tool.exists?(listing_id: self.id)
-    result << Settings.left_steps.dress_code unless DressCode.exists?(listing_id: self.id)
+    #result << Settings.left_steps.confection unless Confection.exists?(listing_id: self.id)
+    #result << Settings.left_steps.tool unless Tool.exists?(listing_id: self.id)
+    #result << Settings.left_steps.dress_code unless DressCode.exists?(listing_id: self.id)
     result
   end
 

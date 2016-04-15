@@ -5,9 +5,15 @@
 #  id         :integer          not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  listing_id :integer
 #  wday       :integer          not null
-#  start_hour :integer          not null
-#  end_hour   :integer          not null
+#  is_open    :boolean          default(TRUE), not null
+#  start_hour :time
+#  end_hour   :time
+#
+# Indexes
+#
+#  index_business_hours_on_listing_id_and_wday  (listing_id,wday) UNIQUE
 #
 
 require 'rails_helper'

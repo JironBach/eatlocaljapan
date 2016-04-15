@@ -4,8 +4,8 @@
 #
 #  id         :integer          not null, primary key
 #  user_id    :integer
-#  name       :string
-#  range      :string
+#  name       :string(255)
+#  range      :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

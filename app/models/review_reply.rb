@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  review_id  :integer
-#  msg        :text             default("")
+#  msg        :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
