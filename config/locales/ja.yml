@@ -56,7 +56,7 @@ ja:
         shop_category: カテゴリー
         shop_service: サービス
         zipcode: 郵便番号
-        location: 住所
+        location: 所在地
         longitude: 軽度
         latitude: 緯度
         delivery_flg: 出張は？
@@ -85,7 +85,7 @@ ja:
         price_high: 価格　高
         #address: 所在地
         tel: 電話番号
-        url: 自社ウェブサイト
+        url: 自社WEBサイト
         review_url: レビューサイトへのリンク
         recommended: お勧めのメニュー・食べ方の説明　日本語
         recommended_en: お勧めのメニュー・食べ方の説明　英語

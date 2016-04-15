@@ -56,7 +56,7 @@ en:
         shop_category: Category
         shop_service: Service
         zipcode: Zipcode
-        location: Location
+        location: Address
         longitude: Longitude
         latitude: Latitude
         delivery_flg: Delivery?
@@ -79,16 +79,16 @@ en:
         english_id: English
         business_hours: Business hours
         business_hours_remarks: Business hours remarks
-        shop_description: Shop description
-        shop_description_en: Shop description
-        price_low: Price low
-        price_high: Price high
+        shop_description: About the restaurant Japanese
+        shop_description_en: About the restaurant
+        price_low: Pricing low
+        price_high: Pricing high
         address: Address
-        tel: Tel
-        url: Web Site
-        review_url: Review Site Link
-        recommended: Recommended
-        recommended_en: Recommended
+        tel: Telephone
+        url: Restaurant Website
+        review_url: Links to the major review sites
+        recommended: Chef's recommendation
+        recommended_en: Chef's recommendation
         visit_benefits: Visit Benefits
         visit_benefits_another: Visit Benefits
       listing_image:
