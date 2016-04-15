@@ -134,7 +134,6 @@ class ListingsController < ApplicationController
           end
         end
       end
-      logger.debug "営業＝#{params[:is_open].inspect}, 開始時刻＝#{params[:start_hour].inspect}, 終了時刻＝#{params[:end_hour].inspect}"
       @listing.business_hours = []
       7.times do |wday|
         is_open = params[:is_open][wday.to_s].include?('1')
