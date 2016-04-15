@@ -100,7 +100,52 @@ class ListingsController < ApplicationController
   # PATCH/PUT /listings/1
   # PATCH/PUT /listings/1.json
   def update
-    if @listing.set_lon_lat
+    @listing = Listing.find(params[:id])
+    if @listing.valid?
+      @listing.save!
+      # 緯度・経度
+      @listing.set_lon_lat
+      # カテゴリー
+      unless params[:shop_categories].nil?
+        @listing.shop_categories = []
+        params[:shop_categories].each do |sc|
+          unless sc.blank?
+            shop_category = ShopCategory.find(sc.to_i)
+            @listing.shop_categories << shop_category
+          end
+        end
+      end
+      # サービス
+      unless params[:shop_services].nil?
+        @listing.shop_services = []
+        params[:shop_services].each do |ss|
+          unless ss.blank?
+            shop_service = ShopService.find(ss.to_i)
+            @listing.shop_services << shop_service
+          end
+        end
+      end
+      # 英語セット
+      unless params[:englishes].nil?
+        @listing.englishes = []
+        params[:englishes].each do |e|
+          unless e.blank?
+            english = English.find(e.to_i)
+            @listing.englishes << english
+          end
+        end
+      end
+      logger.debug "営業＝#{params[:is_open].inspect}, 開始時刻＝#{params[:start_hour].inspect}, 終了時刻＝#{params[:end_hour].inspect}"
+      @listing.business_hours = []
+      7.times do |wday|
+        is_open = params[:is_open][wday.to_s].include?('1')
+        start_hour = DateTime.parse("#{params[:start_hour][wday.to_s]['(1i)']}-#{params[:start_hour][wday.to_s]['(2i)']}-#{params[:start_hour][wday.to_s]['(3i)']} #{params[:start_hour][wday.to_s]['(4i)']}: #{params[:start_hour][wday.to_s]['(5i)']}: 0") unless params[:start_hour][wday.to_s]['(3i)'].blank?
+        end_hour = DateTime.parse("#{params[:end_hour][wday.to_s]['(1i)']}-#{params[:end_hour][wday.to_s]['(2i)']}-#{params[:end_hour][wday.to_s]['(3i)']} #{params[:end_hour][wday.to_s]['(4i)']}: #{params[:end_hour][wday.to_s]['(5i)']}: 0") unless params[:end_hour][wday.to_s]['(3i)'].blank?
+        business_hour = BusinessHour.new(wday: wday, is_open: is_open, start_hour: start_hour, end_hour: end_hour)
+        @listing.business_hours << business_hour
+      end
+      # 保存
+      @listing.save!
       respond_to do |format|
         if @listing.update(listing_params)
           format.html { redirect_to manage_listing_listing_images_path(@listing.id), notice: I18n.t('alerts.listings.update.success', model: Listing.model_name.human) }

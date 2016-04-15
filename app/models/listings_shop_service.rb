@@ -13,5 +13,5 @@
 #  index_listing_shop_services_on_listing_id_and_shop_service_id  (listing_id,shop_service_id) UNIQUE
 #
 
-class ListingShopService < ActiveRecord::Base
+class ListingsShopService < ActiveRecord::Base
 end
