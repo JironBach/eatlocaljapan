@@ -72,6 +72,7 @@ class ListingsController < ApplicationController
           end
         end
       end
+      logger.debug "営業＝#{params[:is_open].inspect}, 開始時刻＝#{params[:start_hour].inspect}, 終了時刻＝#{params[:end_hour].inspect}"
       # 保存
       @listing.save!
       respond_to do |format|
