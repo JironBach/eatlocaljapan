@@ -158,9 +158,9 @@
             p
               = %w(日 月 火 水 木 金 土)[wday]
               = check_box "is_open[#{wday}]", nil, {checked: true}
-              = time_select "start_hour[#{wday}]", nil, {include_blank: true, minute_step: 15}, style: "display:inline-block;width:auto;"
+              = time_select "start_hour[#{wday}]", nil, {minute_step: 15}, style: "display:inline-block;width:auto;"
               = '〜'
-              = time_select "end_hour[#{wday}]", nil, {include_blank: true, minute_step: 15}, style: "display:inline-block;width:auto;"
+              = time_select "end_hour[#{wday}]", nil, {minute_step: 15}, style: "display:inline-block;width:auto;"
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light

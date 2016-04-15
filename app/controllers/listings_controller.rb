@@ -73,6 +73,14 @@ class ListingsController < ApplicationController
         end
       end
       logger.debug "営業＝#{params[:is_open].inspect}, 開始時刻＝#{params[:start_hour].inspect}, 終了時刻＝#{params[:end_hour].inspect}"
+      @listing.business_hours = []
+      7.times do |wday|
+        is_open = params[:is_open][wday.to_s].include?('1')
+        start_hour = DateTime.parse("#{params[:start_hour][wday.to_s]['(1i)']}-#{params[:start_hour][wday.to_s]['(2i)']}-#{params[:start_hour][wday.to_s]['(3i)']} #{params[:start_hour][wday.to_s]['(4i)']}: #{params[:start_hour][wday.to_s]['(5i)']}: 0") unless params[:start_hour][wday.to_s]['(3i)'].blank?
+        end_hour = DateTime.parse("#{params[:end_hour][wday.to_s]['(1i)']}-#{params[:end_hour][wday.to_s]['(2i)']}-#{params[:end_hour][wday.to_s]['(3i)']} #{params[:end_hour][wday.to_s]['(4i)']}: #{params[:end_hour][wday.to_s]['(5i)']}: 0") unless params[:end_hour][wday.to_s]['(3i)'].blank?
+        business_hour = BusinessHour.new(wday: wday, is_open: is_open, start_hour: start_hour, end_hour: end_hour)
+        @listing.business_hours << business_hour
+      end
       # 保存
       @listing.save!
       respond_to do |format|
