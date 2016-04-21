@@ -1,12 +1,3 @@
-= simple_form_for(:search, url: '/listings/search', html: { method: 'get', id: 'search_form', class: 'hero-searchForm'}) do |f|
-  = f.hidden_field :where, value: 'top'
-  .search-form-wrapper
-    .location-wrapper
-      = f.input_field :location, autocomplete: 'off', placeholder: t('.placeholder.location'), id: 'location', class: 'location-width input-large location'
-    .date-wrapper
-      = f.input_field :schedule, placeholder: t('.placeholder.schedule'), id: 'date', class: 'datepicker input-large checkin'
-    .guests-wrapper.select.select-large
-      - arr = (1..15).map{|p| ["#{t('.num_of_guest.unit_text', num: p, unit: t('unit.people'))}",p] }
-      - arr <<  ["#{t('.num_of_guest.more_than', num: 16, unit: t('unit.people'))}", :"16+"]
-      = f.input_field :num_of_guest, as: :select, id: 'guest', collection: arr, default:  [1]
-  = button_tag(t('.submit'), type: "submit", class: "btn btn-primary btn-large", id: "submit_location")
+/= simple_form_for(:search, url: '/listings/search', html: { method: 'get', id: 'search_form', class: 'hero-searchForm'}) do |f|
+  /= f.hidden_field :where, value: 'top'
+  /= button_tag(t('.submit'), type: "submit", class: "btn btn-primary btn-large", id: "submit_location")

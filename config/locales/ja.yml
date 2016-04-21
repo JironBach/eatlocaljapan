@@ -837,6 +837,7 @@ ja:
           value: 3,000
         title: 阿部さんの候補
         category_name: カテゴリ名
+      submit: 検索
   message_mailer:
     send_new_message_notification:
       subject: 新しいメッセージが届きました！

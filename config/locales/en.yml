@@ -842,6 +842,7 @@ en:
           value: 3,000
         title: "Tomoaki's Listing"
         category_name: Category name
+      submit: Search
   message_mailer:
     send_new_message_notification:
       subject: New Message is arrived!
@@ -1009,4 +1010,4 @@ en:
       cancan:
         failure: "You cannot access to this page. No authority."
     regulate_term:
-      expired: "The term to write %{review} has been passed.ã€‚"
+      expired: "The term to write %{review} has been passed.ã€"
