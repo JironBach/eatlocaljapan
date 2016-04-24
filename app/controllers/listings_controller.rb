@@ -166,6 +166,10 @@ class ListingsController < ApplicationController
     end
   end
 
+  def search_detail
+    @listings = Listing.mine(current_user.id).order_by_updated_at_desc
+  end
+
   def search
     listings = Listing.search(search_params).opened.page(params[:page])
     gon.listings = listings

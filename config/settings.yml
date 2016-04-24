@@ -49,3 +49,6 @@ left_steps:
   dress_code: "dress_code"
 review:
   expiration_date: 14
+listings:
+  error:
+    invalid_listing_id: "invalid listing id"
