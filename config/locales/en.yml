@@ -571,6 +571,35 @@ en:
         submit_sp: Search Again
         hit_count:
           dot: /
+    search_detail:
+      title: Search
+      no_match:
+        sidebar:
+          text1: No matched
+          text2: Change search words.
+        map:
+          text: No matched
+      map:
+        search: Search again
+        search_on_map: Move Map, and Refresh.
+      filter:
+        num_of_guest:
+          more_than: "more than %{num}"
+        text: "Show listings with %{model}%{opt}"
+        text3: "Only %{model} %{opt}"
+        search_word: Search Condition
+        option1: (Option1)
+        option2: (Option2)
+        option3: (Option3)
+        others:
+          label: Others
+          placeholder: Keyword info
+        submit: Show listings
+        add_search_condition: Add Condition
+        submit_sp: Search Again
+        hit_count:
+          dot: /
+      submit: Show listings
     delivery_ok_button:
       text: delivery
     detail:

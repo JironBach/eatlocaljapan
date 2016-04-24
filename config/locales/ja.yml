@@ -562,6 +562,35 @@ ja:
         submit_sp: 再検索する
         hit_count:
           dot: ・
+    search_detail:
+      title: 検索
+      no_match:
+        sidebar:
+          text1: 条件に該当がないようです。
+          text2: 条件を変えて検索してみましょう。
+        map:
+          text: 該当がありません。
+      map:
+        search: 再検索
+        search_on_map: マップを動かして自動検索
+      filter:
+        num_of_guest:
+          more_than: "%{num}%{unit}以上"
+        text: "%{model}%{opt}の情報があるものだけ表示"
+        text3: "%{model}のみ %{opt}"
+        search_word: 検索条件
+        option1: （オプション１）
+        option2: （オプション２）
+        option3: （オプション３）
+        others:
+          label: その他
+          placeholder: キーワード情報
+        submit: 店舗情報を表示
+        add_search_condition: 検索条件を追加
+        submit_sp: 再検索する
+        hit_count:
+          dot: ・
+      submit: 店舗情報を表示
     delivery_ok_button:
       text: 出張可
     detail:
