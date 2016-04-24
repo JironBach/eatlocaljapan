@@ -171,8 +171,10 @@ class ListingsController < ApplicationController
   end
 
   def search
-    listings = Listing.search(search_params).opened.page(params[:page])
-    gon.listings = listings
+    #listings = Listing.search(search_params).opened.page(params[:page])
+    sql = "select * from listings"
+    listings = ActiveRecord::Base.connection.select(sql)
+    #gon.listings = listings
     @hit_count = listings.count
     @listings = listings.page(params[:page]).per(10)
     @conditions = search_params
