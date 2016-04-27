@@ -173,10 +173,11 @@ class ListingsController < ApplicationController
   def search
     #listings = Listing.search(search_params).opened.page(params[:page])
     sql = "select * from listings"
-    listings = ActiveRecord::Base.connection.select_all(sql)
+    listings = ActiveRecord::Base.connection.execute(sql).to_a
+    logger.debug "JironBach:listings=#{listings}"
     #gon.listings = listings
     @hit_count = listings.count
-    @listings = listings#listings.page(params[:page]).per(10)
+    @listings = Kaminari.paginate_array(listings).page(params[:page]).per(10)
     @conditions = search_params
   end
 
