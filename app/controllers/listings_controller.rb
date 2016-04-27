@@ -172,7 +172,12 @@ class ListingsController < ApplicationController
 
   def search
     #listings = Listing.search(search_params).opened.page(params[:page])
-    sql = "select * from listings"
+    sql = "select * from listings "
+    logger.debug "JironBach:params=#{params.inspect}"
+    params['shop_categories'].each do |sc|
+      sc_where = 'where ' if sc_where.blank?
+      sc_where =
+    end
     listings = ActiveRecord::Base.connection.execute(sql).to_a
     logger.debug "JironBach:listings=#{listings}"
     #gon.listings = listings
