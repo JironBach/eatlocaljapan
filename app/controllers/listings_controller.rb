@@ -172,14 +172,17 @@ class ListingsController < ApplicationController
 
   def search
     #listings = Listing.search(search_params).opened.page(params[:page])
-    sql = "select * from listings "
-    logger.debug "JironBach:params=#{params.inspect}"
-    params['shop_categories'].each do |sc|
-      sc_where = 'where ' if sc_where.blank?
-      sc_where =
+    shop_categories = params[:shop_categories].compact.delete_if(&:empty?)
+    unless shop_categories.blank?
+      where_shop_categories = "shop_category_id in (" + shop_categories.join(",")+")"
+      where_shop_categories = where_shop_categories[0, where_shop_categories.length - 3] + ')'
+    else
+      where_shop_categories = ""
     end
+    logger.debug "JironBach:shop_categories=#{where_shop_categories.inspect}"
+    sql = "select * from listings "
+    sql += "where #{where_shop_categories}" unless where_shop_categories.blank?
     listings = ActiveRecord::Base.connection.execute(sql).to_a
-    logger.debug "JironBach:listings=#{listings}"
     #gon.listings = listings
     @hit_count = listings.count
     @listings = Kaminari.paginate_array(listings).page(params[:page]).per(10)
