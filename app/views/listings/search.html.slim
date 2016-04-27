@@ -54,22 +54,10 @@
       .row.row-space-5.row-space-top-5.row-table
         .col-xs-4.text-right.col-middle
           .h4.text-light
-            = Listing.human_attribute_name :business_hours
-        .col-xs-8.fieldset.col-middle
-          .row
-            .col-xs-11
-              - 7.times do |wday|
-                = %w(日 月 火 水 木 金 土)[wday]
-                = check_box "is_open[#{wday}]", nil
-                = time_select "start_hour[#{wday}]", nil, {minute_step: 15}, style: "display:inline-block;width:auto;"
-                br
-      .row.row-space-5.row-space-top-5.row-table
-        .col-xs-4.text-right.col-middle
-          .h4.text-light
             = Listing.human_attribute_name :price
         .col-xs-8.fieldset.col-middle
           .row
             .col-xs-11
-              = text_field :price, as: :string
+              = text_field_tag :price
 
   = button_tag(t('.submit'), type: "submit", class: "btn btn-primary btn-large", id: "submit_location")

@@ -184,6 +184,8 @@ class ListingsController < ApplicationController
     where.push("id in (" + where_id.join(" union ") + ")") unless where_id.blank?
     smoking_id = params[:smoking_id]
     where.push("smoking_id in (" + smoking_id.join(",") + ")") unless smoking_id.blank?
+    where.push("english_id = #{params[:english_id]}") unless params[:english_id].blank?
+    where.push("price_high <= #{params[:price]}") unless params[:price].blank?
     sql += "where " + where.join(" and ") unless where.blank?
     listings = ActiveRecord::Base.connection.execute(sql).to_a
     #gon.listings = listings
