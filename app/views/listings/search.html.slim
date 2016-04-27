@@ -1,34 +1,75 @@
 - provide :title, t('.title')
 .map-search-container
-  .sidebar
-    = render partial: '/listings/search/filter', locals: { hit_count: @hit_count, conditions: @conditions, listing: @listing }
-    .sidebar-header-placeholder
-    - if @listings.blank?
-      .no-listings-block
-        div
-          p
-            = t('.no_match.sidebar.text1')
-            br
-            = t('.no_match.sidebar.text2')
-    - else
-      = render partial: '/listings/search/result_block', locals: { listings: @listings, conditions: @conditions }
-    .card-btn--sp.filters-btn.fixed.show--sp
-      button.js-small-filter-toggle.btn.btn-large.btn-block.btn-primary 検索条件
-  .map.hide--sp
-    - if @listings.blank?
-      .no-listings-map
-        div
-          i.fa.fa-map-marker
-          p
-            = t('.no_match.map.text')
-    - else
-      #map.map-canvas
-      .map-refresh-controls.Google
-        a.map-manual-refresh.btn.btn-primary.hide
-          = t('.map.search')
-          i.fa.fa-refresh.fa-space-left
-        /.card.map-auto-refresh.hide
-          label.checkbox
-            input.map-auto-refresh-checkbox checked="checked" type="checkbox"
-            small
-              = t('.map.search_on_map')
+  - if @listings.blank?
+    .no-listings-block
+      div
+        p
+          = t('.no_match.sidebar.text1')
+          br
+          = t('.no_match.sidebar.text2')
+  - else
+    = render partial: '/listings/search/result_block', locals: { listings: @listings, conditions: @conditions }
+  .card-btn--sp.filters-btn.fixed.show--sp
+    button.js-small-filter-toggle.btn.btn-large.btn-block.btn-primary 検索条件
+  .card
+    .discovery-container
+      .discovery-section.page-container.page-container-no-padding.row-space-6
+    div align="left"
+      .row.row-space-5.row-space-top-5.row-table
+        .col-xs-4.text-right.col-middle
+          .h4.text-light
+            = Listing.human_attribute_name :shop_category
+        .col-xs-8.fieldset.col-middle
+          .row
+            .col-xs-11
+              = collection_check_boxes nil, :shop_categories, ShopCategory.all, :id, :name do |b|
+                = b.label { b.check_box + b.text }
+      .row.row-space-5.row-space-top-5.row-table
+        .col-xs-4.text-right.col-middle
+          .h4.text-light
+            = Listing.human_attribute_name :shop_service
+        .col-xs-8.fieldset.col-middle
+          .row
+            .col-xs-11
+              = collection_check_boxes nil, :shop_services, ShopService.all, :id, :name do |b|
+                = b.label { b.check_box + b.text }
+      .row.row-space-5.row-space-top-5.row-table
+        .col-xs-4.text-right.col-middle
+          .h4.text-light
+            = Listing.human_attribute_name :smoking_id
+        .col-xs-8.fieldset.col-middle
+          .row
+            .col-xs-11
+              = collection_select :smoking_id, nil, Smoking.all, :id, :name
+      .row
+      .row.row-space-5.row-space-top-5.row-table
+        .col-xs-4.text-right.col-middle
+          .h4.text-light
+            = Listing.human_attribute_name :english
+        .col-xs-8.fieldset.col-middle
+          .row
+            .col-xs-11
+              = collection_check_boxes nil, :englishes, English.all, :id, :name do |b|
+                = b.label { b.check_box + b.text }
+      .row.row-space-5.row-space-top-5.row-table
+        .col-xs-4.text-right.col-middle
+          .h4.text-light
+            = Listing.human_attribute_name :business_hours
+        .col-xs-8.fieldset.col-middle
+          .row
+            .col-xs-11
+              - 7.times do |wday|
+                = %w(日 月 火 水 木 金 土)[wday]
+                = check_box "is_open[#{wday}]", nil
+                = time_select "start_hour[#{wday}]", nil, {minute_step: 15}, style: "display:inline-block;width:auto;"
+                br
+      .row.row-space-5.row-space-top-5.row-table
+        .col-xs-4.text-right.col-middle
+          .h4.text-light
+            = Listing.human_attribute_name :price
+        .col-xs-8.fieldset.col-middle
+          .row
+            .col-xs-11
+              = text_field :price, as: :string
+
+  = button_tag(t('.submit'), type: "submit", class: "btn btn-primary btn-large", id: "submit_location")

@@ -562,6 +562,7 @@ ja:
         submit_sp: 再検索する
         hit_count:
           dot: ・
+      submit: 店舗情報を表示
     search_detail:
       title: 検索
       no_match:

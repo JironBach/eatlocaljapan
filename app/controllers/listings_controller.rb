@@ -72,6 +72,7 @@ class ListingsController < ApplicationController
           end
         end
       end
+      @listing.smoking_id = params[:smoking_id][0]
       @listing.business_hours = []
       7.times do |wday|
         is_open = params[:is_open][wday.to_s].include?('1')
@@ -124,6 +125,7 @@ class ListingsController < ApplicationController
           end
         end
       end
+      @listing.smoking_id = params[:smoking_id][0]
       # 英語セット
       unless params[:englishes].nil?
         @listing.englishes = []
@@ -174,14 +176,14 @@ class ListingsController < ApplicationController
     #listings = Listing.search(search_params).opened.page(params[:page])
     where = Array.new
     where_id = Array.new
-    shop_categories = params[:shop_categories].compact.delete_if(&:empty?)
-    where_id.push("select listing_id from listings_shop_categories where shop_category_id in (" + shop_categories.join(",") + ")") unless shop_categories.blank?
-    shop_services = params[:shop_services].compact.delete_if(&:empty?)
+    shop_categories = params[:shop_categories].compact.delete_if(&:empty?) unless params[:shop_categories].blank?
+    where_id.push("select listing_id from listings_shop_categories where shop_category_id in (" + shop_categories.join(",") + ")") unless params[:shop_categories].blank?
+    shop_services = params[:shop_services].compact.delete_if(&:empty?) unless params[:shop_services].blank?
     where_id.push("select listing_id from listings_shop_services where shop_service_id in (" + shop_services.join(",") + ")") unless shop_services.blank?
     sql = "select * from listings "
     where.push("id in (" + where_id.join(" union ") + ")") unless where_id.blank?
-    #smoking_id = params[:smoking_id]
-    #where.push("smoking_id in (" + smoking_id.join(",") + ")") unless smoking_id.blank?
+    smoking_id = params[:smoking_id]
+    where.push("smoking_id in (" + smoking_id.join(",") + ")") unless smoking_id.blank?
     sql += "where " + where.join(" and ") unless where.blank?
     listings = ActiveRecord::Base.connection.execute(sql).to_a
     #gon.listings = listings

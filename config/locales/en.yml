@@ -571,6 +571,7 @@ en:
         submit_sp: Search Again
         hit_count:
           dot: /
+      submit: Show listings
     search_detail:
       title: Search
       no_match:
