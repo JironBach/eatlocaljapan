@@ -172,16 +172,17 @@ class ListingsController < ApplicationController
 
   def search
     #listings = Listing.search(search_params).opened.page(params[:page])
+    where = Array.new
+    where_id = Array.new
     shop_categories = params[:shop_categories].compact.delete_if(&:empty?)
-    unless shop_categories.blank?
-      where_shop_categories = "shop_category_id in (" + shop_categories.join(",")+")"
-      where_shop_categories = where_shop_categories[0, where_shop_categories.length - 3] + ')'
-    else
-      where_shop_categories = ""
-    end
-    logger.debug "JironBach:shop_categories=#{where_shop_categories.inspect}"
+    where_id.push("select listing_id from listings_shop_categories where shop_category_id in (" + shop_categories.join(",") + ")") unless shop_categories.blank?
+    shop_services = params[:shop_services].compact.delete_if(&:empty?)
+    where_id.push("select listing_id from listings_shop_services where shop_service_id in (" + shop_services.join(",") + ")") unless shop_services.blank?
     sql = "select * from listings "
-    sql += "where #{where_shop_categories}" unless where_shop_categories.blank?
+    where.push("id in (" + where_id.join(" union ") + ")") unless where_id.blank?
+    #smoking_id = params[:smoking_id]
+    #where.push("smoking_id in (" + smoking_id.join(",") + ")") unless smoking_id.blank?
+    sql += "where " + where.join(" and ") unless where.blank?
     listings = ActiveRecord::Base.connection.execute(sql).to_a
     #gon.listings = listings
     @hit_count = listings.count
