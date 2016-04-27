@@ -172,6 +172,13 @@ class ListingsController < ApplicationController
 
   def search
     #listings = Listing.search(search_params).opened.page(params[:page])
+    shop_categories = params[:shop_categories].compact.delete_if(&:empty?)
+    if shop_categories.count > 0
+      where_shop_categories = "listing_id in (" + shop_categories.join(",")+")"
+    else
+      where shop_categories = ""
+    end
+    logger.debug where_shop_categories.inspect
     sql = "select * from listings"
     listings = ActiveRecord::Base.connection.execute(sql).to_a
     logger.debug "JironBach:listings=#{listings}"
