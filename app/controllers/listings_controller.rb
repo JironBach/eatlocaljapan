@@ -177,7 +177,7 @@ class ListingsController < ApplicationController
     where = Array.new
     where_id = Array.new
     shop_categories = params[:shop_categories].compact.delete_if(&:empty?) unless params[:shop_categories].blank?
-    where_id.push("select listing_id from listings_shop_categories where shop_category_id in (" + shop_categories.join(",") + ")") unless params[:shop_categories].blank?
+    where_id.push("select listing_id from listings_shop_categories where shop_category_id in (" + shop_categories.join(",") + ")") unless shop_categories.blank?
     shop_services = params[:shop_services].compact.delete_if(&:empty?) unless params[:shop_services].blank?
     where_id.push("select listing_id from listings_shop_services where shop_service_id in (" + shop_services.join(",") + ")") unless shop_services.blank?
     sql = "select * from listings "
