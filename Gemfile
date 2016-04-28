@@ -86,6 +86,8 @@ gem 'sitemap_generator', '5.0.5'
 
 gem 'seed-fu'
 
+gem 'syck'
+
 # Use Capistrano for deployment
 group :development, :staging, :production do
   # Use Capistrano for deployment
