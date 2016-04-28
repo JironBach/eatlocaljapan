@@ -72,6 +72,7 @@ class ListingsController < ApplicationController
           end
         end
       end
+      @listing.smoking_id = params[:smoking_id][0]
       @listing.business_hours = []
       7.times do |wday|
         is_open = params[:is_open][wday.to_s].include?('1')
@@ -124,6 +125,7 @@ class ListingsController < ApplicationController
           end
         end
       end
+      @listing.smoking_id = params[:smoking_id][0]
       # 英語セット
       unless params[:englishes].nil?
         @listing.englishes = []
@@ -137,8 +139,8 @@ class ListingsController < ApplicationController
       @listing.business_hours = []
       7.times do |wday|
         is_open = params[:is_open][wday.to_s].include?('1')
-        start_hour = DateTime.parse("#{params[:start_hour][wday.to_s]['(1i)']}-#{params[:start_hour][wday.to_s]['(2i)']}-#{params[:start_hour][wday.to_s]['(3i)']} #{params[:start_hour][wday.to_s]['(4i)']}: #{params[:start_hour][wday.to_s]['(5i)']}: 0") unless params[:start_hour][wday.to_s]['(3i)'].blank?
-        end_hour = DateTime.parse("#{params[:end_hour][wday.to_s]['(1i)']}-#{params[:end_hour][wday.to_s]['(2i)']}-#{params[:end_hour][wday.to_s]['(3i)']} #{params[:end_hour][wday.to_s]['(4i)']}: #{params[:end_hour][wday.to_s]['(5i)']}: 0") unless params[:end_hour][wday.to_s]['(3i)'].blank?
+        start_hour = DateTime.parse("1-1-1 #{params[:start_hour][wday.to_s]['(4i)']}: #{params[:start_hour][wday.to_s]['(5i)']}:0") unless params[:start_hour][wday.to_s]['(3i)'].blank?
+        end_hour = DateTime.parse("1-1-1 #{params[:end_hour][wday.to_s]['(4i)']}: #{params[:end_hour][wday.to_s]['(5i)']}:0") unless params[:end_hour][wday.to_s]['(3i)'].blank?
         business_hour = BusinessHour.new(wday: wday, is_open: is_open, start_hour: start_hour, end_hour: end_hour)
         @listing.business_hours << business_hour
       end
@@ -166,11 +168,29 @@ class ListingsController < ApplicationController
     end
   end
 
+  def search_detail
+    @listings = Listing.mine(current_user.id).order_by_updated_at_desc
+  end
+
   def search
-    listings = Listing.search(search_params).opened.page(params[:page])
-    gon.listings = listings
+    #listings = Listing.search(search_params).opened.page(params[:page])
+    where = Array.new
+    where_id = Array.new
+    shop_categories = params[:shop_categories].compact.delete_if(&:empty?) unless params[:shop_categories].blank?
+    where_id.push("select listing_id from listings_shop_categories where shop_category_id in (" + shop_categories.join(",") + ")") unless shop_categories.blank?
+    shop_services = params[:shop_services].compact.delete_if(&:empty?) unless params[:shop_services].blank?
+    where_id.push("select listing_id from listings_shop_services where shop_service_id in (" + shop_services.join(",") + ")") unless shop_services.blank?
+    sql = "select * from listings "
+    where.push("id in (" + where_id.join(" union ") + ")") unless where_id.blank?
+    smoking_id = params[:smoking_id]
+    where.push("smoking_id in (" + smoking_id.join(",") + ")") unless smoking_id.blank?
+    where.push("english_id = #{params[:english_id]}") unless params[:english_id].blank?
+    where.push("price_high <= #{params[:price]}") unless params[:price].blank?
+    sql += "where " + where.join(" and ") unless where.blank?
+    listings = ActiveRecord::Base.connection.execute(sql).to_a
+    #gon.listings = listings
     @hit_count = listings.count
-    @listings = listings.page(params[:page]).per(10)
+    @listings = Kaminari.paginate_array(listings).page(params[:page]).per(10)
     @conditions = search_params
   end
 

@@ -1,16 +1,5 @@
-- provide :title, t('.title')
-.map-search-container
-  - if @listings.blank?
-    .no-listings-block
-      div
-        p
-          = t('.no_match.sidebar.text1')
-          br
-          = t('.no_match.sidebar.text2')
-  - else
-    = render partial: '/listings/search/result_block', locals: { listings: @listings, conditions: @conditions }
-  .card-btn--sp.filters-btn.fixed.show--sp
-    button.js-small-filter-toggle.btn.btn-large.btn-block.btn-primary 検索条件
+= simple_form_for(:search, url: '/listings/search', html: { method: 'get', id: 'search_form', class: 'hero-searchForm'}) do |f|
+  = f.hidden_field :where, value: 'top'
   .card
     .discovery-container
       .discovery-section.page-container.page-container-no-padding.row-space-6

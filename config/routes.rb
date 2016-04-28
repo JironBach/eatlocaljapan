@@ -380,6 +380,7 @@ Rails.application.routes.draw do
         get 'search',        action: 'search'
         get 'search_result', action: 'search_result'
         get 'page/:page',    action: 'index'
+        get 'search_detail', action: 'search_detail'
       end
       resources :listing_images, only: [:show, :create, :update, :destroy] do
         get 'manage', on: :collection
