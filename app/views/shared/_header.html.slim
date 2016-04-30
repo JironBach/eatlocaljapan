@@ -48,6 +48,9 @@
           = t '.help'
       li.list-your-thing.pull-left
         = link_to t('.new_listing'), new_listing_path, class: "btn btn-host"
+      li.pull-left
+        - I18n.available_locales.reject{|l| l == I18n.locale}.each do |locale|
+          = link_to(locale, i18n_url_for(params.merge(locale: locale)))
     - if user_signed_in?
       ul.nav.pull-right
         li.user-item.pull-left
