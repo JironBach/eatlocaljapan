@@ -1,5 +1,5 @@
-= link_to '詳細検索', 'listings/search_detail'
-= simple_form_for(:search, url: '/listings/search', html: { method: 'get', id: 'search_form', class: 'hero-searchForm'}) do |f|
+= link_to '詳細検索', i18n_url_for(:controller => 'listings', :action => 'search_detail', :locale => locale)
+= simple_form_for(:search, url: i18n_url_for(:controller =>'listings', :action => 'search', :locale => locale), html: { method: 'get', id: 'search_form', class: 'hero-searchForm'}) do |f|
   = f.hidden_field :where, value: 'top'
   .card
     .discovery-container
