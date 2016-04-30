@@ -157,7 +157,10 @@
           - 7.times do |wday|
             - business_hour = @listing.business_hours[wday]
             p
-              = %w(日 月 火 水 木 金 土)[wday]
+              - if locale == I18n.default_locale
+                = %w(日 月 火 水 木 金 土)[wday]
+              - else
+                = %w(Sun Mon Tue Wed Thu Fri Sat)[wday]
               = check_box "is_open[#{wday}]", nil, {checked: business_hour.nil? ? true : business_hour.is_open}
               = time_select "start_hour[#{wday}]", nil, {minute_step: 15, default: business_hour.nil? ? DateTime.parse('1-1-1 11:30:00') : business_hour.start_hour}, style: "display:inline-block;width:auto;"
               = '〜'
