@@ -77,7 +77,6 @@ class Listing < ActiveRecord::Base
   has_many :listing_ngevents, class_name: "UserNgevent"
   has_and_belongs_to_many :shop_categories, dependent: :destroy
   has_and_belongs_to_many :shop_services, dependent: :destroy
-  has_one :smoking
   has_many :business_hours, dependent: :destroy
   has_and_belongs_to_many :englishes, dependent: :destroy
   has_many :business_hours, dependent: :destroy
