@@ -2,6 +2,7 @@ class CreateListings < ActiveRecord::Migration
   def change
     create_table :listings do |t|
       t.references :user, index: true
+      t.references :smoking, index: true
       t.integer :review_count, default: 0
       t.float :ave_total, default: 0.0
       t.float :ave_accuracy, default: 0.0
