@@ -16,11 +16,33 @@ ActiveAdmin.register Listing do
   permit_params :user_id, :ave_total, :ave_accuracy, :ave_communication, :ave_cleanliness, :ave_location, :ave_check_in, :ave_cost_performance, :open, :zipcode, :location, :longitude, :latitude, :delivery_flg, :price, :description, :title, :capacity, :direction, :cover_image_caption, :business_hours_remarks, :shop_description, :shop_description_en, :price_low, :price_high, :tel, :url, :review_url, :recommended, :recommended_en, :visit_benefits, :visit_benefits_another, smoking_id: []
 
   form do |f|
-    f.inputs "郵便番号" do
+    f.inputs "店舗情報の詳細" do
+      f.input :title
+      # shop_category
+      #f.has_many :listings_categories, allow_destroy: true, heading: false, new_record: true do |ab|
+      #  ab.input :category_id, as: :check_boxes, collection: ShopCategory.all.map { |a| [a.name, a.id] }
+      #end
+      # service_category
+      f.input :description
+      f.input :cover_image
       f.input :zipcode
-    end
-    f.inputs "禁煙・喫煙" do
+      f.input :location
+      f.input :direction
       f.input :smoking_id, :as => :select, collection: Smoking.all
+      # english
+      # business_hour
+      f.input :business_hours_remarks
+      f.input :shop_description
+      f.input :shop_description_en
+      f.input :price_low
+      f.input :price_high
+      f.input :tel
+      f.input :url
+      f.input :review_url
+      f.input :recommended
+      f.input :recommended_en
+      f.input :visit_benefits
+      f.input :visit_benefits_another
     end
     f.actions
   end
