@@ -72,7 +72,6 @@ class Listing < ActiveRecord::Base
   has_one :confection, dependent: :destroy
   has_one :tool, dependent: :destroy
   has_one :dress_code, dependent: :destroy
-  has_one :smoking
   has_many :reservations
   has_many :reviews
   has_many :listing_ngevents, class_name: "UserNgevent"
