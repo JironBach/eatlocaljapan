@@ -20,7 +20,7 @@ ActiveAdmin.register Listing do
       f.input :zipcode
     end
     f.inputs "禁煙・喫煙" do
-      f.input :smoking_id, :as => :check_boxes, collection: Smoking.all
+      f.input :smoking_id, :as => :select, collection: Smoking.all
     end
     f.actions
   end
