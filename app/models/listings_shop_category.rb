@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: listing_shop_categories
+# Table name: listings_shop_categories
 #
 #  id               :integer          not null, primary key
 #  created_at       :datetime         not null
