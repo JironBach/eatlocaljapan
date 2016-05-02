@@ -19,15 +19,15 @@ ActiveAdmin.register Listing do
     f.inputs "店舗情報の詳細" do
       f.input :title
       # shop_category
-      f.input :shop_categories, :as => :check_boxes, collection: ShopCategory.all
-      # service_category
+      f.input :shop_category, :as => :check_boxes, collection: ShopCategory.all
+      f.input :shop_service, :as => :check_boxes, collection: ShopService.all
       f.input :description
       f.input :cover_image
       f.input :zipcode
       f.input :location
       f.input :direction
       f.input :smoking_id, :as => :select, collection: Smoking.all
-      f.input :englishes, :as => :check_boxes, collection: English.all
+      f.input :english_id, :as => :check_boxes, collection: English.all
       # business_hour
       f.input :business_hours_remarks
       f.input :shop_description
