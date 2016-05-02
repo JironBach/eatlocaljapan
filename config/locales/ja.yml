@@ -57,7 +57,7 @@ ja:
         shop_service: サービス
         zipcode: 郵便番号
         location: 所在地
-        longitude: 軽度
+        longitude: 経度
         latitude: 緯度
         delivery_flg: 出張は？
         description: 店舗情報の説明
