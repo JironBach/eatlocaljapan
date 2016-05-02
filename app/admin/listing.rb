@@ -19,9 +19,7 @@ ActiveAdmin.register Listing do
     f.inputs "店舗情報の詳細" do
       f.input :title
       # shop_category
-      #f.has_many :listings_categories, allow_destroy: true, heading: false, new_record: true do |ab|
-      #  ab.input :category_id, as: :check_boxes, collection: ShopCategory.all.map { |a| [a.name, a.id] }
-      #end
+      f.input :shop_categories, :as => :check_boxes, collection: ShopCategory.all
       # service_category
       f.input :description
       f.input :cover_image
@@ -29,7 +27,7 @@ ActiveAdmin.register Listing do
       f.input :location
       f.input :direction
       f.input :smoking_id, :as => :select, collection: Smoking.all
-      # english
+      f.input :englishes, :as => :check_boxes, collection: English.all
       # business_hour
       f.input :business_hours_remarks
       f.input :shop_description
