@@ -36,7 +36,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :title, placeholder: t('activerecord.placeholders.listing.title')
+                = text_field_tag :title, listing.title, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -62,7 +62,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :description, rows: "6", placeholder: t('activerecord.placeholders.listing.description')
+                = text_field_tag :description, listing.description, readonly: :true
         - if @listing.cover_image.present?
           .row.row-space-5.row-space-top-5.row-table
             .col-xs-4.text-right.col-middle
@@ -87,7 +87,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-6.col-md-4
-                = text_field_tag :zipcode, placeholder: t('activerecord.placeholders.listing.zipcode'), class: "zip-format"
+                = text_field_tag :zipcode, listing.zipcode, readonly: :true
               .question-icon-container
                 i#zipcode-tooltip.fa.fa-question-circle.tooltip-trigger
         .row.row-space-5.row-space-top-5.row-table
@@ -97,7 +97,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :location, placeholder: t('activerecord.placeholders.listing.location'), class: "zip-address"
+                = text_field_tag :location, listing.location, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -105,7 +105,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :direction, rows: "4", placeholder: t('activerecord.placeholders.listing.direction')
+                = text_field_tag :direction, listing.direction, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -149,7 +149,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :business_hours_remarks, rows: "4", placeholder: t('activerecord.placeholders.listing.business_hours_remarks')
+                = text_field_tag :business_hours_remarks, listing.business_hours_remarks, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -157,7 +157,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :shop_description, rows: "4", placeholder: t('activerecord.placeholders.listing.shop_description')
+                = text_field_tag :shop_description, listing.shop_description, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -165,7 +165,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :shop_description_en, rows: "4", placeholder: t('activerecord.placeholders.listing.shop_description_en')
+                = text_field_tag :shop_description_en, listing.shop_description_en, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -174,7 +174,7 @@
             .row
               .col-xs-11
                 /= text_field_tag :price_low, as: :string, value: (@listing.price_low > 0 ? @listing.price_low : "" ), placeholder: t('activerecord.placeholders.listing.price_low')
-                = text_field_tag :price_low, as: :string, placeholder: t('activerecord.placeholders.listing.price_low')
+                = text_field_tag :price_low, listing.price_low, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -183,7 +183,7 @@
             .row
               .col-xs-11
                 /= text_field_tag :price_high, as: :string, value: (@listing.price_high > 0 ? @listing.price_high : "" ), placeholder: t('activerecord.placeholders.listing.price_high')
-                = text_field_tag :price_high, as: :string, placeholder: t('activerecord.placeholders.listing.price_high')
+                = text_field_tag :price_high, listing.price_high, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -191,7 +191,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :tel, placeholder: t('activerecord.placeholders.listing.tel')
+                = text_field_tag :tel, listing.tel, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -199,7 +199,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :url, placeholder: t('activerecord.placeholders.listing.url')
+                = text_field_tag :url, listing.url, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -207,7 +207,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :review_url, placeholder: t('activerecord.placeholders.listing.review_url')
+                = text_field_tag :review_url, listing.review_url, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -215,7 +215,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :recommended, rows: "4", placeholder: t('activerecord.placeholders.listing.recommended')
+                = text_field_tag :recommended, listing.recommended, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -223,7 +223,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :recommended_en, rows: "4", placeholder: t('activerecord.placeholders.listing.recommended_en')
+                = text_field_tag :recommended_en, listing.recommended_en, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -231,7 +231,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :visit_benefits, placeholder: t('activerecord.placeholders.listing.visit_benefits')
+                = text_field_tag :visit_benefits, listing.visit_benefits, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -239,4 +239,4 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :visit_benefits_another, placeholder: t('activerecord.placeholders.listing.visit_benefits_another')
+                = text_field_tag :visit_benefits_another, listing.visit_benefits_another, readonly: :true
