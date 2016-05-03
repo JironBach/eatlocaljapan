@@ -90,10 +90,10 @@ ActiveAdmin.register Listing do
         resource.title
       end
       row I18n.t('activerecord.attributes.listing.shop_categories') do
-        # resource.shop_categories
+        ShopCategory.where(id: resource.shop_categories).all.pluck(:name).join(', ')
       end
       row I18n.t('activerecord.attributes.listing.shop_services') do
-        # resource.shop_services
+        ShopService.where(id: resource.shop_services).all.pluck(:name).join(', ')
       end
       row I18n.t('activerecord.attributes.listing.description') do
         resource.description
@@ -111,10 +111,10 @@ ActiveAdmin.register Listing do
         resource.direction
       end
       row I18n.t('activerecord.attributes.listing.smoking_id') do
-        # resource.smoking_id
+        Smoking.where(id: resource.smoking_id).all.pluck(:name).join(', ')
       end
       row I18n.t('activerecord.attributes.listing.englishes') do
-        # resource.englishes
+        English.where(id: resource.englishes).all.pluck(:name).join(', ')
       end
       # business_hour
       row I18n.t('activerecord.attributes.listing.business_hours_remarks') do
