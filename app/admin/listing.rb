@@ -17,6 +17,7 @@ ActiveAdmin.register Listing do
     english_ids: [], shop_category_ids: [], shop_service_ids: []
 
   index do
+    selectable_column
     column :id do |id|
       link_to id.id, admin_listing_path(id)
     end
