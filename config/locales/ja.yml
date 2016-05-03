@@ -54,10 +54,12 @@ ja:
       listing:
         title: 店舗情報のタイトル
         shop_category: カテゴリー
+        shop_categories: カテゴリー
         shop_service: サービス
+        shop_services: サービス
         zipcode: 郵便番号
         location: 所在地
-        longitude: 軽度
+        longitude: 経度
         latitude: 緯度
         delivery_flg: 出張は？
         description: 店舗情報の説明
@@ -76,7 +78,8 @@ ja:
         ave_check_in: チェックイン値の平均
         ave_cost_performance: コスパ値の平均
         smoking_id: 禁煙・喫煙
-        english: 英語対応
+        english_id: 英語対応
+        englishes: 英語対応
         business_hours: 営業時間
         business_hours_remarks: 営業時間　備考
         shop_description: レストランの説明　日本語
