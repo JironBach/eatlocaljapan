@@ -26,88 +26,217 @@
               p.text-muted.pull-left.row-space-top-1
                 = listing_image.try('caption') || ''
             .col-lg-3
-        hr
-        .row
-          .col-md-3.text-muted
-            = Listing.human_attribute_name :capacity
-          .col-md-9
-            .row-space-1
-              span
-                = listing.capacity
-                = t('unit.people')
-        hr
-        /.row
-        /  .col-md-3.text-muted
-        /    = Confection.human_attribute_name :name
-        /    = t('.option.option1')
-        /  .col-md-9
-        /    .row-space-1
-        /      span
-        /        - if '' == confection.url
-        /          = confection.name
-        /        - else
-        /          = link_to confection.url, target: "_blank" do
-        /            b
-        /              = confection.name
-        /      - if confection.image.present?
-        /        = image_tag(confection.image, class: 'img-responsive row-space-top-2')
-        /      p.text-muted.pull-left.row-space-top-1
-        /        = confection.try('caption') || ''
-        /hr
-        /.row
-        /  .col-md-3.text-muted
-        /    = Tool.human_attribute_name :name
-        /    = t('.option.option2')
-        /  .col-md-9
-        /    .row-space-1
-        /      span
-        /        - if tool.url.present?
-        /          - if '' == tool.url
-        /            = tool.name
-        /          - else
-        /            = link_to tool.url, target: "_blank" do
-        /              b
-        /                = tool.name
-        /        - else
-        /          = tool.name
-        /      - if tool.image.present?
-        /        = image_tag(tool.image, class: 'img-responsive row-space-top-2')
-        /      p.text-muted.pull-left.row-space-top-1
-        /        = tool.try('caption') || ''
-        /hr
-        /.row
-        /  .col-md-3.text-muted
-        /    = DressCode.human_attribute_name :wafuku
-        /    = t('.option.option3')
-        /  .col-md-9
-        /    .row-space-1
-        /      span
-        /        b
-        /          = dress_code.present? && dress_code.wafuku.present? ? t('./dress_codes.wafuku_only') : t('.dress_codes.any')
-        /    .row-space-1
-        /      span
-        /        b
-        /          - if dress_code.present? && dress_code.note.present?
-        /            = dress_code.note
-        hr
-        .row
-          .col-md-3
-            .text-muted
-              = t('.delivery')
-          .col-md-9
+        -if false
+          = text_field_tag :longitude, as: :string, placeholder: t('activerecord.placeholders.listing.longitude')
+          = text_field_tag :latitude, as: :string, placeholder: t('activerecord.placeholders.listing.latitude')
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :title
+          .col-xs-8.fieldset.col-middle
             .row
-              .col-md-6
-                = render partial: 'delivery_ok_button', locals: { listing: listing }
-        hr
-        .row
-          .col-md-3
-            .text-muted
-              = Listing.human_attribute_name :price
-          .col-md-9
+              .col-xs-11
+                = text_field_tag :title, placeholder: t('activerecord.placeholders.listing.title')
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :shop_category
+          .col-xs-8.fieldset.col-middle
             .row
-              .col-md-6
-                div
-                  b
-                    span#extra_price_strin
-                      = t('unit.price')
-                      = listing.price
+              .col-xs-11
+                = collection_check_boxes nil, :shop_categories, ShopCategory.all, :id, (locale == I18n.default_locale ? :name : :name_en), checked: @listing.shop_categories.collect {|sc| sc.id} do |b|
+                  = b.label { b.check_box + b.text }
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :shop_service
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = collection_check_boxes nil, :shop_services, ShopService.all, :id, (locale == I18n.default_locale ? :name : :name_en), checked: @listing.shop_services.collect {|ss| ss.id} do |b|
+                  = b.label { b.check_box + b.text }
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              | #{Listing.human_attribute_name :description}
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_field_tag :description, rows: "6", placeholder: t('activerecord.placeholders.listing.description')
+        - if @listing.cover_image.present?
+          .row.row-space-5.row-space-top-5.row-table
+            .col-xs-4.text-right.col-middle
+              .h4.text-light
+                = Listing.human_attribute_name :cover_image
+            .col-xs-8.fieldset.col-middle
+              .row
+                .col-xs-11.regist-pics
+                  = image_tag(@listing.cover_image.thumb)
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :cover_image
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11.regist-pics
+                = file_field :cover_image, as: :file
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :zipcode
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-6.col-md-4
+                = text_field_tag :zipcode, placeholder: t('activerecord.placeholders.listing.zipcode'), class: "zip-format"
+              .question-icon-container
+                i#zipcode-tooltip.fa.fa-question-circle.tooltip-trigger
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :location
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_field_tag :location, placeholder: t('activerecord.placeholders.listing.location'), class: "zip-address"
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :direction
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_field_tag :direction, rows: "4", placeholder: t('activerecord.placeholders.listing.direction')
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :smoking_id
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = collection_select :smoking_id, nil, Smoking.all, :id, (locale == I18n.default_locale ? :name : :name_en)
+        .row
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :english
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = collection_check_boxes nil, :englishes, English.all, :id, (locale == I18n.default_locale ? :name : :name_en), checked: @listing.englishes.collect {|e| e.id} do |b|
+                  = b.label { b.check_box + b.text }
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :business_hours
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                - 7.times do |wday|
+                  - business_hour = @listing.business_hours[wday]
+                  p
+                    - if locale == I18n.default_locale
+                      = %w(日 月 火 水 木 金 土)[wday]
+                    - else
+                      = %w(Sun Mon Tue Wed Thu Fri Sat)[wday]
+                    = check_box "is_open[#{wday}]", nil, {checked: business_hour.nil? ? true : business_hour.is_open}
+                    = time_select "start_hour[#{wday}]", nil, {minute_step: 15, default: business_hour.nil? ? DateTime.parse('1-1-1 11:30:00') : business_hour.start_hour}, style: "display:inline-block;width:auto;"
+                    = '〜'
+                    = time_select "end_hour[#{wday}]", nil, {minute_step: 15, default: business_hour.nil? ? DateTime.parse('1-1-1 23:00:00') : business_hour.end_hour}, style: "display:inline-block;width:auto;"
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :business_hours_remarks
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_field_tag :business_hours_remarks, rows: "4", placeholder: t('activerecord.placeholders.listing.business_hours_remarks')
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :shop_description
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_field_tag :shop_description, rows: "4", placeholder: t('activerecord.placeholders.listing.shop_description')
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :shop_description_en
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_field_tag :shop_description_en, rows: "4", placeholder: t('activerecord.placeholders.listing.shop_description_en')
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :price_low
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                /= text_field_tag :price_low, as: :string, value: (@listing.price_low > 0 ? @listing.price_low : "" ), placeholder: t('activerecord.placeholders.listing.price_low')
+                = text_field_tag :price_low, as: :string, placeholder: t('activerecord.placeholders.listing.price_low')
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :price_high
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                /= text_field_tag :price_high, as: :string, value: (@listing.price_high > 0 ? @listing.price_high : "" ), placeholder: t('activerecord.placeholders.listing.price_high')
+                = text_field_tag :price_high, as: :string, placeholder: t('activerecord.placeholders.listing.price_high')
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :tel
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_field_tag :tel, placeholder: t('activerecord.placeholders.listing.tel')
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :url
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_field_tag :url, placeholder: t('activerecord.placeholders.listing.url')
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :review_url
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_field_tag :review_url, placeholder: t('activerecord.placeholders.listing.review_url')
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :recommended
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_field_tag :recommended, rows: "4", placeholder: t('activerecord.placeholders.listing.recommended')
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :recommended_en
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_field_tag :recommended_en, rows: "4", placeholder: t('activerecord.placeholders.listing.recommended_en')
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :visit_benefits
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_field_tag :visit_benefits, placeholder: t('activerecord.placeholders.listing.visit_benefits')
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :visit_benefits_another
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_field_tag :visit_benefits_another, placeholder: t('activerecord.placeholders.listing.visit_benefits_another')
