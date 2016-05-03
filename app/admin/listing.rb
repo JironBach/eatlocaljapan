@@ -19,7 +19,6 @@ ActiveAdmin.register Listing do
   form do |f|
     f.inputs "店舗情報の詳細" do
       f.input :title
-      # shop_category
       f.input :shop_categories, :as => :check_boxes, collection: ShopCategory.all
       f.input :shop_services, :as => :check_boxes, collection: ShopService.all
       f.input :description
@@ -44,5 +43,13 @@ ActiveAdmin.register Listing do
       f.input :visit_benefits_another
     end
     f.actions
+  end
+
+  show do
+    attributes_table do
+      row 'タイトル' do
+        resource.title
+      end
+    end
   end
 end
