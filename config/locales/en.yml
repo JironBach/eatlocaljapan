@@ -54,7 +54,9 @@ en:
       listing:
         title: Title
         shop_category: Category
+        shop_categories: Category
         shop_service: Service
+        shop_services: Service
         zipcode: Zipcode
         location: Address
         longitude: Longitude
@@ -77,6 +79,7 @@ en:
         ave_cost_performance: Average of Cost Performance Value
         smoking_id: Smoking
         english_id: English
+        englishes: English
         business_hours: Business hours
         business_hours_remarks: Business hours remarks
         shop_description: About the restaurant Japanese
