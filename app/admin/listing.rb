@@ -17,7 +17,9 @@ ActiveAdmin.register Listing do
     english_ids: [], shop_category_ids: [], shop_service_ids: []
 
   index do
-    column I18n.t('activerecord.attributes.listing.id'), :id
+    column :id do |id|
+      link_to id.id, admin_listing_path(id)
+    end
     column I18n.t('activerecord.attributes.listing.title'), :title
     column I18n.t('activerecord.attributes.listing.shop_categories'), :shop_categories
     column I18n.t('activerecord.attributes.listing.shop_services'), :shop_services
