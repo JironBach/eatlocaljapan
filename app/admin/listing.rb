@@ -22,15 +22,23 @@ ActiveAdmin.register Listing do
       link_to id.id, admin_listing_path(id)
     end
     column I18n.t('activerecord.attributes.listing.title'), :title
-    column I18n.t('activerecord.attributes.listing.shop_categories'), :shop_categories
-    column I18n.t('activerecord.attributes.listing.shop_services'), :shop_services
+    column I18n.t('activerecord.attributes.listing.shop_categories') do |sc|
+      ShopCategory.where(id: sc.shop_categories).all.pluck(:name).join(', ')
+    end
+    column I18n.t('activerecord.attributes.listing.shop_services') do |ss|
+      ShopService.where(id: ss.shop_services).all.pluck(:name).join(', ')
+    end
     column I18n.t('activerecord.attributes.listing.description'), :description
     column I18n.t('activerecord.attributes.listing.cover_image'), :cover_image
     column I18n.t('activerecord.attributes.listing.zipcode'), :zipcode
     column I18n.t('activerecord.attributes.listing.location'), :location
     column I18n.t('activerecord.attributes.listing.direction'), :direction
-    column I18n.t('activerecord.attributes.listing.smoking_id'), :smoking_id
-    column I18n.t('activerecord.attributes.listing.englishes'), :englishes
+    column I18n.t('activerecord.attributes.listing.smoking_id') do |s|
+      Smoking.where(id: s.smoking_id).all.pluck(:name).join(', ')
+    end
+    column I18n.t('activerecord.attributes.listing.englishes') do |e|
+      English.where(id: e.englishes).all.pluck(:name).join(', ')
+    end
     # business_hour
     column I18n.t('activerecord.attributes.listing.business_hours_remarks'), :business_hours_remarks
     column I18n.t('activerecord.attributes.listing.shop_description'), :shop_description
