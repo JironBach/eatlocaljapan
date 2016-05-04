@@ -61,14 +61,14 @@
             .row
               .col-xs-11
                 = text_area_tag :description, listing.description, readonly: :true
-        .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
-            .h4.text-light
-              = Listing.human_attribute_name :cover_image
-          .col-xs-8.fieldset.col-middle
-            .row
-              .col-xs-11.regist-pics
-                = file_field :cover_image, as: :file
+        /.row.row-space-5.row-space-top-5.row-table
+        /  .col-xs-4.text-right.col-middle
+        /    .h4.text-light
+        /      = Listing.human_attribute_name :cover_image
+        /  .col-xs-8.fieldset.col-middle
+        /    .row
+        /      .col-xs-11.regist-pics
+        /        = file_field :cover_image, as: :file
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -77,8 +77,8 @@
             .row
               .col-xs-6.col-md-4
                 = text_field_tag :zipcode, listing.zipcode, readonly: :true
-              .question-icon-container
-                i#zipcode-tooltip.fa.fa-question-circle.tooltip-trigger
+              /.question-icon-container
+              /  i#zipcode-tooltip.fa.fa-question-circle.tooltip-trigger
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -102,7 +102,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = collection_select :smoking_id, nil, Smoking.all, :id, (locale == I18n.default_locale ? :name : :name_en)
+                = Smoking.where(id: listing.smoking_id).pluck((locale == I18n.default_locale ? :name : :name_en)).join()
         .row
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
@@ -120,16 +120,15 @@
             .row
               .col-xs-11
                 - 7.times do |wday|
-                  - next if @listing.business_hours[wday]
+                  - next unless @listing.business_hours[wday].is_open
                   - business_hour = @listing.business_hours[wday]
                   p
                     - if locale == I18n.default_locale
                       = %w(日 月 火 水 木 金 土)[wday]
                     - else
                       = %w(Sun Mon Tue Wed Thu Fri Sat)[wday]
-                    = time_select "start_hour[#{wday}]", nil, {minute_step: 15, default: business_hour.nil? ? DateTime.parse('1-1-1 11:30:00') : business_hour.start_hour}, style: "display:inline-block;width:auto;"
-                    = '〜'
-                    = time_select "end_hour[#{wday}]", nil, {minute_step: 15, default: business_hour.nil? ? DateTime.parse('1-1-1 23:00:00') : business_hour.end_hour}, style: "display:inline-block;width:auto;"
+                    = business_hour.start_hour.strftime(" %H:%M 〜 ")
+                    = business_hour.end_hour.strftime("%H:%M")
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
