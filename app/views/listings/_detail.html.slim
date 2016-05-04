@@ -26,88 +26,204 @@
               p.text-muted.pull-left.row-space-top-1
                 = listing_image.try('caption') || ''
             .col-lg-3
-        hr
-        .row
-          .col-md-3.text-muted
-            = Listing.human_attribute_name :capacity
-          .col-md-9
-            .row-space-1
-              span
-                = listing.capacity
-                = t('unit.people')
-        hr
-        /.row
-        /  .col-md-3.text-muted
-        /    = Confection.human_attribute_name :name
-        /    = t('.option.option1')
-        /  .col-md-9
-        /    .row-space-1
-        /      span
-        /        - if '' == confection.url
-        /          = confection.name
-        /        - else
-        /          = link_to confection.url, target: "_blank" do
-        /            b
-        /              = confection.name
-        /      - if confection.image.present?
-        /        = image_tag(confection.image, class: 'img-responsive row-space-top-2')
-        /      p.text-muted.pull-left.row-space-top-1
-        /        = confection.try('caption') || ''
-        /hr
-        /.row
-        /  .col-md-3.text-muted
-        /    = Tool.human_attribute_name :name
-        /    = t('.option.option2')
-        /  .col-md-9
-        /    .row-space-1
-        /      span
-        /        - if tool.url.present?
-        /          - if '' == tool.url
-        /            = tool.name
-        /          - else
-        /            = link_to tool.url, target: "_blank" do
-        /              b
-        /                = tool.name
-        /        - else
-        /          = tool.name
-        /      - if tool.image.present?
-        /        = image_tag(tool.image, class: 'img-responsive row-space-top-2')
-        /      p.text-muted.pull-left.row-space-top-1
-        /        = tool.try('caption') || ''
-        /hr
-        /.row
-        /  .col-md-3.text-muted
-        /    = DressCode.human_attribute_name :wafuku
-        /    = t('.option.option3')
-        /  .col-md-9
-        /    .row-space-1
-        /      span
-        /        b
-        /          = dress_code.present? && dress_code.wafuku.present? ? t('./dress_codes.wafuku_only') : t('.dress_codes.any')
-        /    .row-space-1
-        /      span
-        /        b
-        /          - if dress_code.present? && dress_code.note.present?
-        /            = dress_code.note
-        hr
-        .row
-          .col-md-3
-            .text-muted
-              = t('.delivery')
-          .col-md-9
+        -if false
+          = text_field_tag :longitude, as: :string, placeholder: t('activerecord.placeholders.listing.longitude')
+          = text_field_tag :latitude, as: :string, placeholder: t('activerecord.placeholders.listing.latitude')
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :title
+          .col-xs-8.fieldset.col-middle
             .row
-              .col-md-6
-                = render partial: 'delivery_ok_button', locals: { listing: listing }
-        hr
-        .row
-          .col-md-3
-            .text-muted
-              = Listing.human_attribute_name :price
-          .col-md-9
+              .col-xs-11
+                = text_field_tag :title, listing.title, readonly: :true
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :shop_category
+          .col-xs-8.fieldset.col-middle
             .row
-              .col-md-6
-                div
-                  b
-                    span#extra_price_strin
-                      = t('unit.price')
-                      = listing.price
+              .col-xs-11
+                = listing.shop_categories.pluck((locale == :ja ? :name : :name_en)).join(", ")
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :shop_service
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = listing.shop_services.pluck((locale == :ja ? :name : :name_en)).join(", ")
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              | #{Listing.human_attribute_name :description}
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_area_tag :description, listing.description, readonly: :true
+        /.row.row-space-5.row-space-top-5.row-table
+        /  .col-xs-4.text-right.col-middle
+        /    .h4.text-light
+        /      = Listing.human_attribute_name :cover_image
+        /  .col-xs-8.fieldset.col-middle
+        /    .row
+        /      .col-xs-11.regist-pics
+        /        = file_field :cover_image, as: :file
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :zipcode
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-6.col-md-4
+                = text_field_tag :zipcode, listing.zipcode, readonly: :true
+              /.question-icon-container
+              /  i#zipcode-tooltip.fa.fa-question-circle.tooltip-trigger
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :location
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_field_tag :location, listing.location, readonly: :true
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :direction
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_area_tag :direction, listing.direction, readonly: :true
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :smoking_id
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = Smoking.where(id: listing.smoking_id).pluck((locale == I18n.default_locale ? :name : :name_en)).join()
+        .row
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :english
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = listing.englishes.pluck((locale == :ja ? :name : :name_en)).join(", ")
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :business_hours
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                - 7.times do |wday|
+                  - next unless @listing.business_hours[wday].is_open
+                  - business_hour = @listing.business_hours[wday]
+                  p
+                    - if locale == I18n.default_locale
+                      = %w(日 月 火 水 木 金 土)[wday]
+                    - else
+                      = %w(Sun Mon Tue Wed Thu Fri Sat)[wday]
+                    = business_hour.start_hour.strftime(" %H:%M 〜 ")
+                    = business_hour.end_hour.strftime("%H:%M")
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :business_hours_remarks
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_area_tag :business_hours_remarks, listing.business_hours_remarks, readonly: :true
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :shop_description
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_area_tag :shop_description, listing.shop_description, readonly: :true
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :shop_description_en
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_area_tag :shop_description_en, listing.shop_description_en, readonly: :true
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :price_low
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                /= text_field_tag :price_low, as: :string, value: (@listing.price_low > 0 ? @listing.price_low : "" ), placeholder: t('activerecord.placeholders.listing.price_low')
+                = text_field_tag :price_low, listing.price_low, readonly: :true
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :price_high
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                /= text_field_tag :price_high, as: :string, value: (@listing.price_high > 0 ? @listing.price_high : "" ), placeholder: t('activerecord.placeholders.listing.price_high')
+                = text_field_tag :price_high, listing.price_high, readonly: :true
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :tel
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_field_tag :tel, listing.tel, readonly: :true
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :url
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_field_tag :url, listing.url, readonly: :true
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :review_url
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_field_tag :review_url, listing.review_url, readonly: :true
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :recommended
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_area_tag :recommended, listing.recommended, readonly: :true
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :recommended_en
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_area_tag :recommended_en, listing.recommended_en, readonly: :true
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :visit_benefits
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_area_tag :visit_benefits, listing.visit_benefits, readonly: :true
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :visit_benefits_another
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_area_tag :visit_benefits_another, listing.visit_benefits_another, readonly: :true
