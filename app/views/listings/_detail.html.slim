@@ -120,15 +120,15 @@
             .row
               .col-xs-11
                 - 7.times do |wday|
-                  - next unless listing.business_hours[wday]
-                  - business_hour = @listing.business_hours[wday]
-                  p
-                    - if locale == I18n.default_locale
-                      = %w(日 月 火 水 木 金 土)[wday]
-                    - else
-                      = %w(Sun Mon Tue Wed Thu Fri Sat)[wday]
-                    = business_hour.start_hour.strftime(" %H:%M 〜 ")
-                    = business_hour.end_hour.strftime("%H:%M")
+                  - business_hour = listing.business_hours[wday]
+                  - if business_hour.is_open
+                    p
+                      - if locale == I18n.default_locale
+                        = %w(日 月 火 水 木 金 土)[wday]
+                      - else
+                        = %w(Sun Mon Tue Wed Thu Fri Sat)[wday]
+                      = business_hour.start_hour.strftime(" %H:%M 〜 ")
+                      = business_hour.end_hour.strftime("%H:%M")
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
