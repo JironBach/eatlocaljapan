@@ -44,17 +44,27 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = collection_check_boxes nil, :shop_categories, ShopCategory.all, :id, (locale == I18n.default_locale ? :name : :name_en), checked: @listing.shop_categories.collect {|sc| sc.id} do |b|
-                  = b.label { b.check_box + b.text }
+                - listing.shop_categories.each do |sc|
+                  - if locale == :ja
+                    = "#{sc.name} "
+                  - else
+                    = "#{sc.name_en} "
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
-              = Listing.human_attribute_name :shop_service
+              - listing.shop_services.each do |ss|
+                - if locale == :ja
+                  = "#{ss.name} "
+                - else
+                  = "#{ss.name_en} "
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = collection_check_boxes nil, :shop_services, ShopService.all, :id, (locale == I18n.default_locale ? :name : :name_en), checked: @listing.shop_services.collect {|ss| ss.id} do |b|
-                  = b.label { b.check_box + b.text }
+                - listing.shop_services.each do |ss|
+                  - if locale == :ja
+                    = "#{ss.name} "
+                  - else
+                    = "#{ss.name_en} "
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -62,16 +72,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :description, listing.description, readonly: :true
-        - if @listing.cover_image.present?
-          .row.row-space-5.row-space-top-5.row-table
-            .col-xs-4.text-right.col-middle
-              .h4.text-light
-                = Listing.human_attribute_name :cover_image
-            .col-xs-8.fieldset.col-middle
-              .row
-                .col-xs-11.regist-pics
-                  = image_tag(@listing.cover_image.thumb)
+                = text_area_tag :description, listing.description, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -105,7 +106,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :direction, listing.direction, readonly: :true
+                = text_area_tag :direction, listing.direction, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -122,8 +123,11 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = collection_check_boxes nil, :englishes, English.all, :id, (locale == I18n.default_locale ? :name : :name_en), checked: @listing.englishes.collect {|e| e.id} do |b|
-                  = b.label { b.check_box + b.text }
+                - listing.englishes.each do |e|
+                  - if locale == :ja
+                    = "#{e.name} "
+                  - else
+                    = "#{e.name_en} "
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -132,13 +136,13 @@
             .row
               .col-xs-11
                 - 7.times do |wday|
+                  - next if @listing.business_hours[wday]
                   - business_hour = @listing.business_hours[wday]
                   p
                     - if locale == I18n.default_locale
                       = %w(日 月 火 水 木 金 土)[wday]
                     - else
                       = %w(Sun Mon Tue Wed Thu Fri Sat)[wday]
-                    = check_box "is_open[#{wday}]", nil, {checked: business_hour.nil? ? true : business_hour.is_open}
                     = time_select "start_hour[#{wday}]", nil, {minute_step: 15, default: business_hour.nil? ? DateTime.parse('1-1-1 11:30:00') : business_hour.start_hour}, style: "display:inline-block;width:auto;"
                     = '〜'
                     = time_select "end_hour[#{wday}]", nil, {minute_step: 15, default: business_hour.nil? ? DateTime.parse('1-1-1 23:00:00') : business_hour.end_hour}, style: "display:inline-block;width:auto;"
@@ -149,7 +153,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :business_hours_remarks, listing.business_hours_remarks, readonly: :true
+                = text_area_tag :business_hours_remarks, listing.business_hours_remarks, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -157,7 +161,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :shop_description, listing.shop_description, readonly: :true
+                = text_area_tag :shop_description, listing.shop_description, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -165,7 +169,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :shop_description_en, listing.shop_description_en, readonly: :true
+                = text_area_tag :shop_description_en, listing.shop_description_en, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -215,7 +219,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :recommended, listing.recommended, readonly: :true
+                = text_area_tag :recommended, listing.recommended, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -223,7 +227,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :recommended_en, listing.recommended_en, readonly: :true
+                = text_area_tag :recommended_en, listing.recommended_en, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -231,7 +235,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :visit_benefits, listing.visit_benefits, readonly: :true
+                = text_area_tag :visit_benefits, listing.visit_benefits, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -239,4 +243,4 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :visit_benefits_another, listing.visit_benefits_another, readonly: :true
+                = text_area_tag :visit_benefits_another, listing.visit_benefits_another, readonly: :true
