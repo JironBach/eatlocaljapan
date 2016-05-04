@@ -44,27 +44,15 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                - listing.shop_categories.each do |sc|
-                  - if locale == :ja
-                    = "#{sc.name} "
-                  - else
-                    = "#{sc.name_en} "
+                = listing.shop_categories.pluck((locale == :ja ? :name : :name_en)).join(", ")
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
-              - listing.shop_services.each do |ss|
-                - if locale == :ja
-                  = "#{ss.name} "
-                - else
-                  = "#{ss.name_en} "
+              = Listing.human_attribute_name :shop_service
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                - listing.shop_services.each do |ss|
-                  - if locale == :ja
-                    = "#{ss.name} "
-                  - else
-                    = "#{ss.name_en} "
+                = listing.shop_services.pluck((locale == :ja ? :name : :name_en)).join(", ")
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -123,11 +111,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                - listing.englishes.each do |e|
-                  - if locale == :ja
-                    = "#{e.name} "
-                  - else
-                    = "#{e.name_en} "
+                = listing.englishes.pluck((locale == :ja ? :name : :name_en)).join(", ")
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
