@@ -33,7 +33,7 @@ ActiveAdmin.register Listing do
     column I18n.t('activerecord.attributes.listing.zipcode'), :zipcode
     column I18n.t('activerecord.attributes.listing.location'), :location
     column I18n.t('activerecord.attributes.listing.direction'), :direction
-    column I18n.t('activerecord.attributes.listing.smoking_id') do |s|
+    column I18n.t('activerecord.attributes.listing.smoking_id'), sortable: :smoking_id do |s|
       Smoking.where(id: s.smoking_id).all.pluck(:name).join(', ')
     end
     column I18n.t('activerecord.attributes.listing.englishes') do |e|
