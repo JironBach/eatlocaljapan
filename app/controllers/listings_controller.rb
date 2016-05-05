@@ -177,16 +177,18 @@ class ListingsController < ApplicationController
     where = Array.new
     where_id = Array.new
     shop_categories = params[:shop_categories].compact.delete_if(&:empty?) unless params[:shop_categories].blank?
-    where_id.push("select listing_id from listings_shop_categories where shop_category_id in (" + shop_categories.join(",") + ")") unless shop_categories.blank?
+    where_id.push(ActiveRecord::Base.send(:sanitize_sql_array, ["select listing_id from listings_shop_categories where shop_category_id in (:ids)", ids: shop_categories])) unless shop_categories.blank?
     shop_services = params[:shop_services].compact.delete_if(&:empty?) unless params[:shop_services].blank?
-    where_id.push("select listing_id from listings_shop_services where shop_service_id in (" + shop_services.join(",") + ")") unless shop_services.blank?
+    where_id.push(ActiveRecord::Base.send(:sanitize_sql_array, ["select listing_id from listings_shop_services where shop_service_id in (:ids)", ids: shop_services])) unless shop_services.blank?
     sql = "select * from listings "
     where.push("id in (" + where_id.join(" union ") + ")") unless where_id.blank?
-    smoking_id = params[:smoking_id]
-    where.push("smoking_id in (" + smoking_id.join(",") + ")") unless smoking_id.blank?
-    where.push("english_id = #{params[:english_id]}") unless params[:english_id].blank?
-    where.push("price_high <= #{params[:price]}") unless params[:price].blank?
-    where.push("direction like '%#{params[:search][:location]}%'") unless params[:search][:location].blank?
+    where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["smoking_id in (:ids)", ids: params[:smoking_id]])) unless params[:smoking_id].blank?
+    where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["english_id = ?", params[:english_id]])) unless params[:english_id].blank?
+    where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["price_high <= ?", params[:price]])) unless params[:price].blank?
+    location = params[:search][:location]
+    location.gsub(/\\/, "\\\\").gsub(/%/,"\\%").gsub(/_/,"\\_") unless location.blank?
+    where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["direction like ?", "%#{location}%"])) unless location.blank?
+    where.push("open = true")
     sql += "where " + where.join(" and ") unless where.blank?
     listings = ActiveRecord::Base.connection.execute(sql).to_a
     #gon.listings = listings
