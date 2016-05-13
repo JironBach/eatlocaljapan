@@ -16,3 +16,111 @@
                 = b.label { b.check_box + b.text }
 
   = button_tag(t('.submit'), type: "submit", class: "btn btn-primary btn-large", id: "submit_location")
+.card
+  .discovery-container
+    .discovery-section.page-container.page-container-no-padding.row-space-6
+      .section-intro.text-center.row-space-6.row-space-top-8
+        h2.row-space-1.strong
+          = t '.title'
+        p.text-lead
+          = t '.note'
+      .discovery-tiles
+        .row
+          .col-lg-8.col-md-12.rm-padding--sp
+            .discovery-card.rm-padding--sp.row-space-4.wall1
+              = link_to "#", class: "link-reset" do
+                .va-container.va-container-v.va-container-h
+                  .va-middle.text-center.text-contrast
+                    .h2.strong
+                      = t '.item.category_name'
+          .col-lg-4.col-md-6.col-sm-12.rm-padding--sp.row-space-4
+            div
+              .on-hover-container
+                = link_to "#", class: "link-reset text-normal" do
+                  .discovery-card.discovery-listing.wall2
+                    .card-overlay-bottom-left.card-overlay-label.card-overlay-listing-label
+                      sup.h6.text-contrast
+                        = t 'unit.price'
+                      span.h3.price-amount
+                        = t '.item.price.value'
+                      sup.h6.text-contrast
+                    .va-container.va-container-v.va-container-h
+                      .va-middle.text-center.text-contrast
+                        .media-photo.media-round.row-space-2.card-profile-picture
+                          = image_tag "sample/person1.jpg", class: "size50"
+                        .h3.strong
+                          = t '.item.title'
+                        div
+                          = t '.item.category_name'
+          .col-lg-4.col-md-6.col-sm-12.rm-padding--sp
+            .discovery-card.rm-padding--sp.row-space-4.wall3
+              = link_to "#", class: "link-reset" do
+                .va-container.va-container-v.va-container-h
+                  .va-middle.text-center.text-contrast
+                    .h2.strong
+                      = t '.item.category_name'
+
+          .col-lg-4.col-md-6.col-sm-12.rm-padding--sp.hide--sp
+            .discovery-card.rm-padding--sp.row-space-4.wall4
+              = link_to "#", class: "link-reset" do
+                .va-container.va-container-v.va-container-h
+                  .va-middle.text-center.text-contrast
+                    .h2.strong
+                      = t '.item.category_name'
+
+          .col-lg-4.col-md-6.col-sm-12.rm-padding--sp.hide--sp
+            .discovery-card.rm-padding--sp.row-space-4.wall5
+              = link_to "#", class: "link-reset" do
+                .va-container.va-container-v.va-container-h
+                  .va-middle.text-center.text-contrast
+                    .h2.strong
+                      = t '.item.category_name'
+
+          .col-lg-4.col-md-6.col-sm-12.rm-padding--sp.row-space-4
+            div
+              .on-hover-container
+                = link_to "#", class: "link-reset text-normal" do
+                  .discovery-card.discovery-listing.wall6
+                    .card-overlay-bottom-left.card-overlay-label.card-overlay-listing-label
+                      sup.h6.text-contrast
+                        = t 'unit.price'
+                      span.h3.price-amount
+                        = t '.item.price.value'
+                      sup.h6.text-contrast
+                    .va-container.va-container-v.va-container-h
+                      .va-middle.text-center.text-contrast
+                        .media-photo.media-round.row-space-2.card-profile-picture
+                          = image_tag "sample/person1.jpg", class: "size50"
+                        .h3.strong
+                          = t '.item.title'
+                        div
+                          = t '.item.category_name'
+
+          .col-lg-8.col-md-12.hide--sp.rm-padding--sp
+            .discovery-card.rm-padding--sp.row-space-4.wall7
+              = link_to "#", class: "link-reset" do
+                .va-container.va-container-v.va-container-h
+                  .va-middle.text-center.text-contrast
+                    .h2.strong
+                      = t '.item.category_name'
+          .col-lg-4.col-md-6.hide--sp.rm-padding--sp.col-switch.col-md-push-6.col-lg-push-0
+            .discovery-card.rm-padding--sp.row-space-4.wall8
+              = link_to "#", class: "link-reset" do
+                .va-container.va-container-v.va-container-h
+                  .va-middle.text-center.text-contrast
+                    .h2.strong
+                      = t '.item.category_name'
+          .col-lg-4.col-md-6.hide--sp.rm-padding--sp
+            .discovery-card.rm-padding--sp.row-space-4.wall9
+              = link_to "#", class: "link-reset" do
+                .va-container.va-container-v.va-container-h
+                  .va-middle.text-center.text-contrast
+                    .h2.strong
+                      = t '.item.category_name'
+          .col-lg-4.col-md-6.hide--sp.rm-padding--sp
+            .discovery-card.rm-padding--sp.row-space-4.wall10
+              = link_to "#", class: "link-reset" do
+                .va-container.va-container-v.va-container-h
+                  .va-middle.text-center.text-contrast
+                    .h2.strong
+                      = t '.item.category_name'
