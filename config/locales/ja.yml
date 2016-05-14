@@ -98,6 +98,9 @@ ja:
         price_high_night: 価格　高　ディナー
         price_zone: 価格帯　ランチ
         price_zone_night: 価格帯　ディナー
+        link_tabelog: 食べログ
+        link_yelp: yelp
+        link_tripadvisor: トリップアドバイザー
       listing_image:
         image: 店舗情報のイメージ画像
         caption: 写真の説明

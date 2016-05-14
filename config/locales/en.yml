@@ -98,6 +98,9 @@ en:
         price_high_night: Pricing high dinner
         price_zone: Pricing zone lanch
         price_zone_night: Pricing zone dinner
+        link_tabelog: tabelog
+        link_yelp: yelp
+        link_tripadvisor: trip advisor
       listing_image:
         image: Image of Listing
         caption: Caption of Listing Image
