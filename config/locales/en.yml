@@ -84,8 +84,8 @@ en:
         business_hours_remarks: Business hours remarks
         shop_description: About the restaurant Japanese
         shop_description_en: About the restaurant
-        price_low: Pricing low
-        price_high: Pricing high
+        price_low: Pricing low daytime
+        price_high: Pricing high daytime
         address: Address
         tel: Telephone
         url: Restaurant Website
@@ -94,6 +94,10 @@ en:
         recommended_en: Chef's recommendation
         visit_benefits: Visit Benefits
         visit_benefits_another: Visit Benefits
+        price_low_night: Pricing low night
+        price_high_night: Pricing high night
+        price_zone: Pricing zone daytime
+        price_zone_night: Pricing zone night
       listing_image:
         image: Image of Listing
         caption: Caption of Listing Image
