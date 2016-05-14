@@ -850,10 +850,10 @@ ja:
       title: トップページのタイトル
       description: トップページの説明
       keywords: トップページのキーワード
-      tagline: タグライン
-      subtitle: サイトのサブタイトルはこちら
+      tagline: 日本の美味しいお店を英語でご紹介。
+      subtitle: 日本をもっと楽しんでもらうために
       search: 検索してみましょう
-      flow: サービスの流れ
+      flow: このサイトについて
     form:
       num_of_guest:
         unit_text: "参加人数 %{num}%{unit}"
