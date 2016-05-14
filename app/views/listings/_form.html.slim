@@ -17,6 +17,14 @@
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
+        = Listing.human_attribute_name :title_en
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :title_en, placeholder: t('activerecord.placeholders.listing.title_en')
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
         = Listing.human_attribute_name :shop_category
     .col-xs-8.fieldset.col-middle
       .row
@@ -163,7 +171,7 @@
                 = %w(Sun Mon Tue Wed Thu Fri Sat)[wday]
               = check_box "is_open[#{wday}]", nil, {checked: business_hour.nil? ? true : business_hour.is_open}
               = time_select "start_hour[#{wday}]", nil, {minute_step: 15, default: business_hour.nil? ? DateTime.parse('1-1-1 11:30:00') : business_hour.start_hour}, style: "display:inline-block;width:auto;"
-              = '〜'
+              = ' - '
               = time_select "end_hour[#{wday}]", nil, {minute_step: 15, default: business_hour.nil? ? DateTime.parse('1-1-1 23:00:00') : business_hour.end_hour}, style: "display:inline-block;width:auto;"
   /.row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
@@ -192,21 +200,27 @@
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
-        = Listing.human_attribute_name :price_low
+        = Listing.human_attribute_name :price_zone
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
           /= f.input_field :price_low, as: :string, value: (@listing.price_low > 0 ? @listing.price_low : "" ), placeholder: t('activerecord.placeholders.listing.price_low')
           = f.input_field :price_low, as: :string, placeholder: t('activerecord.placeholders.listing.price_low')
+          | -
+          /= f.input_field :price_high, as: :string, value: (@listing.price_high > 0 ? @listing.price_high : "" ), placeholder: t('activerecord.placeholders.listing.price_high')
+          = f.input_field :price_high, as: :string, placeholder: t('activerecord.placeholders.listing.price_high')
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
-        = Listing.human_attribute_name :price_high
+        = Listing.human_attribute_name :price_zone_night
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          /= f.input_field :price_high, as: :string, value: (@listing.price_high > 0 ? @listing.price_high : "" ), placeholder: t('activerecord.placeholders.listing.price_high')
-          = f.input_field :price_high, as: :string, placeholder: t('activerecord.placeholders.listing.price_high')
+          /= f.input_field :price_low_night, as: :string, value: (@listing.price_low_night > 0 ? @listing.price_low_night : "" ), placeholder: t('activerecord.placeholders.listing.price_low_night')
+          = f.input_field :price_low_night, as: :string, placeholder: t('activerecord.placeholders.listing.price_low_night')
+          | -
+          /= f.input_field :price_high_night, as: :string, value: (@listing.price_high_night > 0 ? @listing.price_high_night : "" ), placeholder: t('activerecord.placeholders.listing.price_high_night')
+          = f.input_field :price_high_night, as: :string, placeholder: t('activerecord.placeholders.listing.price_high_night')
   /.row.row-space-5.row-space-top-5.row-table
   /  .col-xs-4.text-right.col-middle
   /    .h4.text-light
@@ -234,11 +248,27 @@
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
-        = Listing.human_attribute_name :review_url
+        = Listing.human_attribute_name :link_tabelog
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = f.input_field :review_url, placeholder: t('activerecord.placeholders.listing.review_url')
+          = f.input_field :link_tabelog, placeholder: t('activerecord.placeholders.listing.link_tabelog')
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :link_yelp
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :link_yelp, placeholder: t('activerecord.placeholders.listing.link_yelp')
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :link_tripadvisor
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :link_tripadvisor, placeholder: t('activerecord.placeholders.listing.link_tripadvisor')
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
@@ -271,6 +301,23 @@
       .row
         .col-xs-11
           = f.input_field :visit_benefits_another, placeholder: t('activerecord.placeholders.listing.visit_benefits_another')
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :english_message
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = collection_check_boxes nil, :english_messages, EnglishMessage.all, :id, (locale == I18n.default_locale ? :name : :name_en), checked: @listing.english_messages.collect {|em| em.id} do |b|
+            = b.label { b.check_box + b.text }
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :info_admin_id
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = collection_select :info_admin_id, nil, InfoAdmin.all, :id, (locale == I18n.default_locale ? :name : :name_en)
   .row
     .col-xs-9.col-offset-3.text-reset-center
       - if 'edit' == controller.action_name

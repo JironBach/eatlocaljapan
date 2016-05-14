@@ -40,6 +40,14 @@
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
+              = Listing.human_attribute_name :title_en
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_field_tag :title_en, listing.title_en, readonly: :true
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
               = Listing.human_attribute_name :shop_category
           .col-xs-8.fieldset.col-middle
             .row
@@ -127,7 +135,7 @@
                         = %w(日 月 火 水 木 金 土)[wday]
                       - else
                         = %w(Sun Mon Tue Wed Thu Fri Sat)[wday]
-                      = business_hour.start_hour.strftime(" %H:%M 〜 ")
+                      = business_hour.start_hour.strftime(" %H:%M - ")
                       = business_hour.end_hour.strftime("%H:%M")
         /.row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
@@ -156,21 +164,23 @@
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
-              = Listing.human_attribute_name :price_low
+              = Listing.human_attribute_name :price_zone
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                /= text_field_tag :price_low, as: :string, value: (@listing.price_low > 0 ? @listing.price_low : "" ), placeholder: t('activerecord.placeholders.listing.price_low')
                 = text_field_tag :price_low, listing.price_low, readonly: :true
+                | -
+                = text_field_tag :price_high, listing.price_high, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
-              = Listing.human_attribute_name :price_high
+              = Listing.human_attribute_name :price_zone_night
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                /= text_field_tag :price_high, as: :string, value: (@listing.price_high > 0 ? @listing.price_high : "" ), placeholder: t('activerecord.placeholders.listing.price_high')
-                = text_field_tag :price_high, listing.price_high, readonly: :true
+                = text_field_tag :price_low_night, listing.price_low_night, readonly: :true
+                | -
+                = text_field_tag :price_high_night, listing.price_high_night, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -190,11 +200,27 @@
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
-              = Listing.human_attribute_name :review_url
+              = Listing.human_attribute_name :link_tabelog
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :review_url, listing.review_url, readonly: :true
+                = text_field_tag :link_tabelog, listing.link_tabelog, readonly: :true
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :link_yelp
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_field_tag :link_yelp, listing.link_yelp, readonly: :true
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :link_tripadvisor
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = text_field_tag :link_tripadvisor, listing.link_tripadvisor, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -227,3 +253,19 @@
             .row
               .col-xs-11
                 = text_area_tag :visit_benefits_another, listing.visit_benefits_another, readonly: :true
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :english_message
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = listing.english_messages.pluck((locale == :ja ? :name : :name_en)).join(", ")
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name :info_admin_id
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                = Smoking.where(id: listing.info_admin_id).pluck((locale == I18n.default_locale ? :name : :name_en)).join()
