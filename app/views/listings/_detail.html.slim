@@ -53,7 +53,7 @@
             .row
               .col-xs-11
                 = listing.shop_services.pluck((locale == :ja ? :name : :name_en)).join(", ")
-        .row.row-space-5.row-space-top-5.row-table
+        /.row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
               | #{Listing.human_attribute_name :description}
@@ -87,7 +87,7 @@
             .row
               .col-xs-11
                 = text_field_tag :location, listing.location, readonly: :true
-        .row.row-space-5.row-space-top-5.row-table
+        /.row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
               = Listing.human_attribute_name :direction
@@ -129,7 +129,7 @@
                         = %w(Sun Mon Tue Wed Thu Fri Sat)[wday]
                       = business_hour.start_hour.strftime(" %H:%M 〜 ")
                       = business_hour.end_hour.strftime("%H:%M")
-        .row.row-space-5.row-space-top-5.row-table
+        /.row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
               = Listing.human_attribute_name :business_hours_remarks
