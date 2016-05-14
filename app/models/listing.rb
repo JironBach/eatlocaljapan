@@ -13,21 +13,20 @@
 #  ave_check_in           :float            default(0.0)
 #  ave_cost_performance   :float            default(0.0)
 #  open                   :boolean          default(FALSE)
-#  zipcode                :string(255)
-#  location               :string(255)      default("")
+#  zipcode                :string
+#  location               :string           default("")
 #  longitude              :decimal(9, 6)    default(0.0)
 #  latitude               :decimal(9, 6)    default(0.0)
 #  delivery_flg           :boolean          default(FALSE)
 #  price                  :integer          default(0)
-#  description            :text
-#  title                  :string(255)      default("")
+#  description            :text             default("")
+#  title                  :string           default("")
 #  capacity               :integer          default(0)
-#  direction              :text
-#  cover_image            :string(255)      default("")
-#  cover_image_caption    :string(255)      default("")
+#  direction              :text             default("")
+#  cover_image            :string           default("")
+#  cover_image_caption    :string           default("")
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  address                :string
 #  smoking_id             :integer
 #  business_hours_remarks :text
 #  shop_description       :text
@@ -41,6 +40,11 @@
 #  recommended_en         :text
 #  visit_benefits         :string
 #  visit_benefits_another :string
+#  title_en               :string
+#  price_low_night        :integer
+#  price_high_night       :integer
+#  english_message_id     :integer
+#  info_admin_id          :integer
 #
 # Indexes
 #
@@ -80,6 +84,8 @@ class Listing < ActiveRecord::Base
   has_many :business_hours, dependent: :destroy
   has_and_belongs_to_many :englishes, dependent: :destroy
   has_many :business_hours, dependent: :destroy
+  has_one :english_message
+  has_one :info_admin
 
   mount_uploader :cover_image, DefaultImageUploader
 
