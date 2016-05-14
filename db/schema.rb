@@ -213,6 +213,9 @@ ActiveRecord::Schema.define(version: 20160514091132) do
     t.integer  "price_high_night"
     t.integer  "english_message_id"
     t.integer  "info_admin_id"
+    t.string   "link_tabelog"
+    t.string   "link_yelp"
+    t.string   "link_tripadvisor"
   end
 
   add_index "listings", ["capacity"], name: "index_listings_on_capacity", using: :btree

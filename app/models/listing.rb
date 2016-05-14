@@ -45,6 +45,9 @@
 #  price_high_night       :integer
 #  english_message_id     :integer
 #  info_admin_id          :integer
+#  link_tabelog           :string
+#  link_yelp              :string
+#  link_tripadvisor       :string
 #
 # Indexes
 #

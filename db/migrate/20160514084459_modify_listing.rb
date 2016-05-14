@@ -5,5 +5,8 @@ class ModifyListing < ActiveRecord::Migration
     add_column :listings, :price_high_night, :integer
     add_column :listings, :english_message_id, :integer
     add_column :listings, :info_admin_id, :integer
+    add_column :listings, :link_tabelog, :string
+    add_column :listings, :link_yelp, :string
+    add_column :listings, :link_tripadvisor, :string
   end
 end
