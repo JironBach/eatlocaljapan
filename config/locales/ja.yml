@@ -101,6 +101,7 @@ ja:
         link_tabelog: 食べログ
         link_yelp: yelp
         link_tripadvisor: トリップアドバイザー
+        english_messages: 英語でのメッセージのやり取り（可否）
       listing_image:
         image: 店舗情報のイメージ画像
         caption: 写真の説明

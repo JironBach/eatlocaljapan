@@ -101,6 +101,7 @@ en:
         link_tabelog: tabelog
         link_yelp: yelp
         link_tripadvisor: trip advisor
+        english_messages: Available English message
       listing_image:
         image: Image of Listing
         caption: Caption of Listing Image
