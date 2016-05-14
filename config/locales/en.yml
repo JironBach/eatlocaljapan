@@ -855,10 +855,10 @@ en:
       title: Title of Top Page
       description: Description of Top Page
       keywords: Keywords of Top Page
-      tagline: Tagline
-      subtitle: Subtitle
+      tagline: Great local restaurants in Japan.
+      subtitle: a whole new experience
       search: "Let's Search Listings"
-      flow: Flow of Service
+      flow: About the service
     form:
       num_of_guest:
         unit_text: "%{num}"
