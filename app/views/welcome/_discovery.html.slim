@@ -14,7 +14,6 @@
             .col-xs-11
               = collection_check_boxes nil, :shop_categories, ShopCategory.all, :id, (locale == :ja ? :name : :name_en) do |b|
                 = b.label { b.check_box + b.text }
-
   = button_tag(t('.submit'), type: "submit", class: "btn btn-primary btn-large", id: "submit_location")
 .card
   .discovery-container

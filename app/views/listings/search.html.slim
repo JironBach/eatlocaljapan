@@ -14,6 +14,7 @@
   .card
     .discovery-container
       .discovery-section.page-container.page-container-no-padding.row-space-6
+  = simple_form_for(:search, url: i18n_url_for(:controller =>'listings', :action => 'search', :locale => locale), html: { method: 'get', id: 'search_form', class: 'hero-searchForm'}) do |f|
     div align="left"
       .row.row-space-5.row-space-top-5.row-table
         .col-xs-4.text-right.col-middle
@@ -22,8 +23,9 @@
         .col-xs-8.fieldset.col-middle
           .row
             .col-xs-11
-              = collection_check_boxes nil, :shop_categories, ShopCategory.all, :id, :name do |b|
-                = b.label { b.check_box + b.text }
+              = collection_check_boxes nil, :shop_categories, ShopCategory.all, :id, (locale == :ja ? :name : :name_en) do |sc|
+                = sc.label { sc.check_box + sc.text }
+    hr
       .row.row-space-5.row-space-top-5.row-table
         .col-xs-4.text-right.col-middle
           .h4.text-light
@@ -31,8 +33,9 @@
         .col-xs-8.fieldset.col-middle
           .row
             .col-xs-11
-              = collection_check_boxes nil, :shop_services, ShopService.all, :id, :name do |b|
-                = b.label { b.check_box + b.text }
+              = collection_check_boxes nil, :shop_services, ShopService.all, :id, (locale == :ja ? :name : :name_en) do |ss|
+                = ss.label { ss.check_box + ss.text }
+      hr
       .row.row-space-5.row-space-top-5.row-table
         .col-xs-4.text-right.col-middle
           .h4.text-light
@@ -40,7 +43,7 @@
         .col-xs-8.fieldset.col-middle
           .row
             .col-xs-11
-              = collection_select :smoking_id, nil, Smoking.all, :id, :name
+              = collection_select :smoking_id, nil, Smoking.all, :id, (locale == :ja ? :name : :name_en)
       .row
       .row.row-space-5.row-space-top-5.row-table
         .col-xs-4.text-right.col-middle
@@ -49,7 +52,7 @@
         .col-xs-8.fieldset.col-middle
           .row
             .col-xs-11
-              = collection_check_boxes nil, :englishes, English.all, :id, :name do |b|
+              = collection_check_boxes nil, :englishes, English.all, :id, (locale == :ja ? :name : :name_en) do |b|
                 = b.label { b.check_box + b.text }
       .row.row-space-5.row-space-top-5.row-table
         .col-xs-4.text-right.col-middle
@@ -58,6 +61,5 @@
         .col-xs-8.fieldset.col-middle
           .row
             .col-xs-11
-              = text_field_tag :price
-
-  = button_tag(t('.submit'), type: "submit", class: "btn btn-primary btn-large", id: "submit_location")
+              = text_field_tag "[search][price]"
+    = button_tag(t('.submit'), type: "submit", class: "btn btn-primary btn-large", id: "submit_location")

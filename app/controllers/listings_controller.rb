@@ -205,7 +205,7 @@ class ListingsController < ApplicationController
     where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["smoking_id in (:ids)", ids: params[:smoking_id]])) unless params[:smoking_id].blank?
     where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["english_id = ?", params[:english_id]])) unless params[:english_id].blank?
     where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["price_high <= ?", params[:price]])) unless params[:price].blank?
-    location = params[:search][:location]
+    location = params[:location]
     location.gsub(/\\/, "\\\\").gsub(/%/,"\\%").gsub(/_/,"\\_") unless location.blank?
     where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["direction like ?", "%#{location}%"])) unless location.blank?
     where.push("open = true")
@@ -215,6 +215,7 @@ class ListingsController < ApplicationController
     @hit_count = listings.count
     @listings = Kaminari.paginate_array(listings).page(params[:page]).per(10)
     @conditions = search_params
+    @listing = Listing.new
   end
 
   def publish
@@ -280,6 +281,8 @@ class ListingsController < ApplicationController
     end
 
     def search_params
-      params.require(:search).permit(:location, :schedule, :num_of_guest, :price, :confection, :tool, :wafuku, :keywords, :where)
+      params.require(:search).permit(:location, :schedule, :num_of_guest, :price, :keywords, :where,
+        #:shop_categories, :shop_services, :englishes
+        )
     end
 end

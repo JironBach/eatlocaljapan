@@ -1,6 +1,5 @@
 #listings.coffee
 $ ->
-
   # listings#new
   if $('body').hasClass('listings new')
 
@@ -319,6 +318,10 @@ $ ->
           mapTypeId: google.maps.MapTypeId.TERRAIN
 
       map = new (google.maps.Map)(document.getElementById('map'), mapOptions)
+
+      marker = new google.maps.Marker
+        position: new (google.maps.LatLng)(gon.listing.latitude, gon.listing.longitude)
+        map: map
 
       circleOptions =
         strokeColor: '#17AEDF'
