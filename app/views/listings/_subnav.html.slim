@@ -13,7 +13,6 @@
         li
           = link_to "#photos", aria: {selected: "true"}, class: "subnav-item" do
             = t('.photos')
-            = image_tag(@listing.cover_image.try('image') || Settings.images.noimage2.url, class: 'img-responsive')
         li
           = link_to "#summary", aria: {selected: "false"}, class: "subnav-item" do
             = t('.details')
