@@ -81,6 +81,16 @@ class ListingsController < ApplicationController
         business_hour = BusinessHour.new(wday: wday, is_open: is_open, start_hour: start_hour, end_hour: end_hour)
         @listing.business_hours << business_hour
       end
+      unless params[:english_messages].nil?
+        @listing.english_messages = []
+        params[:english_messages].each do |em|
+          unless em.blank?
+            english_message = EnglishMessage.find(em.to_i)
+            @listing.english_messages << english_message
+          end
+        end
+      end
+      @listing.info_admin_id = params[:info_admin_id][0] unless params[:info_admin_id].nil?
       # 保存
       @listing.save!
       respond_to do |format|
@@ -144,6 +154,16 @@ class ListingsController < ApplicationController
         business_hour = BusinessHour.new(wday: wday, is_open: is_open, start_hour: start_hour, end_hour: end_hour)
         @listing.business_hours << business_hour
       end
+      unless params[:english_messages].nil?
+        @listing.english_messages = []
+        params[:english_messages].each do |em|
+          unless em.blank?
+            english_message = EnglishMessage.find(em.to_i)
+            @listing.english_messages << english_message
+          end
+        end
+      end
+      @listing.info_admin_id = params[:info_admin_id][0] unless params[:info_admin_id].nil?
       # 保存
       @listing.save!
       respond_to do |format|
@@ -254,7 +274,8 @@ class ListingsController < ApplicationController
         :business_hours_remarks, :shop_description, :shop_description_en,
         :price_low, :price_high, :tel, :url, :review_url,
         :recommended, :recommended_en, :visit_benefits, :visit_benefits_another,
-        listing_image_attributes: [:listing_id, :image, :order, :capacity]
+        :title_en, :price_low_dinner, :price_high_dinner, :link_tabelog, :link_yelp, :link_tripadvisor,
+        listing_image_attributes: [:listing_id, :image, :order, :capacity],
       ).merge(user_id: current_user.id)
     end
 

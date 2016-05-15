@@ -4,7 +4,7 @@
       li.my-listing
         = link_to listings_path do
           i.fa.fa-long-arrow-left
-          = t('.my_listing') 
+          = t('.my_listing')
   .subnav-placeholder.hide
 - else
   .subnav[data-sticky="true" data-transition-at="#summary" aria-hidden="true"]
@@ -13,6 +13,7 @@
         li
           = link_to "#photos", aria: {selected: "true"}, class: "subnav-item" do
             = t('.photos')
+            = image_tag(@listing.cover_image.try('image') || Settings.images.noimage2.url, class: 'img-responsive')
         li
           = link_to "#summary", aria: {selected: "false"}, class: "subnav-item" do
             = t('.details')

@@ -41,8 +41,8 @@
 #  visit_benefits         :string
 #  visit_benefits_another :string
 #  title_en               :string
-#  price_low_night        :integer
-#  price_high_night       :integer
+#  price_low_dinner       :integer
+#  price_high_dinner      :integer
 #  english_message_id     :integer
 #  info_admin_id          :integer
 #  link_tabelog           :string
@@ -87,8 +87,7 @@ class Listing < ActiveRecord::Base
   has_many :business_hours, dependent: :destroy
   has_and_belongs_to_many :englishes, dependent: :destroy
   has_many :business_hours, dependent: :destroy
-  has_one :english_message
-  has_one :info_admin
+  has_and_belongs_to_many :english_messages
 
   mount_uploader :cover_image, DefaultImageUploader
 

@@ -22,6 +22,7 @@
       .row
         .col-xs-11
           = f.input_field :title_en, placeholder: t('activerecord.placeholders.listing.title_en')
+  hr
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
@@ -29,8 +30,9 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = collection_check_boxes nil, :shop_categories, ShopCategory.all, :id, (locale == I18n.default_locale ? :name : :name_en), checked: @listing.shop_categories.collect {|sc| sc.id} do |b|
+          = collection_check_boxes nil, :shop_categories, ShopCategory.all, :id, (locale == :ja ? :name : :name_en), checked: @listing.shop_categories.collect {|sc| sc.id} do |b|
             = b.label { b.check_box + b.text }
+  hr
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
@@ -38,7 +40,7 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = collection_check_boxes nil, :shop_services, ShopService.all, :id, (locale == I18n.default_locale ? :name : :name_en), checked: @listing.shop_services.collect {|ss| ss.id} do |b|
+          = collection_check_boxes nil, :shop_services, ShopService.all, :id, (locale == :ja ? :name : :name_en), checked: @listing.shop_services.collect {|ss| ss.id} do |b|
             = b.label { b.check_box + b.text }
   / .row.row-space-5.row-space-top-5.row-table
   /   .col-xs-4.text-right.col-middle
@@ -74,6 +76,7 @@
   /        = f.input_field :price, as: :string, value: (@listing.price > 0 ? @listing.price : "" ), placeholder: t('activerecord.placeholders.listing.price')
   /        p.help.text-pink #{t('.caution.price')}
   /.row.row-space-5.row-space-top-5.row-table
+  hr
     .col-xs-4.text-right.col-middle
       .h4.text-light
         | #{Listing.human_attribute_name :description}
@@ -144,16 +147,16 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = collection_select :smoking_id, nil, Smoking.all, :id, (locale == I18n.default_locale ? :name : :name_en)
+          = collection_select :smoking_id, nil, Smoking.all, :id, (locale == :ja ? :name : :name_en), selected: @listing.smoking_id
   .row
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
-        = Listing.human_attribute_name :english
+        = Listing.human_attribute_name :english_id
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = collection_check_boxes nil, :englishes, English.all, :id, (locale == I18n.default_locale ? :name : :name_en), checked: @listing.englishes.collect {|e| e.id} do |b|
+          = collection_check_boxes nil, :englishes, English.all, :id, (locale == :ja ? :name : :name_en), checked: @listing.englishes.collect {|e| e.id} do |b|
             = b.label { b.check_box + b.text }
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
@@ -165,7 +168,7 @@
           - 7.times do |wday|
             - business_hour = @listing.business_hours[wday]
             p
-              - if locale == I18n.default_locale
+              - if locale == :ja
                 = %w(日 月 火 水 木 金 土)[wday]
               - else
                 = %w(Sun Mon Tue Wed Thu Fri Sat)[wday]
@@ -200,7 +203,7 @@
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
-        = Listing.human_attribute_name :price_zone
+        = Listing.human_attribute_name :price_range
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
@@ -212,15 +215,15 @@
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
-        = Listing.human_attribute_name :price_zone_night
+        = Listing.human_attribute_name :price_range_dinner
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          /= f.input_field :price_low_night, as: :string, value: (@listing.price_low_night > 0 ? @listing.price_low_night : "" ), placeholder: t('activerecord.placeholders.listing.price_low_night')
-          = f.input_field :price_low_night, as: :string, placeholder: t('activerecord.placeholders.listing.price_low_night')
+          /= f.input_field :price_low_dinner, as: :string, value: (@listing.price_low_dinner > 0 ? @listing.price_low_dinner : "" ), placeholder: t('activerecord.placeholders.listing.price_low_dinner')
+          = f.input_field :price_low_dinner, as: :string, placeholder: t('activerecord.placeholders.listing.price_low_dinner')
           | -
-          /= f.input_field :price_high_night, as: :string, value: (@listing.price_high_night > 0 ? @listing.price_high_night : "" ), placeholder: t('activerecord.placeholders.listing.price_high_night')
-          = f.input_field :price_high_night, as: :string, placeholder: t('activerecord.placeholders.listing.price_high_night')
+          /= f.input_field :price_high_dinner, as: :string, value: (@listing.price_high_dinner > 0 ? @listing.price_high_dinner : "" ), placeholder: t('activerecord.placeholders.listing.price_high_dinner')
+          = f.input_field :price_high_dinner, as: :string, placeholder: t('activerecord.placeholders.listing.price_high_dinner')
   /.row.row-space-5.row-space-top-5.row-table
   /  .col-xs-4.text-right.col-middle
   /    .h4.text-light
@@ -304,11 +307,11 @@
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
-        = Listing.human_attribute_name :english_message
+        = Listing.human_attribute_name :english_messages
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = collection_check_boxes nil, :english_messages, EnglishMessage.all, :id, (locale == I18n.default_locale ? :name : :name_en), checked: @listing.english_messages.collect {|em| em.id} do |b|
+          = collection_check_boxes nil, :english_messages, EnglishMessage.all, :id, (locale == :ja ? :name : :name_en), checked: @listing.english_messages.nil? ? nil : @listing.english_messages.collect {|em| em.id} do |b|
             = b.label { b.check_box + b.text }
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
@@ -317,7 +320,7 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = collection_select :info_admin_id, nil, InfoAdmin.all, :id, (locale == I18n.default_locale ? :name : :name_en)
+          = collection_select :info_admin_id, nil, InfoAdmin.all, :id, (locale == :ja ? :name : :name_en), selected: @listing.info_admin_id
   .row
     .col-xs-9.col-offset-3.text-reset-center
       - if 'edit' == controller.action_name

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160514091132) do
+ActiveRecord::Schema.define(version: 20160514180058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,6 +127,13 @@ ActiveRecord::Schema.define(version: 20160514091132) do
     t.string   "name_en"
   end
 
+  create_table "english_messages_listings", force: :cascade do |t|
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "listing_id",         null: false
+    t.integer  "english_message_id", null: false
+  end
+
   create_table "englishes", force: :cascade do |t|
     t.string "name",    null: false
     t.string "name_en", null: false
@@ -209,8 +216,8 @@ ActiveRecord::Schema.define(version: 20160514091132) do
     t.string   "visit_benefits"
     t.string   "visit_benefits_another"
     t.string   "title_en"
-    t.integer  "price_low_night"
-    t.integer  "price_high_night"
+    t.integer  "price_low_dinner"
+    t.integer  "price_high_dinner"
     t.integer  "english_message_id"
     t.integer  "info_admin_id"
     t.string   "link_tabelog"

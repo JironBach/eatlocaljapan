@@ -53,6 +53,7 @@ en:
         relationship: Relationship
       listing:
         title: Title
+        title_en: Title(English)
         shop_category: Category
         shop_categories: Category
         shop_service: Service
@@ -94,14 +95,15 @@ en:
         recommended_en: Chef's recommendation
         visit_benefits: Visit Benefits
         visit_benefits_another: Visit Benefits
-        price_low_night: Pricing low dinner
-        price_high_night: Pricing high dinner
-        price_zone: Pricing zone lanch
-        price_zone_night: Pricing zone dinner
+        price_low_dinner: Pricing low dinner
+        price_high_dinner: Pricing high dinner
         link_tabelog: tabelog
         link_yelp: yelp
         link_tripadvisor: trip advisor
         english_messages: Available English message
+        price_range: Pricing range lanch
+        price_range_dinner: Pricing range dinner
+        info_admin_id: info admin
       listing_image:
         image: Image of Listing
         caption: Caption of Listing Image
@@ -199,6 +201,7 @@ en:
     placeholders:
       listing:
         title: e.g. Listing for everybody
+        title_en: e.g. Listing for everybody
         price: e.g. 5000
         longitude: Longitude
         latitude: Latitude
@@ -213,8 +216,10 @@ en:
         business_hours_remarks: Business hours remarks
         shop_description: Shop description
         shop_description_en: Shop description
-        price_low: Price low
-        price_high: Price high
+        price_low: Price low (lanch)
+        price_high: Price high (lanch)
+        price_low_dinner: Price low (dinner)
+        price_high_dinner: Price high (dinner)
         address: Address
         tel: Tel
         url: Web Site
@@ -223,6 +228,9 @@ en:
         recommended_en: Recommended
         visit_benefits: Visit Benefits
         visit_benefits_another: Visit Benefits
+        link_tabelog: tabelog
+        link_yelp: yelp
+        link_tripadvisor: tripadvisor
       listing_image:
         caption: e.g. Like this....
       confection:

@@ -45,6 +45,7 @@
             .row
               .col-xs-11
                 = text_field_tag :title_en, listing.title_en, readonly: :true
+        hr
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -53,6 +54,7 @@
             .row
               .col-xs-11
                 = listing.shop_categories.pluck((locale == :ja ? :name : :name_en)).join(", ")
+        hr
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -61,6 +63,7 @@
             .row
               .col-xs-11
                 = listing.shop_services.pluck((locale == :ja ? :name : :name_en)).join(", ")
+        hr
         /.row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -110,12 +113,12 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = Smoking.where(id: listing.smoking_id).pluck((locale == I18n.default_locale ? :name : :name_en)).join()
+                = Smoking.where(id: listing.smoking_id).pluck((locale == :ja ? :name : :name_en)).join()
         .row
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
-              = Listing.human_attribute_name :english
+              = Listing.human_attribute_name :english_id
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
@@ -131,7 +134,7 @@
                   - business_hour = listing.business_hours[wday]
                   - if business_hour.is_open
                     p
-                      - if locale == I18n.default_locale
+                      - if locale == :ja
                         = %w(日 月 火 水 木 金 土)[wday]
                       - else
                         = %w(Sun Mon Tue Wed Thu Fri Sat)[wday]
@@ -164,7 +167,7 @@
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
-              = Listing.human_attribute_name :price_zone
+              = Listing.human_attribute_name :price_range
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
@@ -174,13 +177,13 @@
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
-              = Listing.human_attribute_name :price_zone_night
+              = Listing.human_attribute_name :price_range_dinner
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :price_low_night, listing.price_low_night, readonly: :true
+                = text_field_tag :price_low_dinner, listing.price_low_dinner, readonly: :true
                 | -
-                = text_field_tag :price_high_night, listing.price_high_night, readonly: :true
+                = text_field_tag :price_high_dinner, listing.price_high_dinner, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -196,7 +199,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :url, listing.url, readonly: :true
+                = link_to listing.url, listing.url
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -204,7 +207,8 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :link_tabelog, listing.link_tabelog, readonly: :true
+                =
+                = link_to image_tag('logo_tabelog.svg'), listing.link_tabelog
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -212,7 +216,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :link_yelp, listing.link_yelp, readonly: :true
+                = link_to image_tag('yelp_logo.png'), listing.link_yelp
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -220,7 +224,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :link_tripadvisor, listing.link_tripadvisor, readonly: :true
+                = link_to image_tag('trip_logo.svg'), listing.link_tripadvisor
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -256,7 +260,7 @@
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
-              = Listing.human_attribute_name :english_message
+              = Listing.human_attribute_name :english_messages
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
@@ -268,4 +272,4 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = Smoking.where(id: listing.info_admin_id).pluck((locale == I18n.default_locale ? :name : :name_en)).join()
+                = Smoking.where(id: listing.info_admin_id).pluck((locale == :ja ? :name : :name_en)).join()
