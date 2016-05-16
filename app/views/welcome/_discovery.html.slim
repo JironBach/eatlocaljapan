@@ -1,21 +1,4 @@
-= link_to locale == :ja ? '詳細検索' : 'detail search', i18n_url_for(:controller => 'listings', :action => 'search_detail', :locale => locale)
-= simple_form_for(:search, url: i18n_url_for(:controller =>'listings', :action => 'search', :locale => locale), html: { method: 'get', id: 'search_form', class: 'hero-searchForm'}) do |f|
-  = f.hidden_field :where, value: 'top'
-  .card
-    .discovery-container
-      .discovery-section.page-container.page-container-no-padding.row-space-6
-    div align="left"
-      .row.row-space-5.row-space-top-5.row-table
-        .col-xs-4.text-right.col-middle
-          .h4.text-light
-            = Listing.human_attribute_name :shop_category
-        .col-xs-8.fieldset.col-middle
-          .row
-            .col-xs-11
-              = collection_check_boxes nil, :shop_categories, ShopCategory.all, :id, (locale == :ja ? :name : :name_en) do |b|
-                = b.label { b.check_box + b.text }
-  = button_tag(t('.submit'), type: "submit", class: "btn btn-primary btn-large", id: "submit_location")
-.card
+
   .discovery-container
     .discovery-section.page-container.page-container-no-padding.row-space-6
       .section-intro.text-center.row-space-6.row-space-top-8
