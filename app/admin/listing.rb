@@ -52,6 +52,7 @@ ActiveAdmin.register Listing do
     column I18n.t('activerecord.attributes.listing.recommended_en'), :recommended_en
     column I18n.t('activerecord.attributes.listing.visit_benefits'), :visit_benefits
     column I18n.t('activerecord.attributes.listing.visit_benefits_another'), :visit_benefits_another
+    column I18n.t('activerecord.attributes.listing.open'), :open
     actions
   end
 
@@ -154,6 +155,9 @@ ActiveAdmin.register Listing do
       end
       row I18n.t('activerecord.attributes.listing.visit_benefits_another') do
         resource.visit_benefits_another
+      end
+      row I18n.t('activerecord.attributes.listing.open') do
+        resource.open
       end
     end
   end
