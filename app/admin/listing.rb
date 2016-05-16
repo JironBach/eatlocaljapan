@@ -80,6 +80,8 @@ ActiveAdmin.register Listing do
       f.input :recommended_en
       f.input :visit_benefits
       f.input :visit_benefits_another
+
+      f.input :open
     end
     f.actions
   end

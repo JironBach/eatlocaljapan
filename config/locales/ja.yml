@@ -104,6 +104,7 @@ ja:
         price_range: 価格帯（ランチ）
         price_range_dinner: 価格帯（ディナー）
         info_admin_id: 店舗情報管理者
+        open: 公開
       listing_image:
         image: 店舗情報のイメージ画像
         caption: 写真の説明
@@ -227,6 +228,7 @@ ja:
         link_tabelog: 食べログ
         link_yelp: yelp
         link_tripadvisor: トリップアドバイザー
+        open: 公開
       listing_image:
         caption: "例) こんな感じです"
       confection:
