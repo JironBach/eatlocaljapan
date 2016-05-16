@@ -208,8 +208,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                =
-                = link_to image_tag('logo_tabelog.svg'), listing.link_tabelog
+                = link_to image_tag('logo_tabelog.svg'), listing.link_tabelog unless listing.link_tabelog.nil?
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -217,7 +216,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = link_to image_tag('yelp_logo.png'), listing.link_yelp
+                = link_to image_tag('yelp_logo.png'), listing.link_yelp unless listing.link_yelp.nil?
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -225,7 +224,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = link_to image_tag('trip_logo.svg'), listing.link_tripadvisor
+                = link_to image_tag('trip_logo.svg'), listing.link_tripadvisor unless listing.link_tripadvisor.nil?
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
