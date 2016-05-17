@@ -87,6 +87,8 @@ ja:
         shop_description_en: レストランの説明　英語
         price_low: 価格　低　ランチ
         price_high: 価格　高　ランチ
+        price_low_dinner: 価格　低　ディナー
+        price_high_dinner: 価格　高　ディナー
         address: 住所
         tel: 電話番号
         url: 自社WEBサイト
