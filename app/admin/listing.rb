@@ -22,6 +22,8 @@ ActiveAdmin.register Listing do
       link_to id.id, admin_listing_path(id)
     end
     column I18n.t('activerecord.attributes.listing.title'), :title
+    column I18n.t('activerecord.attributes.listing.open'), :open
+
     column I18n.t('activerecord.attributes.listing.shop_categories') do |sc|
       ShopCategory.where(id: sc.shop_categories).all.pluck(:name).join(', ')
     end
@@ -52,12 +54,13 @@ ActiveAdmin.register Listing do
     column I18n.t('activerecord.attributes.listing.recommended_en'), :recommended_en
     column I18n.t('activerecord.attributes.listing.visit_benefits'), :visit_benefits
     column I18n.t('activerecord.attributes.listing.visit_benefits_another'), :visit_benefits_another
-    column I18n.t('activerecord.attributes.listing.open'), :open
     actions
   end
 
   form do |f|
     f.inputs "店舗情報の詳細" do
+      f.input :open
+
       f.input :title
       f.input :shop_categories, :as => :check_boxes, collection: ShopCategory.all
       f.input :shop_services, :as => :check_boxes, collection: ShopService.all
@@ -81,8 +84,6 @@ ActiveAdmin.register Listing do
       f.input :recommended_en
       f.input :visit_benefits
       f.input :visit_benefits_another
-
-      f.input :open
     end
     f.actions
   end
@@ -91,6 +92,9 @@ ActiveAdmin.register Listing do
     attributes_table do
       row I18n.t('activerecord.attributes.listing.title') do
         resource.title
+      end
+      row I18n.t('activerecord.attributes.listing.open') do
+        resource.open
       end
       row I18n.t('activerecord.attributes.listing.shop_categories') do
         ShopCategory.where(id: resource.shop_categories).all.pluck(:name).join(', ')
@@ -155,9 +159,6 @@ ActiveAdmin.register Listing do
       end
       row I18n.t('activerecord.attributes.listing.visit_benefits_another') do
         resource.visit_benefits_another
-      end
-      row I18n.t('activerecord.attributes.listing.open') do
-        resource.open
       end
     end
   end
