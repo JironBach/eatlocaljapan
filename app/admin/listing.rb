@@ -57,7 +57,9 @@ ActiveAdmin.register Listing do
     column I18n.t('activerecord.attributes.listing.recommended_en'), :recommended_en
     column I18n.t('activerecord.attributes.listing.visit_benefits'), :visit_benefits
     column I18n.t('activerecord.attributes.listing.visit_benefits_another'), :visit_benefits_another
-    column I18n.t('activerecord.attributes.listing.english_messages'), :english_messages
+    column I18n.t('activerecord.attributes.listing.english_messages'), sortable: :english_message_id do |em|
+      EnglishMessage.where(id: em.english_messages).all.pluck(:name).join(', ')
+    end
     column I18n.t('activerecord.attributes.listing.info_admin_id') do |i|
       InfoAdmin.find(i.info_admin_id).name unless i.info_admin_id.nil?
     end
@@ -188,7 +190,7 @@ ActiveAdmin.register Listing do
         resource.visit_benefits_another
       end
       row I18n.t('activerecord.attributes.listing.english_message') do
-        resource.english_messages
+        EnglishMessage.where(id: resource.english_messages).all.pluck(:name).join(', ')
       end
       row I18n.t('activerecord.attributes.listing.info_admin_id') do
         InfoAdmin.find(resource.info_admin_id).name
