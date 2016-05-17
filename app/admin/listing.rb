@@ -99,7 +99,7 @@ ActiveAdmin.register Listing do
       f.input :recommended_en
       f.input :visit_benefits
       f.input :visit_benefits_another
-      f.input :english_messages
+      f.input :english_messages, :as => :check_boxes, collection: EnglishMessage.all
       f.input :info_admin_id, :as => :select, collection: InfoAdmin.all
       f.input :link_tabelog
       f.input :link_yelp
