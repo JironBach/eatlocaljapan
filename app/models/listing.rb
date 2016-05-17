@@ -88,7 +88,6 @@ class Listing < ActiveRecord::Base
   has_and_belongs_to_many :englishes, dependent: :destroy
   has_many :business_hours, dependent: :destroy
   has_and_belongs_to_many :english_messages
-  has_one :info_admin
 
   mount_uploader :cover_image, DefaultImageUploader
 
