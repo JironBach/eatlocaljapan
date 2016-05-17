@@ -52,7 +52,7 @@ ActiveAdmin.register Listing do
     column I18n.t('activerecord.attributes.listing.price_high_dinner'), :price_high_dinner
     column I18n.t('activerecord.attributes.listing.tel'), :tel
     column I18n.t('activerecord.attributes.listing.url'), :url
-    column I18n.t('activerecord.attributes.listing.review_url'), :review_url
+    #column I18n.t('activerecord.attributes.listing.review_url'), :review_url
     column I18n.t('activerecord.attributes.listing.recommended'), :recommended
     column I18n.t('activerecord.attributes.listing.recommended_en'), :recommended_en
     column I18n.t('activerecord.attributes.listing.visit_benefits'), :visit_benefits
@@ -94,7 +94,7 @@ ActiveAdmin.register Listing do
       f.input :price_high_dinner
       f.input :tel
       f.input :url
-      f.input :review_url
+      #f.input :review_url
       f.input :recommended
       f.input :recommended_en
       f.input :visit_benefits
@@ -174,9 +174,9 @@ ActiveAdmin.register Listing do
       row I18n.t('activerecord.attributes.listing.url') do
         resource.url
       end
-      row I18n.t('activerecord.attributes.listing.review_url') do
-        resource.review_url
-      end
+      #row I18n.t('activerecord.attributes.listing.review_url') do
+      #  resource.review_url
+      #end
       row I18n.t('activerecord.attributes.listing.recommended') do
         resource.recommended
       end
@@ -189,7 +189,7 @@ ActiveAdmin.register Listing do
       row I18n.t('activerecord.attributes.listing.visit_benefits_another') do
         resource.visit_benefits_another
       end
-      row I18n.t('activerecord.attributes.listing.english_message') do
+      row I18n.t('activerecord.attributes.listing.english_messages') do
         EnglishMessage.where(id: resource.english_messages).all.pluck(:name).join(', ')
       end
       row I18n.t('activerecord.attributes.listing.info_admin_id') do
