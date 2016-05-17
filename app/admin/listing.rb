@@ -191,7 +191,7 @@ ActiveAdmin.register Listing do
         resource.english_messages
       end
       row I18n.t('activerecord.attributes.listing.info_admin_id') do
-        InfoAdmin.find(resource.info_admimn_id).name
+        InfoAdmin.find(resource.info_admin_id).name
       end
       row I18n.t('activerecord.attributes.listing.link_tabelog') do
         resource.link_tabelog
