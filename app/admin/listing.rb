@@ -59,6 +59,9 @@ ActiveAdmin.register Listing do
     column I18n.t('activerecord.attributes.listing.visit_benefits_another'), :visit_benefits_another
     column I18n.t('activerecord.attributes.listing.english_messages'), :english_messages
     column I18n.t('activerecord.attributes.listing.info_admin'), :info_admin
+    column I18n.t('activerecord.attributes.listing.link_tabelog'), :link_tabelog
+    column I18n.t('activerecord.attributes.listing.link_yelp'), :link_yelp
+    column I18n.t('activerecord.attributes.listing.link_tripadvisor'), :link_tripadvisor
     actions
   end
 
@@ -93,7 +96,10 @@ ActiveAdmin.register Listing do
       f.input :visit_benefits
       f.input :visit_benefits_another
       f.input :english_messages
-      f.input :info_admin_id
+      f.input :info_admin_id, :as => :select, collection: InfoAdmin.all
+      f.input :link_tabelog
+      f.input :link_yelp
+      f.input :link_tripadvisor
     end
     f.actions
   end
@@ -184,6 +190,15 @@ ActiveAdmin.register Listing do
       end
       row I18n.t('activerecord.attributes.listing.info_admin') do
         resource.info_admin
+      end
+      row I18n.t('activerecord.attributes.listing.link_tabelog') do
+        resource.link_tabelog
+      end
+      row I18n.t('activerecord.attributes.listing.link_yelp') do
+        resource.link_yelp
+      end
+      row I18n.t('activerecord.attributes.listing.link_tripadvisor') do
+        resource.link_tripadvisor
       end
     end
   end
