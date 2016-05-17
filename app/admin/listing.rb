@@ -13,7 +13,7 @@ ActiveAdmin.register Listing do
 #   permitted
 # end
 
-  permit_params :user_id, :ave_total, :ave_accuracy, :ave_communication, :ave_cleanliness, :ave_location, :ave_check_in, :ave_cost_performance, :open, :zipcode, :location, :longitude, :latitude, :delivery_flg, :price, :description, :title, :capacity, :direction, :cover_image_caption, :business_hours_remarks, :shop_description, :shop_description_en, :price_low, :price_high, :tel, :url, :review_url, :recommended, :recommended_en, :visit_benefits, :visit_benefits_another, :smoking_id,
+  permit_params :user_id, :open, :ave_total, :ave_accuracy, :ave_communication, :ave_cleanliness, :ave_location, :ave_check_in, :ave_cost_performance, :open, :zipcode, :location, :longitude, :latitude, :delivery_flg, :price, :description, :title, :capacity, :direction, :cover_image_caption, :business_hours_remarks, :shop_description, :shop_description_en, :price_low, :price_high, :tel, :url, :review_url, :recommended, :recommended_en, :visit_benefits, :visit_benefits_another, :smoking_id,
     english_ids: [], shop_category_ids: [], shop_service_ids: []
 
   index do
@@ -59,9 +59,9 @@ ActiveAdmin.register Listing do
 
   form do |f|
     f.inputs "店舗情報の詳細" do
+      f.input :title
       f.input :open
 
-      f.input :title
       f.input :shop_categories, :as => :check_boxes, collection: ShopCategory.all
       f.input :shop_services, :as => :check_boxes, collection: ShopService.all
       f.input :description
