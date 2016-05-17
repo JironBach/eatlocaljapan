@@ -63,7 +63,7 @@ ActiveAdmin.register Listing do
     end
     column I18n.t('activerecord.attributes.listing.link_tabelog'), :link_tabelog
     column I18n.t('activerecord.attributes.listing.link_yelp'), :link_yelp
-    column I18n.t('activerecord.attributes.listing.link_tripadvisor'), :link_trip
+    column I18n.t('activerecord.attributes.listing.link_tripadvisor'), :link_tripadvisor
     actions
   end
 
