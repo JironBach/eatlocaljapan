@@ -58,10 +58,10 @@ ActiveAdmin.register Listing do
     column I18n.t('activerecord.attributes.listing.visit_benefits'), :visit_benefits
     column I18n.t('activerecord.attributes.listing.visit_benefits_another'), :visit_benefits_another
     column I18n.t('activerecord.attributes.listing.english_messages'), :english_messages
-    column I18n.t('activerecord.attributes.listing.info_admin'), :info_admin
+    column I18n.t('activerecord.attributes.listing.info_admin_id'), :info_admin_id
     column I18n.t('activerecord.attributes.listing.link_tabelog'), :link_tabelog
     column I18n.t('activerecord.attributes.listing.link_yelp'), :link_yelp
-    column I18n.t('activerecord.attributes.listing.link_tripadvisor'), :link_tripadvisor
+    column I18n.t('activerecord.attributes.listing.link_tripadvisor'), :link_trip
     actions
   end
 
@@ -188,8 +188,8 @@ ActiveAdmin.register Listing do
       row I18n.t('activerecord.attributes.listing.english_message') do
         resource.english_messages
       end
-      row I18n.t('activerecord.attributes.listing.info_admin') do
-        resource.info_admin
+      row I18n.t('activerecord.attributes.listing.info_admin_id') do
+        resource.info_admin_id
       end
       row I18n.t('activerecord.attributes.listing.link_tabelog') do
         resource.link_tabelog
