@@ -87,6 +87,8 @@ en:
         shop_description_en: About the restaurant
         price_low: Pricing low lanch
         price_high: Pricing high lanch
+        price_low_dinner: Pricing low dinner
+        price_high_dinner: Pricing high dinner
         address: Address
         tel: Telephone
         url: Restaurant Website
@@ -104,6 +106,7 @@ en:
         price_range: Pricing range lanch
         price_range_dinner: Pricing range dinner
         info_admin_id: info admin
+        open: view
       listing_image:
         image: Image of Listing
         caption: Caption of Listing Image
@@ -231,6 +234,7 @@ en:
         link_tabelog: tabelog
         link_yelp: yelp
         link_tripadvisor: tripadvisor
+        open: view
       listing_image:
         caption: e.g. Like this....
       confection:

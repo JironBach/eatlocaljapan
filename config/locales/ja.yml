@@ -11,7 +11,7 @@ ja:
       listing: 店舗情報
       listing_image: 店舗情報のイメージ画像
       listing_pv: 店舗情報の閲覧数
-      listing_video: 店舗情報のビデオ
+      listing_video: ビデオ
       message: メッセージ
       message_thread: メッセージスレッド
       message_thread_user: メッセージスレッドのユーザー
@@ -87,6 +87,8 @@ ja:
         shop_description_en: レストランの説明　英語
         price_low: 価格　低　ランチ
         price_high: 価格　高　ランチ
+        price_low_dinner: 価格　低　ディナー
+        price_high_dinner: 価格　高　ディナー
         address: 住所
         tel: 電話番号
         url: 自社WEBサイト
@@ -104,6 +106,7 @@ ja:
         price_range: 価格帯（ランチ）
         price_range_dinner: 価格帯（ディナー）
         info_admin_id: 店舗情報管理者
+        open: 公開
       listing_image:
         image: 店舗情報のイメージ画像
         caption: 写真の説明
@@ -227,6 +230,7 @@ ja:
         link_tabelog: 食べログ
         link_yelp: yelp
         link_tripadvisor: トリップアドバイザー
+        open: 公開
       listing_image:
         caption: "例) こんな感じです"
       confection:

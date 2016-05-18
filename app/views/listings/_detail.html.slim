@@ -272,4 +272,4 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = Smoking.where(id: listing.info_admin_id).pluck((locale == :ja ? :name : :name_en)).join()
+                = InfoAdmin.where(id: listing.info_admin_id).pluck((locale == :ja ? :name : :name_en)).join()
