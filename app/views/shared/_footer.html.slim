@@ -1,60 +1,17 @@
 footer
   .footer-content-container
     .row
-      .col-sm-3.col-sm-offset-2.hide--sp
+      .col-sm-12.hide--sp.text-center
         h5
-          = t '.corporate.title'
+          = '運営会社'
         ul.list-unstyled
           li
-            = link_to t('.corporate.about'), '#'
+            = link_to 'このサービスについて', '#'
           li
-            = link_to t('.corporate.blog'), '#'
+            = link_to 'お店の掲載について', '#'
           li
-            = link_to t('.corporate.help'), '#'
+            = link_to 'プライバシーポリシー', '#'
           li
-            = link_to t('.corporate.privacy'), '#'
-          li
-            = link_to t('.corporate.terms_of_use'), '#'
-      .col-sm-3.hide--sp
-        h5
-          = t '.recommend.title'
-        ul.list-unstyled
-          li
-            = link_to t('.recommend.one'), '#'
-          li
-            = link_to t('.recommend.two'), '#'
-          li
-            = link_to t('.recommend.three'), '#'
-          li
-            = link_to t('.recommend.four'), '#'
-          li
-            = link_to t('.recommend.five'), '#'
-      .col-sm-3.hide--sp
-        h5
-          = t '.for_hosts.title'
-        ul.list-unstyled
-          li
-            = link_to t('.for_hosts.one'), '#'
-          li
-            = link_to t('.for_hosts.two'), '#'
-          li
-            = link_to t('.for_hosts.three'), '#'
-          li
-            = link_to t('.for_hosts.four'), '#'
-          li
-            = link_to t('.for_hosts.five'), '#'
-      .col-sm-12.row-space-4.show--sp
-        ul.list-layout.list-inline.text-center.h5.footer-links--sp
-          li
-            = link_to t('.corporate.about'), "#", class: "link-contrast"
-          li
-            = link_to t('.corporate.blog'), "#", class: "link-contrast"
-          li
-            = link_to t('.corporate.help'), "#", class: "link-contrast"
-          li
-            = link_to t('.corporate.privacy'), "#", class: "link-contrast"
-          li
-            = link_to t('.corporate.terms_of_use'), "#", class: "link-contrast"
     hr.hide--sp
     .sns-container.text-center
       h5.hide--sp
@@ -65,15 +22,6 @@ footer
             i.fa.fa-facebook
         li
           = link_to '#' do
-            i.fa.fa-google-plus
-        li
-          = link_to '#' do
             i.fa.fa-twitter
-        li
-          = link_to '#' do
-            i.fa.fa-instagram
-        li
-          = link_to '#' do
-            i.fa.fa-pinterest
     #copyright.row-space-top-2.text-center
-      = t '.copyright'
+      = link_to '株式会社BizitJapan', 'http://www.bizitjapan.com/', target: "_blank"
