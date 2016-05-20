@@ -213,7 +213,11 @@ class ListingsController < ApplicationController
     #listings = Listing.search(search_params).opened.page(params[:page])
     where = Array.new
     where_id = Array.new
-    shop_categories = params[:shop_categories].compact.delete_if(&:empty?) unless params[:shop_categories].blank?
+    if params[:shop_categories].class == String
+      shop_categories = params[:shop_categories] unless params[:shop_categories].blank?
+    else
+      shop_categories = params[:shop_categories].compact.delete_if(&:empty?) unless params[:shop_categories].blank?
+    end
     where_id.push(ActiveRecord::Base.send(:sanitize_sql_array, ["select listing_id from listings_shop_categories where shop_category_id in (:ids)", ids: shop_categories])) unless shop_categories.blank?
     shop_services = params[:shop_services].compact.delete_if(&:empty?) unless params[:shop_services].blank?
     where_id.push(ActiveRecord::Base.send(:sanitize_sql_array, ["select listing_id from listings_shop_services where shop_service_id in (:ids)", ids: shop_services])) unless shop_services.blank?
@@ -222,9 +226,9 @@ class ListingsController < ApplicationController
     where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["smoking_id in (:ids)", ids: params[:smoking_id]])) unless params[:smoking_id].blank?
     where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["english_id = ?", params[:english_id]])) unless params[:english_id].blank?
     where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["price_high <= ?", params[:price]])) unless params[:price].blank?
-    location = params[:location]
-    location.gsub(/\\/, "\\\\").gsub(/%/,"\\%").gsub(/_/,"\\_") unless location.blank?
-    where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["direction like ?", "%#{location}%"])) unless location.blank?
+    pref_id = params[:prefectures]
+    pref = Prefecture.find(pref_id)
+    where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["location like ? or location like ?", "%#{pref.name}%", "%#{pref.name_en}"])) unless pref.blank?
     where.push("open = true")
     sql += "where " + where.join(" and ") unless where.blank?
     listings = ActiveRecord::Base.connection.execute(sql).to_a

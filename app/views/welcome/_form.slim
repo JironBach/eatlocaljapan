@@ -1,15 +1,15 @@
 = simple_form_for(:search, url: i18n_url_for(:controller =>'listings', :action => 'search', :locale => locale), html: { method: 'get', id: 'search_form', class: 'hero-searchForm'}) do |f|
   = f.hidden_field :where, value: 'top'
 
-.search_area
-  .search_area_content
-    .col-lg-5.col-md-4.mgnnolr
-      = collection_select nil, :shop_categories, ShopCategory.all, :id, (locale == :ja ? :name : :name_en), include_blank: t('.category') do |b|
-        = b.label { b.select + b.text }
-    .col-lg-4.col-md-4.mgnnolr
-      = collection_select nil, :prefectures, Prefecture.all, :id, (locale == :ja ? :name : :name_en), include_blank: t('.prefecture') do |b|
-        = b.label { b.select + b.text }
-    .col-lg-3.col-md-4.mgnnolr
-      = button_tag(t('.submit'), type: "submit", class: "btnb btn-primary btn-large bdrn pull-left", id: "submit_location")
-      .btnb.btn_bl
-        = link_to locale == :ja ? '詳細検索' : 'detail search', i18n_url_for(:controller => 'listings', :action => 'search_detail', :locale => locale)
+  .search_area
+    .search_area_content
+      .col-lg-5.col-md-4.mgnnolr
+        = collection_select nil, :shop_categories, ShopCategory.all, :id, (locale == :ja ? :name : :name_en), include_blank: t('.category') do |b|
+          = b.label { b.select + b.text }
+      .col-lg-4.col-md-4.mgnnolr
+        = collection_select nil, :prefectures, Prefecture.all, :id, (locale == :ja ? :name : :name_en), include_blank: t('.prefecture') do |b|
+          = b.label { b.select + b.text }
+      .col-lg-3.col-md-4.mgnnolr
+        = button_tag(t('.submit'), type: "submit", class: "btnb btn-primary btn-large bdrn pull-left", id: "submit_location")
+        .btnb.btn_bl
+          = link_to locale == :ja ? '詳細検索' : 'detail search', i18n_url_for(:controller => 'listings', :action => 'search_detail', :locale => locale)
