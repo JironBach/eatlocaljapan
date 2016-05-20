@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
+    EasyTranslate.api_key = ENV['GOOGLE_TRANSLATE_KEY']
   end
 
   def default_url_options(options={})

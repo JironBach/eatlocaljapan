@@ -62,31 +62,23 @@ gem 'fog', '1.28.0'
 
 # Pagenation
 gem 'kaminari', '0.16.3'
-
 # check performance
 gem 'newrelic_rpm', '3.11.1.284'
-
 # constant value, settings
 gem 'rails_config', '0.4.2'
-
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '3.1.10'
-
 # app server
 gem 'puma', '2.11.1'
-
 # Annotation of Schema
 gem 'annotate', '2.6.8'
-
 # meta tag
 gem 'meta-tags', '2.0.0'
-
 # sitemap
 gem 'sitemap_generator', '5.0.5'
-
 gem 'seed-fu'
-
 gem 'syck'
+gem 'easy_translate'
 
 # Use Capistrano for deployment
 group :development, :staging, :production do
