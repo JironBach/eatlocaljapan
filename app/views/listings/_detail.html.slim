@@ -72,7 +72,8 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_area_tag :description, locale == :ja ? listing.shop_description : listing.shop_description_en, readonly: :true
+                - shop_description_en = EasyTranslate.translate(listing.description, to: :en) if listing.description_en.blank?
+                = text_area_tag :description, locale == :ja ? listing.shop_description : shop_description_en, readonly: :true
         /.row.row-space-5.row-space-top-5.row-table
         /  .col-xs-4.text-right.col-middle
         /    .h4.text-light
@@ -98,7 +99,8 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_field_tag :location, locale == :ja ? listing.location : listing.location_en, readonly: :true
+                - location_en = EasyTranslate.translate(listing.location, to: :en) if listing.location_en.blank?
+                = text_field_tag :location, locale == :ja ? listing.location : location_en, readonly: :true
         /.row.row-space-5.row-space-top-5.row-table
         /  .col-xs-4.text-right.col-middle
         /    .h4.text-light
@@ -232,7 +234,8 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_area_tag :recommended, locale == :ja ? listing.recommended : listing.recommended_en, readonly: :true
+                - recommended_en = EasyTranslate.translate(listing.recommended, to: :en) if listing.recommended_en.blank?
+                = text_area_tag :recommended, locale == :ja ? listing.recommended : recommended_en, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -240,7 +243,8 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_area_tag :visit_benefits, locale == :ja ? listing.visit_benefits : listing.visit_benefits_en, readonly: :true
+                - visit_benefits_en = EasyTranslate.translate(listing.visit_benefits, to: :en) if listing.location_en.blank?
+                = text_area_tag :visit_benefits, locale == :ja ? listing.visit_benefits : visit_benefits_en, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -248,7 +252,8 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_area_tag :visit_benefits_another, locale == :ja ? listing.visit_benefits_another : listing.visit_benefits_another_en, readonly: :true
+                - visit_benefits_another_en = EasyTranslate.translate(listing.visit_benefits_another, to: :en) if listing.visit_benefits_another_en.blank?
+                = text_area_tag :visit_benefits_another, locale == :ja ? listing.visit_benefits_another : visit_benefits_another_en, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light

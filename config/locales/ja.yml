@@ -52,8 +52,8 @@ ja:
         email: メールアドレス
         relationship: 関係性
       listing:
-        title: 店舗情報のタイトル
-        title_en: 店舗情報のタイトル（英語）
+        title: 店舗名
+        title_en: 店舗名（英語）
         shop_category: カテゴリー
         shop_categories: カテゴリー
         shop_service: サービス
@@ -68,7 +68,7 @@ ja:
         description_en: 店舗情報の説明（英語）
         price: 料金
         capacity: 最大可能人数
-        title: 店舗情報のタイトル
+        title: 店舗名
         direction: 店舗までの道順の説明
         cover_image: 店舗のカバー画像
         cover_image_caption: 店舗のカバーの説明文

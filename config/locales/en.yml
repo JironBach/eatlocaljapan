@@ -213,7 +213,7 @@ en:
         longitude: Longitude
         latitude: Latitude
         description: e.g. This is a good listing even for beginner. Join us inviting friends.
-        description_en: Write shop information English.
+        description_en: Shop name.
         zipcode: "e.g. 012-3456"
         location: Input zipcode, and the address is automatically show up.
         location_en: Input address in English

@@ -38,6 +38,13 @@ class ListingsController < ApplicationController
   # POST /listings.json
   def create
     @listing = Listing.new(listing_params)
+    @listing.description_en = EasyTranslate.translate(@listing.description, to: :en) if @listing.description_en.blank?
+    @listing.shop_description_en = EasyTranslate.translate(@listing.shop_description, to: :en) if @listing.shop_description_en.blank?
+    @listing.description_en = EasyTranslate.translate(@listing.description, to: :en) if @listing.description_en.blank?
+    @listing.location_en = EasyTranslate.translate(@listing.location, to: :en) if @listing.location_en.blank?
+    @listing.recommended_en = EasyTranslate.translate(@listing.recommended, to: :en) if @listing.recommended_en.blank?
+    @listing.visit_benefits_en = EasyTranslate.translate(@listing.visit_benefits, to: :en) if @listing.visit_benefits_en.blank?
+    @listing.visit_benefits_another_en = EasyTranslate.translate(@listing.visit_benefits_another, to: :en) if @listing.visit_benefits_another_en.blank?
     if @listing.valid?
       @listing.save!
       # 緯度・経度
@@ -112,6 +119,7 @@ class ListingsController < ApplicationController
   def update
     @listing = Listing.find(params[:id])
     @listing.update_attributes(listing_params)
+    # 下記更新できいない原因不明！！！
     @listing.description_en = EasyTranslate.translate(@listing.description, to: :en) if @listing.description_en.blank?
     @listing.shop_description_en = EasyTranslate.translate(@listing.shop_description, to: :en) if @listing.shop_description_en.blank?
     @listing.description_en = EasyTranslate.translate(@listing.description, to: :en) if @listing.description_en.blank?
@@ -119,10 +127,9 @@ class ListingsController < ApplicationController
     @listing.recommended_en = EasyTranslate.translate(@listing.recommended, to: :en) if @listing.recommended_en.blank?
     @listing.visit_benefits_en = EasyTranslate.translate(@listing.visit_benefits, to: :en) if @listing.visit_benefits_en.blank?
     @listing.visit_benefits_another_en = EasyTranslate.translate(@listing.visit_benefits_another, to: :en) if @listing.visit_benefits_another_en.blank?
-    logger.debug("JironBach:@listing=#{@listing.inspect}")
     if @listing.valid?
       @listing.save!
-      logger.debug("JironBach:@listing_errors=#{@listing.errors.inspect}")
+      logger.debug("JironBach:@listing=#{@listing.inspect}")
       # 緯度・経度
       @listing.set_lon_lat
       # カテゴリー
