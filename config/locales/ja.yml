@@ -891,6 +891,8 @@ ja:
         schedule: 日時
         location: 探す場所
       submit: 検索
+      category: カテゴリ
+      prefecture: 地域
     discovery:
       title: ディスカバリー
       note: いろいろな候補を見ていかれませんか？

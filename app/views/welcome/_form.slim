@@ -3,10 +3,10 @@
 
 .row
   .col-lg-4.mgnnor
-    = collection_select nil, :shop_categories, ShopCategory.all, :id, (locale == :ja ? :name : :name_en), include_blank: 'カテゴリ' do |b|
+    = collection_select nil, :shop_categories, ShopCategory.all, :id, (locale == :ja ? :name : :name_en), include_blank: t('.category') do |b|
       = b.label { b.select + b.text }
   .col-lg-5.mgnnolr
-    = collection_select nil, :shop_categories, ShopCategory.all, :id, (locale == :ja ? :name : :name_en), include_blank: 'カテゴリ' do |b|
+    = collection_select nil, :prefectures, Prefecture.all, :id, (locale == :ja ? :name : :name_en), include_blank: t('.prefecture') do |b|
       = b.label { b.select + b.text }
   .col-lg-1.mgnnolr
     = button_tag(t('.submit'), type: "submit", class: "btn btn-primary btn-large pull-left", id: "submit_location")
