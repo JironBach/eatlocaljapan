@@ -84,6 +84,13 @@
       .row
         .col-xs-11
           = f.input_field :description, rows: "6", placeholder: t('activerecord.placeholders.listing.description')
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        | #{Listing.human_attribute_name :description_en}
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :description_en, rows: "6", placeholder: t('activerecord.placeholders.listing.description')
   - if @listing.cover_image.present?
     .row.row-space-5.row-space-top-5.row-table
       .col-xs-4.text-right.col-middle

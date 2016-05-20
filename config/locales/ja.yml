@@ -60,6 +60,7 @@ ja:
         shop_services: サービス
         zipcode: 郵便番号
         location: 所在地
+        location_en: 所在地（英語）
         longitude: 経度
         latitude: 緯度
         delivery_flg: 出張は？
@@ -96,7 +97,9 @@ ja:
         recommended: お勧めのメニュー・食べ方の説明　日本語
         recommended_en: お勧めのメニュー・食べ方の説明　英語
         visit_benefits: 来店特典
+        visit_benefits_en: 来店特典（英語）
         visit_benefits_another: 来店特典　その他
+        visit_benefits_another_en: 来店特典　その他（英語）
         price_range: 価格帯　ランチ
         price_range_dinner: 価格帯　ディナー
         link_tabelog: 食べログ
@@ -127,6 +130,7 @@ ja:
         phone: 電話番号
         zipcode: 郵便番号
         location: 住所
+        location_en: 住所（英語）
         self_introduction: 自己紹介
         phone_verification: 電話番号の認証
         school: 流派
@@ -207,6 +211,7 @@ ja:
         description: 例) 初心者の方でも気軽に楽しめる店舗情報です。ぜひお友達も誘ってお越しください。
         zipcode: "例) 012-3456"
         location: 郵便番号を入力すれば自動で出力されます
+        location_en: 住所を英語で入力してください
         direction: 開催場所までのオススメの移動方法や、迷いそうなポイントなど記入ください
         schedule: 参加する日程
         smoking_id: 禁煙・喫煙
@@ -226,7 +231,9 @@ ja:
         recommended: お勧めのメニュー・食べ方の説明　日本語
         recommended_en: お勧めのメニュー・食べ方の説明　英語
         visit_benefits: 来店特典
+        visit_benefits_en: 来店特典（英語）
         visit_benefits_another: 来店特典　その他
+        visit_benefits_another: 来店特典　その他（英語）
         link_tabelog: 食べログ
         link_yelp: yelp
         link_tripadvisor: トリップアドバイザー

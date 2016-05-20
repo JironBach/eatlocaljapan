@@ -2,52 +2,55 @@
 #
 # Table name: listings
 #
-#  id                     :integer          not null, primary key
-#  user_id                :integer
-#  review_count           :integer          default(0)
-#  ave_total              :float            default(0.0)
-#  ave_accuracy           :float            default(0.0)
-#  ave_communication      :float            default(0.0)
-#  ave_cleanliness        :float            default(0.0)
-#  ave_location           :float            default(0.0)
-#  ave_check_in           :float            default(0.0)
-#  ave_cost_performance   :float            default(0.0)
-#  open                   :boolean          default(FALSE)
-#  zipcode                :string
-#  location               :string           default("")
-#  longitude              :decimal(9, 6)    default(0.0)
-#  latitude               :decimal(9, 6)    default(0.0)
-#  delivery_flg           :boolean          default(FALSE)
-#  price                  :integer          default(0)
-#  description            :text             default("")
-#  title                  :string           default("")
-#  capacity               :integer          default(0)
-#  direction              :text             default("")
-#  cover_image            :string           default("")
-#  cover_image_caption    :string           default("")
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  smoking_id             :integer
-#  business_hours_remarks :text
-#  shop_description       :text
-#  shop_description_en    :text
-#  price_low              :integer
-#  price_high             :integer
-#  tel                    :string
-#  url                    :string
-#  review_url             :string
-#  recommended            :text
-#  recommended_en         :text
-#  visit_benefits         :string
-#  visit_benefits_another :string
-#  title_en               :string
-#  price_low_dinner       :integer
-#  price_high_dinner      :integer
-#  english_message_id     :integer
-#  info_admin_id          :integer
-#  link_tabelog           :string
-#  link_yelp              :string
-#  link_tripadvisor       :string
+#  id                        :integer          not null, primary key
+#  user_id                   :integer
+#  review_count              :integer          default(0)
+#  ave_total                 :float            default(0.0)
+#  ave_accuracy              :float            default(0.0)
+#  ave_communication         :float            default(0.0)
+#  ave_cleanliness           :float            default(0.0)
+#  ave_location              :float            default(0.0)
+#  ave_check_in              :float            default(0.0)
+#  ave_cost_performance      :float            default(0.0)
+#  open                      :boolean          default(FALSE)
+#  zipcode                   :string
+#  location                  :string           default("")
+#  longitude                 :decimal(9, 6)    default(0.0)
+#  latitude                  :decimal(9, 6)    default(0.0)
+#  delivery_flg              :boolean          default(FALSE)
+#  price                     :integer          default(0)
+#  description               :text             default("")
+#  title                     :string           default("")
+#  capacity                  :integer          default(0)
+#  direction                 :text             default("")
+#  cover_image               :string           default("")
+#  cover_image_caption       :string           default("")
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#  smoking_id                :integer
+#  business_hours_remarks    :text
+#  shop_description          :text
+#  shop_description_en       :text
+#  price_low                 :integer
+#  price_high                :integer
+#  tel                       :string
+#  url                       :string
+#  review_url                :string
+#  recommended               :text
+#  recommended_en            :text
+#  visit_benefits            :string
+#  visit_benefits_another    :string
+#  title_en                  :string
+#  price_low_dinner          :integer
+#  price_high_dinner         :integer
+#  english_message_id        :integer
+#  info_admin_id             :integer
+#  link_tabelog              :string
+#  link_yelp                 :string
+#  link_tripadvisor          :string
+#  location_en               :string
+#  visit_benefits_en         :string
+#  visit_benefits_another_en :string
 #
 # Indexes
 #
