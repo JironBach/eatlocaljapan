@@ -18,8 +18,8 @@ images:
     flow:
       no_illust: "illust/no-illust01.jpg"
     cover:
-      active: "sample/pic/pic001.jpg"
-      inactive: "sample/pic/pic002.jpg"
+      active: "sample/pic/main_pict01.jpg"
+      inactive: "sample/pic/main_pict02.jpg"
   noimage:
     url: 'no-image-1024x640.gif'
   noimage2:
