@@ -194,13 +194,13 @@
               = ' - '
               = time_select "end_hour[#{wday}]", nil, {minute_step: 15, default: business_hour.nil? ? DateTime.parse('1-1-1 23:00:00') : business_hour.end_hour}, style: "display:inline-block;width:auto;"
   /.row.row-space-5.row-space-top-5.row-table
-    .col-xs-4.text-right.col-middle
-      .h4.text-light
-        = Listing.human_attribute_name :business_hours_remarks
-    .col-xs-8.fieldset.col-middle
-      .row
-        .col-xs-11
-          = f.input_field :business_hours_remarks, rows: "4", placeholder: t('activerecord.placeholders.listing.business_hours_remarks')
+  /  .col-xs-4.text-right.col-middle
+  /    .h4.text-light
+  /      = Listing.human_attribute_name :business_hours_remarks
+  /  .col-xs-8.fieldset.col-middle
+  /    .row
+  /      .col-xs-11
+  /        = f.input_field :business_hours_remarks, rows: "4", placeholder: t('activerecord.placeholders.listing.business_hours_remarks')
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
