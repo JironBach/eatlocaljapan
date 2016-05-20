@@ -122,6 +122,7 @@ class ListingsController < ApplicationController
     logger.debug("JironBach:@listing=#{@listing.inspect}")
     if @listing.valid?
       @listing.save!
+      logger.debug("JironBach:@listing_errors=#{@listing.errors.inspect}")
       # 緯度・経度
       @listing.set_lon_lat
       # カテゴリー
