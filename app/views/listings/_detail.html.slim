@@ -65,14 +65,14 @@
               .col-xs-11
                 = listing.shop_services.pluck((locale == :ja ? :name : :name_en)).join(", ")
         hr
-        /.row.row-space-5.row-space-top-5.row-table
+        .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
               | #{Listing.human_attribute_name :description}
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_area_tag :description, listing.description, readonly: :true
+                = text_area_tag :description, locale == :ja ? listing.shop_description : listing.shop_description_en, readonly: :true
         /.row.row-space-5.row-space-top-5.row-table
         /  .col-xs-4.text-right.col-middle
         /    .h4.text-light
@@ -98,19 +98,15 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                - unless listing.location_en.blank?
-                  - location = listing.location_en
-                - else
-                  - location = locale == :ja ? listing.location : EasyTranslate.translate(listing.location, :format => 'text', :to => :en)
-                = text_field_tag :location, location, readonly: :true
+                = text_field_tag :location, locale == :ja ? listing.location : listing.location_en, readonly: :true
         /.row.row-space-5.row-space-top-5.row-table
         /  .col-xs-4.text-right.col-middle
         /    .h4.text-light
         /      = Listing.human_attribute_name :direction
-          .col-xs-8.fieldset.col-middle
-            .row
-              .col-xs-11
-                = text_area_tag :direction, listing.direction, readonly: :true
+        /  .col-xs-8.fieldset.col-middle
+        /    .row
+        /      .col-xs-11
+        /        = text_area_tag :direction, listing.direction, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -153,22 +149,22 @@
             .row
               .col-xs-11
                 = text_area_tag :business_hours_remarks, listing.business_hours_remarks, readonly: :true
-        .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
-            .h4.text-light
-              = Listing.human_attribute_name :shop_description
-          .col-xs-8.fieldset.col-middle
-            .row
-              .col-xs-11
-                = text_area_tag :shop_description, listing.shop_description, readonly: :true
-        .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
-            .h4.text-light
-              = Listing.human_attribute_name :shop_description_en
-          .col-xs-8.fieldset.col-middle
-            .row
-              .col-xs-11
-                = text_area_tag :shop_description_en, listing.shop_description_en, readonly: :true
+        /.row.row-space-5.row-space-top-5.row-table
+        /  .col-xs-4.text-right.col-middle
+        /    .h4.text-light
+        /      = Listing.human_attribute_name :shop_description
+        /  .col-xs-8.fieldset.col-middle
+        /    .row
+        /      .col-xs-11
+        /        = text_area_tag :shop_description, listing.shop_description, readonly: :true
+        /.row.row-space-5.row-space-top-5.row-table
+        /  .col-xs-4.text-right.col-middle
+        /    .h4.text-light
+        /      = Listing.human_attribute_name :shop_description_en
+        /  .col-xs-8.fieldset.col-middle
+        /    .row
+        /      .col-xs-11
+        /        = text_area_tag :shop_description_en, listing.shop_description_en, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -236,15 +232,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_area_tag :recommended, listing.recommended, readonly: :true
-        .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
-            .h4.text-light
-              = Listing.human_attribute_name :recommended_en
-          .col-xs-8.fieldset.col-middle
-            .row
-              .col-xs-11
-                = text_area_tag :recommended_en, listing.recommended_en, readonly: :true
+                = text_area_tag :recommended, locale == :ja ? listing.recommended : listing.recommended_en, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -252,7 +240,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_area_tag :visit_benefits, listing.visit_benefits, readonly: :true
+                = text_area_tag :visit_benefits, locale == :ja ? listing.visit_benefits : listing.visit_benefits_en, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -260,7 +248,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = text_area_tag :visit_benefits_another, listing.visit_benefits_another, readonly: :true
+                = text_area_tag :visit_benefits_another, locale == :ja ? listing.visit_benefits_another : listing.visit_benefits_another_en, readonly: :true
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light

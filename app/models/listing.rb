@@ -48,6 +48,7 @@
 #  link_tabelog              :string
 #  link_yelp                 :string
 #  link_tripadvisor          :string
+#  description_en            :string
 #  location_en               :string
 #  visit_benefits_en         :string
 #  visit_benefits_another_en :string

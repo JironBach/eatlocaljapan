@@ -196,6 +196,12 @@ $ ->
       query = 'zipcode': zip
       $.getJSON url, query, (json) ->
         $('.zip-address').val(json.pref + json.address).focus()
+      $(this).val zip
+      # 英語
+      url = '//api.zipaddress.net/?callback=?&lang=rome'
+      query = 'zipcode': zip
+      $.getJSON url, query, (json) ->
+        $('.zip-address-rome').val(json.pref + json.address).focus()
         return
       return
 

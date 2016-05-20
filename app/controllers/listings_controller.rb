@@ -111,6 +111,15 @@ class ListingsController < ApplicationController
   # PATCH/PUT /listings/1.json
   def update
     @listing = Listing.find(params[:id])
+    @listing.update_attributes(listing_params)
+    @listing.description_en = EasyTranslate.translate(@listing.description, to: :en) if @listing.description_en.blank?
+    @listing.shop_description_en = EasyTranslate.translate(@listing.shop_description, to: :en) if @listing.shop_description_en.blank?
+    @listing.description_en = EasyTranslate.translate(@listing.description, to: :en) if @listing.description_en.blank?
+    @listing.location_en = EasyTranslate.translate(@listing.location, to: :en) if @listing.location_en.blank?
+    @listing.recommended_en = EasyTranslate.translate(@listing.recommended, to: :en) if @listing.recommended_en.blank?
+    @listing.visit_benefits_en = EasyTranslate.translate(@listing.visit_benefits, to: :en) if @listing.visit_benefits_en.blank?
+    @listing.visit_benefits_another_en = EasyTranslate.translate(@listing.visit_benefits_another, to: :en) if @listing.visit_benefits_another_en.blank?
+    logger.debug("JironBach:@listing=#{@listing.inspect}")
     if @listing.valid?
       @listing.save!
       # 緯度・経度
@@ -267,15 +276,15 @@ class ListingsController < ApplicationController
         :user_id, :evaluation_count,
         :ave_total, :ave_accuracy, :ave_communication, :ave_cleanliness,
         :ave_location, :ave_check_in, :ave_cost_performance, :open,
-        :zipcode, :location, :longitude, :latitude, :delivery_flg, :price,
-        :description, :title, :capacity, :direction, :schedule, :listing_images,
+        :zipcode, :location, :location_en, :longitude, :latitude, :delivery_flg, :price,
+        :description, :description_en, :title, :title_en, :capacity, :direction, :schedule, :listing_images,
         :cover_image, :cover_image_caption, :cover_video, :cover_video_caption,
         #{shop_categories: []}, {shop_services: []}, {englishes: []},
         :smoking_id,
         :business_hours_remarks, :shop_description, :shop_description_en,
         :price_low, :price_high, :tel, :url, :review_url,
-        :recommended, :recommended_en, :visit_benefits, :visit_benefits_another,
-        :title_en, :price_low_dinner, :price_high_dinner, :link_tabelog, :link_yelp, :link_tripadvisor,
+        :recommended, :recommended_en, :visit_benefits, :visit_benefits_en, :visit_benefits_another, :visit_benefits_another_en,
+        :price_low_dinner, :price_high_dinner, :link_tabelog, :link_yelp, :link_tripadvisor,
         listing_image_attributes: [:listing_id, :image, :order, :capacity],
       ).merge(user_id: current_user.id)
     end

@@ -65,6 +65,7 @@ ja:
         latitude: 緯度
         delivery_flg: 出張は？
         description: 店舗情報の説明
+        description_en: 店舗情報の説明（英語）
         price: 料金
         capacity: 最大可能人数
         title: 店舗情報のタイトル
@@ -209,6 +210,7 @@ ja:
         longitude: 軽度
         latitude: 緯度
         description: 例) 初心者の方でも気軽に楽しめる店舗情報です。ぜひお友達も誘ってお越しください。
+        description_en: 店舗情報を英語で記入してください
         zipcode: "例) 012-3456"
         location: 郵便番号を入力すれば自動で出力されます
         location_en: 住所を英語で入力してください
@@ -233,7 +235,7 @@ ja:
         visit_benefits: 来店特典
         visit_benefits_en: 来店特典（英語）
         visit_benefits_another: 来店特典　その他
-        visit_benefits_another: 来店特典　その他（英語）
+        visit_benefits_another_en: 来店特典　その他（英語）
         link_tabelog: 食べログ
         link_yelp: yelp
         link_tripadvisor: トリップアドバイザー

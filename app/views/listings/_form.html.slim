@@ -84,13 +84,15 @@
       .row
         .col-xs-11
           = f.input_field :description, rows: "6", placeholder: t('activerecord.placeholders.listing.description')
+  hr
     .col-xs-4.text-right.col-middle
       .h4.text-light
         | #{Listing.human_attribute_name :description_en}
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = f.input_field :description_en, rows: "6", placeholder: t('activerecord.placeholders.listing.description')
+          = f.input_field :description_en, rows: "6", placeholder: t('activerecord.placeholders.listing.description_en')
+  hr
   - if @listing.cover_image.present?
     .row.row-space-5.row-space-top-5.row-table
       .col-xs-4.text-right.col-middle
@@ -127,6 +129,14 @@
       .row
         .col-xs-11
           = f.input_field :location, placeholder: t('activerecord.placeholders.listing.location'), class: "zip-address"
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :location_en
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :location_en, placeholder: t('activerecord.placeholders.listing.location_en'), class: "zip-address-rome"
   /.row.row-space-5.row-space-top-5.row-table
   /  .col-xs-4.text-right.col-middle
   /    .h4.text-light
@@ -306,11 +316,27 @@
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
+        = Listing.human_attribute_name :visit_benefits_en
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :visit_benefits_en, placeholder: t('activerecord.placeholders.listing.visit_benefits_en')
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
         = Listing.human_attribute_name :visit_benefits_another
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
           = f.input_field :visit_benefits_another, placeholder: t('activerecord.placeholders.listing.visit_benefits_another')
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = Listing.human_attribute_name :visit_benefits_another_en
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :visit_benefits_another_en, placeholder: t('activerecord.placeholders.listing.visit_benefits_another_en')
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
