@@ -14,7 +14,7 @@ set :deploy_to, '/home/eatlocaljapan/www/production/eatlocaljapan'
 #バージョン管理方法 subverion, git, mercurial, cvs, bzrなど
 set :scm, :git
 #情報レベル info or debug
-set :log_level, :info
+set :log_level, :debug
 #sudoに必要 これをtrueにするとssh -tで実行される
 set :pty, true
 #sharedに入るものを指定
