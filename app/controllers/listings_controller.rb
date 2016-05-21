@@ -228,7 +228,7 @@ class ListingsController < ApplicationController
     where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["english_id = ?", params[:english_id]])) unless params[:english_id].blank?
     where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["price_high <= ?", params[:price]])) unless params[:price].blank?
     pref_id = params[:prefectures]
-    pref = Prefecture.find(pref_id)
+    pref = Prefecture.find(pref_id) unless pref_id.blank?
     where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["location like ? or location like ?", "%#{pref.name}%", "%#{pref.name_en}"])) unless pref.blank?
     where.push("open = true")
     sql += "where " + where.join(" and ") unless where.blank?
