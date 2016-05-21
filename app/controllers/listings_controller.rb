@@ -127,7 +127,6 @@ class ListingsController < ApplicationController
   def update
     @listing = Listing.find(params[:id])
     @listing.assign_attributes(listing_params)
-    # 下記更新できない原因不明！！！
     @listing.description_en = EasyTranslate.translate(@listing.description, to: :en) if @listing.description_en.blank?
     @listing.shop_description_en = EasyTranslate.translate(@listing.shop_description, to: :en) if @listing.shop_description_en.blank?
     @listing.location_en = EasyTranslate.translate(@listing.location, to: :en) if @listing.location_en.blank?
@@ -135,10 +134,7 @@ class ListingsController < ApplicationController
     @listing.visit_benefits_en = EasyTranslate.translate(@listing.visit_benefits, to: :en) if @listing.visit_benefits_en.blank?
     @listing.visit_benefits_another_en = EasyTranslate.translate(@listing.visit_benefits_another, to: :en) if @listing.visit_benefits_another_en.blank?
     if @listing.valid?
-      @listing.save!
       sql = ActiveRecord::Base.send(:sanitize_sql_array, ["update listings set description_en = ?, shop_description_en = ?, location_en = ?, recommended_en = ?, visit_benefits_en = ?, visit_benefits_another_en = ? where id = #{@listing.id};", @listing.description_en, @listing.shop_description_en, @listing.location_en, @listing.recommended_en, @listing.visit_benefits_en, @listing.visit_benefits_another_en])
-      logger.debug("debug:sql=#{sql}")
-      ActiveRecord::Base.connection.execute(sql)
       # 緯度・経度
       @listing.set_lon_lat
       # カテゴリー
@@ -190,10 +186,9 @@ class ListingsController < ApplicationController
         end
       end
       @listing.info_admin_id = params[:info_admin_id][0] unless params[:info_admin_id].nil?
-      # 保存
-      @listing.save!
       respond_to do |format|
         if @listing.update(listing_params)
+          ActiveRecord::Base.connection.execute(sql)
           format.html { redirect_to manage_listing_listing_images_path(@listing.id), notice: I18n.t('alerts.listings.update.success', model: Listing.model_name.human) }
         else
           format.html { redirect_to manage_listing_listing_images_path(@listing.id), notice: I18n.t('alerts.listings.update.failure', model: Listing.model_name.human) }
@@ -236,7 +231,7 @@ class ListingsController < ApplicationController
     where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["english_id = ?", params[:english_id]])) unless params[:english_id].blank?
     where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["price_high <= ?", params[:price]])) unless params[:price].blank?
     pref_id = params[:prefectures]
-    pref = Prefecture.find(pref_id)
+    pref = Prefecture.find(pref_id) unless pref_id.blank?
     where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["location like ? or location like ?", "%#{pref.name}%", "%#{pref.name_en}"])) unless pref.blank?
     where.push("open = true")
     sql += "where " + where.join(" and ") unless where.blank?
