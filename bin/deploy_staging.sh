@@ -1,7 +1,7 @@
 #!/bin/sh
 
 chmod -R a+r app/assets
-scp -P 12321 app/assets/*/* js@jironbach.iobb.net:~/www/production/eatlocaljapan/shared/public/assets
+scp -P 12321 app/assets/*/* js@jironbach.iobb.net:~/www/staging/eatlocaljapan/shared/public/assets
 rm -f config/deploy.rb
 cp config/deploy_staging.rb config/deploy.rb
 rm -f Capfile

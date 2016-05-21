@@ -18,7 +18,7 @@ roles: %w{web app db},
   ssh_options: {
     port: 12321,
     user: 'js',
-    keys: %w(/Users/js/.ssh/eatlocaljapan.key),
+    keys: %w(/Users/js/.ssh/jironmac),
     forward_agent: true,
     auth_methods: %w(publickey password)
     # password: 'please use keys'
