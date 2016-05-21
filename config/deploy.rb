@@ -8,9 +8,9 @@ set :application, 'eatlocaljapan'
 #レポジトリURL
 set :repo_url, 'git@github.com:JironBach/eatlocaljapan.git'
 #対象ブランチ
-set :branch, 'master'
+set :branch, 'develop'
 #デプロイ先ディレクトリ フルパスで指定
-set :deploy_to, '/home/eatlocaljapan/www/production/eatlocaljapan'
+set :deploy_to, '/home/js/www/staging/eatlocaljapan'
 #バージョン管理方法 subverion, git, mercurial, cvs, bzrなど
 set :scm, :git
 #情報レベル info or debug
