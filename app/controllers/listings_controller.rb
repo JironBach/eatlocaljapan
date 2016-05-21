@@ -32,6 +32,14 @@ class ListingsController < ApplicationController
   end
 
   def edit
+    @listing = Listing.find(params[:id])
+    @listing.description_en = EasyTranslate.translate(@listing.description, to: :en) if @listing.description_en.blank?
+    @listing.shop_description_en = EasyTranslate.translate(@listing.shop_description, to: :en) if @listing.shop_description_en.blank?
+    @listing.description_en = EasyTranslate.translate(@listing.description, to: :en) if @listing.description_en.blank?
+    @listing.location_en = EasyTranslate.translate(@listing.location, to: :en) if @listing.location_en.blank?
+    @listing.recommended_en = EasyTranslate.translate(@listing.recommended, to: :en) if @listing.recommended_en.blank?
+    @listing.visit_benefits_en = EasyTranslate.translate(@listing.visit_benefits, to: :en) if @listing.visit_benefits_en.blank?
+    @listing.visit_benefits_another_en = EasyTranslate.translate(@listing.visit_benefits_another, to: :en) if @listing.visit_benefits_another_en.blank?
   end
 
   # POST /listings
