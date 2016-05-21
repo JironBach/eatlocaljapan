@@ -13,8 +13,8 @@ ActiveAdmin.register Listing do
 #   permitted
 # end
 
-  permit_params :user_id, :open, :ave_total, :ave_accuracy, :ave_communication, :ave_cleanliness, :ave_location, :ave_check_in, :ave_cost_performance, :open, :zipcode, :location, :longitude, :latitude, :delivery_flg, :price, :description, :title, :title_en, :capacity, :direction, :cover_image_caption, :business_hours_remarks, :shop_description, :shop_description_en, :price_low, :price_high, :tel, :url, :review_url, :recommended, :recommended_en, :visit_benefits, :visit_benefits_another, :smoking_id,
-    english_ids: [], shop_category_ids: [], shop_service_ids: []
+  permit_params :user_id, :open, :ave_total, :ave_accuracy, :ave_communication, :ave_cleanliness, :ave_location, :ave_check_in, :ave_cost_performance, :open, :zipcode, :location, :longitude, :latitude, :delivery_flg, :price, :description, :title, :title_en, :capacity, :direction, :cover_image_caption, :business_hours_remarks, :shop_description, :shop_description_en, :price_low, :price_high, :tel, :url, :review_url, :recommended, :recommended_en, :visit_benefits, :visit_benefits_another, :smoking_id, :price_low_dinner, :price_high_dinner, :english_message_ids, :info_admin_id, :link_tabelog, :link_yelp, :link_tripadvisor,
+    english_ids: [], shop_category_ids: [], shop_service_ids: [], english_message_ids: []
 
   index do
     selectable_column
