@@ -6,10 +6,10 @@
           = image_tag(user_id_to_profile_image(listing.user_id), class: "size90")
       .col-md-9.col-middle.col-reset
         h1#listing_name.overflow.h3.row-space-1.text-center--sp
-          = listing.title
+          = locale == :ja ? listing.title : listing.title_en
         .text-muted.text-center--sp.row-space-1
           = link_to "#neighborhood", class: "link-reset" do
-            = listing.location
+            = locale == :ja ? listing.location : listing.location_en
           = link_to "#reviews", class: "link-reset" do
             .star-rating
               = render partial: 'listings/stars', locals: { rate: listing.ave_total }
