@@ -6,10 +6,10 @@ if Dir.pwd[-3..-1] == 'bin'
   return
 end
 
-backup_to = "bin/data/#{Time.now.strftime("%j%H%M%S")}.dev"
-`pg_dump -h jironbach.iobb.net -d eatlocaljapan_development -U eatlocaljapan -f #{backup_to}`
+backup_to = "bin/data/#{Time.now.strftime("%j%H%M%S")}.stg"
+`pg_dump -h jironbach.iobb.net -d eatlocaljapan_staging -U eatlocaljapan -f #{backup_to}`
 
-bks = Dir.glob('./bin/data/*.dev')
+bks = Dir.glob('./bin/data/*.stg')
 if bks.count > 10
   i = 0
   bks.reverse.each do |bk|
