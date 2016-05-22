@@ -1,4 +1,5 @@
 require 'seed-fu/capistrano3'
+require 'capistrano/bundler'
 
 # config valid only for current version of Capistrano
 lock '3.5.0'
