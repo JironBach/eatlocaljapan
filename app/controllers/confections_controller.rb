@@ -1,5 +1,5 @@
 class ConfectionsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user?
   before_action :set_confection, only: [:update, :destroy]
   before_action :set_listing
   authorize_resource

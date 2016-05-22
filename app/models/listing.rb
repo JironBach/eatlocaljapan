@@ -99,9 +99,7 @@ class Listing < ActiveRecord::Base
   validates :location, presence: true
   validates :longitude, presence: true
   validates :latitude, presence: true
-  validates :price, presence: true
   validates :title, presence: true
-  validates :capacity, presence: true
 
   scope :mine, -> user_id { where(user_id: user_id) }
   scope :order_by_updated_at_desc, -> { order('updated_at desc') }

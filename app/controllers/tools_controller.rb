@@ -1,5 +1,5 @@
 class ToolsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user?
   before_action :set_tool, only: [:update, :destroy]
   before_action :set_listing
   authorize_resource

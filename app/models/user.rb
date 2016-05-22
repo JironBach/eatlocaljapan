@@ -25,6 +25,7 @@
 #  uid                    :string           default(""), not null
 #  provider               :string           default(""), not null
 #  username               :string
+#  admin                  :boolean          default(FALSE)
 #
 # Indexes
 #

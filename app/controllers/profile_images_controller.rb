@@ -1,5 +1,5 @@
 class ProfileImagesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user?
   before_action :set_profile, only: [:show]
   before_action :set_my_profile, only: [:edit, :update, :destroy]
   before_action :set_profile_image, only: [:show]

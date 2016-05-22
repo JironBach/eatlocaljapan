@@ -1,5 +1,5 @@
 class MessageThreadsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user?
   before_action :message_thread_user?, only: [:show, :create, :update, :destroy]
   before_action :set_message_thread, only: [:show, :update, :destroy]
   before_action :set_messages, only: [:show]

@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user?
   before_action :regulate_user!
   before_action :set_reservation
   before_action :set_review

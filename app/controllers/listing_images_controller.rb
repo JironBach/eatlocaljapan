@@ -1,5 +1,5 @@
 class ListingImagesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user?
   before_action :set_listing_image, only: [:update, :destroy]
   before_action :set_listing
   authorize_resource

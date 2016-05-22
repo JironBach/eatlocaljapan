@@ -1,5 +1,5 @@
 class ListingNgeventsController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :search]
+  before_action :authenticate_user?, except: [:show, :search]
   before_action :set_my_event, only: [:edit, :update, :destroy]
   before_action :set_listing
   authorize_resource :user_ngevent
