@@ -17,6 +17,10 @@ class Ability
     # All
     can [:read, :create], :all
 
+    if user.admin?
+      can [:update], :all
+    end
+
     # Listing Resources
     models = [ Listing ]
     can [:update], models do |listing|

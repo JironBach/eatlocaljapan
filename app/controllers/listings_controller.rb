@@ -8,7 +8,11 @@ class ListingsController < ApplicationController
   # GET /listings
   # GET /listings.json
   def index
-    @listings = Listing.mine(current_user.id).order_by_updated_at_desc
+    if current_user.admin?
+      @listings = Listing.all.order_by_updated_at_desc
+    else
+      @listings = Listing.mine(current_user.id).order_by_updated_at_desc
+    end
   end
 
   # GET /listings/1
