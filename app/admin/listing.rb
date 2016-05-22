@@ -13,7 +13,7 @@ ActiveAdmin.register Listing do
 #   permitted
 # end
 
-  permit_params :user_id, :open, :ave_total, :ave_accuracy, :ave_communication, :ave_cleanliness, :ave_location, :ave_check_in, :ave_cost_performance, :open, :zipcode, :location, :longitude, :latitude, :delivery_flg, :price, :description, :description_en, :title, :title_en, :capacity, :direction, :cover_image_caption, :business_hours_remarks, :shop_description, :shop_description_en, :price_low, :price_high, :tel, :url, :review_url, :recommended, :recommended_en, :visit_benefits, :visit_benefits_en, :visit_benefits_another, :visit_benefits_another_en, :smoking_id, :price_low_dinner, :price_high_dinner, :english_message_ids, :info_admin_id, :link_tabelog, :link_yelp, :link_tripadvisor,
+  permit_params :user_id, :open, :ave_total, :ave_accuracy, :ave_communication, :ave_cleanliness, :ave_location, :ave_check_in, :ave_cost_performance, :open, :zipcode, :location, :longitude, :latitude, :delivery_flg, :price, :description, :description_en, :title, :title_en, :capacity, :direction, :cover_image_caption, :business_hours_remarks, :shop_description, :shop_description_en, :price_low, :price_high, :tel, :url, :review_url, :recommended, :recommended_en, :visit_benefits, :visit_benefits_en, :visit_benefits_another, :visit_benefits_another_en, :smoking_id, :price_low_dinner, :price_high_dinner, :english_message_ids, :info_admin_id, :link_tabelog, :link_yelp, :link_tripadvisor, :cover_image,
     english_ids: [], shop_category_ids: [], shop_service_ids: [], english_message_ids: []
 
   index do
