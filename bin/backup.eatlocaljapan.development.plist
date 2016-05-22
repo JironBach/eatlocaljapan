@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- label -->   
+  <key>Label</key>
+  <string>backup.eatlocaljapan.development</string>
+
+  <!-- script -->
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/js/work/eatlocaljapan/bin/backup_development.rb</string>
+  </array>
+  
+  <!-- launchctl loadしたタイミングで実行するか -->
+  <key>RunAtLoad</key>
+  <true/>
+
+  <!-- インターバル指定(例:30秒毎) -->
+  <key>StartInterval</key>
+  <integer>3600</integer>
+
+  <!-- ログの指定 -->
+  <key>StandardErrorPath</key>
+  <string>/Users/js/tmp/log/backup_elj_dev_err.log</string>
+  <key>StandardOutPath</key>
+  <string>/Users/js/tmp/log/backup_elj_dev.log</string>
+</dict>
+</plist>

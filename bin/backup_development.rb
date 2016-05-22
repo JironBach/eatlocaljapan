@@ -1,15 +1,12 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-if Dir.pwd[-3..-1] == 'bin'
-  puts 'アプリケーションのrootディレクトリで実行してください。'
-  return
-end
+path = '/Users/js/work/eatlocaljapan'
+backup_to = "#{path}/bin/data/#{Time.now.strftime("%j%H%M%S")}.dev"
+puts backup_to
+`/usr/local/bin/pg_dump -h jironbach.iobb.net -d eatlocaljapan_development -U eatlocaljapan -f #{backup_to}`
 
-backup_to = "bin/data/#{Time.now.strftime("%j%H%M%S")}.dev"
-`pg_dump -h jironbach.iobb.net -d eatlocaljapan_development -U eatlocaljapan -f #{backup_to}`
-
-bks = Dir.glob('./bin/data/*.dev')
+bks = Dir.glob("#{path}/bin/data/*.dev")
 if bks.count > 10
   i = 0
   bks.reverse.each do |bk|
