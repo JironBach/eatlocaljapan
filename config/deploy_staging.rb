@@ -1,7 +1,7 @@
 require 'seed-fu/capistrano3'
 
 # config valid only for current version of Capistrano
-lock '3.4.0'
+lock '3.5.0'
 
 #アプリケーション名
 set :application, 'eatlocaljapan'
