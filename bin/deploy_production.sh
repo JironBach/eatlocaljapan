@@ -1,13 +1,11 @@
 #!/bin/sh
 
+scp -r -P 12321 eatlocaljapan@www.eatlocaljapan.com:~/www/production/eatlocaljapan//shared/public/* public
+scp -r -P 12321 bin/* eatlocaljapan@www.eatlocaljapan.com:~/www/production/eatlocaljapan/shared/bin
+scp -r -P 12321 public/* eatlocaljapan@www.eatlocaljapan.com:~/www/production/eatlocaljapan/shared/public
 chmod -R a+r app/assets
-scp -r eatlocaljapan@www.eatlocaljapan.com:~/www/staging/eatlocaljapan/current/shared/public/* public
-scp -r public/* eatlocaljapan@www.eatlocaljapan.com:~/www/staging/eatlocaljapan/shared/public
-scp -r app/assets/*/* eatlocaljapan@www.eatlocaljapan.com:~/www/staging/eatlocaljapan/current/shared/public/assets
-git push origin develop:master
-rm -f config/deploy.rb
+scp -r -P 12321 app/assets/*/* eatlocaljapan@www.eatlocaljapan.com:~/www/production/eatlocaljapan/shared/public/assets
 cp config/deploy_production.rb config/deploy.rb
-rm -f Capfile
 cp Capfile_production Capfile
 bundle exec cap production deploy --trace
 
