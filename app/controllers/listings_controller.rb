@@ -132,7 +132,9 @@ class ListingsController < ApplicationController
   # PATCH/PUT /listings/1.json
   def update
     @listing = Listing.find(params[:id])
+    user_id = @listing.user_id
     @listing.assign_attributes(listing_params)
+    @listing.user_id = user_id if @listing.user_id.nil?
     @listing.description_en = EasyTranslate.translate(@listing.description, to: :en) if @listing.description_en.blank?
     @listing.shop_description_en = EasyTranslate.translate(@listing.shop_description, to: :en) if @listing.shop_description_en.blank?
     @listing.location_en = EasyTranslate.translate(@listing.location, to: :en) if @listing.location_en.blank?
