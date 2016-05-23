@@ -26,6 +26,7 @@
 #  provider               :string           default(""), not null
 #  username               :string
 #  admin                  :boolean          default(FALSE)
+#  profile_id             :integer
 #
 # Indexes
 #
