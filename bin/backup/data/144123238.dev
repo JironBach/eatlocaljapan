@@ -1,0 +1,3610 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: active_admin_comments; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE active_admin_comments (
+    id integer NOT NULL,
+    namespace character varying,
+    body text,
+    resource_id character varying NOT NULL,
+    resource_type character varying NOT NULL,
+    author_id integer,
+    author_type character varying,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE active_admin_comments OWNER TO eatlocaljapan;
+
+--
+-- Name: active_admin_comments_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE active_admin_comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE active_admin_comments_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: active_admin_comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE active_admin_comments_id_seq OWNED BY active_admin_comments.id;
+
+
+--
+-- Name: admin_users; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE admin_users (
+    id integer NOT NULL,
+    email character varying DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip inet,
+    last_sign_in_ip inet,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE admin_users OWNER TO eatlocaljapan;
+
+--
+-- Name: admin_users_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE admin_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE admin_users_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: admin_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE admin_users_id_seq OWNED BY admin_users.id;
+
+
+--
+-- Name: auths; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE auths (
+    id integer NOT NULL,
+    user_id integer,
+    provider character varying,
+    uid character varying,
+    access_token character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE auths OWNER TO eatlocaljapan;
+
+--
+-- Name: auths_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE auths_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auths_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: auths_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE auths_id_seq OWNED BY auths.id;
+
+
+--
+-- Name: browsing_histories; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE browsing_histories (
+    id integer NOT NULL,
+    user_id integer,
+    listing_id integer,
+    viewed_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE browsing_histories OWNER TO eatlocaljapan;
+
+--
+-- Name: browsing_histories_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE browsing_histories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE browsing_histories_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: browsing_histories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE browsing_histories_id_seq OWNED BY browsing_histories.id;
+
+
+--
+-- Name: business_hours; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE business_hours (
+    id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    listing_id integer,
+    wday integer NOT NULL,
+    is_open boolean DEFAULT true NOT NULL,
+    start_hour time without time zone,
+    end_hour time without time zone
+);
+
+
+ALTER TABLE business_hours OWNER TO eatlocaljapan;
+
+--
+-- Name: business_hours_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE business_hours_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE business_hours_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: business_hours_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE business_hours_id_seq OWNED BY business_hours.id;
+
+
+--
+-- Name: confections; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE confections (
+    id integer NOT NULL,
+    listing_id integer,
+    name character varying NOT NULL,
+    url character varying DEFAULT ''::character varying,
+    image character varying DEFAULT ''::character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE confections OWNER TO eatlocaljapan;
+
+--
+-- Name: confections_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE confections_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE confections_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: confections_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE confections_id_seq OWNED BY confections.id;
+
+
+--
+-- Name: dress_codes; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE dress_codes (
+    id integer NOT NULL,
+    listing_id integer,
+    wafuku boolean DEFAULT false,
+    note text DEFAULT ''::text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE dress_codes OWNER TO eatlocaljapan;
+
+--
+-- Name: dress_codes_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE dress_codes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE dress_codes_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: dress_codes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE dress_codes_id_seq OWNED BY dress_codes.id;
+
+
+--
+-- Name: emergencies; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE emergencies (
+    id integer NOT NULL,
+    user_id integer,
+    profile_id integer,
+    name character varying NOT NULL,
+    phone character varying,
+    email character varying,
+    relationship character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE emergencies OWNER TO eatlocaljapan;
+
+--
+-- Name: emergencies_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE emergencies_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE emergencies_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: emergencies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE emergencies_id_seq OWNED BY emergencies.id;
+
+
+--
+-- Name: english_messages; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE english_messages (
+    id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    name character varying,
+    name_en character varying
+);
+
+
+ALTER TABLE english_messages OWNER TO eatlocaljapan;
+
+--
+-- Name: english_messages_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE english_messages_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE english_messages_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: english_messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE english_messages_id_seq OWNED BY english_messages.id;
+
+
+--
+-- Name: english_messages_listings; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE english_messages_listings (
+    id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    listing_id integer NOT NULL,
+    english_message_id integer NOT NULL
+);
+
+
+ALTER TABLE english_messages_listings OWNER TO eatlocaljapan;
+
+--
+-- Name: english_messages_listings_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE english_messages_listings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE english_messages_listings_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: english_messages_listings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE english_messages_listings_id_seq OWNED BY english_messages_listings.id;
+
+
+--
+-- Name: englishes; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE englishes (
+    id integer NOT NULL,
+    name character varying NOT NULL,
+    name_en character varying NOT NULL
+);
+
+
+ALTER TABLE englishes OWNER TO eatlocaljapan;
+
+--
+-- Name: englishes_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE englishes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE englishes_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: englishes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE englishes_id_seq OWNED BY englishes.id;
+
+
+--
+-- Name: englishes_listings; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE englishes_listings (
+    id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    listing_id integer NOT NULL,
+    english_id integer NOT NULL
+);
+
+
+ALTER TABLE englishes_listings OWNER TO eatlocaljapan;
+
+--
+-- Name: englishes_listings_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE englishes_listings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE englishes_listings_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: englishes_listings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE englishes_listings_id_seq OWNED BY englishes_listings.id;
+
+
+--
+-- Name: info_admins; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE info_admins (
+    id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    name character varying,
+    name_en character varying
+);
+
+
+ALTER TABLE info_admins OWNER TO eatlocaljapan;
+
+--
+-- Name: info_admins_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE info_admins_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE info_admins_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: info_admins_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE info_admins_id_seq OWNED BY info_admins.id;
+
+
+--
+-- Name: listing_images; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE listing_images (
+    id integer NOT NULL,
+    listing_id integer,
+    image character varying DEFAULT ''::character varying,
+    order_num integer,
+    caption character varying DEFAULT ''::character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE listing_images OWNER TO eatlocaljapan;
+
+--
+-- Name: listing_images_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE listing_images_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE listing_images_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: listing_images_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE listing_images_id_seq OWNED BY listing_images.id;
+
+
+--
+-- Name: listing_pvs; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE listing_pvs (
+    id integer NOT NULL,
+    listing_id integer,
+    viewed_at date,
+    pv integer DEFAULT 0,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE listing_pvs OWNER TO eatlocaljapan;
+
+--
+-- Name: listing_pvs_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE listing_pvs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE listing_pvs_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: listing_pvs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE listing_pvs_id_seq OWNED BY listing_pvs.id;
+
+
+--
+-- Name: listings; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE listings (
+    id integer NOT NULL,
+    user_id integer,
+    review_count integer DEFAULT 0,
+    ave_total double precision DEFAULT 0.0,
+    ave_accuracy double precision DEFAULT 0.0,
+    ave_communication double precision DEFAULT 0.0,
+    ave_cleanliness double precision DEFAULT 0.0,
+    ave_location double precision DEFAULT 0.0,
+    ave_check_in double precision DEFAULT 0.0,
+    ave_cost_performance double precision DEFAULT 0.0,
+    open boolean DEFAULT false,
+    zipcode character varying,
+    location character varying DEFAULT ''::character varying,
+    longitude numeric(9,6) DEFAULT 0.0,
+    latitude numeric(9,6) DEFAULT 0.0,
+    delivery_flg boolean DEFAULT false,
+    price integer DEFAULT 0,
+    description text DEFAULT ''::text,
+    title character varying DEFAULT ''::character varying,
+    capacity integer DEFAULT 0,
+    direction text DEFAULT ''::text,
+    cover_image character varying DEFAULT ''::character varying,
+    cover_image_caption character varying DEFAULT ''::character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    smoking_id integer,
+    business_hours_remarks text,
+    shop_description text,
+    shop_description_en text,
+    price_low integer,
+    price_high integer,
+    tel character varying,
+    url character varying,
+    review_url character varying,
+    recommended text,
+    recommended_en text,
+    visit_benefits character varying,
+    visit_benefits_another character varying,
+    title_en character varying,
+    price_low_dinner integer,
+    price_high_dinner integer,
+    english_message_id integer,
+    info_admin_id integer,
+    link_tabelog character varying,
+    link_yelp character varying,
+    link_tripadvisor character varying,
+    description_en text,
+    location_en character varying,
+    visit_benefits_en character varying,
+    visit_benefits_another_en character varying
+);
+
+
+ALTER TABLE listings OWNER TO eatlocaljapan;
+
+--
+-- Name: listings_business_hours; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE listings_business_hours (
+    id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    listing_id integer NOT NULL,
+    business_hour_id integer NOT NULL
+);
+
+
+ALTER TABLE listings_business_hours OWNER TO eatlocaljapan;
+
+--
+-- Name: listings_business_hours_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE listings_business_hours_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE listings_business_hours_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: listings_business_hours_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE listings_business_hours_id_seq OWNED BY listings_business_hours.id;
+
+
+--
+-- Name: listings_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE listings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE listings_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: listings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE listings_id_seq OWNED BY listings.id;
+
+
+--
+-- Name: listings_shop_categories; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE listings_shop_categories (
+    id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    listing_id integer NOT NULL,
+    shop_category_id integer NOT NULL
+);
+
+
+ALTER TABLE listings_shop_categories OWNER TO eatlocaljapan;
+
+--
+-- Name: listings_shop_categories_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE listings_shop_categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE listings_shop_categories_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: listings_shop_categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE listings_shop_categories_id_seq OWNED BY listings_shop_categories.id;
+
+
+--
+-- Name: listings_shop_services; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE listings_shop_services (
+    id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    listing_id integer NOT NULL,
+    shop_service_id integer NOT NULL
+);
+
+
+ALTER TABLE listings_shop_services OWNER TO eatlocaljapan;
+
+--
+-- Name: listings_shop_services_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE listings_shop_services_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE listings_shop_services_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: listings_shop_services_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE listings_shop_services_id_seq OWNED BY listings_shop_services.id;
+
+
+--
+-- Name: menus; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE menus (
+    id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    listing_id integer NOT NULL,
+    menu character varying NOT NULL,
+    menu_en character varying,
+    description character varying,
+    description_en character varying
+);
+
+
+ALTER TABLE menus OWNER TO eatlocaljapan;
+
+--
+-- Name: menus_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE menus_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE menus_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: menus_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE menus_id_seq OWNED BY menus.id;
+
+
+--
+-- Name: message_thread_users; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE message_thread_users (
+    id integer NOT NULL,
+    message_thread_id integer NOT NULL,
+    user_id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE message_thread_users OWNER TO eatlocaljapan;
+
+--
+-- Name: message_thread_users_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE message_thread_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE message_thread_users_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: message_thread_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE message_thread_users_id_seq OWNED BY message_thread_users.id;
+
+
+--
+-- Name: message_threads; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE message_threads (
+    id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE message_threads OWNER TO eatlocaljapan;
+
+--
+-- Name: message_threads_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE message_threads_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE message_threads_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: message_threads_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE message_threads_id_seq OWNED BY message_threads.id;
+
+
+--
+-- Name: messages; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE messages (
+    id integer NOT NULL,
+    message_thread_id integer NOT NULL,
+    from_user_id integer NOT NULL,
+    to_user_id integer NOT NULL,
+    content text DEFAULT ''::text NOT NULL,
+    read boolean DEFAULT false,
+    read_at timestamp without time zone,
+    listing_id integer DEFAULT 0 NOT NULL,
+    reservation_id integer DEFAULT 0 NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE messages OWNER TO eatlocaljapan;
+
+--
+-- Name: messages_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE messages_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE messages_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE messages_id_seq OWNED BY messages.id;
+
+
+--
+-- Name: prefectures; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE prefectures (
+    id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    name character varying NOT NULL,
+    name_en character varying NOT NULL
+);
+
+
+ALTER TABLE prefectures OWNER TO eatlocaljapan;
+
+--
+-- Name: prefectures_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE prefectures_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE prefectures_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: prefectures_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE prefectures_id_seq OWNED BY prefectures.id;
+
+
+--
+-- Name: profile_images; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE profile_images (
+    id integer NOT NULL,
+    user_id integer,
+    profile_id integer,
+    image character varying DEFAULT ''::character varying NOT NULL,
+    caption character varying DEFAULT ''::character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE profile_images OWNER TO eatlocaljapan;
+
+--
+-- Name: profile_images_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE profile_images_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE profile_images_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: profile_images_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE profile_images_id_seq OWNED BY profile_images.id;
+
+
+--
+-- Name: profile_videos; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE profile_videos (
+    id integer NOT NULL,
+    user_id integer,
+    profile_id integer,
+    video character varying DEFAULT ''::character varying NOT NULL,
+    caption character varying DEFAULT ''::character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE profile_videos OWNER TO eatlocaljapan;
+
+--
+-- Name: profile_videos_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE profile_videos_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE profile_videos_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: profile_videos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE profile_videos_id_seq OWNED BY profile_videos.id;
+
+
+--
+-- Name: profiles; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE profiles (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    first_name character varying DEFAULT ''::character varying,
+    last_name character varying DEFAULT ''::character varying,
+    birthday date,
+    gender integer,
+    phone character varying DEFAULT ''::character varying,
+    phone_verification boolean DEFAULT false,
+    zipcode character varying DEFAULT ''::character varying,
+    location character varying DEFAULT ''::character varying,
+    self_introduction text DEFAULT ''::text,
+    school character varying DEFAULT ''::character varying,
+    work character varying DEFAULT ''::character varying,
+    timezone character varying DEFAULT ''::character varying,
+    listing_count integer DEFAULT 0,
+    wishlist_count integer DEFAULT 0,
+    bookmark_count integer DEFAULT 0,
+    reviewed_count integer DEFAULT 0,
+    reservation_count integer DEFAULT 0,
+    ave_total double precision DEFAULT 0.0,
+    ave_accuracy double precision DEFAULT 0.0,
+    ave_communication double precision DEFAULT 0.0,
+    ave_cleanliness double precision DEFAULT 0.0,
+    ave_location double precision DEFAULT 0.0,
+    ave_check_in double precision DEFAULT 0.0,
+    ave_cost_performance double precision DEFAULT 0.0,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE profiles OWNER TO eatlocaljapan;
+
+--
+-- Name: profiles_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE profiles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE profiles_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: profiles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE profiles_id_seq OWNED BY profiles.id;
+
+
+--
+-- Name: reservations; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE reservations (
+    id integer NOT NULL,
+    host_id integer,
+    guest_id integer,
+    listing_id integer,
+    schedule date NOT NULL,
+    num_of_people integer NOT NULL,
+    msg text DEFAULT ''::text,
+    progress integer DEFAULT 0 NOT NULL,
+    reason text DEFAULT ''::text,
+    review_mail_sent_at timestamp without time zone,
+    review_expiration_date timestamp without time zone,
+    review_landed_at timestamp without time zone,
+    reviewed_at timestamp without time zone,
+    reply_mail_sent_at timestamp without time zone,
+    reply_landed_at timestamp without time zone,
+    replied_at timestamp without time zone,
+    review_opened_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE reservations OWNER TO eatlocaljapan;
+
+--
+-- Name: reservations_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE reservations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE reservations_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: reservations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE reservations_id_seq OWNED BY reservations.id;
+
+
+--
+-- Name: review_replies; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE review_replies (
+    id integer NOT NULL,
+    review_id integer,
+    msg text DEFAULT ''::text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE review_replies OWNER TO eatlocaljapan;
+
+--
+-- Name: review_replies_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE review_replies_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE review_replies_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: review_replies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE review_replies_id_seq OWNED BY review_replies.id;
+
+
+--
+-- Name: reviews; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE reviews (
+    id integer NOT NULL,
+    guest_id integer,
+    host_id integer,
+    reservation_id integer,
+    listing_id integer,
+    accuracy integer DEFAULT 0,
+    communication integer DEFAULT 0,
+    cleanliness integer DEFAULT 0,
+    location integer DEFAULT 0,
+    check_in integer DEFAULT 0,
+    cost_performance integer DEFAULT 0,
+    total integer DEFAULT 0,
+    msg text DEFAULT ''::text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE reviews OWNER TO eatlocaljapan;
+
+--
+-- Name: reviews_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE reviews_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE reviews_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: reviews_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE reviews_id_seq OWNED BY reviews.id;
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE schema_migrations (
+    version character varying NOT NULL
+);
+
+
+ALTER TABLE schema_migrations OWNER TO eatlocaljapan;
+
+--
+-- Name: shop_categories; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE shop_categories (
+    id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    name character varying NOT NULL,
+    name_en character varying NOT NULL
+);
+
+
+ALTER TABLE shop_categories OWNER TO eatlocaljapan;
+
+--
+-- Name: shop_categories_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE shop_categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE shop_categories_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: shop_categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE shop_categories_id_seq OWNED BY shop_categories.id;
+
+
+--
+-- Name: shop_services; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE shop_services (
+    id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    name character varying NOT NULL,
+    name_en character varying NOT NULL
+);
+
+
+ALTER TABLE shop_services OWNER TO eatlocaljapan;
+
+--
+-- Name: shop_services_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE shop_services_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE shop_services_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: shop_services_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE shop_services_id_seq OWNED BY shop_services.id;
+
+
+--
+-- Name: smokings; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE smokings (
+    id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    name character varying NOT NULL,
+    name_en character varying NOT NULL
+);
+
+
+ALTER TABLE smokings OWNER TO eatlocaljapan;
+
+--
+-- Name: smokings_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE smokings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE smokings_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: smokings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE smokings_id_seq OWNED BY smokings.id;
+
+
+--
+-- Name: tools; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE tools (
+    id integer NOT NULL,
+    listing_id integer,
+    name character varying NOT NULL,
+    url character varying DEFAULT ''::character varying,
+    image character varying DEFAULT ''::character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE tools OWNER TO eatlocaljapan;
+
+--
+-- Name: tools_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE tools_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE tools_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: tools_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE tools_id_seq OWNED BY tools.id;
+
+
+--
+-- Name: user_ngevents; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE user_ngevents (
+    id integer NOT NULL,
+    user_id integer,
+    listing_id integer,
+    reservation_id integer,
+    reason character varying NOT NULL,
+    start timestamp without time zone NOT NULL,
+    "end" timestamp without time zone NOT NULL,
+    active boolean DEFAULT true,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE user_ngevents OWNER TO eatlocaljapan;
+
+--
+-- Name: user_ngevents_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE user_ngevents_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE user_ngevents_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: user_ngevents_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE user_ngevents_id_seq OWNED BY user_ngevents.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    email character varying DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip inet,
+    last_sign_in_ip inet,
+    confirmation_token character varying,
+    confirmed_at timestamp without time zone,
+    confirmation_sent_at timestamp without time zone,
+    unconfirmed_email character varying,
+    failed_attempts integer DEFAULT 0 NOT NULL,
+    unlock_token character varying,
+    locked_at timestamp without time zone,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    uid character varying DEFAULT ''::character varying NOT NULL,
+    provider character varying DEFAULT ''::character varying NOT NULL,
+    username character varying,
+    admin boolean DEFAULT false
+);
+
+
+ALTER TABLE users OWNER TO eatlocaljapan;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE users_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- Name: wishlists; Type: TABLE; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE TABLE wishlists (
+    id integer NOT NULL,
+    user_id integer,
+    name character varying,
+    range character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE wishlists OWNER TO eatlocaljapan;
+
+--
+-- Name: wishlists_id_seq; Type: SEQUENCE; Schema: public; Owner: eatlocaljapan
+--
+
+CREATE SEQUENCE wishlists_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE wishlists_id_seq OWNER TO eatlocaljapan;
+
+--
+-- Name: wishlists_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER SEQUENCE wishlists_id_seq OWNED BY wishlists.id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY active_admin_comments ALTER COLUMN id SET DEFAULT nextval('active_admin_comments_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY admin_users ALTER COLUMN id SET DEFAULT nextval('admin_users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY auths ALTER COLUMN id SET DEFAULT nextval('auths_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY browsing_histories ALTER COLUMN id SET DEFAULT nextval('browsing_histories_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY business_hours ALTER COLUMN id SET DEFAULT nextval('business_hours_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY confections ALTER COLUMN id SET DEFAULT nextval('confections_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY dress_codes ALTER COLUMN id SET DEFAULT nextval('dress_codes_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY emergencies ALTER COLUMN id SET DEFAULT nextval('emergencies_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY english_messages ALTER COLUMN id SET DEFAULT nextval('english_messages_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY english_messages_listings ALTER COLUMN id SET DEFAULT nextval('english_messages_listings_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY englishes ALTER COLUMN id SET DEFAULT nextval('englishes_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY englishes_listings ALTER COLUMN id SET DEFAULT nextval('englishes_listings_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY info_admins ALTER COLUMN id SET DEFAULT nextval('info_admins_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY listing_images ALTER COLUMN id SET DEFAULT nextval('listing_images_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY listing_pvs ALTER COLUMN id SET DEFAULT nextval('listing_pvs_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY listings ALTER COLUMN id SET DEFAULT nextval('listings_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY listings_business_hours ALTER COLUMN id SET DEFAULT nextval('listings_business_hours_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY listings_shop_categories ALTER COLUMN id SET DEFAULT nextval('listings_shop_categories_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY listings_shop_services ALTER COLUMN id SET DEFAULT nextval('listings_shop_services_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY menus ALTER COLUMN id SET DEFAULT nextval('menus_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY message_thread_users ALTER COLUMN id SET DEFAULT nextval('message_thread_users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY message_threads ALTER COLUMN id SET DEFAULT nextval('message_threads_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY messages ALTER COLUMN id SET DEFAULT nextval('messages_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY prefectures ALTER COLUMN id SET DEFAULT nextval('prefectures_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY profile_images ALTER COLUMN id SET DEFAULT nextval('profile_images_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY profile_videos ALTER COLUMN id SET DEFAULT nextval('profile_videos_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY profiles ALTER COLUMN id SET DEFAULT nextval('profiles_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY reservations ALTER COLUMN id SET DEFAULT nextval('reservations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY review_replies ALTER COLUMN id SET DEFAULT nextval('review_replies_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY reviews ALTER COLUMN id SET DEFAULT nextval('reviews_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY shop_categories ALTER COLUMN id SET DEFAULT nextval('shop_categories_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY shop_services ALTER COLUMN id SET DEFAULT nextval('shop_services_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY smokings ALTER COLUMN id SET DEFAULT nextval('smokings_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY tools ALTER COLUMN id SET DEFAULT nextval('tools_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY user_ngevents ALTER COLUMN id SET DEFAULT nextval('user_ngevents_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY wishlists ALTER COLUMN id SET DEFAULT nextval('wishlists_id_seq'::regclass);
+
+
+--
+-- Data for Name: active_admin_comments; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY active_admin_comments (id, namespace, body, resource_id, resource_type, author_id, author_type, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: active_admin_comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('active_admin_comments_id_seq', 1, false);
+
+
+--
+-- Data for Name: admin_users; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY admin_users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, created_at, updated_at) FROM stdin;
+1	junshimo2@gmail.com	$2a$10$LFLFZ7eqCH5mY5aVBuudP.GhixpBN1ow8J7DlFhki7sFNGxACuweG	\N	\N	\N	2	2016-05-21 23:59:48.409872	2016-05-21 14:40:42.259526	127.0.0.1	192.168.204.1	2016-05-21 14:39:53.677894	2016-05-22 17:55:10.245428
+2	chisa.odamaki@bizitjapan.com	$2a$10$3tb.0HsYNUV3JTq/zscscugC7m.OWzeN5lZG7GvTAAgwQ0D7uyTQC	\N	\N	\N	0	\N	\N	\N	\N	2016-05-21 14:40:20.677684	2016-05-22 17:55:10.575995
+\.
+
+
+--
+-- Name: admin_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('admin_users_id_seq', 3, false);
+
+
+--
+-- Data for Name: auths; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY auths (id, user_id, provider, uid, access_token, created_at, updated_at) FROM stdin;
+1	1	facebook	1133479786718789	EAANZBfgZBIUZAQBAK2Tl2ZAEBEpFlAcKwC8zy3LPZCiQz07k20lPADrUCFvJ4yZAiZBbvzb4MIhrEyRP6BpiX8DiDCqr1eEhtgoaPNpv2ytEcqck0bTDHLqanmjZBmZCr5d9ZA6beInBJv5ZBqQixZByXSMOXB6i4QT4gnoZD	2016-05-22 00:32:12.661502	2016-05-23 03:25:40.710038
+\.
+
+
+--
+-- Name: auths_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('auths_id_seq', 1, true);
+
+
+--
+-- Data for Name: browsing_histories; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY browsing_histories (id, user_id, listing_id, viewed_at, created_at, updated_at) FROM stdin;
+1	1	1	2016-05-21 15:00:00	2016-05-22 00:36:12.861246	2016-05-22 00:36:12.861246
+2	1	1	2016-05-21 15:00:00	2016-05-22 00:36:50.725798	2016-05-22 00:36:50.725798
+3	1	1	2016-05-21 15:00:00	2016-05-22 00:37:08.522515	2016-05-22 00:37:08.522515
+4	1	1	2016-05-21 15:00:00	2016-05-22 00:38:12.610165	2016-05-22 00:38:12.610165
+5	1	1	2016-05-21 15:00:00	2016-05-22 00:40:17.282934	2016-05-22 00:40:17.282934
+6	1	1	2016-05-21 15:00:00	2016-05-22 00:40:31.378931	2016-05-22 00:40:31.378931
+7	1	3	2016-05-22 15:00:00	2016-05-22 18:03:51.235331	2016-05-22 18:03:51.235331
+8	1	2	2016-05-22 15:00:00	2016-05-22 18:05:49.82504	2016-05-22 18:05:49.82504
+9	6	4	2016-05-22 15:00:00	2016-05-22 19:25:18.05753	2016-05-22 19:25:18.05753
+10	6	4	2016-05-22 15:00:00	2016-05-22 19:25:40.968008	2016-05-22 19:25:40.968008
+11	1	4	2016-05-22 15:00:00	2016-05-22 19:27:58.108534	2016-05-22 19:27:58.108534
+12	1	4	2016-05-22 15:00:00	2016-05-22 19:36:28.603411	2016-05-22 19:36:28.603411
+13	1	4	2016-05-22 15:00:00	2016-05-22 20:23:29.231722	2016-05-22 20:23:29.231722
+14	6	5	2016-05-22 15:00:00	2016-05-23 03:25:05.503786	2016-05-23 03:25:05.503786
+15	1	3	2016-05-22 15:00:00	2016-05-23 03:26:01.731356	2016-05-23 03:26:01.731356
+16	1	5	2016-05-22 15:00:00	2016-05-23 03:26:24.288102	2016-05-23 03:26:24.288102
+17	1	4	2016-05-22 15:00:00	2016-05-23 03:29:14.045222	2016-05-23 03:29:14.045222
+\.
+
+
+--
+-- Name: browsing_histories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('browsing_histories_id_seq', 17, true);
+
+
+--
+-- Data for Name: business_hours; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY business_hours (id, created_at, updated_at, listing_id, wday, is_open, start_hour, end_hour) FROM stdin;
+1	2016-05-22 00:35:26.117526	2016-05-22 00:35:26.117526	1	0	t	11:30:00	23:00:00
+2	2016-05-22 00:35:26.145102	2016-05-22 00:35:26.145102	1	1	f	11:30:00	23:00:00
+3	2016-05-22 00:35:26.163618	2016-05-22 00:35:26.163618	1	2	t	11:30:00	23:00:00
+4	2016-05-22 00:35:26.181127	2016-05-22 00:35:26.181127	1	3	t	11:30:00	23:00:00
+5	2016-05-22 00:35:26.19675	2016-05-22 00:35:26.19675	1	4	t	11:30:00	23:00:00
+6	2016-05-22 00:35:26.216667	2016-05-22 00:35:26.216667	1	5	t	11:30:00	23:00:00
+7	2016-05-22 00:35:26.233652	2016-05-22 00:35:26.233652	1	6	t	11:30:00	23:00:00
+8	2016-05-22 18:02:35.465408	2016-05-22 18:02:35.465408	3	0	t	09:30:00	17:00:00
+9	2016-05-22 18:02:35.976437	2016-05-22 18:02:35.976437	3	1	f	11:30:00	23:00:00
+10	2016-05-22 18:02:36.417381	2016-05-22 18:02:36.417381	3	2	t	10:15:00	18:45:00
+11	2016-05-22 18:02:36.657687	2016-05-22 18:02:36.657687	3	3	t	11:30:00	23:00:00
+12	2016-05-22 18:02:36.906881	2016-05-22 18:02:36.906881	3	4	t	11:30:00	23:00:00
+13	2016-05-22 18:02:37.168422	2016-05-22 18:02:37.168422	3	5	t	11:30:00	23:00:00
+14	2016-05-22 18:02:37.391587	2016-05-22 18:02:37.391587	3	6	t	11:30:00	23:00:00
+36	2016-05-23 03:26:51.765476	2016-05-23 03:26:51.765476	5	0	t	11:30:00	22:00:00
+37	2016-05-23 03:26:51.77273	2016-05-23 03:26:51.77273	5	1	f	11:30:00	23:00:00
+38	2016-05-23 03:26:51.781652	2016-05-23 03:26:51.781652	5	2	t	12:30:00	21:15:00
+39	2016-05-23 03:26:51.789616	2016-05-23 03:26:51.789616	5	3	t	11:30:00	23:00:00
+40	2016-05-23 03:26:51.799147	2016-05-23 03:26:51.799147	5	4	t	13:45:00	23:15:00
+41	2016-05-23 03:26:51.809616	2016-05-23 03:26:51.809616	5	5	t	11:30:00	23:00:00
+42	2016-05-23 03:26:51.81804	2016-05-23 03:26:51.81804	5	6	t	11:30:00	23:00:00
+43	2016-05-23 03:28:33.155245	2016-05-23 03:28:33.155245	4	0	t	11:30:00	23:00:00
+44	2016-05-23 03:28:33.164116	2016-05-23 03:28:33.164116	4	1	f	11:30:00	23:00:00
+45	2016-05-23 03:28:33.171889	2016-05-23 03:28:33.171889	4	2	t	11:30:00	23:00:00
+46	2016-05-23 03:28:33.179119	2016-05-23 03:28:33.179119	4	3	f	11:30:00	23:00:00
+47	2016-05-23 03:28:33.186097	2016-05-23 03:28:33.186097	4	4	t	11:30:00	23:00:00
+48	2016-05-23 03:28:33.19331	2016-05-23 03:28:33.19331	4	5	t	11:30:00	23:00:00
+49	2016-05-23 03:28:33.200788	2016-05-23 03:28:33.200788	4	6	t	11:30:00	23:00:00
+\.
+
+
+--
+-- Name: business_hours_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('business_hours_id_seq', 49, true);
+
+
+--
+-- Data for Name: confections; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY confections (id, listing_id, name, url, image, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: confections_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('confections_id_seq', 1, false);
+
+
+--
+-- Data for Name: dress_codes; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY dress_codes (id, listing_id, wafuku, note, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: dress_codes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('dress_codes_id_seq', 1, false);
+
+
+--
+-- Data for Name: emergencies; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY emergencies (id, user_id, profile_id, name, phone, email, relationship, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: emergencies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('emergencies_id_seq', 1, false);
+
+
+--
+-- Data for Name: english_messages; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY english_messages (id, created_at, updated_at, name, name_en) FROM stdin;
+1	2016-05-21 14:40:20.797157	2016-05-21 14:40:20.797157	電話OK	Phone available
+2	2016-05-21 14:40:20.807918	2016-05-21 14:40:20.807918	メールOK	Mail available
+3	2016-05-21 14:40:20.816644	2016-05-21 14:40:20.816644	不可	Unavailable
+\.
+
+
+--
+-- Name: english_messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('english_messages_id_seq', 4, false);
+
+
+--
+-- Data for Name: english_messages_listings; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY english_messages_listings (id, created_at, updated_at, listing_id, english_message_id) FROM stdin;
+1	2016-05-22 00:35:26.297683	2016-05-22 00:35:26.297683	1	2
+2	2016-05-22 18:02:38.109732	2016-05-22 18:02:38.109732	3	2
+5	2016-05-23 03:28:33.238665	2016-05-23 03:28:33.238665	4	2
+\.
+
+
+--
+-- Name: english_messages_listings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('english_messages_listings_id_seq', 5, true);
+
+
+--
+-- Data for Name: englishes; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY englishes (id, name, name_en) FROM stdin;
+1	英語メニューあり	English menu
+2	英語できるスタッフいます	English speaking staff
+3	日本語スタッフだけですが心より歓迎いたします	Japanese speaking staff only but wed be delighted to welcome all our guests! 
+\.
+
+
+--
+-- Name: englishes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('englishes_id_seq', 4, false);
+
+
+--
+-- Data for Name: englishes_listings; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY englishes_listings (id, created_at, updated_at, listing_id, english_id) FROM stdin;
+1	2016-05-22 00:35:25.815229	2016-05-22 00:35:25.815229	1	1
+2	2016-05-22 18:02:32.342065	2016-05-22 18:02:32.342065	3	1
+6	2016-05-23 03:26:51.723012	2016-05-23 03:26:51.723012	5	1
+7	2016-05-23 03:28:33.121422	2016-05-23 03:28:33.121422	4	1
+\.
+
+
+--
+-- Name: englishes_listings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('englishes_listings_id_seq', 7, true);
+
+
+--
+-- Data for Name: info_admins; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY info_admins (id, created_at, updated_at, name, name_en) FROM stdin;
+1	2016-05-21 14:40:20.856193	2016-05-21 14:40:20.856193	オーナー	Owner
+2	2016-05-21 14:40:20.865554	2016-05-21 14:40:20.865554	事務局	Admin
+\.
+
+
+--
+-- Name: info_admins_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('info_admins_id_seq', 3, false);
+
+
+--
+-- Data for Name: listing_images; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY listing_images (id, listing_id, image, order_num, caption, created_at, updated_at) FROM stdin;
+1	1	something.jpg	0	ウェンディ	2016-05-22 00:36:05.936738	2016-05-22 00:36:05.936738
+2	3	something.jpg	0	イメージ画像	2016-05-22 18:03:39.907262	2016-05-22 18:03:39.907262
+4	5	something.jpg	0	イメージ画像	2016-05-23 03:24:55.325788	2016-05-23 03:24:55.325788
+3	4	something.jpg	0	イメージ画像	2016-05-22 19:25:09.25318	2016-05-23 03:29:06.251827
+\.
+
+
+--
+-- Name: listing_images_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('listing_images_id_seq', 4, true);
+
+
+--
+-- Data for Name: listing_pvs; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY listing_pvs (id, listing_id, viewed_at, pv, created_at, updated_at) FROM stdin;
+1	1	2016-05-22	6	2016-05-22 00:36:12.98172	2016-05-22 00:40:31.409952
+3	2	2016-05-23	1	2016-05-22 18:05:50.285013	2016-05-22 18:05:50.285013
+2	3	2016-05-23	2	2016-05-22 18:03:51.84834	2016-05-23 03:26:01.774814
+5	5	2016-05-23	2	2016-05-23 03:25:05.536944	2016-05-23 03:26:24.306903
+4	4	2016-05-23	6	2016-05-22 19:25:18.241325	2016-05-23 03:29:14.08711
+\.
+
+
+--
+-- Name: listing_pvs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('listing_pvs_id_seq', 5, true);
+
+
+--
+-- Data for Name: listings; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY listings (id, user_id, review_count, ave_total, ave_accuracy, ave_communication, ave_cleanliness, ave_location, ave_check_in, ave_cost_performance, open, zipcode, location, longitude, latitude, delivery_flg, price, description, title, capacity, direction, cover_image, cover_image_caption, created_at, updated_at, smoking_id, business_hours_remarks, shop_description, shop_description_en, price_low, price_high, tel, url, review_url, recommended, recommended_en, visit_benefits, visit_benefits_another, title_en, price_low_dinner, price_high_dinner, english_message_id, info_admin_id, link_tabelog, link_yelp, link_tripadvisor, description_en, location_en, visit_benefits_en, visit_benefits_another_en) FROM stdin;
+2	\N	0	0	0	0	0	0	0	0	t		test	0.000000	0.000000	f	0		テスト２	0				2016-05-22 05:09:48.760512	2016-05-22 05:09:48.760512	\N	\N			\N	\N			\N					test2	\N	\N	\N	\N				\N	\N	\N	\N
+3	1	0	0	0	0	0	0	0	0	t	215-0018	神奈川県川崎市麻生区王禅寺東	139.511722	35.579439	f	0	店舗説明	管理権限チェック店	0		something.jpg		2016-05-22 18:02:25.794248	2016-05-22 18:03:48.561864	4	\N	レストランの説明	Restaurant description	800	1000	090-8508-8128	http://jironbach.hatenablog.com/	\N	食べ方	how to eat	特典	特典その他	admin check shop	1200	2000	\N	2	http://www.tabelog.co.jp/	http://www.yelp.com/	http://www.trip-advisor.com/	Store description	KANAGAWAKAWASAKI-SHI ASAO-KU OZENJIHIGASHI	Privilege	Benefits Other
+4	1	0	0	0	0	0	0	0	0	t	215-0018	神奈川県川崎市麻生区王禅寺東	139.511722	35.579439	f	0	説明2	管理権限チェック店２	0		something.jpg		2016-05-22 19:24:14.626734	2016-05-23 03:29:13.520344	4	\N	レストランの説明２	Restaurant of Description 2	800	1000	090-8508-8128	http://jironbach.hatenablog.com/	\N	食べ方２	How to eat 2	特典	特典他	admin check shop	1200	2000	\N	2	http://www.tabelog.co.jp/	http://www.yelp.com/	http://www.trip-advisor.com/	Description 2	KANAGAWAKAWASAKI-SHI ASAO-KU OZENJIHIGASHI	Privilege	He Premiere
+1	1	0	0	0	0	0	0	0	0	f	100-0001	東京都千代田区千代田	139.753945	35.683801	f	0	説明	テスト１	0		something.jpg		2016-05-22 00:35:24.586599	2016-05-22 20:26:50.976401	4	\N	説明	Description	800	1000	090-8508-8128	http://jironbach.hatenablog.com/	\N	食べ方	how to eat	特典	特典その他	test1	1200	2000	\N	2	http://www.tabelog.co.jp/	http://www.yelp.com/	http://www.trip-advisor.com/	Description	TOKYOCHIYODA-KU CHIYODA	Privilege	Benefits Other
+5	1	0	0	0	0	0	0	0	0	f	215-0018	神奈川県川崎市麻生区王禅寺東	139.511722	35.579439	f	0	説明１	管理権限チェック店１	0		something.jpg		2016-05-23 03:24:19.066087	2016-05-23 03:26:51.831606	4	\N	説明	Description	800	1000	090-8508-8128	http://jironbach.hatenablog.com/	\N	食べ方	how to eat	特典	特典その他	admin check shop 1	1200	2000	\N	1	http://www.tabelog.co.jp/	http://www.yelp.com/	http://www.trip-advisor.com/	Description 1	KANAGAWAKAWASAKI-SHI ASAO-KU OZENJIHIGASHI	Privilege	Benefits Other
+\.
+
+
+--
+-- Data for Name: listings_business_hours; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY listings_business_hours (id, created_at, updated_at, listing_id, business_hour_id) FROM stdin;
+\.
+
+
+--
+-- Name: listings_business_hours_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('listings_business_hours_id_seq', 1, false);
+
+
+--
+-- Name: listings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('listings_id_seq', 5, true);
+
+
+--
+-- Data for Name: listings_shop_categories; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY listings_shop_categories (id, created_at, updated_at, listing_id, shop_category_id) FROM stdin;
+1	2016-05-22 00:35:25.067525	2016-05-22 00:35:25.067525	1	1
+2	2016-05-22 00:35:25.114823	2016-05-22 00:35:25.114823	1	2
+3	2016-05-22 05:09:48.784589	2016-05-22 05:09:48.784589	2	1
+4	2016-05-22 18:02:27.245988	2016-05-22 18:02:27.245988	3	1
+5	2016-05-22 18:02:27.927118	2016-05-22 18:02:27.927118	3	3
+10	2016-05-23 03:26:51.660349	2016-05-23 03:26:51.660349	5	1
+11	2016-05-23 03:26:51.674073	2016-05-23 03:26:51.674073	5	2
+12	2016-05-23 03:28:33.038071	2016-05-23 03:28:33.038071	4	4
+13	2016-05-23 03:28:33.050177	2016-05-23 03:28:33.050177	4	8
+\.
+
+
+--
+-- Name: listings_shop_categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('listings_shop_categories_id_seq', 13, true);
+
+
+--
+-- Data for Name: listings_shop_services; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY listings_shop_services (id, created_at, updated_at, listing_id, shop_service_id) FROM stdin;
+1	2016-05-22 00:35:25.235175	2016-05-22 00:35:25.235175	1	3
+2	2016-05-22 00:35:25.284333	2016-05-22 00:35:25.284333	1	4
+3	2016-05-22 05:09:48.807374	2016-05-22 05:09:48.807374	2	2
+4	2016-05-22 18:02:28.851092	2016-05-22 18:02:28.851092	3	2
+5	2016-05-22 18:02:29.39707	2016-05-22 18:02:29.39707	3	5
+12	2016-05-23 03:26:51.702803	2016-05-23 03:26:51.702803	5	1
+13	2016-05-23 03:28:33.07573	2016-05-23 03:28:33.07573	4	5
+14	2016-05-23 03:28:33.085887	2016-05-23 03:28:33.085887	4	7
+15	2016-05-23 03:28:33.095742	2016-05-23 03:28:33.095742	4	12
+\.
+
+
+--
+-- Name: listings_shop_services_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('listings_shop_services_id_seq', 15, true);
+
+
+--
+-- Data for Name: menus; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY menus (id, created_at, updated_at, listing_id, menu, menu_en, description, description_en) FROM stdin;
+\.
+
+
+--
+-- Name: menus_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('menus_id_seq', 1, false);
+
+
+--
+-- Data for Name: message_thread_users; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY message_thread_users (id, message_thread_id, user_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: message_thread_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('message_thread_users_id_seq', 1, false);
+
+
+--
+-- Data for Name: message_threads; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY message_threads (id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: message_threads_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('message_threads_id_seq', 1, false);
+
+
+--
+-- Data for Name: messages; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY messages (id, message_thread_id, from_user_id, to_user_id, content, read, read_at, listing_id, reservation_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('messages_id_seq', 1, false);
+
+
+--
+-- Data for Name: prefectures; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY prefectures (id, created_at, updated_at, name, name_en) FROM stdin;
+1	2016-05-21 14:43:51.328209	2016-05-21 14:43:51.328209	北海道	Hokkaido
+2	2016-05-21 14:43:51.347363	2016-05-21 14:43:51.347363	青森県	Aomori
+3	2016-05-21 14:43:51.365998	2016-05-21 14:43:51.365998	岩手県	Iwate
+4	2016-05-21 14:43:51.379756	2016-05-21 14:43:51.379756	宮城県	Miyagi
+5	2016-05-21 14:43:51.418166	2016-05-21 14:43:51.418166	秋田県	Akita
+6	2016-05-21 14:43:51.45748	2016-05-21 14:43:51.45748	山形県	Yamagata
+7	2016-05-21 14:43:51.478193	2016-05-21 14:43:51.478193	福島県	Fukushima
+8	2016-05-21 14:43:51.503506	2016-05-21 14:43:51.503506	茨城県	Ibaraki
+9	2016-05-21 14:43:51.538899	2016-05-21 14:43:51.538899	栃木県	Tochigi
+10	2016-05-21 14:43:51.562306	2016-05-21 14:43:51.562306	群馬県	Gunma
+11	2016-05-21 14:43:51.590095	2016-05-21 14:43:51.590095	埼玉県	Saitama
+12	2016-05-21 14:43:51.61224	2016-05-21 14:43:51.61224	千葉県	Chiba
+13	2016-05-21 14:43:51.785129	2016-05-21 14:43:51.785129	東京都	Tokyo
+14	2016-05-21 14:43:51.802163	2016-05-21 14:43:51.802163	神奈川県	Kanagawa
+15	2016-05-21 14:43:51.811839	2016-05-21 14:43:51.811839	新潟県	Niigata
+16	2016-05-21 14:43:51.98355	2016-05-21 14:43:51.98355	富山県	Toyama
+17	2016-05-21 14:43:51.994669	2016-05-21 14:43:51.994669	石川県	Ishikawa
+18	2016-05-21 14:43:52.015047	2016-05-21 14:43:52.015047	福井県	Fukui
+19	2016-05-21 14:43:52.068013	2016-05-21 14:43:52.068013	山梨県	Yamanashi
+20	2016-05-21 14:43:52.191235	2016-05-21 14:43:52.191235	長野県	Nagano
+21	2016-05-21 14:43:52.210693	2016-05-21 14:43:52.210693	岐阜県	Gifu
+22	2016-05-21 14:43:52.363405	2016-05-21 14:43:52.363405	静岡県	Shizuoka
+23	2016-05-21 14:43:52.38345	2016-05-21 14:43:52.38345	愛知県	Aichi
+24	2016-05-21 14:43:52.524242	2016-05-21 14:43:52.524242	三重県	Mie
+25	2016-05-21 14:43:52.539158	2016-05-21 14:43:52.539158	滋賀県	Shiga
+26	2016-05-21 14:43:52.553993	2016-05-21 14:43:52.553993	京都府	Kyouto
+27	2016-05-21 14:43:53.061976	2016-05-21 14:43:53.061976	大阪府	Osaka
+28	2016-05-21 14:43:53.208394	2016-05-21 14:43:53.208394	兵庫県	Hyougo
+29	2016-05-21 14:43:53.235122	2016-05-21 14:43:53.235122	奈良県	Nara
+30	2016-05-21 14:43:53.39107	2016-05-21 14:43:53.39107	和歌山県	Wakayama
+31	2016-05-21 14:43:53.414818	2016-05-21 14:43:53.414818	鳥取県	Tottori
+32	2016-05-21 14:43:53.582037	2016-05-21 14:43:53.582037	島根県	Shimane
+33	2016-05-21 14:43:53.597898	2016-05-21 14:43:53.597898	岡山県	Okayama
+34	2016-05-21 14:43:53.899731	2016-05-21 14:43:53.899731	広島県	Hirashima
+35	2016-05-21 14:43:53.912238	2016-05-21 14:43:53.912238	山口県	Yamaguchi
+36	2016-05-21 14:43:53.924985	2016-05-21 14:43:53.924985	徳島県	Tokushima
+37	2016-05-21 14:43:53.93858	2016-05-21 14:43:53.93858	香川県	Kagawa
+38	2016-05-21 14:43:54.076926	2016-05-21 14:43:54.076926	愛媛県	Ehime
+39	2016-05-21 14:43:54.09003	2016-05-21 14:43:54.09003	高知県	Kouchi
+40	2016-05-21 14:43:54.102761	2016-05-21 14:43:54.102761	福岡県	Fukuoka
+41	2016-05-21 14:43:54.115185	2016-05-21 14:43:54.115185	佐賀県	Saga
+42	2016-05-21 14:43:54.260946	2016-05-21 14:43:54.260946	長崎県	Nagasaki
+43	2016-05-21 14:43:54.273364	2016-05-21 14:43:54.273364	熊本県	Kumamoto
+44	2016-05-21 14:43:54.285989	2016-05-21 14:43:54.285989	大分県	Oita
+45	2016-05-21 14:43:54.426334	2016-05-21 14:43:54.426334	宮崎県	Miyazaki
+46	2016-05-21 14:43:54.4368	2016-05-21 14:43:54.4368	鹿児島県	Kagoshima
+47	2016-05-21 14:43:54.447654	2016-05-21 14:43:54.447654	沖縄県	Okinawa
+\.
+
+
+--
+-- Name: prefectures_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('prefectures_id_seq', 48, false);
+
+
+--
+-- Data for Name: profile_images; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY profile_images (id, user_id, profile_id, image, caption, created_at, updated_at) FROM stdin;
+1	1	1	something.jpg		2016-05-22 00:32:12.487042	2016-05-22 00:32:12.487042
+\.
+
+
+--
+-- Name: profile_images_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('profile_images_id_seq', 1, true);
+
+
+--
+-- Data for Name: profile_videos; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY profile_videos (id, user_id, profile_id, video, caption, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: profile_videos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('profile_videos_id_seq', 1, false);
+
+
+--
+-- Data for Name: profiles; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY profiles (id, user_id, first_name, last_name, birthday, gender, phone, phone_verification, zipcode, location, self_introduction, school, work, timezone, listing_count, wishlist_count, bookmark_count, reviewed_count, reservation_count, ave_total, ave_accuracy, ave_communication, ave_cleanliness, ave_location, ave_check_in, ave_cost_performance, created_at, updated_at) FROM stdin;
+1	1	Jun'ya	Shimoda	\N	\N		f							0	0	0	0	0	0	0	0	0	0	0	0	2016-05-22 00:32:11.437021	2016-05-22 00:32:11.437021
+2	6			\N	\N		f							0	0	0	0	0	0	0	0	0	0	0	0	2016-05-22 19:15:57.369111	2016-05-22 19:15:57.369111
+\.
+
+
+--
+-- Name: profiles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('profiles_id_seq', 2, true);
+
+
+--
+-- Data for Name: reservations; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY reservations (id, host_id, guest_id, listing_id, schedule, num_of_people, msg, progress, reason, review_mail_sent_at, review_expiration_date, review_landed_at, reviewed_at, reply_mail_sent_at, reply_landed_at, replied_at, review_opened_at, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: reservations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('reservations_id_seq', 1, false);
+
+
+--
+-- Data for Name: review_replies; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY review_replies (id, review_id, msg, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: review_replies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('review_replies_id_seq', 1, false);
+
+
+--
+-- Data for Name: reviews; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY reviews (id, guest_id, host_id, reservation_id, listing_id, accuracy, communication, cleanliness, location, check_in, cost_performance, total, msg, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: reviews_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('reviews_id_seq', 1, false);
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY schema_migrations (version) FROM stdin;
+20150309085435
+20150310045636
+20150310052723
+20150310080109
+20150310082310
+20150310082724
+20150310082917
+20150310083405
+20150310083923
+20150326103953
+20150326103954
+20150326104008
+20150328114148
+20150328114408
+20150328114519
+20150403085329
+20150403085824
+20150403085933
+20150409114211
+20150410095205
+20150410101037
+20150429054844
+20150429054854
+20151021111900
+20160404122009
+20160405052817
+20160405053414
+20160405053524
+20160405070407
+20160405071605
+20160405120930
+20160405121827
+20160405121856
+20160405121920
+20160406075917
+20160514084459
+20160514091054
+20160514091132
+20160514180058
+20160522080611
+20160520090237
+20160520140853
+\.
+
+
+--
+-- Data for Name: shop_categories; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY shop_categories (id, created_at, updated_at, name, name_en) FROM stdin;
+1	2016-05-21 14:40:21.68604	2016-05-21 14:40:21.68604	寿司	Sushi
+2	2016-05-21 14:40:21.697097	2016-05-21 14:40:21.697097	天ぷら	Tempura
+3	2016-05-21 14:40:21.70588	2016-05-21 14:40:21.70588	しゃぶしゃぶ・すきやき	Shabu-shabu/Sukiyaki\n
+4	2016-05-21 14:40:21.720466	2016-05-21 14:40:21.720466	魚・海鮮料理	Seafood
+5	2016-05-21 14:40:21.729171	2016-05-21 14:40:21.729171	うなぎ	Unagi
+6	2016-05-21 14:40:21.737498	2016-05-21 14:40:21.737498	焼き鳥	Yakitori
+7	2016-05-21 14:40:21.745029	2016-05-21 14:40:21.745029	懐石	Kaiseki(Formal Japanese)
+8	2016-05-21 14:40:21.752618	2016-05-21 14:40:21.752618	鍋	Nabe(Pot)
+9	2016-05-21 14:40:21.760785	2016-05-21 14:40:21.760785	とんかつ	Tonkatsu
+10	2016-05-21 14:40:21.768294	2016-05-21 14:40:21.768294	串揚げ	Kushiage
+11	2016-05-21 14:40:21.775843	2016-05-21 14:40:21.775843	ラーメン・つけ麺	Ramen
+12	2016-05-21 14:40:21.783754	2016-05-21 14:40:21.783754	お好み焼き・もんじゃ	Okonomiyaki・Monja
+13	2016-05-21 14:40:21.792575	2016-05-21 14:40:21.792575	うどん・そば	Udon/Soba(Noodle)
+14	2016-05-21 14:40:21.801174	2016-05-21 14:40:21.801174	その他和食	Other Japanese
+15	2016-05-21 14:40:21.816836	2016-05-21 14:40:21.816836	洋食・西洋料理	Western
+16	2016-05-21 14:40:21.824947	2016-05-21 14:40:21.824947	中華	Chinese
+17	2016-05-21 14:40:21.83314	2016-05-21 14:40:21.83314	アジア・エスニック	Asian
+18	2016-05-21 14:40:21.842206	2016-05-21 14:40:21.842206	カレー	Curry
+19	2016-05-21 14:40:21.85012	2016-05-21 14:40:21.85012	焼肉・ホルモン	Yakiniku/BBQ
+20	2016-05-21 14:40:21.858011	2016-05-21 14:40:21.858011	居酒屋	Izakaya(Japanese casual bar)
+21	2016-05-21 14:40:21.866699	2016-05-21 14:40:21.866699	ダイニングバー	Dining bar
+22	2016-05-21 14:40:21.875348	2016-05-21 14:40:21.875348	定食・食堂 弁当	Casual Japanese
+23	2016-05-21 14:40:21.884118	2016-05-21 14:40:21.884118	カフェ・喫茶	Café
+24	2016-05-21 14:40:21.89262	2016-05-21 14:40:21.89262	コーヒー専門店	Specialty Coffee
+25	2016-05-21 14:40:21.901959	2016-05-21 14:40:21.901959	パン	Bakery
+26	2016-05-21 14:40:21.91136	2016-05-21 14:40:21.91136	洋菓子 和菓子・甘味処 スイーツ	Sweets/Desert
+27	2016-05-21 14:40:21.924009	2016-05-21 14:40:21.924009	バー・お酒	Bar
+28	2016-05-21 14:40:21.93265	2016-05-21 14:40:21.93265	ベジタリアン	Vegetarian
+29	2016-05-21 14:40:21.940671	2016-05-21 14:40:21.940671	その他	Other
+\.
+
+
+--
+-- Name: shop_categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('shop_categories_id_seq', 30, false);
+
+
+--
+-- Data for Name: shop_services; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY shop_services (id, created_at, updated_at, name, name_en) FROM stdin;
+1	2016-05-21 14:40:21.979039	2016-05-21 14:40:21.979039	予約可	Reservation
+2	2016-05-21 14:40:21.988797	2016-05-21 14:40:21.988797	個室有り	Private room
+3	2016-05-21 14:40:21.99591	2016-05-21 14:40:21.99591	出前・デリバリー可	Delivery
+4	2016-05-21 14:40:22.005614	2016-05-21 14:40:22.005614	テイクアウト可	Take-out
+5	2016-05-21 14:40:22.014795	2016-05-21 14:40:22.014795	クレジットカード可	credit card
+6	2016-05-21 14:40:22.0266	2016-05-21 14:40:22.0266	駐車場有り	Parking
+7	2016-05-21 14:40:22.034632	2016-05-21 14:40:22.034632	アルコール有り	Alcohol
+8	2016-05-21 14:40:22.043251	2016-05-21 14:40:22.043251	ハラル認証	Halal certified
+9	2016-05-21 14:40:22.051007	2016-05-21 14:40:22.051007	車いす対応	Wheel chair
+10	2016-05-21 14:40:22.058694	2016-05-21 14:40:22.058694	お子様用椅子あり	Booster/Child seat
+11	2016-05-21 14:40:22.066656	2016-05-21 14:40:22.066656	屋外テーブルあり	Outdoor table
+12	2016-05-21 14:40:22.074974	2016-05-21 14:40:22.074974	無料Wi-Fi	Free Wi-Fi
+13	2016-05-21 14:40:22.082907	2016-05-21 14:40:22.082907	写真付きメニューあり	Photos with menu
+14	2016-05-21 14:40:22.090758	2016-05-21 14:40:22.090758	メニューに材料の表示あり	Material display with menu
+\.
+
+
+--
+-- Name: shop_services_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('shop_services_id_seq', 15, false);
+
+
+--
+-- Data for Name: smokings; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY smokings (id, created_at, updated_at, name, name_en) FROM stdin;
+1	2016-05-21 14:40:22.133353	2016-05-21 14:40:22.133353	完全禁煙	Non-smoking
+2	2016-05-21 14:40:22.146013	2016-05-21 14:40:22.146013	分煙（エリアによる分煙）	Smoking in separated area
+3	2016-05-21 14:40:22.155185	2016-05-21 14:40:22.155185	完全分煙（部屋による分煙）	Smoking in separated rooms
+4	2016-05-21 14:40:22.163544	2016-05-21 14:40:22.163544	喫煙可	Smoking is permitted
+\.
+
+
+--
+-- Name: smokings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('smokings_id_seq', 5, false);
+
+
+--
+-- Data for Name: tools; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY tools (id, listing_id, name, url, image, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: tools_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('tools_id_seq', 1, false);
+
+
+--
+-- Data for Name: user_ngevents; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY user_ngevents (id, user_id, listing_id, reservation_id, reason, start, "end", active, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: user_ngevents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('user_ngevents_id_seq', 1, false);
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, confirmation_token, confirmed_at, confirmation_sent_at, unconfirmed_email, failed_attempts, unlock_token, locked_at, created_at, updated_at, uid, provider, username, admin) FROM stdin;
+2	chisa.odamaki@bizitjapan.com	$2a$10$UzvNZRcIGAT57zG6rSltxeY7ea1rWW1sJnVzuqHx7tVBy8MtPMRny	\N	\N	\N	0	\N	\N	\N	\N	\N	2016-05-22 17:55:36.034197	\N	\N	0	\N	\N	2016-05-22 17:55:38.758088	2016-05-22 17:55:38.758088			\N	t
+6	jironbach@gmail.com	$2a$10$lszY8inbVExh7xTTlbbBLeCkqiEu26eZ/nEmk6d8dJiP2JuKk6irW	\N	\N	\N	2	2016-05-23 03:21:01.946257	2016-05-22 19:19:51.183746	192.168.204.1	127.0.0.1	\N	2016-05-22 19:19:26.737688	2016-05-22 19:15:56.661257	\N	0	\N	\N	2016-05-22 19:15:56.296095	2016-05-23 03:21:01.949749	ae3f152d-5c2a-445b-b41d-a780d0db701a		\N	f
+1	junshimo2@gmail.com	$2a$10$dGuuRrN5tJyXVIM.JV8/EOh9FLMaJ84UCQqIRLtlTOFDYKBlCiZoy	\N	\N	\N	6	2016-05-23 03:25:40.716433	2016-05-23 03:20:14.209705	192.168.204.1	192.168.204.1	\N	2016-05-23 03:25:40.679353	\N	\N	0	\N	\N	2016-05-22 00:32:11.316061	2016-05-23 03:25:40.719417	1133479786718789	facebook	\N	t
+\.
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('users_id_seq', 6, true);
+
+
+--
+-- Data for Name: wishlists; Type: TABLE DATA; Schema: public; Owner: eatlocaljapan
+--
+
+COPY wishlists (id, user_id, name, range, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: wishlists_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
+--
+
+SELECT pg_catalog.setval('wishlists_id_seq', 1, false);
+
+
+--
+-- Name: active_admin_comments_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY active_admin_comments
+    ADD CONSTRAINT active_admin_comments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: admin_users_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY admin_users
+    ADD CONSTRAINT admin_users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auths_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY auths
+    ADD CONSTRAINT auths_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: browsing_histories_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY browsing_histories
+    ADD CONSTRAINT browsing_histories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: business_hours_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY business_hours
+    ADD CONSTRAINT business_hours_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: confections_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY confections
+    ADD CONSTRAINT confections_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: dress_codes_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY dress_codes
+    ADD CONSTRAINT dress_codes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: emergencies_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY emergencies
+    ADD CONSTRAINT emergencies_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: english_messages_listings_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY english_messages_listings
+    ADD CONSTRAINT english_messages_listings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: english_messages_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY english_messages
+    ADD CONSTRAINT english_messages_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: englishes_listings_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY englishes_listings
+    ADD CONSTRAINT englishes_listings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: englishes_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY englishes
+    ADD CONSTRAINT englishes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: info_admins_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY info_admins
+    ADD CONSTRAINT info_admins_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: listing_images_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY listing_images
+    ADD CONSTRAINT listing_images_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: listing_pvs_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY listing_pvs
+    ADD CONSTRAINT listing_pvs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: listings_business_hours_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY listings_business_hours
+    ADD CONSTRAINT listings_business_hours_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: listings_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY listings
+    ADD CONSTRAINT listings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: listings_shop_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY listings_shop_categories
+    ADD CONSTRAINT listings_shop_categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: listings_shop_services_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY listings_shop_services
+    ADD CONSTRAINT listings_shop_services_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: menus_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY menus
+    ADD CONSTRAINT menus_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: message_thread_users_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY message_thread_users
+    ADD CONSTRAINT message_thread_users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: message_threads_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY message_threads
+    ADD CONSTRAINT message_threads_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: messages_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY messages
+    ADD CONSTRAINT messages_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: prefectures_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY prefectures
+    ADD CONSTRAINT prefectures_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: profile_images_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY profile_images
+    ADD CONSTRAINT profile_images_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: profile_videos_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY profile_videos
+    ADD CONSTRAINT profile_videos_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: profiles_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY profiles
+    ADD CONSTRAINT profiles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: reservations_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY reservations
+    ADD CONSTRAINT reservations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: review_replies_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY review_replies
+    ADD CONSTRAINT review_replies_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: reviews_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY reviews
+    ADD CONSTRAINT reviews_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: shop_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY shop_categories
+    ADD CONSTRAINT shop_categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: shop_services_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY shop_services
+    ADD CONSTRAINT shop_services_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: smokings_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY smokings
+    ADD CONSTRAINT smokings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: tools_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY tools
+    ADD CONSTRAINT tools_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_ngevents_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY user_ngevents
+    ADD CONSTRAINT user_ngevents_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: wishlists_pkey; Type: CONSTRAINT; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+ALTER TABLE ONLY wishlists
+    ADD CONSTRAINT wishlists_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_active_admin_comments_on_author_type_and_author_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_active_admin_comments_on_author_type_and_author_id ON active_admin_comments USING btree (author_type, author_id);
+
+
+--
+-- Name: index_active_admin_comments_on_namespace; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_active_admin_comments_on_namespace ON active_admin_comments USING btree (namespace);
+
+
+--
+-- Name: index_active_admin_comments_on_resource_type_and_resource_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_active_admin_comments_on_resource_type_and_resource_id ON active_admin_comments USING btree (resource_type, resource_id);
+
+
+--
+-- Name: index_admin_users_on_email; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_admin_users_on_email ON admin_users USING btree (email);
+
+
+--
+-- Name: index_admin_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_admin_users_on_reset_password_token ON admin_users USING btree (reset_password_token);
+
+
+--
+-- Name: index_auths_on_user_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_auths_on_user_id ON auths USING btree (user_id);
+
+
+--
+-- Name: index_browsing_histories_on_listing_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_browsing_histories_on_listing_id ON browsing_histories USING btree (listing_id);
+
+
+--
+-- Name: index_browsing_histories_on_user_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_browsing_histories_on_user_id ON browsing_histories USING btree (user_id);
+
+
+--
+-- Name: index_browsing_histories_on_viewed_at; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_browsing_histories_on_viewed_at ON browsing_histories USING btree (viewed_at);
+
+
+--
+-- Name: index_business_hours_on_listing_id_and_wday; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_business_hours_on_listing_id_and_wday ON business_hours USING btree (listing_id, wday);
+
+
+--
+-- Name: index_confections_on_listing_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_confections_on_listing_id ON confections USING btree (listing_id);
+
+
+--
+-- Name: index_confections_on_listing_id_and_name; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_confections_on_listing_id_and_name ON confections USING btree (listing_id, name);
+
+
+--
+-- Name: index_dress_codes_on_listing_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_dress_codes_on_listing_id ON dress_codes USING btree (listing_id);
+
+
+--
+-- Name: index_emergencies_on_profile_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_emergencies_on_profile_id ON emergencies USING btree (profile_id);
+
+
+--
+-- Name: index_emergencies_on_user_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_emergencies_on_user_id ON emergencies USING btree (user_id);
+
+
+--
+-- Name: index_englishes_listings_on_listing_id_and_english_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_englishes_listings_on_listing_id_and_english_id ON englishes_listings USING btree (listing_id, english_id);
+
+
+--
+-- Name: index_listing_business_hours; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_listing_business_hours ON listings_business_hours USING btree (listing_id, business_hour_id);
+
+
+--
+-- Name: index_listing_images_on_listing_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_listing_images_on_listing_id ON listing_images USING btree (listing_id);
+
+
+--
+-- Name: index_listing_pvs_on_listing_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_listing_pvs_on_listing_id ON listing_pvs USING btree (listing_id);
+
+
+--
+-- Name: index_listing_pvs_on_viewed_at_and_listing_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_listing_pvs_on_viewed_at_and_listing_id ON listing_pvs USING btree (viewed_at, listing_id);
+
+
+--
+-- Name: index_listing_shop_categories; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_listing_shop_categories ON listings_shop_categories USING btree (listing_id, shop_category_id);
+
+
+--
+-- Name: index_listings_on_capacity; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_listings_on_capacity ON listings USING btree (capacity);
+
+
+--
+-- Name: index_listings_on_latitude; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_listings_on_latitude ON listings USING btree (latitude);
+
+
+--
+-- Name: index_listings_on_location; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_listings_on_location ON listings USING btree (location);
+
+
+--
+-- Name: index_listings_on_longitude; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_listings_on_longitude ON listings USING btree (longitude);
+
+
+--
+-- Name: index_listings_on_price; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_listings_on_price ON listings USING btree (price);
+
+
+--
+-- Name: index_listings_on_title; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_listings_on_title ON listings USING btree (title);
+
+
+--
+-- Name: index_listings_on_user_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_listings_on_user_id ON listings USING btree (user_id);
+
+
+--
+-- Name: index_listings_on_zipcode; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_listings_on_zipcode ON listings USING btree (zipcode);
+
+
+--
+-- Name: index_listings_shop_services_on_listing_id_and_shop_service_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_listings_shop_services_on_listing_id_and_shop_service_id ON listings_shop_services USING btree (listing_id, shop_service_id);
+
+
+--
+-- Name: index_message_thread_users_on_message_thread_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_message_thread_users_on_message_thread_id ON message_thread_users USING btree (message_thread_id);
+
+
+--
+-- Name: index_message_thread_users_on_message_thread_id_and_user_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_message_thread_users_on_message_thread_id_and_user_id ON message_thread_users USING btree (message_thread_id, user_id);
+
+
+--
+-- Name: index_message_thread_users_on_user_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_message_thread_users_on_user_id ON message_thread_users USING btree (user_id);
+
+
+--
+-- Name: index_messages_on_from_user_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_messages_on_from_user_id ON messages USING btree (from_user_id);
+
+
+--
+-- Name: index_messages_on_listing_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_messages_on_listing_id ON messages USING btree (listing_id);
+
+
+--
+-- Name: index_messages_on_message_thread_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_messages_on_message_thread_id ON messages USING btree (message_thread_id);
+
+
+--
+-- Name: index_messages_on_reservation_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_messages_on_reservation_id ON messages USING btree (reservation_id);
+
+
+--
+-- Name: index_messages_on_to_user_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_messages_on_to_user_id ON messages USING btree (to_user_id);
+
+
+--
+-- Name: index_profile_images_on_profile_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_profile_images_on_profile_id ON profile_images USING btree (profile_id);
+
+
+--
+-- Name: index_profile_images_on_user_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_profile_images_on_user_id ON profile_images USING btree (user_id);
+
+
+--
+-- Name: index_profile_videos_on_profile_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_profile_videos_on_profile_id ON profile_videos USING btree (profile_id);
+
+
+--
+-- Name: index_profile_videos_on_user_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_profile_videos_on_user_id ON profile_videos USING btree (user_id);
+
+
+--
+-- Name: index_profiles_on_user_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_profiles_on_user_id ON profiles USING btree (user_id);
+
+
+--
+-- Name: index_reservations_on_guest_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_reservations_on_guest_id ON reservations USING btree (guest_id);
+
+
+--
+-- Name: index_reservations_on_host_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_reservations_on_host_id ON reservations USING btree (host_id);
+
+
+--
+-- Name: index_reservations_on_listing_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_reservations_on_listing_id ON reservations USING btree (listing_id);
+
+
+--
+-- Name: index_review_replies_on_review_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_review_replies_on_review_id ON review_replies USING btree (review_id);
+
+
+--
+-- Name: index_reviews_on_guest_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_reviews_on_guest_id ON reviews USING btree (guest_id);
+
+
+--
+-- Name: index_reviews_on_host_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_reviews_on_host_id ON reviews USING btree (host_id);
+
+
+--
+-- Name: index_reviews_on_listing_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_reviews_on_listing_id ON reviews USING btree (listing_id);
+
+
+--
+-- Name: index_reviews_on_reservation_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_reviews_on_reservation_id ON reviews USING btree (reservation_id);
+
+
+--
+-- Name: index_tools_on_listing_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_tools_on_listing_id ON tools USING btree (listing_id);
+
+
+--
+-- Name: index_tools_on_listing_id_and_name; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_tools_on_listing_id_and_name ON tools USING btree (listing_id, name);
+
+
+--
+-- Name: index_user_ngevents_on_listing_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_user_ngevents_on_listing_id ON user_ngevents USING btree (listing_id);
+
+
+--
+-- Name: index_user_ngevents_on_reservation_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_user_ngevents_on_reservation_id ON user_ngevents USING btree (reservation_id);
+
+
+--
+-- Name: index_user_ngevents_on_user_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_user_ngevents_on_user_id ON user_ngevents USING btree (user_id);
+
+
+--
+-- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_confirmation_token ON users USING btree (confirmation_token);
+
+
+--
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
+
+
+--
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
+
+
+--
+-- Name: index_users_on_uid_and_provider; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_uid_and_provider ON users USING btree (uid, provider);
+
+
+--
+-- Name: index_users_on_unlock_token; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_unlock_token ON users USING btree (unlock_token);
+
+
+--
+-- Name: index_users_on_username; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_username ON users USING btree (username);
+
+
+--
+-- Name: index_wishlists_on_user_id; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE INDEX index_wishlists_on_user_id ON wishlists USING btree (user_id);
+
+
+--
+-- Name: index_wishlists_on_user_id_and_name; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_wishlists_on_user_id_and_name ON wishlists USING btree (user_id, name);
+
+
+--
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: eatlocaljapan; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+
+
+--
+-- Name: fk_rails_132edfa4da; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY profile_videos
+    ADD CONSTRAINT fk_rails_132edfa4da FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_23228af45d; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY listing_pvs
+    ADD CONSTRAINT fk_rails_23228af45d FOREIGN KEY (listing_id) REFERENCES listings(id);
+
+
+--
+-- Name: fk_rails_247befc35d; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY listing_images
+    ADD CONSTRAINT fk_rails_247befc35d FOREIGN KEY (listing_id) REFERENCES listings(id);
+
+
+--
+-- Name: fk_rails_24bfd557e8; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY message_thread_users
+    ADD CONSTRAINT fk_rails_24bfd557e8 FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_47a1418c39; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY auths
+    ADD CONSTRAINT fk_rails_47a1418c39 FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_48a2f10058; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY messages
+    ADD CONSTRAINT fk_rails_48a2f10058 FOREIGN KEY (message_thread_id) REFERENCES message_threads(id);
+
+
+--
+-- Name: fk_rails_4fe9a18422; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY dress_codes
+    ADD CONSTRAINT fk_rails_4fe9a18422 FOREIGN KEY (listing_id) REFERENCES listings(id);
+
+
+--
+-- Name: fk_rails_5424d7904d; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY profile_images
+    ADD CONSTRAINT fk_rails_5424d7904d FOREIGN KEY (profile_id) REFERENCES profiles(id);
+
+
+--
+-- Name: fk_rails_60def33a58; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY reviews
+    ADD CONSTRAINT fk_rails_60def33a58 FOREIGN KEY (listing_id) REFERENCES listings(id);
+
+
+--
+-- Name: fk_rails_628a43e51f; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY reviews
+    ADD CONSTRAINT fk_rails_628a43e51f FOREIGN KEY (reservation_id) REFERENCES reservations(id);
+
+
+--
+-- Name: fk_rails_6d899b98d1; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY reservations
+    ADD CONSTRAINT fk_rails_6d899b98d1 FOREIGN KEY (listing_id) REFERENCES listings(id);
+
+
+--
+-- Name: fk_rails_716521dee1; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY user_ngevents
+    ADD CONSTRAINT fk_rails_716521dee1 FOREIGN KEY (listing_id) REFERENCES listings(id);
+
+
+--
+-- Name: fk_rails_790615048c; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY profile_images
+    ADD CONSTRAINT fk_rails_790615048c FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_928a81e01d; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY messages
+    ADD CONSTRAINT fk_rails_928a81e01d FOREIGN KEY (to_user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_9b79c20df5; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY browsing_histories
+    ADD CONSTRAINT fk_rails_9b79c20df5 FOREIGN KEY (listing_id) REFERENCES listings(id);
+
+
+--
+-- Name: fk_rails_9ed1e7fe9f; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY reservations
+    ADD CONSTRAINT fk_rails_9ed1e7fe9f FOREIGN KEY (host_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_a00daaa2d3; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY reservations
+    ADD CONSTRAINT fk_rails_a00daaa2d3 FOREIGN KEY (guest_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_a84b9d811f; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY profile_videos
+    ADD CONSTRAINT fk_rails_a84b9d811f FOREIGN KEY (profile_id) REFERENCES profiles(id);
+
+
+--
+-- Name: fk_rails_aba24a7178; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY confections
+    ADD CONSTRAINT fk_rails_aba24a7178 FOREIGN KEY (listing_id) REFERENCES listings(id);
+
+
+--
+-- Name: fk_rails_ac5cb4d097; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY reviews
+    ADD CONSTRAINT fk_rails_ac5cb4d097 FOREIGN KEY (host_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_b41b1f8d56; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY tools
+    ADD CONSTRAINT fk_rails_b41b1f8d56 FOREIGN KEY (listing_id) REFERENCES listings(id);
+
+
+--
+-- Name: fk_rails_b60fe5212a; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY emergencies
+    ADD CONSTRAINT fk_rails_b60fe5212a FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_b694143143; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY user_ngevents
+    ADD CONSTRAINT fk_rails_b694143143 FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_b9723134d3; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY messages
+    ADD CONSTRAINT fk_rails_b9723134d3 FOREIGN KEY (from_user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_baa008bfd2; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY listings
+    ADD CONSTRAINT fk_rails_baa008bfd2 FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_c001d43d57; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY emergencies
+    ADD CONSTRAINT fk_rails_c001d43d57 FOREIGN KEY (profile_id) REFERENCES profiles(id);
+
+
+--
+-- Name: fk_rails_c218074074; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY review_replies
+    ADD CONSTRAINT fk_rails_c218074074 FOREIGN KEY (review_id) REFERENCES reviews(id);
+
+
+--
+-- Name: fk_rails_ccd0718ab1; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY message_thread_users
+    ADD CONSTRAINT fk_rails_ccd0718ab1 FOREIGN KEY (message_thread_id) REFERENCES message_threads(id);
+
+
+--
+-- Name: fk_rails_d3bd148213; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY user_ngevents
+    ADD CONSTRAINT fk_rails_d3bd148213 FOREIGN KEY (reservation_id) REFERENCES reservations(id);
+
+
+--
+-- Name: fk_rails_e424190865; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY profiles
+    ADD CONSTRAINT fk_rails_e424190865 FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_eaa1ce2871; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY reviews
+    ADD CONSTRAINT fk_rails_eaa1ce2871 FOREIGN KEY (guest_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_eb66139660; Type: FK CONSTRAINT; Schema: public; Owner: eatlocaljapan
+--
+
+ALTER TABLE ONLY wishlists
+    ADD CONSTRAINT fk_rails_eb66139660 FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

@@ -56,8 +56,6 @@ Rails.application.configure do
     :user_name => Rails.application.secrets.action_mailer_user_name,
     :password => Rails.application.secrets.action_mailer_password,
   }
-  puts "JironBach:mailer_host=#{Rails.application.secrets.action_mailer_host}"
-  puts "JironBach:mailer_port=#{Rails.application.secrets.action_mailer_port}"
 
   config.action_controller.action_on_unpermitted_parameters = :raise
 end
