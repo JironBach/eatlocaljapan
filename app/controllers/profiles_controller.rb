@@ -77,7 +77,11 @@ class ProfilesController < ApplicationController
     end
 
     def set_my_profile
-      @profile = Profile.find(current_user.profile.id)
+      if current_user.profile.nil?
+        @profile = Profile.new
+      else
+        @profile = Profile.find(current_user.profile.id)
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
