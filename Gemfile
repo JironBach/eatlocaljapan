@@ -91,7 +91,7 @@ group :development, :staging, :production do
   gem 'capistrano3-unicorn'
   gem 'capistrano-passenger'
   gem 'capistrano-sidekiq'
-  #gem 'capistrano-postgresql'
+  gem 'capistrano-postgresql'
 end
 
 
