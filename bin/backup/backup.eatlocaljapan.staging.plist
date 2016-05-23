@@ -4,12 +4,12 @@
 <dict>
   <!-- label -->   
   <key>Label</key>
-  <string>backup.eatlocaljapan.development</string>
+  <string>backup.eatlocaljapan.staging</string>
 
   <!-- script -->
   <key>ProgramArguments</key>
   <array>
-    <string>/Users/js/work/eatlocaljapan/bin/backup_development.rb</string>
+    <string>/Users/js/work/eatlocaljapan/bin/backup/backup_staging.rb</string>
   </array>
   
   <!-- launchctl loadしたタイミングで実行するか -->
@@ -22,8 +22,8 @@
 
   <!-- ログの指定 -->
   <key>StandardErrorPath</key>
-  <string>/Users/js/tmp/log/backup_elj_dev_err.log</string>
+  <string>/Users/js/tmp/log/backup_elj_stg.log</string>
   <key>StandardOutPath</key>
-  <string>/Users/js/tmp/log/backup_elj_dev.log</string>
+  <string>/Users/js/tmp/log/backup_elj_stg.log</string>
 </dict>
 </plist>

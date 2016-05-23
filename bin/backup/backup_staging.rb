@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 
 path = '/Users/js/work/eatlocaljapan'
-backup_to = "#{path}/bin/data/#{Time.now.strftime("%j%H%M%S")}.stg"
+backup_to = "#{path}/bin/backup/data/#{Time.now.strftime("%j%H%M%S")}.stg"
 puts backup_to
 `/usr/local/bin/pg_dump -h jironbach.iobb.net -d eatlocaljapan_staging -U eatlocaljapan -f #{backup_to}`
 
-bks = Dir.glob("#{path}/bin/data/*.stg")
+bks = Dir.glob("#{path}/bin/backup/data/*.stg")
 if bks.count > 10
   i = 0
   bks.reverse.each do |bk|
