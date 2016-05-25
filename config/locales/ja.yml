@@ -349,10 +349,10 @@ ja:
       logging_in: "ログインしています..."
     footer:
       corporate:
-        title: 企業情報
+        title: 運営会社
         about: このサービスについて
         blog: ブログ
-        help: ヘルプ
+        shop: お店の掲載について
         privacy: プライバシーポリシー
         terms_of_use: 利用規約
       recommend:
@@ -371,7 +371,7 @@ ja:
         five: サービスの様子
       social_media:
         title: ソーシャルメディア
-      copyright: © 会社名
+      copyright: 株式会社BizitJapan
     guest_sidenav:
       link: 参加した店舗情報
       guest_reservation_manager: 参加する

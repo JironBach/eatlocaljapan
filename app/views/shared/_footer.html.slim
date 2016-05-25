@@ -3,14 +3,14 @@ footer
     .row
       .col-sm-12.hide--sp.text-center
         h5
-          = '運営会社'
+          = t '.corporate.title'
         ul.list-unstyled
           li
-            = link_to 'このサービスについて', '#'
+            = link_to t('.corporate.about'), '#'
           li
-            = link_to 'お店の掲載について', '#'
+            = link_to t('.corporate.shop'), '#'
           li
-            = link_to 'プライバシーポリシー', '#'
+            = link_to t('.corporate.privacy'), '#'
           li
     hr.hide--sp
     .sns-container.text-center
@@ -24,4 +24,4 @@ footer
           = link_to '#' do
             i.fa.fa-twitter
     #copyright.row-space-top-2.text-center
-      = link_to '株式会社BizitJapan', 'http://www.bizitjapan.com/', target: "_blank"
+      = link_to t('.copyright'), 'http://www.bizitjapan.com/', target: "_blank"

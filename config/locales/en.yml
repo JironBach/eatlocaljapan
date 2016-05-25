@@ -355,7 +355,7 @@ en:
         title: Corporate Info
         about: About this service
         blog: Blog
-        help: Help
+        shop: About shop posted
         privacy: Privacy policy
         terms_of_use: Term of use
       recommend:
@@ -374,7 +374,7 @@ en:
         five: Photos
       social_media:
         title: Social media
-      copyright: "copyright 'corporate name'"
+      copyright: BizitJapan corporation
     guest_sidenav:
       link: Joined Listings
       guest_reservation_manager: Reserve
