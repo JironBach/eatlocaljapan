@@ -64,8 +64,8 @@
             .row
               .col-xs-11
                 = listing.shop_services.pluck((locale == :ja ? :name : :name_en)).join(", ")
-        hr
-        .row.row-space-5.row-space-top-5.row-table
+        /hr
+        /.row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
               | #{Listing.human_attribute_name :description}
@@ -230,7 +230,7 @@
               .col-xs-11
                 - recommended_en =  listing.recommended_en.blank? ? EasyTranslate.translate(listing.recommended, to: :en) :  listing.recommended_en
                 = text_area_tag :recommended, locale == :ja ? listing.recommended : recommended_en, readonly: :true
-        .row.row-space-5.row-space-top-5.row-table
+        /.row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
               = Listing.human_attribute_name :visit_benefits
@@ -239,7 +239,7 @@
               .col-xs-11
                 - visit_benefits_en = listing.visit_benefits_en.blank? ? EasyTranslate.translate(listing.visit_benefits, to: :en) : listing.visit_benefits_en
                 = text_area_tag :visit_benefits, locale == :ja ? listing.visit_benefits : visit_benefits_en, readonly: :true
-        .row.row-space-5.row-space-top-5.row-table
+        /.row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
               = Listing.human_attribute_name :visit_benefits_another

@@ -55,8 +55,8 @@ ActiveAdmin.register Listing do
     #column I18n.t('activerecord.attributes.listing.review_url'), :review_url
     column I18n.t('activerecord.attributes.listing.recommended'), :recommended
     column I18n.t('activerecord.attributes.listing.recommended_en'), :recommended_en
-    column I18n.t('activerecord.attributes.listing.visit_benefits'), :visit_benefits
-    column I18n.t('activerecord.attributes.listing.visit_benefits_another'), :visit_benefits_another
+    #column I18n.t('activerecord.attributes.listing.visit_benefits'), :visit_benefits
+    #column I18n.t('activerecord.attributes.listing.visit_benefits_another'), :visit_benefits_another
     column I18n.t('activerecord.attributes.listing.english_messages'), sortable: :english_message_id do |em|
       EnglishMessage.where(id: em.english_messages).all.pluck(:name).join(', ')
     end
@@ -86,8 +86,8 @@ ActiveAdmin.register Listing do
       f.input :englishes, :as => :check_boxes, collection: English.all
       # business_hour
       #f.input :business_hours_remarks
-      f.input :shop_description
-      f.input :shop_description_en
+      #f.input :shop_description
+      #f.input :shop_description_en
       f.input :price_low
       f.input :price_high
       f.input :price_low_dinner
@@ -97,8 +97,8 @@ ActiveAdmin.register Listing do
       #f.input :review_url
       f.input :recommended
       f.input :recommended_en
-      f.input :visit_benefits
-      f.input :visit_benefits_another
+      #f.input :visit_benefits
+      #f.input :visit_benefits_another
       f.input :english_messages, :as => :check_boxes, collection: EnglishMessage.all
       f.input :info_admin_id, :as => :select, collection: InfoAdmin.all
       f.input :link_tabelog
@@ -183,12 +183,12 @@ ActiveAdmin.register Listing do
       row I18n.t('activerecord.attributes.listing.recommended_en') do
         resource.recommended_en
       end
-      row I18n.t('activerecord.attributes.listing.visit_benefits') do
-        resource.visit_benefits
-      end
-      row I18n.t('activerecord.attributes.listing.visit_benefits_another') do
-        resource.visit_benefits_another
-      end
+      #row I18n.t('activerecord.attributes.listing.visit_benefits') do
+      #  resource.visit_benefits
+      #end
+      #row I18n.t('activerecord.attributes.listing.visit_benefits_another') do
+      #  resource.visit_benefits_another
+      #end
       row I18n.t('activerecord.attributes.listing.english_messages') do
         EnglishMessage.where(id: resource.english_messages).all.pluck(:name).join(', ')
       end

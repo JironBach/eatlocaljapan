@@ -76,7 +76,7 @@
   /        = f.input_field :price, as: :string, value: (@listing.price > 0 ? @listing.price : "" ), placeholder: t('activerecord.placeholders.listing.price')
   /        p.help.text-pink #{t('.caution.price')}
   /.row.row-space-5.row-space-top-5.row-table
-  hr
+  /hr
     .col-xs-4.text-right.col-middle
       .h4.text-light
         | #{Listing.human_attribute_name :description}
@@ -84,7 +84,7 @@
       .row
         .col-xs-11
           = f.input_field :description, rows: "6", placeholder: t('activerecord.placeholders.listing.description')
-  hr
+  /hr
     .col-xs-4.text-right.col-middle
       .h4.text-light
         | #{Listing.human_attribute_name :description_en}
@@ -305,7 +305,7 @@
       .row
         .col-xs-11
           = f.input_field :recommended_en, rows: "4", placeholder: t('activerecord.placeholders.listing.recommended_en')
-  .row.row-space-5.row-space-top-5.row-table
+  /.row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
         = Listing.human_attribute_name :visit_benefits
@@ -313,7 +313,7 @@
       .row
         .col-xs-11
           = f.input_field :visit_benefits, placeholder: t('activerecord.placeholders.listing.visit_benefits')
-  .row.row-space-5.row-space-top-5.row-table
+  /.row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
         = Listing.human_attribute_name :visit_benefits_en
@@ -321,7 +321,7 @@
       .row
         .col-xs-11
           = f.input_field :visit_benefits_en, placeholder: t('activerecord.placeholders.listing.visit_benefits_en')
-  .row.row-space-5.row-space-top-5.row-table
+  /.row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
         = Listing.human_attribute_name :visit_benefits_another
@@ -329,7 +329,7 @@
       .row
         .col-xs-11
           = f.input_field :visit_benefits_another, placeholder: t('activerecord.placeholders.listing.visit_benefits_another')
-  .row.row-space-5.row-space-top-5.row-table
+  /.row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
         = Listing.human_attribute_name :visit_benefits_another_en
