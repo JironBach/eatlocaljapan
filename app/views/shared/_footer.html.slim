@@ -6,11 +6,11 @@ footer
           = t '.corporate.title'
         ul.list-unstyled
           li
-            = link_to t('.corporate.about'), '#' if locale == :ja
+            = link_to t('.corporate.about'), 'about_corporate.html' if locale == :ja
           li
-            = link_to t('.corporate.shop'), '#'
+            = link_to t('.corporate.shop'), '/about_regist.html'
           li
-            = link_to t('.corporate.privacy'), '#'
+            = link_to t('.corporate.privacy'), 'http://eatlocaljapan.com/privacypolicy_jp/'
           li
     hr.hide--sp
     .sns-container.text-center
