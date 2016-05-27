@@ -1,5 +1,6 @@
 - provide :title, t('.title')
-- set_meta_tags :og => {:image => @listing.cover_image}
+/- set_meta_tags :og => {:image => @listing.cover_image}
+= image_tag @listing.cover_image
 
 - if user_signed_in? && @listing.user_id == current_user.id || !current_user.nil? && current_user.admin?
   = render partial: "edit_link"
