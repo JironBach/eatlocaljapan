@@ -19,8 +19,12 @@
               span.input-stem.input-large.fake-search-field
                 = t '.search'
               i.input-suffix.btn.btn-primary.fa.fa-full.fa-search
-          a.guest-flow-trigger.btn.btn-large.btn-transparent.hide--sp[href="#"]
-            = t '.flow'
+          - if locale == :ja
+            a.btn.btn-large.btn-transparent.hide--sp[href="http://eatlocaljapan.com/about_jp/" target="blank"]
+              = t '.flow'
+          - else
+              a.btn.btn-large.btn-transparent.hide--sp[href="http://eatlocaljapan.com/about/" target="blank"]
+                = t '.flow'
         .hero-search.hide--sp
           .col-xs-12
             = render partial: 'form'
