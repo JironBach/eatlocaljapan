@@ -2,8 +2,6 @@ footer
   .footer-content-container
     .row
       .col-sm-12.hide--sp.text-center
-        h5
-          = t '.corporate.title'
         ul.list-unstyled
           li
             = link_to t('.corporate.about'), 'about_corporate.html' if locale == :ja
@@ -18,10 +16,12 @@ footer
         = t '.social_media.title'
       ul.list-unstyled.list-inline
         li
-          = link_to '#' do
+          = link_to 'https://www.facebook.com/eatlocaljapan/' do
             i.fa.fa-facebook
         li
-          = link_to '#' do
+          = link_to 'https://twitter.com/eatlocaljapan' do
             i.fa.fa-twitter
     #copyright.row-space-top-2.text-center
+      h5
+        = t '.corporate.title'
       = link_to t('.copyright'), 'http://www.bizitjapan.com/', target: "_blank"
