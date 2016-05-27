@@ -7,18 +7,18 @@
           = t('.about_this_listing')
         .listing-description
           = simple_format(listing.description)
-        p.text-center--sp
-          - if user_signed_in?
-            - if current_user.id == listing.user_id
-              button.btn.btn-small.btn-primary.disabled
-                = t('.contact_to_host')
-            - else
-              button#message-host-link.btn.btn-small.btn-primary
-                = t('.contact_to_host')
-          - else
-            = link_to new_user_session_path do
-              button.btn.btn-small.btn-primary
-                = t('.contact_to_host')
+        /p.text-center--sp
+        /  - if user_signed_in?
+        /    - if current_user.id == listing.user_id
+        /      button.btn.btn-small.btn-primary.disabled
+        /        = t('.contact_to_host')
+        /    - else
+        /      button#message-host-link.btn.btn-small.btn-primary
+        /        = t('.contact_to_host')
+        /  - else
+        /    = link_to new_user_session_path do
+        /      button.btn.btn-small.btn-primary
+        /        = t('.contact_to_host')
         .row-space-4.row-space-top-4
           .photo-trigger
             = image_tag(listing_image.try('image') || Settings.images.noimage2.url, class: 'img-responsive')

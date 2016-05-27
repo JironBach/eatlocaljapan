@@ -14,8 +14,8 @@
   = render partial: 'detail', locals: { listing: @listing, listing_image: @listing_image, confection: @confection, tool: @tool, dress_code: @dress_code}
 #reviews.listing-section
   = render partial: 'review_block', locals: { listing: @listing, reviews: @reviews, host_info: @host_info, host_image: @host_image }
-#host-profile.listing-section
-  = render partial: 'host_info', locals: { host_info: @host_info, host_image: @host_image, listing: @listing }
+/#host-profile.listing-section
+/  = render partial: 'host_info', locals: { host_info: @host_info, host_image: @host_image, listing: @listing }
 #neighborhood.listing-section
   .card.location-card
     #map
