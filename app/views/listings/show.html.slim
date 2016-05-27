@@ -5,11 +5,11 @@
   = render partial: "edit_link"
 = render partial: "subnav"
 = render partial: "slideshow", locals: { listing_image: @listing_image, listing: @listing }
-#summary.card.listing-section
-  .page-container
-    .row
-      = render partial: 'name_bar', locals: { listing: @listing, reviews: @reviews,  host_info: @host_info }
-      /= render partial: 'request_block', locals: { listing: @listing }
+/#summary.card.listing-section
+/  .page-container
+/    .row
+/      = render partial: 'name_bar', locals: { listing: @listing, reviews: @reviews,  host_info: @host_info }
+/      = render partial: 'request_block', locals: { listing: @listing }
 #details.details-section
   = render partial: 'detail', locals: { listing: @listing, listing_image: @listing_image, confection: @confection, tool: @tool, dress_code: @dress_code}
 #reviews.listing-section
