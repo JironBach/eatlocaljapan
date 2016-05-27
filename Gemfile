@@ -189,10 +189,10 @@ group :development, :test do
 end
 
 group :production, :staging do
-  gem 'rails_12factor', '0.0.3' # for heroku
+  #gem 'rails_12factor', '0.0.3' # for heroku
 
   # for cache
-  gem "memcachier", '0.0.2' # for heroku
+  #gem "memcachier", '0.0.2' # for heroku
   gem 'dalli', '2.7.4'
   gem 'rack-cache', '1.2'
   gem 'kgio', '2.9.3'
