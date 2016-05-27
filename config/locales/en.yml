@@ -374,7 +374,7 @@ en:
         five: Photos
       social_media:
         title: Social media
-      copyright: BizitJapan corporation
+      copyright: BizitJapan Inc.
     guest_sidenav:
       link: Joined Listings
       guest_reservation_manager: Reserve
@@ -898,8 +898,8 @@ en:
       prefecture: area
       submit: Search
     discovery:
-      title: Don't queue for hours for tourist restaurants.
-      note: We got more, a lot more wonderful restaurants!
+      title: Small but excellent restaurants.
+      note: You will be surprisingly amazed at the great taste!
       item:
         price:
           value: 3,000
