@@ -898,8 +898,8 @@ en:
       prefecture: area
       submit: Search
     discovery:
-      title: Discovery
-      note: "Why don't you check suggestions?"
+      title: Don't queue for hours for tourist restaurants.
+      note: We got more, a lot more wonderful restaurants!
       item:
         price:
           value: 3,000

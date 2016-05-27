@@ -52,3 +52,6 @@ review:
 listings:
   error:
     invalid_listing_id: "invalid listing id"
+regulate_user:
+  cancan:
+    failure: "cancan faillure"
