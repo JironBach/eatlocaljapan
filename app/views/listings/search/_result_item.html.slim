@@ -5,7 +5,7 @@
         = link_to listing_path(listing['id']), class: "media-photo media-cover"
           .listing-img-container.media-cover.text-center
             = image_tag("/uploads/listing/cover_image/#{listing['id']}/#{listing['cover_image']}", class: "img-responsive-height")
-        .card-overlay-bottom-left.card-overlay-label.card-overlay-listing-label
+        /.card-overlay-bottom-left.card-overlay-label.card-overlay-listing-label
           /div
           /  sup.h5.text-contrast ¥
           /  span.h3.price-amount
