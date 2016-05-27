@@ -6,7 +6,7 @@ footer
           = t '.corporate.title'
         ul.list-unstyled
           li
-            = link_to t('.corporate.about'), '#'
+            = link_to t('.corporate.about'), '#' if locale == :ja
           li
             = link_to t('.corporate.shop'), '#'
           li
