@@ -1,7 +1,7 @@
 class ListingsController < ApplicationController
   load_and_authorize_resource
 
-  before_action :authenticate_user?, except: [:index, :show, :search]
+  before_action :authenticate_user?, except: [:index, :show, :search, :search_detail]
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
   before_action :set_listing_obj, only: [:publish, :unpublish]
   before_action :set_listing_related_data, only: [:show, :edit]
@@ -218,7 +218,11 @@ class ListingsController < ApplicationController
   end
 
   def search_detail
-    @listings = Listing.mine(current_user.id).order_by_updated_at_desc
+    if current_user.nil?
+      @listings = Listing.mine(0)
+    else
+      @listings = Listing.mine(current_user.id).order_by_updated_at_desc
+    end
   end
 
   def search
