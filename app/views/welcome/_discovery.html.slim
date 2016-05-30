@@ -10,89 +10,67 @@
         .row
           .col-lg-8.col-md-12.rm-padding--sp
             .discovery-card.rm-padding--sp.row-space-4.wall1
-              - category = 1
+              - if locale == :ja
+                = link_to "http://eatlocaljapan.com/owners/", class: "link-reset", target: "_blank" do
+                  .va-container.va-container-v.va-container-h
+                    .va-middle.text-center.text-contrast
+                      .h3.strong
+                        '日本の飲食店の皆さまへのご案内
+                        br
+                        '日本語で入力、英語で表示！更新も簡単
+                        br
+                        'お店情報掲載は完全無料！
+              - else
+                = link_to "http://eatlocaljapan.com/about/", class: "link-reset", target: "_blank" do
+                  .va-container.va-container-v.va-container-h
+                    .va-middle.text-center.text-contrast
+                      .h2.strong
+                        'About eatlocaljapan
+          .col-lg-4.col-md-12.rm-padding--sp
+            .discovery-card.rm-padding--sp.row-space-4.wall2
+              - category = 13
               = link_to "#{search_listings_path}?search[location]=&shop_categories=#{category}", class: "link-reset", target: "_blank" do
                 .va-container.va-container-v.va-container-h
                   .va-middle.text-center.text-contrast
                     .h2.strong
                       = locale == :ja ? ShopCategory.find(category).name : ShopCategory.find(category).name_en
-          .col-lg-4.col-md-6.col-sm-12.rm-padding--sp.row-space-4
-            div
-              .on-hover-container
-                = link_to "#", class: "link-reset text-normal", target: "_blank" do
-                  .discovery-card.discovery-listing.wall2
-                    .va-container.va-container-v.va-container-h
-                      .va-middle.text-center.text-contrast
-                        .media-photo.media-round.row-space-2.card-profile-picture
-                          = image_tag "sample/person1.jpg", class: "size50"
-                        .h3.strong
-                          = t '.item.title'
-                        div
-                          = t '.item.category_name'
-          .col-lg-4.col-md-6.col-sm-12.rm-padding--sp
+          .col-lg-4.col-md-12.rm-padding--sp
             .discovery-card.rm-padding--sp.row-space-4.wall3
-              = link_to "#", class: "link-reset", target: "_blank" do
+              - category = 11
+              = link_to "#{search_listings_path}?search[location]=&shop_categories=#{category}", class: "link-reset", target: "_blank" do
                 .va-container.va-container-v.va-container-h
                   .va-middle.text-center.text-contrast
                     .h2.strong
-                      = t '.item.category_name'
-
-          .col-lg-4.col-md-6.col-sm-12.rm-padding--sp.hide--sp
+                      = locale == :ja ? ShopCategory.find(category).name : ShopCategory.find(category).name_en
+          .col-lg-8.col-md-12.rm-padding--sp
             .discovery-card.rm-padding--sp.row-space-4.wall4
-              = link_to "#", class: "link-reset", target: "_blank" do
+              - category = 26
+              = link_to "#{search_listings_path}?search[location]=&shop_categories=#{category}", class: "link-reset", target: "_blank" do
                 .va-container.va-container-v.va-container-h
                   .va-middle.text-center.text-contrast
                     .h2.strong
-                      = t '.item.category_name'
-
-          .col-lg-4.col-md-6.col-sm-12.rm-padding--sp.hide--sp
+                      = locale == :ja ? ShopCategory.find(category).name : ShopCategory.find(category).name_en
+          .col-lg-4.col-md-12.rm-padding--sp
             .discovery-card.rm-padding--sp.row-space-4.wall5
-              = link_to "#", class: "link-reset", target: "_blank" do
+              - category = 10
+              = link_to "#{search_listings_path}?search[location]=&shop_categories=#{category}", class: "link-reset", target: "_blank" do
                 .va-container.va-container-v.va-container-h
                   .va-middle.text-center.text-contrast
                     .h2.strong
-                      = t '.item.category_name'
-
-          .col-lg-4.col-md-6.col-sm-12.rm-padding--sp.row-space-4
-            div
-              .on-hover-container
-                = link_to "#", class: "link-reset text-normal", target: "_blank" do
-                  .discovery-card.discovery-listing.wall6
-
-                    .va-container.va-container-v.va-container-h
-                      .va-middle.text-center.text-contrast
-                        .media-photo.media-round.row-space-2.card-profile-picture
-                          = image_tag "sample/person1.jpg", class: "size50"
-                        .h3.strong
-                          = t '.item.title'
-                        div
-                          = t '.item.category_name'
-
-          .col-lg-8.col-md-12.hide--sp.rm-padding--sp
+                      = locale == :ja ? ShopCategory.find(category).name : ShopCategory.find(category).name_en
+          .col-lg-4.col-md-12.rm-padding--sp
+            .discovery-card.rm-padding--sp.row-space-4.wall6
+              - category = 14
+              = link_to "#{search_listings_path}?search[location]=&shop_categories=#{category}", class: "link-reset", target: "_blank" do
+                .va-container.va-container-v.va-container-h
+                  .va-middle.text-center.text-contrast
+                    .h2.strong
+                      = locale == :ja ? ShopCategory.find(category).name : ShopCategory.find(category).name_en
+          .col-lg-4.col-md-12.rm-padding--sp
             .discovery-card.rm-padding--sp.row-space-4.wall7
-              = link_to "#", class: "link-reset", target: "_blank" do
+              - category = 18
+              = link_to "#{search_listings_path}?search[location]=&shop_categories=#{category}", class: "link-reset", target: "_blank" do
                 .va-container.va-container-v.va-container-h
                   .va-middle.text-center.text-contrast
                     .h2.strong
-                      = t '.item.category_name'
-          .col-lg-4.col-md-6.hide--sp.rm-padding--sp.col-switch.col-md-push-6.col-lg-push-0
-            .discovery-card.rm-padding--sp.row-space-4.wall8
-              = link_to "#", class: "link-reset", target: "_blank" do
-                .va-container.va-container-v.va-container-h
-                  .va-middle.text-center.text-contrast
-                    .h2.strong
-                      = t '.item.category_name'
-          .col-lg-4.col-md-6.hide--sp.rm-padding--sp
-            .discovery-card.rm-padding--sp.row-space-4.wall9
-              = link_to "#", class: "link-reset", target: "_blank" do
-                .va-container.va-container-v.va-container-h
-                  .va-middle.text-center.text-contrast
-                    .h2.strong
-                      = t '.item.category_name'
-          .col-lg-4.col-md-6.hide--sp.rm-padding--sp
-            .discovery-card.rm-padding--sp.row-space-4.wall10
-              = link_to "#", class: "link-reset", target: "_blank" do
-                .va-container.va-container-v.va-container-h
-                  .va-middle.text-center.text-contrast
-                    .h2.strong
-                      = t '.item.category_name'
+                      = locale == :ja ? ShopCategory.find(category).name : ShopCategory.find(category).name_en
