@@ -27,7 +27,7 @@ require 'capistrano/rails/migrations'
 require 'capistrano/passenger/no_hook'
 #require 'capistrano3/unicorn'
 
-#set :ssh_options, port: "2222"
+set :ssh_options, port: "12321"
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 Dir.glob('lib/capistrano/tasks/*.rb').each { |r| import r }
