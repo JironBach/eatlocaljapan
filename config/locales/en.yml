@@ -52,8 +52,8 @@ en:
         email: Email
         relationship: Relationship
       listing:
-        title: Title
-        title_en: Title(English)
+        title: Restaurant Name
+        title_en: Restaurant Name(English)
         shop_category: Category
         shop_categories: Category
         shop_service: Service
@@ -105,9 +105,9 @@ en:
         link_tabelog: tabelog
         link_yelp: yelp
         link_tripadvisor: trip advisor
-        english_messages: Available English message
-        price_range: Pricing range lunch
-        price_range_dinner: Pricing range dinner
+        english_messages: Inquiries in English available via
+        price_range: Price range - lunch
+        price_range_dinner: Price range - dinner
         info_admin_id: info admin
         open: view
       listing_image:

@@ -1,12 +1,12 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-path = '/Users/js/work/eatlocaljapan'
-backup_to = "#{path}/bin/backup/data/#{Time.now.strftime("%j%H%M%S")}.prd"
+#path = '/home/eatlocaljapan/www/production/eatlocaljapan/current'
+backup_to = "/home/eatlocaljapan/backup/#{Time.now.strftime("%j%H%M%S")}.prd"
 puts backup_to
-`/usr/local/bin/pg_dump -h www.eatlocaljapan.com -d eatlocaljapan -U eatlocaljapan -f #{backup_to}`
+`/usr/bin/pg_dump -h www.eatlocaljapan.com -d eatlocaljapan -U eatlocaljapan -f #{backup_to}`
 
-bks = Dir.glob("#{path}/bin/backup/data/*.prd")
+bks = Dir.glob("#{backup_to}")
 if bks.count > 10
   i = 0
   bks.reverse.each do |bk|
@@ -16,4 +16,3 @@ if bks.count > 10
     end
   end
 end
-

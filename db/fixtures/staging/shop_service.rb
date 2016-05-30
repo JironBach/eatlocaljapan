@@ -11,6 +11,6 @@ ShopService.seed(
   { id: 10, name: 'お子様用椅子あり', name_en: 'Booster/Child seat' },
   { id: 11, name: '屋外テーブルあり', name_en: 'Outdoor table' },
   { id: 12, name: '無料Wi-Fi', name_en: 'Free Wi-Fi' },
-  { id: 13, name: '写真付きメニューあり', name_en: 'Photos with menu' },
-  { id: 14, name: 'メニューに材料の表示あり', name_en: 'Material display with menu' },
+  { id: 13, name: '写真付きメニューあり', name_en: 'Menu with photos' },
+  { id: 14, name: 'メニューに材料の表示あり', name_en: 'Ingredients (major allergens) listed on menu' },
 )
