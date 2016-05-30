@@ -67,7 +67,7 @@ en:
         description_en: Description English
         price: Price
         capacity: Capacity
-        title: Title
+        title: Restaurant Name
         direction: Direction to Listing Location
         cover_image: Cover Image
         cover_image_caption: Caption of Cover Image
