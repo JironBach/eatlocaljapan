@@ -1954,6 +1954,7 @@ COPY browsing_histories (id, user_id, listing_id, viewed_at, created_at, updated
 111	0	4	2016-05-27 15:00:00	2016-05-27 15:30:32.155371	2016-05-27 15:30:32.155371
 112	0	4	2016-05-27 15:00:00	2016-05-27 15:30:49.87702	2016-05-27 15:30:49.87702
 113	0	2	2016-05-27 15:00:00	2016-05-27 16:27:19.146971	2016-05-27 16:27:19.146971
+114	0	4	2016-05-29 15:00:00	2016-05-30 05:15:18.672725	2016-05-30 05:15:18.672725
 \.
 
 
@@ -1961,7 +1962,7 @@ COPY browsing_histories (id, user_id, listing_id, viewed_at, created_at, updated
 -- Name: browsing_histories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('browsing_histories_id_seq', 113, true);
+SELECT pg_catalog.setval('browsing_histories_id_seq', 114, true);
 
 
 --
@@ -2057,9 +2058,9 @@ SELECT pg_catalog.setval('emergencies_id_seq', 1, false);
 --
 
 COPY english_messages (id, created_at, updated_at, name, name_en) FROM stdin;
-1	2016-05-23 08:31:24.419163	2016-05-23 08:31:24.419163	電話OK	Phone available
-2	2016-05-23 08:31:24.610216	2016-05-23 08:31:24.610216	メールOK	Mail available
-3	2016-05-23 08:31:24.744587	2016-05-23 08:31:24.744587	不可	Unavailable
+2	2016-05-23 08:31:24.610216	2016-05-30 09:22:09.590277	メールOK	Email
+3	2016-05-23 08:31:24.744587	2016-05-30 09:22:09.592937	不可	Sorry, please contact us in Japanese.
+1	2016-05-23 08:31:24.419163	2016-05-30 10:39:17.543739	電話OK	Telephone
 \.
 
 
@@ -2097,7 +2098,7 @@ SELECT pg_catalog.setval('english_messages_listings_id_seq', 18, true);
 COPY englishes (id, name, name_en) FROM stdin;
 1	英語メニューあり	English menu
 2	英語できるスタッフいます	English speaking staff
-3	日本語スタッフだけですが心より歓迎いたします	Japanese speaking staff only but wed be delighted to welcome all our guests! 
+3	日本語スタッフだけですが心より歓迎いたします	Japanese speaking staff only but wed be delighted to welcome all our guests!
 \.
 
 
@@ -2185,6 +2186,7 @@ COPY listing_pvs (id, listing_id, viewed_at, pv, created_at, updated_at) FROM st
 10	1	2016-05-26	3	2016-05-26 14:19:10.989508	2016-05-26 14:50:36.411485
 15	4	2016-05-28	12	2016-05-27 15:02:53.629135	2016-05-27 15:30:49.895481
 16	2	2016-05-28	1	2016-05-27 16:27:19.166543	2016-05-27 16:27:19.166543
+17	4	2016-05-30	1	2016-05-30 05:15:18.906304	2016-05-30 05:15:18.906304
 \.
 
 
@@ -2192,7 +2194,7 @@ COPY listing_pvs (id, listing_id, viewed_at, pv, created_at, updated_at) FROM st
 -- Name: listing_pvs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('listing_pvs_id_seq', 16, true);
+SELECT pg_catalog.setval('listing_pvs_id_seq', 17, true);
 
 
 --
@@ -2623,8 +2625,8 @@ COPY shop_services (id, created_at, updated_at, name, name_en) FROM stdin;
 10	2016-05-23 08:31:45.402009	2016-05-23 08:31:45.402009	お子様用椅子あり	Booster/Child seat
 11	2016-05-23 08:31:45.832205	2016-05-23 08:31:45.832205	屋外テーブルあり	Outdoor table
 12	2016-05-23 08:31:47.096147	2016-05-23 08:31:47.096147	無料Wi-Fi	Free Wi-Fi
-13	2016-05-23 08:31:47.230594	2016-05-23 08:31:47.230594	写真付きメニューあり	Photos with menu
-14	2016-05-23 08:31:47.37951	2016-05-23 08:31:47.37951	メニューに材料の表示あり	Material display with menu
+13	2016-05-23 08:31:47.230594	2016-05-30 09:22:09.784396	写真付きメニューあり	Menu with photos
+14	2016-05-23 08:31:47.37951	2016-05-30 09:22:09.786766	メニューに材料の表示あり	Ingredients (major allergens) listed on menu
 \.
 
 
@@ -2689,7 +2691,7 @@ SELECT pg_catalog.setval('user_ngevents_id_seq', 1, false);
 --
 
 COPY users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, confirmation_token, confirmed_at, confirmation_sent_at, unconfirmed_email, failed_attempts, unlock_token, locked_at, created_at, updated_at, uid, provider, username, admin, profile_id) FROM stdin;
-1	jironbach@gmail.com	$2a$10$N0AXTwoXregceS0QZxO4Yu7iLkH/bwRbNOBC1sK4pr8G/nNWcYuSC	\N	\N	\N	8	2016-05-27 07:10:24.648474	2016-05-25 04:52:04.312175	42.146.105.241	119.245.199.201	\N	2016-05-28 01:05:44.02	\N	\N	0	\N	\N	2016-05-23 08:45:15.073502	2016-05-28 01:05:44.126525			\N	t	\N
+1	jironbach@gmail.com	$2a$10$RbabRpMsg6lsArMDPIz5qutq7f7/vPK7G8gY6As5NemK9NEcmmZGO	\N	\N	\N	8	2016-05-27 07:10:24.648474	2016-05-25 04:52:04.312175	42.146.105.241	119.245.199.201	\N	2016-05-30 05:16:26.478879	\N	\N	0	\N	\N	2016-05-23 08:45:15.073502	2016-05-30 05:16:26.564843			\N	t	\N
 2	junshimo2@gmail.com	$2a$10$4PpLKjPv6/CWskJUncwgVO46Miiuvbzwxh.p0LKKgH22/N/KDO1im	\N	\N	\N	3	2016-05-23 10:09:12.912475	2016-05-23 09:46:28.955363	49.239.68.28	49.239.68.28	\N	2016-05-23 10:09:12.839575	\N	\N	0	\N	\N	2016-05-23 09:04:24.15924	2016-05-23 10:09:12.916234	1133479786718789	facebook	\N	f	\N
 \.
 

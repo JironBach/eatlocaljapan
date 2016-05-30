@@ -23,6 +23,6 @@
           /= link_to listing_path(listing['id'], anchor: 'host-profile'), class: "pull-right media-photo media-round card-profile-picture card-profile-picture-offset" do
           /  = image_tag(user_id_to_profile_image(listing['user_id']))
           .h5.listing-name.text-truncate.row-space-top-1
-            = link_to listing['title'], listing_path(listing['id']), class: "text-normal"
+            = link_to locale == :ja ? listing['title'] : listing['title_en'], listing_path(listing['id']), class: "text-normal"
           .text-muted.listing-location.text-truncate
-            = link_to listing['location'], listing_path(listing['id']), class: "text-normal link-reset small1"
+            = link_to locale == :ja ? listing['location'] : listing['location_en'], listing_path(listing['id']), class: "text-normal link-reset small1"
