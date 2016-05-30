@@ -1825,7 +1825,7 @@ SELECT pg_catalog.setval('admin_users_id_seq', 3, false);
 --
 
 COPY auths (id, user_id, provider, uid, access_token, created_at, updated_at) FROM stdin;
-1	1	facebook	1133479786718789	EAANZBfgZBIUZAQBAL46zsHa8ETdN15y5rlwnugjlKecECTDV6ao06wCZCzNZBdQm0AIhZBfqrs7VEk6726ZCuQNcAZBjvr0EvdUKZB49T4zId2y8YOEMuX2RoHuDDywCfAZAXEwAN3ZBdnHrRZAjtAmAQ4UOR8b5ZBTFxHCoZD	2016-05-22 00:32:12.661502	2016-05-23 06:46:08.387372
+1	1	facebook	1133479786718789	EAANZBfgZBIUZAQBABqN3CpgPYoxNzuvJ3o41NgLOtz0mNL4cNC5RfXMEsJYPR1yoRWZB5RmZA88gAwhKKMcDOp3kITMyCgiZB4grMAZCZBiwsll2EfRWP7qAppZCAsmkO8q5Mp4axSsOTF5C2mePOdpwz0k06Ailijn0ZD	2016-05-22 00:32:12.661502	2016-05-29 16:11:12.417472
 \.
 
 
@@ -1877,6 +1877,46 @@ COPY browsing_histories (id, user_id, listing_id, viewed_at, created_at, updated
 34	6	2	2016-05-22 15:00:00	2016-05-23 06:41:59.334845	2016-05-23 06:41:59.334845
 35	1	6	2016-05-22 15:00:00	2016-05-23 06:46:27.448495	2016-05-23 06:46:27.448495
 36	1	6	2016-05-22 15:00:00	2016-05-23 06:48:02.004131	2016-05-23 06:48:02.004131
+37	0	4	2016-05-24 15:00:00	2016-05-25 04:05:20.153101	2016-05-25 04:05:20.153101
+38	0	4	2016-05-25 15:00:00	2016-05-25 17:41:25.238261	2016-05-25 17:41:25.238261
+39	0	1	2016-05-26 15:00:00	2016-05-26 15:12:32.133067	2016-05-26 15:12:32.133067
+40	1	4	2016-05-26 15:00:00	2016-05-27 04:20:33.948263	2016-05-27 04:20:33.948263
+41	1	4	2016-05-26 15:00:00	2016-05-27 04:24:15.311818	2016-05-27 04:24:15.311818
+42	1	4	2016-05-26 15:00:00	2016-05-27 04:25:19.892162	2016-05-27 04:25:19.892162
+43	1	7	2016-05-26 15:00:00	2016-05-27 06:14:39.688457	2016-05-27 06:14:39.688457
+44	1	7	2016-05-26 15:00:00	2016-05-27 06:14:59.952304	2016-05-27 06:14:59.952304
+45	1	7	2016-05-26 15:00:00	2016-05-27 06:21:24.806036	2016-05-27 06:21:24.806036
+46	1	7	2016-05-26 15:00:00	2016-05-27 07:24:20.015684	2016-05-27 07:24:20.015684
+47	1	7	2016-05-26 15:00:00	2016-05-27 07:48:31.818532	2016-05-27 07:48:31.818532
+48	1	7	2016-05-26 15:00:00	2016-05-27 07:49:33.607476	2016-05-27 07:49:33.607476
+49	1	7	2016-05-26 15:00:00	2016-05-27 07:52:29.146373	2016-05-27 07:52:29.146373
+50	1	4	2016-05-26 15:00:00	2016-05-27 13:25:15.291072	2016-05-27 13:25:15.291072
+51	1	4	2016-05-26 15:00:00	2016-05-27 14:07:03.253206	2016-05-27 14:07:03.253206
+52	1	4	2016-05-26 15:00:00	2016-05-27 14:07:55.230671	2016-05-27 14:07:55.230671
+53	0	1	2016-05-26 15:00:00	2016-05-27 14:16:51.523621	2016-05-27 14:16:51.523621
+54	1	4	2016-05-26 15:00:00	2016-05-27 14:24:10.863913	2016-05-27 14:24:10.863913
+55	1	4	2016-05-26 15:00:00	2016-05-27 14:24:39.075628	2016-05-27 14:24:39.075628
+56	1	4	2016-05-26 15:00:00	2016-05-27 14:25:07.761309	2016-05-27 14:25:07.761309
+57	1	4	2016-05-26 15:00:00	2016-05-27 14:26:44.589182	2016-05-27 14:26:44.589182
+58	1	4	2016-05-26 15:00:00	2016-05-27 14:27:06.367767	2016-05-27 14:27:06.367767
+59	1	4	2016-05-26 15:00:00	2016-05-27 14:27:52.583134	2016-05-27 14:27:52.583134
+60	1	4	2016-05-26 15:00:00	2016-05-27 14:28:17.978762	2016-05-27 14:28:17.978762
+61	1	4	2016-05-26 15:00:00	2016-05-27 14:29:07.224165	2016-05-27 14:29:07.224165
+62	1	4	2016-05-26 15:00:00	2016-05-27 14:30:57.620696	2016-05-27 14:30:57.620696
+63	1	4	2016-05-26 15:00:00	2016-05-27 14:32:42.622013	2016-05-27 14:32:42.622013
+64	1	4	2016-05-26 15:00:00	2016-05-27 14:48:26.138043	2016-05-27 14:48:26.138043
+65	1	4	2016-05-26 15:00:00	2016-05-27 14:48:49.385681	2016-05-27 14:48:49.385681
+66	1	4	2016-05-27 15:00:00	2016-05-27 15:04:49.544701	2016-05-27 15:04:49.544701
+67	1	4	2016-05-27 15:00:00	2016-05-27 15:08:27.116829	2016-05-27 15:08:27.116829
+68	1	4	2016-05-27 15:00:00	2016-05-27 15:08:53.988788	2016-05-27 15:08:53.988788
+69	1	4	2016-05-27 15:00:00	2016-05-27 15:09:26.278657	2016-05-27 15:09:26.278657
+70	1	4	2016-05-27 15:00:00	2016-05-27 15:09:54.664264	2016-05-27 15:09:54.664264
+71	1	4	2016-05-27 15:00:00	2016-05-27 15:11:51.657178	2016-05-27 15:11:51.657178
+72	0	4	2016-05-27 15:00:00	2016-05-27 15:22:17.245778	2016-05-27 15:22:17.245778
+73	1	4	2016-05-27 15:00:00	2016-05-27 15:23:16.602125	2016-05-27 15:23:16.602125
+74	0	4	2016-05-27 15:00:00	2016-05-27 15:39:28.44397	2016-05-27 15:39:28.44397
+75	0	4	2016-05-27 15:00:00	2016-05-27 15:40:24.110955	2016-05-27 15:40:24.110955
+76	0	6	2016-05-27 15:00:00	2016-05-28 01:00:23.113258	2016-05-28 01:00:23.113258
 \.
 
 
@@ -1884,7 +1924,7 @@ COPY browsing_histories (id, user_id, listing_id, viewed_at, created_at, updated
 -- Name: browsing_histories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('browsing_histories_id_seq', 36, true);
+SELECT pg_catalog.setval('browsing_histories_id_seq', 76, true);
 
 
 --
@@ -1892,6 +1932,13 @@ SELECT pg_catalog.setval('browsing_histories_id_seq', 36, true);
 --
 
 COPY business_hours (id, created_at, updated_at, listing_id, wday, is_open, start_hour, end_hour) FROM stdin;
+99	2016-05-29 16:12:37.440632	2016-05-29 16:12:37.440632	8	0	t	11:30:00	23:00:00
+100	2016-05-29 16:12:37.476319	2016-05-29 16:12:37.476319	8	1	f	11:30:00	23:00:00
+101	2016-05-29 16:12:37.49964	2016-05-29 16:12:37.49964	8	2	t	11:30:00	23:00:00
+102	2016-05-29 16:12:37.514239	2016-05-29 16:12:37.514239	8	3	t	11:30:00	23:00:00
+103	2016-05-29 16:12:37.529179	2016-05-29 16:12:37.529179	8	4	t	11:30:00	23:00:00
+104	2016-05-29 16:12:37.544595	2016-05-29 16:12:37.544595	8	5	t	11:30:00	23:00:00
+105	2016-05-29 16:12:37.558836	2016-05-29 16:12:37.558836	8	6	t	11:30:00	23:00:00
 36	2016-05-23 03:26:51.765476	2016-05-23 03:26:51.765476	5	0	t	11:30:00	22:00:00
 37	2016-05-23 03:26:51.77273	2016-05-23 03:26:51.77273	5	1	f	11:30:00	23:00:00
 38	2016-05-23 03:26:51.781652	2016-05-23 03:26:51.781652	5	2	t	12:30:00	21:15:00
@@ -1948,7 +1995,7 @@ COPY business_hours (id, created_at, updated_at, listing_id, wday, is_open, star
 -- Name: business_hours_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('business_hours_id_seq', 98, true);
+SELECT pg_catalog.setval('business_hours_id_seq', 105, true);
 
 
 --
@@ -2059,6 +2106,7 @@ COPY englishes_listings (id, created_at, updated_at, listing_id, english_id) FRO
 7	2016-05-23 03:28:33.121422	2016-05-23 03:28:33.121422	4	1
 8	2016-05-23 03:35:07.780518	2016-05-23 03:35:07.780518	1	1
 9	2016-05-23 06:20:55.183498	2016-05-23 06:20:55.183498	3	1
+10	2016-05-29 16:12:37.356482	2016-05-29 16:12:37.356482	8	1
 \.
 
 
@@ -2066,7 +2114,7 @@ COPY englishes_listings (id, created_at, updated_at, listing_id, english_id) FRO
 -- Name: englishes_listings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('englishes_listings_id_seq', 9, true);
+SELECT pg_catalog.setval('englishes_listings_id_seq', 10, true);
 
 
 --
@@ -2121,6 +2169,13 @@ COPY listing_pvs (id, listing_id, viewed_at, pv, created_at, updated_at) FROM st
 8	7	2016-05-23	1	2016-05-23 06:39:52.189796	2016-05-23 06:39:52.189796
 3	2	2016-05-23	6	2016-05-22 18:05:50.285013	2016-05-23 06:42:00.348761
 7	6	2016-05-23	5	2016-05-23 06:34:29.875306	2016-05-23 06:48:02.230744
+9	4	2016-05-25	1	2016-05-25 04:05:20.239563	2016-05-25 04:05:20.239563
+10	4	2016-05-26	1	2016-05-25 17:41:25.295165	2016-05-25 17:41:25.295165
+13	7	2016-05-27	7	2016-05-27 06:14:40.276487	2016-05-27 07:52:29.751708
+11	1	2016-05-27	2	2016-05-26 15:12:32.478532	2016-05-27 14:16:51.860744
+12	4	2016-05-27	18	2016-05-27 04:20:34.703376	2016-05-27 14:48:49.467295
+14	4	2016-05-28	10	2016-05-27 15:04:49.737725	2016-05-27 15:40:24.350564
+15	6	2016-05-28	1	2016-05-28 01:00:23.179363	2016-05-28 01:00:23.179363
 \.
 
 
@@ -2128,7 +2183,7 @@ COPY listing_pvs (id, listing_id, viewed_at, pv, created_at, updated_at) FROM st
 -- Name: listing_pvs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('listing_pvs_id_seq', 8, true);
+SELECT pg_catalog.setval('listing_pvs_id_seq', 15, true);
 
 
 --
@@ -2143,6 +2198,7 @@ COPY listings (id, user_id, review_count, ave_total, ave_accuracy, ave_communica
 3	2	0	0	0	0	0	0	0	0	f	215-0018	神奈川県川崎市麻生区王禅寺東	139.511722	35.579439	f	0	店舗説明	管理権限チェック店	0		something.jpg		2016-05-22 18:02:25.794248	2016-05-23 06:20:55.458012	4	\N	レストランの説明	Restaurant description	800	1000	090-8508-8128	http://jironbach.hatenablog.com/	\N	食べ方	how to eat	特典	特典その他	admin check shop	1200	2000	\N	2	http://www.tabelog.co.jp/	http://www.yelp.com/	http://www.trip-advisor.com/	Store description	KANAGAWAKAWASAKI-SHI ASAO-KU OZENJIHIGASHI	Privilege	Benefits Other
 2	6	0	0	0	0	0	0	0	0	t		test	-73.679427	41.292571	f	0		テスト２	0		something.jpg		2016-05-22 05:09:48.760512	2016-05-23 06:41:56.881046	1	\N			\N	\N			\N					test2	\N	\N	\N	1					test		
 6	1	0	0	0	0	0	0	0	0	t	100-0001	東京都千代田区千代田	139.753945	35.683801	f	0		ユーザー権限１	0		something.jpg		2016-05-23 06:33:55.295321	2016-05-23 06:48:01.138868	1	\N			\N	\N			\N			来店特典	来店特典その他	user authority 1	\N	\N	\N	1					TOKYOCHIYODA-KU CHIYODA	To shop specials	Visit Benefits Other
+8	1	0	0	0	0	0	0	0	0	f	100-0001	東京都千代田区千代田	139.753945	35.683801	f	0		翻訳テスト	0		something.jpg		2016-05-29 16:12:36.950728	2016-05-29 16:12:37.599624	4	\N	説明	Description	\N	\N			\N	食べ方	how to eat	\N	\N	test translate	\N	\N	\N	2					TOKYOCHIYODA-KU CHIYODA	\N	\N
 \.
 
 
@@ -2165,7 +2221,7 @@ SELECT pg_catalog.setval('listings_business_hours_id_seq', 1, false);
 -- Name: listings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('listings_id_seq', 7, true);
+SELECT pg_catalog.setval('listings_id_seq', 8, true);
 
 
 --
@@ -2184,6 +2240,7 @@ COPY listings_shop_categories (id, created_at, updated_at, listing_id, shop_cate
 20	2016-05-23 06:39:15.585831	2016-05-23 06:39:15.585831	7	2
 21	2016-05-23 06:41:17.810771	2016-05-23 06:41:17.810771	2	1
 22	2016-05-23 06:47:23.14772	2016-05-23 06:47:23.14772	6	1
+23	2016-05-29 16:12:37.193926	2016-05-29 16:12:37.193926	8	1
 \.
 
 
@@ -2191,7 +2248,7 @@ COPY listings_shop_categories (id, created_at, updated_at, listing_id, shop_cate
 -- Name: listings_shop_categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('listings_shop_categories_id_seq', 22, true);
+SELECT pg_catalog.setval('listings_shop_categories_id_seq', 23, true);
 
 
 --
@@ -2208,6 +2265,7 @@ COPY listings_shop_services (id, created_at, updated_at, listing_id, shop_servic
 18	2016-05-23 06:20:55.137688	2016-05-23 06:20:55.137688	3	2
 19	2016-05-23 06:20:55.15527	2016-05-23 06:20:55.15527	3	5
 20	2016-05-23 06:41:18.783272	2016-05-23 06:41:18.783272	2	2
+21	2016-05-29 16:12:37.257881	2016-05-29 16:12:37.257881	8	1
 \.
 
 
@@ -2215,7 +2273,7 @@ COPY listings_shop_services (id, created_at, updated_at, listing_id, shop_servic
 -- Name: listings_shop_services_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('listings_shop_services_id_seq', 20, true);
+SELECT pg_catalog.setval('listings_shop_services_id_seq', 21, true);
 
 
 --
@@ -2611,9 +2669,9 @@ SELECT pg_catalog.setval('user_ngevents_id_seq', 1, false);
 --
 
 COPY users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, confirmation_token, confirmed_at, confirmation_sent_at, unconfirmed_email, failed_attempts, unlock_token, locked_at, created_at, updated_at, uid, provider, username, admin, profile_id) FROM stdin;
-1	junshimo2@gmail.com	$2a$10$dGuuRrN5tJyXVIM.JV8/EOh9FLMaJ84UCQqIRLtlTOFDYKBlCiZoy	\N	\N	\N	7	2016-05-23 06:46:08.810799	2016-05-23 03:25:40.716433	127.0.0.1	192.168.204.1	\N	2016-05-23 06:46:05.05431	\N	\N	0	\N	\N	2016-05-22 00:32:11.316061	2016-05-23 06:46:08.870157	1133479786718789	facebook	\N	t	\N
 6	jironbach@gmail.com	$2a$10$lszY8inbVExh7xTTlbbBLeCkqiEu26eZ/nEmk6d8dJiP2JuKk6irW	\N	\N	\N	7	2016-05-23 09:29:08.93003	2016-05-23 06:45:36.213888	127.0.0.1	127.0.0.1	\N	2016-05-22 19:19:26.737688	2016-05-22 19:15:56.661257	\N	0	\N	\N	2016-05-22 19:15:56.296095	2016-05-23 09:29:09.546049	ae3f152d-5c2a-445b-b41d-a780d0db701a		\N	f	\N
 2	chisa.odamaki@bizitjapan.com	$2a$10$UzvNZRcIGAT57zG6rSltxeY7ea1rWW1sJnVzuqHx7tVBy8MtPMRny	\N	\N	\N	1	2016-05-23 06:15:17.938006	2016-05-23 06:15:17.938006	119.245.199.201	119.245.199.201	\N	2016-05-22 17:55:36.034197	\N	\N	0	\N	\N	2016-05-22 17:55:38.758088	2016-05-23 06:15:17.94135			\N	t	\N
+1	junshimo2@gmail.com	$2a$10$jLfKXsvJ2LN6B5lj3Bp0u.vHD0zp8OaOJEkGG4/5lJNFEgkNuRp0O	\N	\N	\N	10	2016-05-29 16:11:12.434362	2016-05-27 12:50:04.471446	127.0.0.1	127.0.0.1	9a9dd5aa606f450a357b2c59ef785c89d2df583e9cb18a1306689c5dac89a6fa	2016-05-29 16:31:17.094274	2016-05-29 16:31:17.561302	admin@bizitjapan.com	0	\N	\N	2016-05-22 00:32:11.316061	2016-05-29 16:31:17.247776	1133479786718789	facebook	\N	t	\N
 \.
 
 
@@ -2621,7 +2679,7 @@ COPY users (id, email, encrypted_password, reset_password_token, reset_password_
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('users_id_seq', 6, true);
+SELECT pg_catalog.setval('users_id_seq', 7, false);
 
 
 --

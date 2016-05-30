@@ -1808,8 +1808,7 @@ SELECT pg_catalog.setval('active_admin_comments_id_seq', 1, false);
 --
 
 COPY admin_users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, created_at, updated_at) FROM stdin;
-1	junshimo2@gmail.com	$2a$10$k7THBzlyRpgaPeuhMbKp9e2tjBFdZFTED27IOM6.dPvu24JMcdGB.	\N	\N	\N	0	\N	\N	\N	\N	2016-05-23 08:42:30.27135	2016-05-23 10:21:58.161594
-2	chisa.odamaki@bizitjapan.com	$2a$10$GwXTi10PXzmYee7XyaDRYezEGqqbOZ.avNnok.ThpiM6uosoYYjcW	\N	\N	\N	1	2016-05-23 11:39:40.277314	2016-05-23 11:39:40.277314	42.146.105.241	42.146.105.241	2016-05-23 08:42:30.615663	2016-05-23 11:39:40.284519
+1	junshimo2@gmail.com	$2a$10$IsAHnJq2xfceSrNEFlL9NuQoatZwhfPDcZpLPFbdUK60srQduufNe	\N	\N	\N	0	\N	\N	\N	\N	2016-05-29 23:45:02.544334	2016-05-29 23:45:02.544334
 \.
 
 
@@ -1817,7 +1816,7 @@ COPY admin_users (id, email, encrypted_password, reset_password_token, reset_pas
 -- Name: admin_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('admin_users_id_seq', 3, false);
+SELECT pg_catalog.setval('admin_users_id_seq', 1, true);
 
 
 --
@@ -1825,7 +1824,7 @@ SELECT pg_catalog.setval('admin_users_id_seq', 3, false);
 --
 
 COPY auths (id, user_id, provider, uid, access_token, created_at, updated_at) FROM stdin;
-1	2	facebook	1133479786718789	EAANZBfgZBIUZAQBABVZAaBH3I2cJjZAVuqPn6bqTT6EriJWWekdSKoU2xYb3xPlpcy0nuAO2krh4SAxnWKwtmv29OLph34Se3D0tFZAvNGkJ9zLfl982ZB0Sl1iZCrfzS7NnCYYjb74HNwnV6hmJDZAbaF9pKLZAJzTb4ZD	2016-05-23 09:04:25.025974	2016-05-23 10:09:12.899645
+1	2	facebook	1133479786718789	EAANZBfgZBIUZAQBANuBqZBO0PvvTBLJSZCdoZA7bP5v0vgPss2JQAqa7u6yZChBgnfX5DXHmKpJEpNrV7xoNngVcyTZAfnJcTElZBY9tTmkHP04IOvaJI5mXbrdTaOuSnBP0RJe3KmRSvRZADr8PwOmR5cZBhClhipZAxSkZD	2016-05-29 23:46:05.133531	2016-05-30 03:55:29.778954
 \.
 
 
@@ -1841,8 +1840,9 @@ SELECT pg_catalog.setval('auths_id_seq', 1, true);
 --
 
 COPY browsing_histories (id, user_id, listing_id, viewed_at, created_at, updated_at) FROM stdin;
-1	2	1	2016-05-22 15:00:00	2016-05-23 09:06:43.768327	2016-05-23 09:06:43.768327
-2	1	1	2016-05-22 15:00:00	2016-05-23 09:17:40.699353	2016-05-23 09:17:40.699353
+1	1	2	2016-05-29 15:00:00	2016-05-30 04:54:49.635957	2016-05-30 04:54:49.635957
+2	1	2	2016-05-29 15:00:00	2016-05-30 04:54:59.27634	2016-05-30 04:54:59.27634
+3	1	2	2016-05-29 15:00:00	2016-05-30 04:55:50.319137	2016-05-30 04:55:50.319137
 \.
 
 
@@ -1850,7 +1850,7 @@ COPY browsing_histories (id, user_id, listing_id, viewed_at, created_at, updated
 -- Name: browsing_histories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('browsing_histories_id_seq', 2, true);
+SELECT pg_catalog.setval('browsing_histories_id_seq', 3, true);
 
 
 --
@@ -1858,27 +1858,20 @@ SELECT pg_catalog.setval('browsing_histories_id_seq', 2, true);
 --
 
 COPY business_hours (id, created_at, updated_at, listing_id, wday, is_open, start_hour, end_hour) FROM stdin;
-8	2016-05-23 09:08:09.926735	2016-05-23 09:08:09.926735	2	0	t	11:30:00	23:00:00
-9	2016-05-23 09:08:09.933824	2016-05-23 09:08:09.933824	2	1	f	11:30:00	23:00:00
-10	2016-05-23 09:08:09.940181	2016-05-23 09:08:09.940181	2	2	t	11:30:00	23:00:00
-11	2016-05-23 09:08:09.951968	2016-05-23 09:08:09.951968	2	3	t	11:30:00	23:00:00
-12	2016-05-23 09:08:09.966231	2016-05-23 09:08:09.966231	2	4	t	11:30:00	23:00:00
-13	2016-05-23 09:08:09.984768	2016-05-23 09:08:09.984768	2	5	t	11:30:00	23:00:00
-14	2016-05-23 09:08:09.991796	2016-05-23 09:08:09.991796	2	6	t	11:30:00	23:00:00
-15	2016-05-23 09:14:57.594864	2016-05-23 09:14:57.594864	3	0	f	11:30:00	23:00:00
-16	2016-05-23 09:14:57.602297	2016-05-23 09:14:57.602297	3	1	t	11:30:00	23:00:00
-17	2016-05-23 09:14:57.617307	2016-05-23 09:14:57.617307	3	2	t	11:30:00	23:00:00
-18	2016-05-23 09:14:57.627242	2016-05-23 09:14:57.627242	3	3	t	11:30:00	23:00:00
-19	2016-05-23 09:14:57.636487	2016-05-23 09:14:57.636487	3	4	t	11:30:00	23:00:00
-20	2016-05-23 09:14:57.645704	2016-05-23 09:14:57.645704	3	5	t	11:30:00	23:00:00
-21	2016-05-23 09:14:57.653147	2016-05-23 09:14:57.653147	3	6	t	11:30:00	23:00:00
-22	2016-05-23 09:18:09.016243	2016-05-23 09:18:09.016243	1	0	f	11:30:00	23:00:00
-23	2016-05-23 09:18:09.02329	2016-05-23 09:18:09.02329	1	1	t	11:30:00	23:00:00
-24	2016-05-23 09:18:09.031115	2016-05-23 09:18:09.031115	1	2	t	11:30:00	23:00:00
-25	2016-05-23 09:18:09.037852	2016-05-23 09:18:09.037852	1	3	t	11:30:00	23:00:00
-26	2016-05-23 09:18:09.044397	2016-05-23 09:18:09.044397	1	4	t	11:30:00	23:00:00
-27	2016-05-23 09:18:09.050943	2016-05-23 09:18:09.050943	1	5	t	11:30:00	23:00:00
-28	2016-05-23 09:18:09.05765	2016-05-23 09:18:09.05765	1	6	t	11:30:00	23:00:00
+1	2016-05-30 04:53:37.503348	2016-05-30 04:53:37.503348	1	0	t	11:30:00	23:00:00
+2	2016-05-30 04:53:37.512045	2016-05-30 04:53:37.512045	1	1	t	11:30:00	23:00:00
+3	2016-05-30 04:53:37.516835	2016-05-30 04:53:37.516835	1	2	t	11:30:00	23:00:00
+4	2016-05-30 04:53:37.523577	2016-05-30 04:53:37.523577	1	3	t	11:30:00	23:00:00
+5	2016-05-30 04:53:37.528487	2016-05-30 04:53:37.528487	1	4	t	11:30:00	23:00:00
+6	2016-05-30 04:53:37.535497	2016-05-30 04:53:37.535497	1	5	t	11:30:00	23:00:00
+7	2016-05-30 04:53:37.540562	2016-05-30 04:53:37.540562	1	6	t	11:30:00	23:00:00
+8	2016-05-30 04:53:45.673761	2016-05-30 04:53:45.673761	2	0	t	11:30:00	23:00:00
+9	2016-05-30 04:53:45.678041	2016-05-30 04:53:45.678041	2	1	t	11:30:00	23:00:00
+10	2016-05-30 04:53:45.682657	2016-05-30 04:53:45.682657	2	2	t	11:30:00	23:00:00
+11	2016-05-30 04:53:45.686854	2016-05-30 04:53:45.686854	2	3	t	11:30:00	23:00:00
+12	2016-05-30 04:53:45.690933	2016-05-30 04:53:45.690933	2	4	t	11:30:00	23:00:00
+13	2016-05-30 04:53:45.69496	2016-05-30 04:53:45.69496	2	5	t	11:30:00	23:00:00
+14	2016-05-30 04:53:45.699069	2016-05-30 04:53:45.699069	2	6	t	11:30:00	23:00:00
 \.
 
 
@@ -1886,7 +1879,7 @@ COPY business_hours (id, created_at, updated_at, listing_id, wday, is_open, star
 -- Name: business_hours_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('business_hours_id_seq', 28, true);
+SELECT pg_catalog.setval('business_hours_id_seq', 14, true);
 
 
 --
@@ -1939,9 +1932,9 @@ SELECT pg_catalog.setval('emergencies_id_seq', 1, false);
 --
 
 COPY english_messages (id, created_at, updated_at, name, name_en) FROM stdin;
-1	2016-05-23 08:31:24.419163	2016-05-23 08:31:24.419163	電話OK	Phone available
-2	2016-05-23 08:31:24.610216	2016-05-23 08:31:24.610216	メールOK	Mail available
-3	2016-05-23 08:31:24.744587	2016-05-23 08:31:24.744587	不可	Unavailable
+1	2016-05-29 23:45:08.94915	2016-05-29 23:45:08.94915	電話OK	Phone available
+2	2016-05-29 23:45:08.952251	2016-05-29 23:45:08.952251	メールOK	Mail available
+3	2016-05-29 23:45:08.95466	2016-05-29 23:45:08.95466	不可	Unavailable
 \.
 
 
@@ -1957,9 +1950,6 @@ SELECT pg_catalog.setval('english_messages_id_seq', 4, false);
 --
 
 COPY english_messages_listings (id, created_at, updated_at, listing_id, english_message_id) FROM stdin;
-2	2016-05-23 09:08:10.004032	2016-05-23 09:08:10.004032	2	2
-3	2016-05-23 09:14:57.668264	2016-05-23 09:14:57.668264	3	1
-4	2016-05-23 09:18:09.080027	2016-05-23 09:18:09.080027	1	1
 \.
 
 
@@ -1967,7 +1957,7 @@ COPY english_messages_listings (id, created_at, updated_at, listing_id, english_
 -- Name: english_messages_listings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('english_messages_listings_id_seq', 4, true);
+SELECT pg_catalog.setval('english_messages_listings_id_seq', 1, false);
 
 
 --
@@ -1993,9 +1983,6 @@ SELECT pg_catalog.setval('englishes_id_seq', 4, false);
 --
 
 COPY englishes_listings (id, created_at, updated_at, listing_id, english_id) FROM stdin;
-2	2016-05-23 09:08:09.916747	2016-05-23 09:08:09.916747	2	2
-3	2016-05-23 09:14:57.58511	2016-05-23 09:14:57.58511	3	1
-4	2016-05-23 09:18:08.972944	2016-05-23 09:18:08.972944	1	1
 \.
 
 
@@ -2003,7 +1990,7 @@ COPY englishes_listings (id, created_at, updated_at, listing_id, english_id) FRO
 -- Name: englishes_listings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('englishes_listings_id_seq', 4, true);
+SELECT pg_catalog.setval('englishes_listings_id_seq', 1, false);
 
 
 --
@@ -2011,8 +1998,8 @@ SELECT pg_catalog.setval('englishes_listings_id_seq', 4, true);
 --
 
 COPY info_admins (id, created_at, updated_at, name, name_en) FROM stdin;
-1	2016-05-23 08:31:25.382541	2016-05-23 08:31:25.382541	オーナー	Owner
-2	2016-05-23 08:31:25.555158	2016-05-23 08:31:25.555158	事務局	Admin
+1	2016-05-29 23:45:08.966743	2016-05-29 23:45:08.966743	オーナー	Owner
+2	2016-05-29 23:45:08.969597	2016-05-29 23:45:08.969597	事務局	Admin
 \.
 
 
@@ -2028,9 +2015,7 @@ SELECT pg_catalog.setval('info_admins_id_seq', 3, false);
 --
 
 COPY listing_images (id, listing_id, image, order_num, caption, created_at, updated_at) FROM stdin;
-1	1	something.jpg	0		2016-05-23 09:06:34.797185	2016-05-23 09:06:34.797185
-2	2	something.jpg	0		2016-05-23 09:08:30.406812	2016-05-23 09:08:30.406812
-3	3	something.jpg	0		2016-05-23 09:15:22.669234	2016-05-23 09:15:22.669234
+1	2	something.jpg	0		2016-05-30 04:53:53.624029	2016-05-30 04:53:53.624029
 \.
 
 
@@ -2038,7 +2023,7 @@ COPY listing_images (id, listing_id, image, order_num, caption, created_at, upda
 -- Name: listing_images_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('listing_images_id_seq', 3, true);
+SELECT pg_catalog.setval('listing_images_id_seq', 1, true);
 
 
 --
@@ -2046,7 +2031,7 @@ SELECT pg_catalog.setval('listing_images_id_seq', 3, true);
 --
 
 COPY listing_pvs (id, listing_id, viewed_at, pv, created_at, updated_at) FROM stdin;
-1	1	2016-05-23	2	2016-05-23 09:06:43.796858	2016-05-23 09:17:40.714321
+1	2	2016-05-30	3	2016-05-30 04:54:49.654814	2016-05-30 04:55:50.32849
 \.
 
 
@@ -2062,9 +2047,8 @@ SELECT pg_catalog.setval('listing_pvs_id_seq', 1, true);
 --
 
 COPY listings (id, user_id, review_count, ave_total, ave_accuracy, ave_communication, ave_cleanliness, ave_location, ave_check_in, ave_cost_performance, open, zipcode, location, longitude, latitude, delivery_flg, price, description, title, capacity, direction, cover_image, cover_image_caption, created_at, updated_at, smoking_id, business_hours_remarks, shop_description, shop_description_en, price_low, price_high, tel, url, review_url, recommended, recommended_en, visit_benefits, visit_benefits_another, title_en, price_low_dinner, price_high_dinner, english_message_id, info_admin_id, link_tabelog, link_yelp, link_tripadvisor, description_en, location_en, visit_benefits_en, visit_benefits_another_en) FROM stdin;
-2	2	0	0	0	0	0	0	0	0	f	100-0002	東京都千代田区皇居外苑	139.758881	35.676988	f	0		ユーザー権限２	0		something.jpg		2016-05-23 09:08:09.782214	2016-05-23 09:08:10.011547	1	\N			\N	\N			\N					user authority 2	\N	\N	\N	1					TOKYOCHIYODA-KU KOKYOGAIEN		
-3	1	0	0	0	0	0	0	0	0	f	100-0004	東京都千代田区大手町	139.768456	35.685899	f	0		管理権限１	0		something.jpg		2016-05-23 09:14:57.374966	2016-05-23 09:14:57.676177	1	\N			\N	\N			\N					admin auth check 1	\N	\N	\N	2					TOKYOCHIYODA-KU OTEMACHI (TSUGINOBIRUONOZOKU)		
-1	1	0	0	0	0	0	0	0	0	f	100-0001	東京都千代田区千代田	139.753945	35.683801	f	0		ユーザー権限１更新	0		something.jpg		2016-05-23 09:06:12.768736	2016-05-23 09:18:09.091295	1	\N			\N	\N			\N					user authority 1	\N	\N	\N	1					TOKYOCHIYODA-KU CHIYODA		
+1	1	0	0	0	0	0	0	0	0	f	150-0021	東京都渋谷区恵比寿西	139.707181	35.648346	f	0		米福	0		something.jpg		2016-05-30 04:53:37.280904	2016-05-30 04:53:37.555625	1	\N	店名が物語るとおり、お米が主役の和食店です。\r\n日本各地から玄米の状態で取り寄せるお米を毎朝精米し、\r\n萬古焼きの土鍋で炊き上げます。\r\n『米福 特選土鍋ごはん』として白米が5〜6種類、\r\nさらに、季節の炊き込みご飯など。美味しいお料理と共にご用意しております。	As shop name is telling, it is the rice is of protagonist Japanese shop. And rice every morning rice to send for from all over Japan in the form of brown rice, Bring cook at Yorozu old baked clay pot. "US Fu specialties pot rice" as white rice is 5-6 kind, further, such as rice cooked in the season. We offer along with the delicious cuisine.	\N	\N			\N			\N	\N	Komefuku	\N	\N	\N	1					TOKYOSHIBUYA-KU EBISUNISHI	\N	\N
+2	1	0	0	0	0	0	0	0	0	t	150-0021	東京都渋谷区恵比寿西	139.707181	35.648346	f	0		米福	0		something.jpg		2016-05-30 04:53:45.568458	2016-05-30 04:54:49.537407	1	\N	店名が物語るとおり、お米が主役の和食店です。\r\n日本各地から玄米の状態で取り寄せるお米を毎朝精米し、\r\n萬古焼きの土鍋で炊き上げます。\r\n『米福 特選土鍋ごはん』として白米が5〜6種類、\r\nさらに、季節の炊き込みご飯など。美味しいお料理と共にご用意しております。	As shop name is telling, it is the rice is of protagonist Japanese shop. And rice every morning rice to send for from all over Japan in the form of brown rice, Bring cook at Yorozu old baked clay pot. "US Fu specialties pot rice" as white rice is 5-6 kind, further, such as rice cooked in the season. We offer along with the delicious cuisine.	\N	\N			\N			\N	\N	Komefuku	\N	\N	\N	2					TOKYOSHIBUYA-KU EBISUNISHI	\N	\N
 \.
 
 
@@ -2087,7 +2071,7 @@ SELECT pg_catalog.setval('listings_business_hours_id_seq', 1, false);
 -- Name: listings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('listings_id_seq', 3, true);
+SELECT pg_catalog.setval('listings_id_seq', 2, true);
 
 
 --
@@ -2095,9 +2079,10 @@ SELECT pg_catalog.setval('listings_id_seq', 3, true);
 --
 
 COPY listings_shop_categories (id, created_at, updated_at, listing_id, shop_category_id) FROM stdin;
-2	2016-05-23 09:08:09.891236	2016-05-23 09:08:09.891236	2	2
-3	2016-05-23 09:14:57.557679	2016-05-23 09:14:57.557679	3	1
-4	2016-05-23 09:18:08.915414	2016-05-23 09:18:08.915414	1	1
+1	2016-05-30 04:53:37.4268	2016-05-30 04:53:37.4268	1	3
+2	2016-05-30 04:53:37.435915	2016-05-30 04:53:37.435915	1	14
+3	2016-05-30 04:53:45.640747	2016-05-30 04:53:45.640747	2	3
+4	2016-05-30 04:53:45.646645	2016-05-30 04:53:45.646645	2	14
 \.
 
 
@@ -2113,9 +2098,12 @@ SELECT pg_catalog.setval('listings_shop_categories_id_seq', 4, true);
 --
 
 COPY listings_shop_services (id, created_at, updated_at, listing_id, shop_service_id) FROM stdin;
-2	2016-05-23 09:08:09.903118	2016-05-23 09:08:09.903118	2	2
-3	2016-05-23 09:14:57.572769	2016-05-23 09:14:57.572769	3	1
-4	2016-05-23 09:18:08.948824	2016-05-23 09:18:08.948824	1	1
+1	2016-05-30 04:53:37.456177	2016-05-30 04:53:37.456177	1	1
+2	2016-05-30 04:53:37.470731	2016-05-30 04:53:37.470731	1	5
+3	2016-05-30 04:53:37.477872	2016-05-30 04:53:37.477872	1	7
+4	2016-05-30 04:53:45.655124	2016-05-30 04:53:45.655124	2	1
+5	2016-05-30 04:53:45.66098	2016-05-30 04:53:45.66098	2	5
+6	2016-05-30 04:53:45.666586	2016-05-30 04:53:45.666586	2	7
 \.
 
 
@@ -2123,7 +2111,7 @@ COPY listings_shop_services (id, created_at, updated_at, listing_id, shop_servic
 -- Name: listings_shop_services_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('listings_shop_services_id_seq', 4, true);
+SELECT pg_catalog.setval('listings_shop_services_id_seq', 6, true);
 
 
 --
@@ -2191,53 +2179,53 @@ SELECT pg_catalog.setval('messages_id_seq', 1, false);
 --
 
 COPY prefectures (id, created_at, updated_at, name, name_en) FROM stdin;
-1	2016-05-23 08:31:26.18548	2016-05-23 08:31:26.18548	北海道	Hokkaido
-2	2016-05-23 08:31:26.422848	2016-05-23 08:31:26.422848	青森県	Aomori
-3	2016-05-23 08:31:26.539619	2016-05-23 08:31:26.539619	岩手県	Iwate
-4	2016-05-23 08:31:26.73881	2016-05-23 08:31:26.73881	宮城県	Miyagi
-5	2016-05-23 08:31:26.887688	2016-05-23 08:31:26.887688	秋田県	Akita
-6	2016-05-23 08:31:27.001128	2016-05-23 08:31:27.001128	山形県	Yamagata
-7	2016-05-23 08:31:27.129322	2016-05-23 08:31:27.129322	福島県	Fukushima
-8	2016-05-23 08:31:27.265456	2016-05-23 08:31:27.265456	茨城県	Ibaraki
-9	2016-05-23 08:31:27.434021	2016-05-23 08:31:27.434021	栃木県	Tochigi
-10	2016-05-23 08:31:27.565135	2016-05-23 08:31:27.565135	群馬県	Gunma
-11	2016-05-23 08:31:27.68848	2016-05-23 08:31:27.68848	埼玉県	Saitama
-12	2016-05-23 08:31:27.802619	2016-05-23 08:31:27.802619	千葉県	Chiba
-13	2016-05-23 08:31:27.943601	2016-05-23 08:31:27.943601	東京都	Tokyo
-14	2016-05-23 08:31:28.108197	2016-05-23 08:31:28.108197	神奈川県	Kanagawa
-15	2016-05-23 08:31:28.241325	2016-05-23 08:31:28.241325	新潟県	Niigata
-16	2016-05-23 08:31:28.375432	2016-05-23 08:31:28.375432	富山県	Toyama
-17	2016-05-23 08:31:28.505491	2016-05-23 08:31:28.505491	石川県	Ishikawa
-18	2016-05-23 08:31:28.627365	2016-05-23 08:31:28.627365	福井県	Fukui
-19	2016-05-23 08:31:28.731994	2016-05-23 08:31:28.731994	山梨県	Yamanashi
-20	2016-05-23 08:31:28.871736	2016-05-23 08:31:28.871736	長野県	Nagano
-21	2016-05-23 08:31:29.007714	2016-05-23 08:31:29.007714	岐阜県	Gifu
-22	2016-05-23 08:31:29.116558	2016-05-23 08:31:29.116558	静岡県	Shizuoka
-23	2016-05-23 08:31:29.421487	2016-05-23 08:31:29.421487	愛知県	Aichi
-24	2016-05-23 08:31:29.5417	2016-05-23 08:31:29.5417	三重県	Mie
-25	2016-05-23 08:31:29.80653	2016-05-23 08:31:29.80653	滋賀県	Shiga
-26	2016-05-23 08:31:30.357061	2016-05-23 08:31:30.357061	京都府	Kyouto
-27	2016-05-23 08:31:32.269171	2016-05-23 08:31:32.269171	大阪府	Osaka
-28	2016-05-23 08:31:33.181521	2016-05-23 08:31:33.181521	兵庫県	Hyougo
-29	2016-05-23 08:31:33.29325	2016-05-23 08:31:33.29325	奈良県	Nara
-30	2016-05-23 08:31:33.398853	2016-05-23 08:31:33.398853	和歌山県	Wakayama
-31	2016-05-23 08:31:33.527051	2016-05-23 08:31:33.527051	鳥取県	Tottori
-32	2016-05-23 08:31:34.075568	2016-05-23 08:31:34.075568	島根県	Shimane
-33	2016-05-23 08:31:34.233157	2016-05-23 08:31:34.233157	岡山県	Okayama
-34	2016-05-23 08:31:34.399475	2016-05-23 08:31:34.399475	広島県	Hirashima
-35	2016-05-23 08:31:34.544556	2016-05-23 08:31:34.544556	山口県	Yamaguchi
-36	2016-05-23 08:31:34.709886	2016-05-23 08:31:34.709886	徳島県	Tokushima
-37	2016-05-23 08:31:34.849924	2016-05-23 08:31:34.849924	香川県	Kagawa
-38	2016-05-23 08:31:34.979275	2016-05-23 08:31:34.979275	愛媛県	Ehime
-39	2016-05-23 08:31:35.124119	2016-05-23 08:31:35.124119	高知県	Kouchi
-40	2016-05-23 08:31:35.251398	2016-05-23 08:31:35.251398	福岡県	Fukuoka
-41	2016-05-23 08:31:35.401118	2016-05-23 08:31:35.401118	佐賀県	Saga
-42	2016-05-23 08:31:35.562464	2016-05-23 08:31:35.562464	長崎県	Nagasaki
-43	2016-05-23 08:31:35.699846	2016-05-23 08:31:35.699846	熊本県	Kumamoto
-44	2016-05-23 08:31:35.89383	2016-05-23 08:31:35.89383	大分県	Oita
-45	2016-05-23 08:31:36.048141	2016-05-23 08:31:36.048141	宮崎県	Miyazaki
-46	2016-05-23 08:31:36.22213	2016-05-23 08:31:36.22213	鹿児島県	Kagoshima
-47	2016-05-23 08:31:36.376114	2016-05-23 08:31:36.376114	沖縄県	Okinawa
+1	2016-05-29 23:45:08.982005	2016-05-29 23:45:08.982005	北海道	Hokkaido
+2	2016-05-29 23:45:08.984964	2016-05-29 23:45:08.984964	青森県	Aomori
+3	2016-05-29 23:45:08.987352	2016-05-29 23:45:08.987352	岩手県	Iwate
+4	2016-05-29 23:45:08.98972	2016-05-29 23:45:08.98972	宮城県	Miyagi
+5	2016-05-29 23:45:08.991985	2016-05-29 23:45:08.991985	秋田県	Akita
+6	2016-05-29 23:45:08.99439	2016-05-29 23:45:08.99439	山形県	Yamagata
+7	2016-05-29 23:45:08.996715	2016-05-29 23:45:08.996715	福島県	Fukushima
+8	2016-05-29 23:45:08.998958	2016-05-29 23:45:08.998958	茨城県	Ibaraki
+9	2016-05-29 23:45:09.001252	2016-05-29 23:45:09.001252	栃木県	Tochigi
+10	2016-05-29 23:45:09.003497	2016-05-29 23:45:09.003497	群馬県	Gunma
+11	2016-05-29 23:45:09.005848	2016-05-29 23:45:09.005848	埼玉県	Saitama
+12	2016-05-29 23:45:09.008123	2016-05-29 23:45:09.008123	千葉県	Chiba
+13	2016-05-29 23:45:09.010491	2016-05-29 23:45:09.010491	東京都	Tokyo
+14	2016-05-29 23:45:09.012759	2016-05-29 23:45:09.012759	神奈川県	Kanagawa
+15	2016-05-29 23:45:09.014989	2016-05-29 23:45:09.014989	新潟県	Niigata
+16	2016-05-29 23:45:09.017312	2016-05-29 23:45:09.017312	富山県	Toyama
+17	2016-05-29 23:45:09.01961	2016-05-29 23:45:09.01961	石川県	Ishikawa
+18	2016-05-29 23:45:09.021922	2016-05-29 23:45:09.021922	福井県	Fukui
+19	2016-05-29 23:45:09.024236	2016-05-29 23:45:09.024236	山梨県	Yamanashi
+20	2016-05-29 23:45:09.026566	2016-05-29 23:45:09.026566	長野県	Nagano
+21	2016-05-29 23:45:09.028886	2016-05-29 23:45:09.028886	岐阜県	Gifu
+22	2016-05-29 23:45:09.031188	2016-05-29 23:45:09.031188	静岡県	Shizuoka
+23	2016-05-29 23:45:09.033401	2016-05-29 23:45:09.033401	愛知県	Aichi
+24	2016-05-29 23:45:09.035729	2016-05-29 23:45:09.035729	三重県	Mie
+25	2016-05-29 23:45:09.038	2016-05-29 23:45:09.038	滋賀県	Shiga
+26	2016-05-29 23:45:09.040237	2016-05-29 23:45:09.040237	京都府	Kyouto
+27	2016-05-29 23:45:09.042572	2016-05-29 23:45:09.042572	大阪府	Osaka
+28	2016-05-29 23:45:09.044885	2016-05-29 23:45:09.044885	兵庫県	Hyougo
+29	2016-05-29 23:45:09.047158	2016-05-29 23:45:09.047158	奈良県	Nara
+30	2016-05-29 23:45:09.049444	2016-05-29 23:45:09.049444	和歌山県	Wakayama
+31	2016-05-29 23:45:09.051851	2016-05-29 23:45:09.051851	鳥取県	Tottori
+32	2016-05-29 23:45:09.054057	2016-05-29 23:45:09.054057	島根県	Shimane
+33	2016-05-29 23:45:09.05631	2016-05-29 23:45:09.05631	岡山県	Okayama
+34	2016-05-29 23:45:09.05862	2016-05-29 23:45:09.05862	広島県	Hirashima
+35	2016-05-29 23:45:09.060844	2016-05-29 23:45:09.060844	山口県	Yamaguchi
+36	2016-05-29 23:45:09.063095	2016-05-29 23:45:09.063095	徳島県	Tokushima
+37	2016-05-29 23:45:09.065387	2016-05-29 23:45:09.065387	香川県	Kagawa
+38	2016-05-29 23:45:09.067707	2016-05-29 23:45:09.067707	愛媛県	Ehime
+39	2016-05-29 23:45:09.070005	2016-05-29 23:45:09.070005	高知県	Kouchi
+40	2016-05-29 23:45:09.072239	2016-05-29 23:45:09.072239	福岡県	Fukuoka
+41	2016-05-29 23:45:09.074455	2016-05-29 23:45:09.074455	佐賀県	Saga
+42	2016-05-29 23:45:09.07676	2016-05-29 23:45:09.07676	長崎県	Nagasaki
+43	2016-05-29 23:45:09.079168	2016-05-29 23:45:09.079168	熊本県	Kumamoto
+44	2016-05-29 23:45:09.081453	2016-05-29 23:45:09.081453	大分県	Oita
+45	2016-05-29 23:45:09.083747	2016-05-29 23:45:09.083747	宮崎県	Miyazaki
+46	2016-05-29 23:45:09.086083	2016-05-29 23:45:09.086083	鹿児島県	Kagoshima
+47	2016-05-29 23:45:09.088375	2016-05-29 23:45:09.088375	沖縄県	Okinawa
 \.
 
 
@@ -2253,7 +2241,7 @@ SELECT pg_catalog.setval('prefectures_id_seq', 48, false);
 --
 
 COPY profile_images (id, user_id, profile_id, image, caption, created_at, updated_at) FROM stdin;
-1	2	1	something.jpg		2016-05-23 09:04:24.987871	2016-05-23 09:04:24.987871
+1	2	1	something.jpg		2016-05-29 23:46:05.112895	2016-05-29 23:46:05.112895
 \.
 
 
@@ -2284,9 +2272,9 @@ SELECT pg_catalog.setval('profile_videos_id_seq', 1, false);
 --
 
 COPY profiles (id, user_id, first_name, last_name, birthday, gender, phone, phone_verification, zipcode, location, self_introduction, school, work, timezone, listing_count, wishlist_count, bookmark_count, reviewed_count, reservation_count, ave_total, ave_accuracy, ave_communication, ave_cleanliness, ave_location, ave_check_in, ave_cost_performance, created_at, updated_at) FROM stdin;
-1	2	Jun'ya	Shimoda	1986-01-01	1		f							0	0	0	0	0	0	0	0	0	0	0	0	2016-05-23 09:04:24.179957	2016-05-23 10:09:26.323942
-2	1			1986-01-01	0		f							0	0	0	0	0	0	0	0	0	0	0	0	2016-05-23 10:24:16.564221	2016-05-23 10:24:16.564221
-3	3			\N	\N		f							0	0	0	0	0	0	0	0	0	0	0	0	2016-05-23 11:26:24.531376	2016-05-23 11:26:24.531376
+1	2	Jun'ya	Shimoda	\N	\N		f							0	0	0	0	0	0	0	0	0	0	0	0	2016-05-29 23:46:03.487096	2016-05-29 23:46:03.487096
+3	4			\N	\N		f							0	0	0	0	0	0	0	0	0	0	0	0	2016-05-30 00:01:57.558653	2016-05-30 00:01:57.558653
+4	1			1986-01-01	0		f							0	0	0	0	0	0	0	0	0	0	0	0	2016-05-30 04:54:17.680792	2016-05-30 04:54:17.680792
 \.
 
 
@@ -2294,7 +2282,7 @@ COPY profiles (id, user_id, first_name, last_name, birthday, gender, phone, phon
 -- Name: profiles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('profiles_id_seq', 3, true);
+SELECT pg_catalog.setval('profiles_id_seq', 4, true);
 
 
 --
@@ -2347,7 +2335,6 @@ SELECT pg_catalog.setval('reviews_id_seq', 1, false);
 --
 
 COPY schema_migrations (version) FROM stdin;
-20160522080611
 20150309085435
 20150310045636
 20150310052723
@@ -2389,6 +2376,7 @@ COPY schema_migrations (version) FROM stdin;
 20160514180058
 20160520090237
 20160520140853
+20160522080611
 20160523093306
 \.
 
@@ -2398,35 +2386,35 @@ COPY schema_migrations (version) FROM stdin;
 --
 
 COPY shop_categories (id, created_at, updated_at, name, name_en) FROM stdin;
-1	2016-05-23 08:31:37.425049	2016-05-23 08:31:37.425049	寿司	Sushi
-2	2016-05-23 08:31:38.03608	2016-05-23 08:31:38.03608	天ぷら	Tempura
-3	2016-05-23 08:31:38.383862	2016-05-23 08:31:38.383862	しゃぶしゃぶ・すきやき	Shabu-shabu/Sukiyaki\n
-4	2016-05-23 08:31:38.63367	2016-05-23 08:31:38.63367	魚・海鮮料理	Seafood
-5	2016-05-23 08:31:39.382557	2016-05-23 08:31:39.382557	うなぎ	Unagi
-6	2016-05-23 08:31:39.507765	2016-05-23 08:31:39.507765	焼き鳥	Yakitori
-7	2016-05-23 08:31:39.641393	2016-05-23 08:31:39.641393	懐石	Kaiseki(Formal Japanese)
-8	2016-05-23 08:31:39.77351	2016-05-23 08:31:39.77351	鍋	Nabe(Pot)
-9	2016-05-23 08:31:39.928644	2016-05-23 08:31:39.928644	とんかつ	Tonkatsu
-10	2016-05-23 08:31:40.147535	2016-05-23 08:31:40.147535	串揚げ	Kushiage
-11	2016-05-23 08:31:40.250498	2016-05-23 08:31:40.250498	ラーメン・つけ麺	Ramen
-12	2016-05-23 08:31:40.355667	2016-05-23 08:31:40.355667	お好み焼き・もんじゃ	Okonomiyaki・Monja
-13	2016-05-23 08:31:40.503307	2016-05-23 08:31:40.503307	うどん・そば	Udon/Soba(Noodle)
-14	2016-05-23 08:31:40.661005	2016-05-23 08:31:40.661005	その他和食	Other Japanese
-15	2016-05-23 08:31:40.791683	2016-05-23 08:31:40.791683	洋食・西洋料理	Western
-16	2016-05-23 08:31:40.970426	2016-05-23 08:31:40.970426	中華	Chinese
-17	2016-05-23 08:31:41.097404	2016-05-23 08:31:41.097404	アジア・エスニック	Asian
-18	2016-05-23 08:31:41.417737	2016-05-23 08:31:41.417737	カレー	Curry
-19	2016-05-23 08:31:41.59048	2016-05-23 08:31:41.59048	焼肉・ホルモン	Yakiniku/BBQ
-20	2016-05-23 08:31:41.716703	2016-05-23 08:31:41.716703	居酒屋	Izakaya(Japanese casual bar)
-21	2016-05-23 08:31:41.83315	2016-05-23 08:31:41.83315	ダイニングバー	Dining bar
-22	2016-05-23 08:31:41.940906	2016-05-23 08:31:41.940906	定食・食堂 弁当	Casual Japanese
-23	2016-05-23 08:31:42.060175	2016-05-23 08:31:42.060175	カフェ・喫茶	Café
-24	2016-05-23 08:31:42.172265	2016-05-23 08:31:42.172265	コーヒー専門店	Specialty Coffee
-25	2016-05-23 08:31:42.293738	2016-05-23 08:31:42.293738	パン	Bakery
-26	2016-05-23 08:31:42.43071	2016-05-23 08:31:42.43071	洋菓子 和菓子・甘味処 スイーツ	Sweets/Desert
-27	2016-05-23 08:31:42.57579	2016-05-23 08:31:42.57579	バー・お酒	Bar
-28	2016-05-23 08:31:42.857228	2016-05-23 08:31:42.857228	ベジタリアン	Vegetarian
-29	2016-05-23 08:31:43.033655	2016-05-23 08:31:43.033655	その他	Other
+1	2016-05-29 23:45:09.105359	2016-05-29 23:45:09.105359	寿司	Sushi
+2	2016-05-29 23:45:09.10864	2016-05-29 23:45:09.10864	天ぷら	Tempura
+3	2016-05-29 23:45:09.111184	2016-05-29 23:45:09.111184	しゃぶしゃぶ・すきやき	Shabu-shabu/Sukiyaki\n
+4	2016-05-29 23:45:09.113613	2016-05-29 23:45:09.113613	魚・海鮮料理	Seafood
+5	2016-05-29 23:45:09.116133	2016-05-29 23:45:09.116133	うなぎ	Unagi
+6	2016-05-29 23:45:09.118622	2016-05-29 23:45:09.118622	焼き鳥	Yakitori
+7	2016-05-29 23:45:09.121078	2016-05-29 23:45:09.121078	懐石	Kaiseki(Formal Japanese)
+8	2016-05-29 23:45:09.123549	2016-05-29 23:45:09.123549	鍋	Nabe(Pot)
+9	2016-05-29 23:45:09.126018	2016-05-29 23:45:09.126018	とんかつ	Tonkatsu
+10	2016-05-29 23:45:09.128497	2016-05-29 23:45:09.128497	串揚げ	Kushiage
+11	2016-05-29 23:45:09.130998	2016-05-29 23:45:09.130998	ラーメン・つけ麺	Ramen
+12	2016-05-29 23:45:09.133433	2016-05-29 23:45:09.133433	お好み焼き・もんじゃ	Okonomiyaki・Monja
+13	2016-05-29 23:45:09.136014	2016-05-29 23:45:09.136014	うどん・そば	Udon/Soba(Noodle)
+14	2016-05-29 23:45:09.151996	2016-05-29 23:45:09.151996	その他和食	Other Japanese
+15	2016-05-29 23:45:09.154674	2016-05-29 23:45:09.154674	洋食・西洋料理	Western
+16	2016-05-29 23:45:09.157124	2016-05-29 23:45:09.157124	中華	Chinese
+17	2016-05-29 23:45:09.159491	2016-05-29 23:45:09.159491	アジア・エスニック	Asian
+18	2016-05-29 23:45:09.161937	2016-05-29 23:45:09.161937	カレー	Curry
+19	2016-05-29 23:45:09.164375	2016-05-29 23:45:09.164375	焼肉・ホルモン	Yakiniku/BBQ
+20	2016-05-29 23:45:09.166839	2016-05-29 23:45:09.166839	居酒屋	Izakaya(Japanese casual bar)
+21	2016-05-29 23:45:09.169292	2016-05-29 23:45:09.169292	ダイニングバー	Dining bar
+22	2016-05-29 23:45:09.171745	2016-05-29 23:45:09.171745	定食・食堂 弁当	Casual Japanese
+23	2016-05-29 23:45:09.174072	2016-05-29 23:45:09.174072	カフェ・喫茶	Café
+24	2016-05-29 23:45:09.176504	2016-05-29 23:45:09.176504	コーヒー専門店	Specialty Coffee
+25	2016-05-29 23:45:09.178949	2016-05-29 23:45:09.178949	パン	Bakery
+26	2016-05-29 23:45:09.181327	2016-05-29 23:45:09.181327	洋菓子 和菓子・甘味処 スイーツ	Sweets/Desert
+27	2016-05-29 23:45:09.18379	2016-05-29 23:45:09.18379	バー・お酒	Bar
+28	2016-05-29 23:45:09.186237	2016-05-29 23:45:09.186237	ベジタリアン	Vegetarian
+29	2016-05-29 23:45:09.188709	2016-05-29 23:45:09.188709	その他	Other
 \.
 
 
@@ -2442,20 +2430,20 @@ SELECT pg_catalog.setval('shop_categories_id_seq', 30, false);
 --
 
 COPY shop_services (id, created_at, updated_at, name, name_en) FROM stdin;
-1	2016-05-23 08:31:43.668464	2016-05-23 08:31:43.668464	予約可	Reservation
-2	2016-05-23 08:31:43.883566	2016-05-23 08:31:43.883566	個室有り	Private room
-3	2016-05-23 08:31:44.012292	2016-05-23 08:31:44.012292	出前・デリバリー可	Delivery
-4	2016-05-23 08:31:44.28295	2016-05-23 08:31:44.28295	テイクアウト可	Take-out
-5	2016-05-23 08:31:44.398264	2016-05-23 08:31:44.398264	クレジットカード可	credit card
-6	2016-05-23 08:31:44.570283	2016-05-23 08:31:44.570283	駐車場有り	Parking
-7	2016-05-23 08:31:44.71653	2016-05-23 08:31:44.71653	アルコール有り	Alcohol
-8	2016-05-23 08:31:44.97231	2016-05-23 08:31:44.97231	ハラル認証	Halal certified
-9	2016-05-23 08:31:45.12936	2016-05-23 08:31:45.12936	車いす対応	Wheel chair
-10	2016-05-23 08:31:45.402009	2016-05-23 08:31:45.402009	お子様用椅子あり	Booster/Child seat
-11	2016-05-23 08:31:45.832205	2016-05-23 08:31:45.832205	屋外テーブルあり	Outdoor table
-12	2016-05-23 08:31:47.096147	2016-05-23 08:31:47.096147	無料Wi-Fi	Free Wi-Fi
-13	2016-05-23 08:31:47.230594	2016-05-23 08:31:47.230594	写真付きメニューあり	Photos with menu
-14	2016-05-23 08:31:47.37951	2016-05-23 08:31:47.37951	メニューに材料の表示あり	Material display with menu
+1	2016-05-29 23:45:09.20528	2016-05-29 23:45:09.20528	予約可	Reservation
+2	2016-05-29 23:45:09.208513	2016-05-29 23:45:09.208513	個室有り	Private room
+3	2016-05-29 23:45:09.211058	2016-05-29 23:45:09.211058	出前・デリバリー可	Delivery
+4	2016-05-29 23:45:09.213568	2016-05-29 23:45:09.213568	テイクアウト可	Take-out
+5	2016-05-29 23:45:09.215937	2016-05-29 23:45:09.215937	クレジットカード可	credit card
+6	2016-05-29 23:45:09.21839	2016-05-29 23:45:09.21839	駐車場有り	Parking
+7	2016-05-29 23:45:09.22081	2016-05-29 23:45:09.22081	アルコール有り	Alcohol
+8	2016-05-29 23:45:09.223172	2016-05-29 23:45:09.223172	ハラル認証	Halal certified
+9	2016-05-29 23:45:09.225541	2016-05-29 23:45:09.225541	車いす対応	Wheel chair
+10	2016-05-29 23:45:09.227991	2016-05-29 23:45:09.227991	お子様用椅子あり	Booster/Child seat
+11	2016-05-29 23:45:09.230385	2016-05-29 23:45:09.230385	屋外テーブルあり	Outdoor table
+12	2016-05-29 23:45:09.232812	2016-05-29 23:45:09.232812	無料Wi-Fi	Free Wi-Fi
+13	2016-05-29 23:45:09.235174	2016-05-29 23:45:09.235174	写真付きメニューあり	Photos with menu
+14	2016-05-29 23:45:09.237489	2016-05-29 23:45:09.237489	メニューに材料の表示あり	Material display with menu
 \.
 
 
@@ -2471,10 +2459,10 @@ SELECT pg_catalog.setval('shop_services_id_seq', 15, false);
 --
 
 COPY smokings (id, created_at, updated_at, name, name_en) FROM stdin;
-1	2016-05-23 08:31:48.02554	2016-05-23 08:31:48.02554	完全禁煙	Non-smoking
-2	2016-05-23 08:31:48.225318	2016-05-23 08:31:48.225318	分煙（エリアによる分煙）	Smoking in separated area
-3	2016-05-23 08:31:48.349753	2016-05-23 08:31:48.349753	完全分煙（部屋による分煙）	Smoking in separated rooms
-4	2016-05-23 08:31:48.473623	2016-05-23 08:31:48.473623	喫煙可	Smoking is permitted
+1	2016-05-29 23:45:09.250501	2016-05-29 23:45:09.250501	完全禁煙	Non-smoking
+2	2016-05-29 23:45:09.253485	2016-05-29 23:45:09.253485	分煙（エリアによる分煙）	Smoking in separated area
+3	2016-05-29 23:45:09.25584	2016-05-29 23:45:09.25584	完全分煙（部屋による分煙）	Smoking in separated rooms
+4	2016-05-29 23:45:09.258101	2016-05-29 23:45:09.258101	喫煙可	Smoking is permitted
 \.
 
 
@@ -2520,9 +2508,9 @@ SELECT pg_catalog.setval('user_ngevents_id_seq', 1, false);
 --
 
 COPY users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, confirmation_token, confirmed_at, confirmation_sent_at, unconfirmed_email, failed_attempts, unlock_token, locked_at, created_at, updated_at, uid, provider, username, admin, profile_id) FROM stdin;
-2	junshimo2@gmail.com	$2a$10$4PpLKjPv6/CWskJUncwgVO46Miiuvbzwxh.p0LKKgH22/N/KDO1im	\N	\N	\N	3	2016-05-23 10:09:12.912475	2016-05-23 09:46:28.955363	49.239.68.28	49.239.68.28	\N	2016-05-23 10:09:12.839575	\N	\N	0	\N	\N	2016-05-23 09:04:24.15924	2016-05-23 10:09:12.916234	1133479786718789	facebook	\N	f	\N
-1	jironbach@gmail.com	$2a$10$spWpjdlVXfvMdgACaP7esuiy70DcALsoBQXp5nQfGxVEiTMr9qmyO	\N	\N	2016-05-23 09:13:21.949721	4	2016-05-23 10:24:07.516694	2016-05-23 10:09:51.734061	49.239.68.28	49.239.68.28	\N	2016-05-23 10:21:58.453922	\N	\N	0	\N	\N	2016-05-23 08:45:15.073502	2016-05-23 10:24:07.520461			\N	t	\N
-3	chisa.odamaki@bizitjapan.com	$2a$10$pC7Cv0Byo0O2OOld35Jhr.0AmPlDUbfJuhZe5E6wac35mwpHop7t.	\N	\N	\N	1	2016-05-23 11:28:06.31749	2016-05-23 11:28:06.31749	42.146.105.241	42.146.105.241	\N	2016-05-23 11:27:38.245091	2016-05-23 11:26:24.190804	\N	0	\N	\N	2016-05-23 11:26:24.019207	2016-05-23 11:28:06.320424	e09cbd59-f27a-4687-8eb2-5cd36e6f993d		\N	f	\N
+4	jironbach@gmail.com	$2a$10$79KwsbJ1GyhRlyjA1q5CNeR4XFNJJjJkdpBoD8uzw8Qjs0kS.Woi2	\N	\N	\N	1	2016-05-30 00:02:57.538674	2016-05-30 00:02:57.538674	27.141.140.223	27.141.140.223	\N	2016-05-30 00:02:44.767676	2016-05-30 00:01:57.274598	\N	0	\N	\N	2016-05-30 00:01:56.910376	2016-05-30 03:55:19.906945	b6b9d967-62f6-42de-8d02-0705d1595e7c		\N	f	\N
+2	junshimo2@gmail.com	$2a$10$KdUFsC5rDDbn7rRyFcVdlulHjHAag.wIS6An2Sb7IdXVEABmxNhxK	\N	\N	\N	2	2016-05-30 03:55:29.783062	2016-05-29 23:46:05.137725	27.141.140.223	27.141.140.223	\N	2016-05-30 03:55:29.723518	\N	\N	0	\N	\N	2016-05-29 23:46:03.455298	2016-05-30 03:55:29.785092	1133479786718789	facebook	\N	f	\N
+1	admin@bizitjapan.com	$2a$10$EpdDiw5VIyQrsW5sGRHKlOQ.oVheyoYHjMHInCSRM/KSnZx.KJoRq	\N	\N	2016-05-30 04:51:25.094832	1	2016-05-30 04:51:25.101351	2016-05-30 04:51:25.101351	119.245.199.201	119.245.199.201	\N	2016-05-29 23:45:09.261296	\N	\N	0	\N	\N	2016-05-29 23:45:09.364439	2016-05-30 04:51:25.109484			\N	t	\N
 \.
 
 
@@ -2530,7 +2518,7 @@ COPY users (id, email, encrypted_password, reset_password_token, reset_password_
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('users_id_seq', 3, true);
+SELECT pg_catalog.setval('users_id_seq', 4, true);
 
 
 --
