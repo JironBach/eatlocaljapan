@@ -4,11 +4,14 @@ footer
       .col-sm-12.hide--sp.text-center
         ul.list-unstyled
           li
-            = link_to t('.corporate.about'), 'about_corporate.html' if locale == :ja
+            = link_to t('.corporate.about'), 'http://eatlocaljapan.com/about_jp/', target: "_blank" if locale == :ja
           li
-            = link_to t('.corporate.shop'), '/about_regist.html'
+            - if locale == :ja
+              = link_to t('.corporate.shop'), 'http://eatlocaljapan.com/owners/', target: "_blank"
+            - else
+              = link_to t('.corporate.shop'), 'http://eatlocaljapan.com/about/', target: "_blank"
           li
-            = link_to t('.corporate.privacy'), 'http://eatlocaljapan.com/privacypolicy_jp/'
+            = link_to t('.corporate.privacy'), 'http://eatlocaljapan.com/privacypolicy_jp/', target: "_blank"
           li
     hr.hide--sp
     .sns-container.text-center
