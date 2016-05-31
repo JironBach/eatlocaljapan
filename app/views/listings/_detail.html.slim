@@ -166,7 +166,7 @@
             .row
               .col-xs-11
                 - shop_description_en = listing.shop_description_en.blank? ? EasyTranslate.translate(listing.shop_description, to: :en) : listing.shop_description_en
-                = locale == :ja ? nl2br(h(listing.shop_description)) : nl2br( h(shop_description_en))
+                = locale == :ja ? raw(nl2br(h(listing.shop_description))) : raw(nl2br( h(shop_description_en)))
         hr
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
