@@ -1825,7 +1825,7 @@ SELECT pg_catalog.setval('admin_users_id_seq', 3, false);
 --
 
 COPY auths (id, user_id, provider, uid, access_token, created_at, updated_at) FROM stdin;
-1	1	facebook	1133479786718789	EAANZBfgZBIUZAQBADio9Yq7coVKa9KcqwZCRX5ItRU7DJJ7Rfh7jvExhhPAFSlbQiwl2ZA0nklWRE9NA2ZB0ycCnNhfCBb8DNKHj2wykXvG7cHMUQIsPLz1BWcqwBkvwmPEiNsiZA1jyMNRkapA7qqxRq7ATVUl7JQZD	2016-05-22 00:32:12.661502	2016-05-30 12:46:52.052325
+1	1	facebook	1133479786718789	EAANZBfgZBIUZAQBAEd5XDQGZCPUPepfkWmPbMnKBSlpZAIvcQUCDLH3gzBHJMwwcaozX7PoD9ImveHQ5gdlaiY6HE28bktk29c41ZAlUJh0gww5iFMihuNbWN6lX3xUDvt5XT3D42WumzIOGLYv3S52ClZCVsc5ZCpwZD	2016-05-22 00:32:12.661502	2016-05-31 01:01:16.07599
 \.
 
 
@@ -1929,6 +1929,10 @@ COPY browsing_histories (id, user_id, listing_id, viewed_at, created_at, updated
 86	0	4	2016-05-30 15:00:00	2016-05-30 16:10:45.94119	2016-05-30 16:10:45.94119
 87	0	4	2016-05-30 15:00:00	2016-05-30 16:10:51.720145	2016-05-30 16:10:51.720145
 88	0	4	2016-05-30 15:00:00	2016-05-30 16:11:00.993873	2016-05-30 16:11:00.993873
+89	1	4	2016-05-30 15:00:00	2016-05-31 00:55:08.380202	2016-05-31 00:55:08.380202
+90	1	4	2016-05-30 15:00:00	2016-05-31 01:30:25.996231	2016-05-31 01:30:25.996231
+91	1	4	2016-05-30 15:00:00	2016-05-31 02:19:27.135796	2016-05-31 02:19:27.135796
+92	1	4	2016-05-30 15:00:00	2016-05-31 10:08:27.797549	2016-05-31 10:08:27.797549
 \.
 
 
@@ -1936,7 +1940,7 @@ COPY browsing_histories (id, user_id, listing_id, viewed_at, created_at, updated
 -- Name: browsing_histories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('browsing_histories_id_seq', 88, true);
+SELECT pg_catalog.setval('browsing_histories_id_seq', 92, true);
 
 
 --
@@ -2098,7 +2102,7 @@ SELECT pg_catalog.setval('english_messages_listings_id_seq', 7, true);
 COPY englishes (id, name, name_en) FROM stdin;
 1	英語メニューあり	English menu
 2	英語できるスタッフいます	English speaking staff
-3	日本語スタッフだけですが心より歓迎いたします	Japanese speaking staff only but wed be delighted to welcome all our guests!
+3	日本語スタッフだけですが心より歓迎いたします	Japanese speaking staff only but we'd be delighted to welcome all our guests!
 \.
 
 
@@ -2173,6 +2177,7 @@ SELECT pg_catalog.setval('listing_images_id_seq', 7, true);
 --
 
 COPY listing_pvs (id, listing_id, viewed_at, pv, created_at, updated_at) FROM stdin;
+17	4	2016-05-31	14	2016-05-30 15:51:13.234771	2016-05-31 10:08:27.943382
 1	1	2016-05-22	6	2016-05-22 00:36:12.98172	2016-05-22 00:40:31.409952
 5	5	2016-05-23	2	2016-05-23 03:25:05.536944	2016-05-23 03:26:24.306903
 4	4	2016-05-23	7	2016-05-22 19:25:18.241325	2016-05-23 05:38:40.801651
@@ -2189,7 +2194,6 @@ COPY listing_pvs (id, listing_id, viewed_at, pv, created_at, updated_at) FROM st
 14	4	2016-05-28	10	2016-05-27 15:04:49.737725	2016-05-27 15:40:24.350564
 15	6	2016-05-28	1	2016-05-28 01:00:23.179363	2016-05-28 01:00:23.179363
 16	4	2016-05-30	2	2016-05-30 05:15:00.145406	2016-05-30 08:43:16.853769
-17	4	2016-05-31	10	2016-05-30 15:51:13.234771	2016-05-30 16:11:01.239821
 \.
 
 
@@ -2685,7 +2689,7 @@ SELECT pg_catalog.setval('user_ngevents_id_seq', 1, false);
 COPY users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, confirmation_token, confirmed_at, confirmation_sent_at, unconfirmed_email, failed_attempts, unlock_token, locked_at, created_at, updated_at, uid, provider, username, admin, profile_id) FROM stdin;
 6	jironbach@gmail.com	$2a$10$lszY8inbVExh7xTTlbbBLeCkqiEu26eZ/nEmk6d8dJiP2JuKk6irW	\N	\N	\N	7	2016-05-23 09:29:08.93003	2016-05-23 06:45:36.213888	127.0.0.1	127.0.0.1	\N	2016-05-22 19:19:26.737688	2016-05-22 19:15:56.661257	\N	0	\N	\N	2016-05-22 19:15:56.296095	2016-05-23 09:29:09.546049	ae3f152d-5c2a-445b-b41d-a780d0db701a		\N	f	\N
 2	chisa.odamaki@bizitjapan.com	$2a$10$UzvNZRcIGAT57zG6rSltxeY7ea1rWW1sJnVzuqHx7tVBy8MtPMRny	\N	\N	\N	1	2016-05-23 06:15:17.938006	2016-05-23 06:15:17.938006	119.245.199.201	119.245.199.201	\N	2016-05-22 17:55:36.034197	\N	\N	0	\N	\N	2016-05-22 17:55:38.758088	2016-05-23 06:15:17.94135			\N	t	\N
-1	junshimo2@gmail.com	$2a$10$0kUnEGDs4Y7hj/gTxUFtX.i9O87Va0QyLOtJxDNEKJQF2sUrZcEhe	\N	\N	\N	12	2016-05-30 10:34:22.762054	2016-05-30 05:14:48.27973	127.0.0.1	127.0.0.1	3f8e19252b01059133ad68103c082b218d8d457ea93820cc1bad334331a06eee	2016-05-30 10:34:22.641716	2016-05-30 10:31:53.240089	admin@bizitjapan.com	0	\N	\N	2016-05-22 00:32:11.316061	2016-05-30 10:34:22.767337	1133479786718789	facebook	\N	t	\N
+1	junshimo2@gmail.com	$2a$10$ZX9O1LOhI2hxZZxdxUIcEu7lFswxe8npKq2wku8NMFBwmwkRbrRCi	\N	\N	\N	14	2016-05-31 01:01:16.088653	2016-05-31 00:59:35.752741	127.0.0.1	127.0.0.1	0c8e4d1e85733f0e74e65315c69e46cfc36ab02a21d3d866619f030e6b0eca80	2016-05-31 01:01:16.021951	2016-05-31 01:01:05.376933	admin@bizitjapan.com	0	\N	\N	2016-05-22 00:32:11.316061	2016-05-31 01:01:16.093583	1133479786718789	facebook	\N	t	\N
 \.
 
 

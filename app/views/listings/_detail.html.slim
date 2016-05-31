@@ -206,7 +206,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = link_to listing.url, listing.url unless listing.url.blank?
+                = link_to listing.url, listing.url, target: '_blank' unless listing.url.blank?
         hr
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
@@ -215,7 +215,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = link_to image_tag('logo_tabelog.svg', :height => "30"), listing.link_tabelog unless listing.link_tabelog.blank?
+                = link_to image_tag('logo_tabelog.svg', :height => "30"), listing.link_tabelog, target: '_blank' unless listing.link_tabelog.blank?
         hr
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
@@ -224,7 +224,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = link_to image_tag('yelp_logo.png', :height => "30"), listing.link_yelp unless listing.link_yelp.blank?
+                = link_to image_tag('yelp_logo.png', :height => "30"), listing.link_yelp, target: '_blank' unless listing.link_yelp.blank?
         hr
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
@@ -233,7 +233,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = link_to image_tag('trip_logo.svg', :height => "30"), listing.link_tripadvisor unless listing.link_tripadvisor.blank?
+                = link_to image_tag('trip_logo.svg', :height => "30"), listing.link_tripadvisor, target: '_blank' unless listing.link_tripadvisor.blank?
         hr
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
