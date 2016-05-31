@@ -1825,7 +1825,7 @@ SELECT pg_catalog.setval('admin_users_id_seq', 3, false);
 --
 
 COPY auths (id, user_id, provider, uid, access_token, created_at, updated_at) FROM stdin;
-1	1	facebook	1133479786718789	EAANZBfgZBIUZAQBAJgqwVRqbyZBQiHFMZAKffniBG4ZBNXtMoajvZA2J5eRo24FIAFZA5diVV0ZCryWebMjinnkGZBegZAT08nBuBqtJUls9l9bjhpeJT0O3HRbjK892QJd5q5uOe44ZA0DldtdBfBGYkPp5WXAlsNLsfGUZD	2016-05-22 00:32:12.661502	2016-05-30 10:34:22.746775
+1	1	facebook	1133479786718789	EAANZBfgZBIUZAQBADio9Yq7coVKa9KcqwZCRX5ItRU7DJJ7Rfh7jvExhhPAFSlbQiwl2ZA0nklWRE9NA2ZB0ycCnNhfCBb8DNKHj2wykXvG7cHMUQIsPLz1BWcqwBkvwmPEiNsiZA1jyMNRkapA7qqxRq7ATVUl7JQZD	2016-05-22 00:32:12.661502	2016-05-30 12:46:52.052325
 \.
 
 
@@ -1919,6 +1919,16 @@ COPY browsing_histories (id, user_id, listing_id, viewed_at, created_at, updated
 76	0	6	2016-05-27 15:00:00	2016-05-28 01:00:23.113258	2016-05-28 01:00:23.113258
 77	1	4	2016-05-29 15:00:00	2016-05-30 05:15:00.007348	2016-05-30 05:15:00.007348
 78	1	4	2016-05-29 15:00:00	2016-05-30 08:43:16.762491	2016-05-30 08:43:16.762491
+79	0	4	2016-05-30 15:00:00	2016-05-30 15:51:12.9217	2016-05-30 15:51:12.9217
+80	0	4	2016-05-30 15:00:00	2016-05-30 15:58:23.984242	2016-05-30 15:58:23.984242
+81	0	4	2016-05-30 15:00:00	2016-05-30 16:02:11.272518	2016-05-30 16:02:11.272518
+82	0	4	2016-05-30 15:00:00	2016-05-30 16:02:34.685168	2016-05-30 16:02:34.685168
+83	0	4	2016-05-30 15:00:00	2016-05-30 16:02:58.254498	2016-05-30 16:02:58.254498
+84	0	4	2016-05-30 15:00:00	2016-05-30 16:03:10.98504	2016-05-30 16:03:10.98504
+85	0	4	2016-05-30 15:00:00	2016-05-30 16:04:06.445706	2016-05-30 16:04:06.445706
+86	0	4	2016-05-30 15:00:00	2016-05-30 16:10:45.94119	2016-05-30 16:10:45.94119
+87	0	4	2016-05-30 15:00:00	2016-05-30 16:10:51.720145	2016-05-30 16:10:51.720145
+88	0	4	2016-05-30 15:00:00	2016-05-30 16:11:00.993873	2016-05-30 16:11:00.993873
 \.
 
 
@@ -1926,7 +1936,7 @@ COPY browsing_histories (id, user_id, listing_id, viewed_at, created_at, updated
 -- Name: browsing_histories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('browsing_histories_id_seq', 78, true);
+SELECT pg_catalog.setval('browsing_histories_id_seq', 88, true);
 
 
 --
@@ -2179,6 +2189,7 @@ COPY listing_pvs (id, listing_id, viewed_at, pv, created_at, updated_at) FROM st
 14	4	2016-05-28	10	2016-05-27 15:04:49.737725	2016-05-27 15:40:24.350564
 15	6	2016-05-28	1	2016-05-28 01:00:23.179363	2016-05-28 01:00:23.179363
 16	4	2016-05-30	2	2016-05-30 05:15:00.145406	2016-05-30 08:43:16.853769
+17	4	2016-05-31	10	2016-05-30 15:51:13.234771	2016-05-30 16:11:01.239821
 \.
 
 
@@ -2186,7 +2197,7 @@ COPY listing_pvs (id, listing_id, viewed_at, pv, created_at, updated_at) FROM st
 -- Name: listing_pvs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('listing_pvs_id_seq', 16, true);
+SELECT pg_catalog.setval('listing_pvs_id_seq', 17, true);
 
 
 --
