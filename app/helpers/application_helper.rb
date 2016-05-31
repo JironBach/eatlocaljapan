@@ -256,4 +256,8 @@ module ApplicationHelper
     return false unless user_id == from_user_id
     true
   end
+
+  def nl2br(str)
+    str.gsub(/\r\n|\r|\n/, "<br />")
+  end
 end
