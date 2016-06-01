@@ -26,6 +26,7 @@ html
     '
     = action_name
     | ">
+  = render partial: 'shared/google_analytics'
   = render partial: 'shared/header'
   - if notice
     .alert.alert-notice
