@@ -1,59 +1,21 @@
 #header.common-header
-  .header--sp
-    = link_to "#", class: "burger--sp" do
-      i.fa.fa-reorder
-    - unless controller_name == "welcome"
-      .title--sp.text-center
-        = link_to "javascript:void(0)", class: "header-search-dummy" do
-          i.fa.fa-search
-          = t '.search'
-    - else
-      .title--sp.text-center
-        = link_to "", root_path, class: "header-logo"
-    .action--sp
-    nav.nav--sp
-      .nav-mask--sp
-      - if user_signed_in?
-        .nav-content--sp.card.text-contrast.logged-in
-          .nav-header
-            .nav-profile.clearfix
-              .user-item.pull-left
-                = link_to edit_profile_path, class: "link-reset user-profile-link" do
-                  .media-photo.media-round.user-profile-image
-                    = image_tag profile_image, class: 'size28'
-                  = current_user.email
-            hr
-          = render partial: "/shared/sidebar_nav_sp"
-      - else
-        .nav-content--sp.card.text-contrast
-          = render partial: "/shared/sidebar_nav_sp"
-    .search-modal-container
-      #search-modal--sp.modal[role="dialog" aria-hidden="true"]
-        .modal-table
-          .modal-cell
-            .modal-content
-              .card-header.modal-header
-                = link_to "", "#", class: "modal-close", data: { dismiss: "modal" }
-                .h4 = t '.search'
-              .card-body
-                .modal-search-wrapper--sp
-                  = render partial: '/shared/header_form_sp'
-  .header.clearfix.hide--sp
+
+  .header.clearfix.sppd10
     = link_to "", root_path, class: "header-logo pull-left"
     - unless controller_name == "welcome"
       = render partial: '/shared/header_form'
-    ul.nav.pull-right
+    ul.nav.pull-right.ftlnk.sppdt8
       li.help-menu.pull-left.hide
         = link_to "#", class: "" do
           = t '.help'
       - if user_signed_in?
         li.list-your-thing.pull-left
           = link_to t('.new_listing'), new_listing_path, class: "btn btn-host"
-      li.pull-left
+      li.pull-left.
         - I18n.available_locales.reject{|l| l == I18n.locale}.each do |locale|
           = link_to(locale == :ja ? '日本語' : 'English', i18n_url_for(params.merge(locale: locale)))
     - if user_signed_in?
-      ul.nav.pull-right
+      ul.nav.pull-right.ftlnk.sppdt8
         li.user-item.pull-left
           = link_to profile_path(current_user.id), class: "", data: { toggle: "dropdown" } do
             .media-photo.media-round.user-profile-image
@@ -78,7 +40,7 @@
               = link_to t('.account'), edit_user_registration_path, rel: "nofollow"
             li
               = link_to t('.logout'), destroy_user_session_path, method: :delete, rel: "nofollow"
-        li.pull-left
+        li.pull-left.ftlnk.sppdt8
           = link_to message_threads_path, rel: "nofollow", class: "alert-sign" do
             i.fa.fa-envelope-o
               span.hidden
@@ -88,9 +50,9 @@
                 = unread_messages
     - else
       ul.nav.pull-right
-        li#sign_up.pull-left
+        li#sign_up.pull-left.ftlnk.sppdt8
           = link_to new_user_registration_path, rel: "nofollow" do
             = t '.signup'
-        li#login.pull-left
+        li#login.pull-left.ftlnk.sppdt8
           = link_to new_user_session_path, rel: "nofollow" do
             = t '.login'
