@@ -84,8 +84,8 @@ en:
         englishes: English
         business_hours: Business hours
         business_hours_remarks: Business hours remarks
-        shop_description: About the restaurant Chef's recommendation Japanese
-        shop_description_en: About the restaurant Chef's recommendation English
+        shop_description: About the restaurant Japanese
+        shop_description_en: About the restaurant English
         price_low: Pricing low lunch
         price_high: Pricing high lunch
         price_low_dinner: Pricing low dinner
@@ -645,7 +645,7 @@ en:
       dress_codes:
         wafuku_only: Only wafuku.
         any: Any dress is ok.
-      shop_description: About the restaurant Chef's recommendation
+      shop_description: About the restaurant
       recommended: Chef's recommendation
     edit:
       title: Edit Listing
