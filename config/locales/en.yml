@@ -297,10 +297,10 @@ en:
       site_name: www.eatlocaljapan.com
       description: Great local restaurants in Japan.
     title:
-      base_title: Basic Title
+      base_title: eatlocaljapan
       separator: " - "
     description:
-      base_description: Basic Description
+      base_description: find what locals eat
     keywords:
       base_keywords: Basic Keywords
     author: Author
@@ -880,8 +880,8 @@ en:
         resend: Resend
   welcome:
     index:
-      title: Title of Top Page
-      description: Description of Top Page
+      title: eatlocaljapan
+      description: find what locals eat
       keywords: Keywords of Top Page
       tagline: Great local restaurants in Japan.
       subtitle: a whole new experience

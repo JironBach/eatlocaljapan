@@ -294,10 +294,10 @@ ja:
       site_name: www.eatlocaljapan.com
       description: 日本の美味しいお店を英語でご紹介。
     title:
-      base_title: 基本タイトル
+      base_title: eatlocaljapan
       separator: " | "
     description:
-      base_description: 基本説明
+      base_description: find what locals eat
     keywords:
       base_keywords: 基本キーワード
     author: 株式会社BizitJapan
@@ -876,8 +876,8 @@ ja:
         resend: 再送信
   welcome:
     index:
-      title: トップページのタイトル
-      description: トップページの説明
+      title: eatlocaljapan
+      description: find what locals eat
       keywords: トップページのキーワード
       tagline: 日本の美味しいお店を英語でご紹介。
       subtitle: 日本をもっと楽しんでもらうために
