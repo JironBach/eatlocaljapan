@@ -645,7 +645,7 @@ en:
       dress_codes:
         wafuku_only: Only wafuku.
         any: Any dress is ok.
-      shop_description: About the restaurant
+      shop_description: About the listing
       recommended: Chef's recommendation
     edit:
       title: Edit Listing
