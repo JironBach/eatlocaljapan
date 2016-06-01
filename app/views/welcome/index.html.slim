@@ -14,18 +14,18 @@
         h1#tagline.uppercase.text-jumbo.text-contrast.row-space-1 = t('.tagline')
         .col-sm-12
           #subtitle.h4.text-contrast.row-space-4 = t('.subtitle')
-          .search--sp.show--sp
-            #sp-search-field.input-addon
-              span.input-stem.input-large.fake-search-field
-                = t '.search'
-              i.input-suffix.btn.btn-primary.fa.fa-full.fa-search
+          /.search--sp.show--sp
+          /  #sp-search-field.input-addon
+          /    span.input-stem.input-large.fake-search-field
+          /      = t '.search'
+          /    i.input-suffix.btn.btn-primary.fa.fa-full.fa-search
           - if locale == :ja
             a.btn.btn-large.btn-transparent.hide--sp[href="http://eatlocaljapan.com/about_jp/" target="blank"]
               = t '.flow'
           - else
               a.btn.btn-large.btn-transparent.hide--sp[href="http://eatlocaljapan.com/about/" target="blank"]
                 = t '.flow'
-        .hero-search.hide--sp
+        .hero-search
           .col-xs-12
             = render partial: 'form'
 = render partial: 'discovery'
