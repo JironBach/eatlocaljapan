@@ -84,8 +84,8 @@ en:
         englishes: English
         business_hours: Business hours
         business_hours_remarks: Business hours remarks
-        shop_description: About the restaurant Japanese
-        shop_description_en: About the restaurant English
+        shop_description: About the restaurant Chef's recommendation Japanese
+        shop_description_en: About the restaurant Chef's recommendation English
         price_low: Pricing low lunch
         price_high: Pricing high lunch
         price_low_dinner: Pricing low dinner
@@ -302,8 +302,8 @@ en:
     description:
       base_description: find what locals eat
     keywords:
-      base_keywords: Basic Keywords
-    author: Author
+      base_keywords: restaurants food local japan Trip inbound
+    author: BizitJapan Inc.
   shared:
     modals:
       flow:
@@ -645,6 +645,8 @@ en:
       dress_codes:
         wafuku_only: Only wafuku.
         any: Any dress is ok.
+      shop_description: About the restaurant Chef's recommendation
+      recommended: Chef's recommendation
     edit:
       title: Edit Listing
     edit_link:
@@ -882,7 +884,7 @@ en:
     index:
       title: eatlocaljapan
       description: find what locals eat
-      keywords: Keywords of Top Page
+      keywords: restaurants food local japan Trip inbound
       tagline: Great local restaurants in Japan.
       subtitle: a whole new experience
       search: "Let's Search Listings"

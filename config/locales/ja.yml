@@ -299,7 +299,7 @@ ja:
     description:
       base_description: find what locals eat
     keywords:
-      base_keywords: 基本キーワード
+      base_keywords: レストラン 食事 ローカル 地元 日本 旅 インバウンド
     author: 株式会社BizitJapan
   shared:
     modals:
@@ -637,6 +637,8 @@ ja:
       dress_codes:
         wafuku_only: 和服でお願いします。
         any: 和服でなくて結構です。
+      shop_description: レストランの説明
+      recommended: お勧めのメニュー・食べ方の説明
     edit:
       title: 店舗情報編集
     edit_link:
@@ -878,7 +880,7 @@ ja:
     index:
       title: eatlocaljapan
       description: find what locals eat
-      keywords: トップページのキーワード
+      keywords: レストラン 食事 ローカル 地元 日本 旅 インバウンド
       tagline: 日本の美味しいお店を英語でご紹介。
       subtitle: 日本をもっと楽しんでもらうために
       search: 検索してみましょう
