@@ -165,7 +165,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                - shop_description_en = simple_format(listing.shop_description_en.blank? ? "(Translated by Google)" + EasyTranslate.translate(listing.shop_description, to: :en) : listing.shop_description_en)
+                - shop_description_en = simple_format(listing.shop_description_en.blank? && !listing.shop_description.blank? ? "(Translated by Google)" + EasyTranslate.translate(listing.shop_description, to: :en) : listing.shop_description_en)
                 = locale == :ja ? raw(nl2br(h(listing.shop_description))) : raw(nl2br( h(shop_description_en)))
         hr
         .row.row-space-5.row-space-top-5.row-table
@@ -243,26 +243,26 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                - recommended_en =  simple_format(listing.recommended_en.blank? ? "(Translated by Google)" + EasyTranslate.translate(listing.recommended, to: :en) : listing.recommended_en)
+                - recommended_en =  simple_format(listing.recommended_en.blank? && !listing.recommended.blank? ? "(Translated by Google)" + EasyTranslate.translate(listing.recommended, to: :en) : listing.recommended_en)
                 = locale == :ja ? listing.recommended : recommended_en
         /.row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
-            .h4.text-light
-              = Listing.human_attribute_name :visit_benefits
-          .col-xs-8.fieldset.col-middle
-            .row
-              .col-xs-11
-                - visit_benefits_en = listing.visit_benefits_en.blank? ? EasyTranslate.translate(listing.visit_benefits, to: :en) : listing.visit_benefits_en
-                = locale == :ja ? listing.visit_benefits : visit_benefits_en
+        /  .col-xs-4.text-right.col-middle
+        /    .h4.text-light
+        /      = Listing.human_attribute_name :visit_benefits
+        /  .col-xs-8.fieldset.col-middle
+        /    .row
+        /      .col-xs-11
+        /        - visit_benefits_en = listing.visit_benefits_en.blank? && listiong.visit_benefits.blank? ? EasyTranslate.translate(listing.visit_benefits, to: :en) : listing.visit_benefits_en
+        /        = locale == :ja ? listing.visit_benefits : visit_benefits_en
         /.row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
-            .h4.text-light
-              = Listing.human_attribute_name :visit_benefits_another
-          .col-xs-8.fieldset.col-middle
-            .row
-              .col-xs-11
-                - visit_benefits_another_en = listing.visit_benefits_another_en.blank? ? EasyTranslate.translate(listing.visit_benefits_another, to: :en) : listing.visit_benefits_another_en
-                = locale == :ja ? listing.visit_benefits_another : visit_benefits_another_en
+        /  .col-xs-4.text-right.col-middle
+        /    .h4.text-light
+        /      = Listing.human_attribute_name :visit_benefits_another
+        /  .col-xs-8.fieldset.col-middle
+        /    .row
+        /      .col-xs-11
+        /        - visit_benefits_another_en = listing.visit_benefits_another_en.blank? && !listing.visit_benefits_another.blank? ? EasyTranslate.translate(listing.visit_benefits_another, to: :en) : listing.visit_benefits_another_en
+        /        = locale == :ja ? listing.visit_benefits_another : visit_benefits_another_en
         hr
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle

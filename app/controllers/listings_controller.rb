@@ -54,18 +54,17 @@ class ListingsController < ApplicationController
     @listing = Listing.new(listing_params)
     #@listing.description_en = "(Translated by Google)
     #{EasyTranslate.translate(@listing.description, to: :en)}" if @listing.description_en.blank?
-    @listing.shop_description_en = "(Translated by Google)
-    #{EasyTranslate.translate(@listing.shop_description, to: :en)}" if @listing.shop_description_en.blank?
-    @listing.description_en = "(Translated by Google)
-    #{EasyTranslate.translate(@listing.description, to: :en)}" if @listing.description_en.blank?
-    @listing.location_en = "(Translated by Google)
-    #{EasyTranslate.translate(@listing.location, to: :en)}" if @listing.location_en.blank?
-    @listing.recommended_en = "(Translated by Google)
-    #{EasyTranslate.translate(@listing.recommended, to: :en)}" if @listing.recommended_en.blank?
-    @listing.visit_benefits_en = "(Translated by Google)
-    #{EasyTranslate.translate(@listing.visit_benefits, to: :en)}" if @listing.visit_benefits_en.blank?
-    @listing.visit_benefits_another_en = "(Translated by Google)
-    #{EasyTranslate.translate(@listing.visit_benefits_another, to: :en)}" if @listing.visit_benefits_another_en.blank?
+    @listing.shop_description_en = @listing.shop_description_en.blank? && !listing.shop_description.blank? ? "(Translated by Google)
+#{EasyTranslate.translate(@listing.shop_description, to: :en)}" : ''
+    @listing.description_en = @listing.description_en.blank? && !@listing.description.blank? ? "(Translated by Google)
+#{EasyTranslate.translate(@listing.description, to: :en)}" : ''
+    @listing.location_en = @listing.location_en.blank? && !@listing.location.blank? ? "#{EasyTranslate.translate(@listing.location, to: :en)}" : ''
+    @listing.recommended_en = @listing.recommended_en.blank? && !@listing.recommended.blank? ? "(Translated by Google)
+#{EasyTranslate.translate(@listing.recommended, to: :en)}" : ''
+    @listing.visit_benefits_en = @listing.visit_benefits_en.blank? && !@listing.visit_benefits.blank? ? "(Translated by Google)
+#{EasyTranslate.translate(@listing.visit_benefits, to: :en)}" : ''
+    @listing.visit_benefits_another_en = @listing.visit_benefits_another_en.blank? && !@listing.visit_benefits_another.blank? ? "(Translated by Google)
+#{EasyTranslate.translate(@listing.visit_benefits_another, to: :en)}" : ''
     if @listing.valid?
       @listing.save!
       # 緯度・経度
@@ -144,16 +143,15 @@ class ListingsController < ApplicationController
     @listing.user_id = user_id if @listing.user_id.nil?
     #@listing.description_en = "(Translated by Google)
     #{EasyTranslate.translate(@listing.description, to: :en)}" if @listing.description_en.blank?
-    @listing.shop_description_en = "(Translated by Google)
-    #{EasyTranslate.translate(@listing.shop_description, to: :en)}" if @listing.shop_description_en.blank?
-    @listing.location_en = "(Translated by Google)
-    #{EasyTranslate.translate(@listing.location, to: :en)}" if @listing.location_en.blank?
-    @listing.recommended_en = "(Translated by Google)
-    #{EasyTranslate.translate(@listing.recommended, to: :en)}" if @listing.recommended_en.blank?
-    @listing.visit_benefits_en = "(Translated by Google)
-    #{EasyTranslate.translate(@listing.visit_benefits, to: :en)}" if @listing.visit_benefits_en.blank?
-    @listing.visit_benefits_another_en = "(Translated by Google)
-    #{EasyTranslate.translate(@listing.visit_benefits_another, to: :en)}" if @listing.visit_benefits_another_en.blank?
+    @listing.shop_description_en = @listing.shop_description_en.blank? && !@listing.shop_description.blank? ? "(Translated by Google)
+#{EasyTranslate.translate(@listing.shop_description, to: :en)}" : ''
+    @listing.location_en = @listing.location_en.blank? && !@listing.location.blank? ? "#{EasyTranslate.translate(@listing.location, to: :en)}" : ''
+    @listing.recommended_en = @listing.recommended_en.blank? && !@listing.recommended.blank? ? "(Translated by Google)
+#{EasyTranslate.translate(@listing.recommended, to: :en)}" : ''
+    @listing.visit_benefits_en = @listing.visit_benefits_en.blank? && !@listing.visit_benefits.blank? ? "(Translated by Google)
+#{EasyTranslate.translate(@listing.visit_benefits, to: :en)}" : ''
+    @listing.visit_benefits_another_en = @listing.visit_benefits_another_en.blank? && !@listing.visit_benefits_another.blank? ? "(Translated by Google)
+#{EasyTranslate.translate(@listing.visit_benefits_another, to: :en)}" : ''
     if @listing.valid?
       sql = ActiveRecord::Base.send(:sanitize_sql_array, ["update listings set description_en = ?, shop_description_en = ?, location_en = ?, recommended_en = ?, visit_benefits_en = ?, visit_benefits_another_en = ? where id = #{@listing.id};", @listing.description_en, @listing.shop_description_en, @listing.location_en, @listing.recommended_en, @listing.visit_benefits_en, @listing.visit_benefits_another_en])
       # 緯度・経度
