@@ -8,10 +8,10 @@ en:
       confection: Confection
       dress_code: Dress Code
       emergency: Emergency
-      listing: Listing
-      listing_image: Listing Image
-      listing_pv: Listing PV
-      listing_video: Listing Video
+      Restaurant: Restaurant
+      Restaurant_image: Restaurant Image
+      Restaurant_pv: Restaurant PV
+      Restaurant_video: Restaurant Video
       message: Message
       message_thread: Message Thread
       message_thread_user: Message Thread User
@@ -51,7 +51,7 @@ en:
         phone: Phone Number
         email: Email
         relationship: Relationship
-      listing:
+      Restaurant:
         title: Restaurant Name
         title_en: Restaurant Name(English)
         shop_category: Category
@@ -68,7 +68,7 @@ en:
         price: Price
         capacity: Capacity
         title: Restaurant Name
-        direction: Direction to Listing Location
+        direction: Direction to Restaurant Location
         cover_image: Cover Image
         cover_image_caption: Caption of Cover Image
         schedule: Schedule
@@ -110,11 +110,11 @@ en:
         price_range_dinner: Price range - dinner
         info_admin_id: info admin
         open: view
-      listing_image:
-        image: Image of Listing
-        caption: Caption of Listing Image
+      Restaurant_image:
+        image: Image of Restaurant
+        caption: Caption of Restaurant Image
         order_num: Order
-      listing_pv:
+      Restaurant_pv:
         pv: PV
       message:
         to_user: To User
@@ -206,18 +206,18 @@ en:
       wishlist:
         name: Name
     placeholders:
-      listing:
-        title: e.g. Listing for everybody
-        title_en: e.g. Listing for everybody
+      Restaurant:
+        title: e.g. Restaurant for everybody
+        title_en: e.g. Restaurant for everybody
         price: e.g. 5000
         longitude: Longitude
         latitude: Latitude
-        description: e.g. This is a good listing even for beginner. Join us inviting friends.
+        description: e.g. This is a good Restaurant even for beginner. Join us inviting friends.
         description_en: Description English.
         zipcode: "e.g. 012-3456"
         location: Input zipcode, and the address is automatically show up.
         location_en: Input address in English
-        direction: Write minute direction to your listing location
+        direction: Write minute direction to your Restaurant location
         schedule: Schedule
         smoking_id: Smoking
         english_id: English
@@ -243,7 +243,7 @@ en:
         link_yelp: yelp
         link_tripadvisor: tripadvisor
         open: view
-      listing_image:
+      Restaurant_image:
         caption: e.g. Like this....
       confection:
         url: http://okashi.com
@@ -262,11 +262,11 @@ en:
     profile: Profile
     profile_image: Profile Image
     profile_video: Profile Video
-    listing: Listing
-    listings: Listings
-    listings_images: Listing Images
-    listing_id: &LISTING_NAME Listing
-    listing_ngevents: Listing NG Days
+    Restaurant: Restaurant
+    Restaurants: Restaurants
+    Restaurants_images: Restaurant Images
+    Restaurant_id: &Restaurant_NAME Restaurant
+    Restaurant_ngevents: Restaurant NG Days
     open: Open
     confection: confection
     tool: tool
@@ -309,17 +309,17 @@ en:
       flow:
         step1:
           title: 1. Search!
-          text: Let's search %{listing}、Favorite %{host}!!
+          text: Let's search %{Restaurant}、Favorite %{host}!!
         step2:
           title: 2. Reserve!
           text: Reservation is very easy. You can communicate to host so easily!
         step3:
           title: 3. Enjoy!
-          text: Brilliant time is waiting for you very near to you. Let's enjoy new Listing.
+          text: Brilliant time is waiting for you very near to you. Let's enjoy new Restaurant.
         close: Close
       message_to_host:
         label: "Contact to %{host}"
-        placeholder: "Can I join this listing yet?"
+        placeholder: "Can I join this Restaurant yet?"
         submit: "Send %{msg}"
       message_to_host_from_reservation_manger:
         label: Contact to %{host}
@@ -376,12 +376,12 @@ en:
         title: Social media
       copyright: BizitJapan Inc.
     guest_sidenav:
-      link: Joined Listings
+      link: Joined Restaurants
       guest_reservation_manager: Reserve
     header:
-      new_listing: Make New Listing
+      new_Restaurant: Make New Restaurant
       dashboard: Dashboard
-      listings: Listings
+      Restaurants: Restaurants
       host_reservation_manager: Reservation Manager
       guest_reservation_manager: Join
       profile: Profile
@@ -406,14 +406,14 @@ en:
       submit: Search
     host_sidenav:
       text1: Add
-      text2: Listing
-      listing: Listing
+      text2: Restaurant
+      Restaurant: Restaurant
       host_reservation_manager: Reservation Management
-    manage_listing_header:
-      to_my_listings: Show My Listings
+    manage_Restaurant_header:
+      to_my_Restaurants: Show My Restaurants
       preview: Preview
-    manage_listing_nav:
-      header: Listing Info
+    manage_Restaurant_nav:
+      header: Restaurant Info
       basic_info: Basic Info
       image: Image
       cal: Calendar
@@ -431,7 +431,7 @@ en:
     sidebar_nav_sp:
       home: Home
       dashboard: Dashboard
-      new_listing: Make New Listing
+      new_Restaurant: Make New Restaurant
       message: Message
       unread_msg: "Unread: %{num}"
       host_reservation_manager: Manage Reservation
@@ -439,13 +439,13 @@ en:
       account: Account
       login: Login
       guest_flow: Flow of Service
-      search: Serach Listings
+      search: Serach Restaurants
       help: Help
       logout: Logout
     subnav:
       dashboard: Dashboard
       messages: Messages
-      listings: Listings
+      Restaurants: Restaurants
       guest_reservation_manager: Reserve
       profile: Profile
       account: Account
@@ -471,14 +471,14 @@ en:
         title: Guarantee max $800,000,000
         text1:  Sometimes accident happens
         link: Host Guarantee
-        link_text: "Promises max $800,000,000 if the listing gets trouble. You don't need to have any cost."
+        link_text: "Promises max $800,000,000 if the Restaurant gets trouble. You don't need to have any cost."
       third:
         title: Secure Payment
         text: "You can choose rapid and flexible payment system. Host can receive fees after 24 hr from guest checked in."
   confections:
     manage:
       title: "Add information of %{model} (Option1)"
-      text_html: "%{model} is a good appeal point.<br>Adding Photo makes your listing better!"
+      text_html: "%{model} is a good appeal point.<br>Adding Photo makes your Restaurant better!"
     form:
       submit: Save
   dashboard:
@@ -500,7 +500,7 @@ en:
       title: "%{rsrv} Status List"
       no_req: "No %{rsrv_req}"
     guest_reservation_manager:
-      title: "Scheduled %{listing}"
+      title: "Scheduled %{Restaurant}"
       no_schedule: No Schedule
       form:
         placeholder: Location
@@ -532,13 +532,13 @@ en:
     form:
       label1: Wafuku only
       submit: Save
-  listing_images:
+  Restaurant_images:
     manage:
-      title: "Add more %{listing_image}"
-      text_html: "To appeal your %{listing} to %{guest}, add %{listing_image}"
+      title: "Add more %{Restaurant_image}"
+      text_html: "To appeal your %{Restaurant} to %{guest}, add %{Restaurant_image}"
     form:
       submit: Save
-  listing_ngevents:
+  Restaurant_ngevents:
     manage:
       title: "Set %{model}"
       text: "Click or drag cell of calendar, and you can set %{model}"
@@ -551,29 +551,29 @@ en:
         holiday: Unavailable Day
         reserved: Reserved
         canceled: Canceled
-  listings:
+  Restaurants:
     index:
-      no_listing:
-        title: No Scheduled Listing
-        guests_waiting: Someone is waiting for your listing!
-        invitation: Invite friends! Let's appeal your listing!
-        make_listing: Make New Listing
-      title: Listings
+      no_Restaurant:
+        title: No Scheduled Restaurant
+        guests_waiting: Someone is waiting for your Restaurant!
+        invitation: Invite friends! Let's appeal your Restaurant!
+        make_Restaurant: Make New Restaurant
+      title: Restaurants
       all:
-        long: All Listings
+        long: All Restaurants
         short: All
       open:
-        long: Published Listings
+        long: Published Restaurants
         short: Published
       closed:
-        long: Unpublished Listings
+        long: Unpublished Restaurants
         short: Unpublished
       add: Add
-      edit: Edit this Listing
-      make_listing: Make New listing
+      edit: Edit this Restaurant
+      make_Restaurant: Make New Restaurant
     new:
-      title: Make New Listing
-      subtitle: You can make listing easily
+      title: Make New Restaurant
+      subtitle: You can make Restaurant easily
     search:
       title: Search
       no_match:
@@ -588,7 +588,7 @@ en:
       filter:
         num_of_guest:
           more_than: "more than %{num}"
-        text: "Show listings with %{model}%{opt}"
+        text: "Show Restaurants with %{model}%{opt}"
         text3: "Only %{model} %{opt}"
         search_word: Search Condition
         option1: (Option1)
@@ -597,12 +597,12 @@ en:
         others:
           label: Others
           placeholder: Keyword info
-        submit: Show listings
+        submit: Show Restaurants
         add_search_condition: Add Condition
         submit_sp: Search Again
         hit_count:
           dot: /
-      submit: Show listings
+      submit: Show Restaurants
     search_detail:
       title: Search
       no_match:
@@ -617,7 +617,7 @@ en:
       filter:
         num_of_guest:
           more_than: "more than %{num}"
-        text: "Show listings with %{model}%{opt}"
+        text: "Show Restaurants with %{model}%{opt}"
         text3: "Only %{model} %{opt}"
         search_word: Search Condition
         option1: (Option1)
@@ -626,16 +626,16 @@ en:
         others:
           label: Others
           placeholder: Keyword info
-        submit: Show listings
+        submit: Show Restaurants
         add_search_condition: Add Condition
         submit_sp: Search Again
         hit_count:
           dot: /
-      submit: Show listings
+      submit: Show Restaurants
     delivery_ok_button:
       text: delivery
     detail:
-      about_this_listing: About this listing
+      about_this_Restaurant: About the restaurant
       contact_to_host: Contact to this host
       delivery: delivery
       option:
@@ -648,10 +648,10 @@ en:
       shop_description: About the restaurant
       recommended: Chef's recommendation
     edit:
-      title: Edit Listing
+      title: Edit Restaurant
     edit_link:
-      title: This is Your Listing.
-      edit: Edit this listing.
+      title: This is Your Restaurant.
+      edit: Edit this Restaurant.
     form:
       price: "(%{unit})"
       submit:
@@ -691,10 +691,10 @@ en:
           text: LINE
       cancel:
         text: Once you cancel, you can request to pay whole fee back.
-    similar_listings:
-      title: Similar listings
+    similar_Restaurants:
+      title: Similar Restaurants
     subnav:
-      my_listing: My Listing List
+      my_Restaurant: My Restaurant List
       photos: Photos
       details: Details
       reviews: Reviews
@@ -702,13 +702,13 @@ en:
       neighborhood: Location
       request: Request reservation
     show:
-      title: Listing Details
+      title: Restaurant Details
       request: "Request %{rsrv}"
   message_threads:
     form:
       placeholder: Write message here
       submit: "Send %{msg_model}"
-    listing_block:
+    Restaurant_block:
       name: "%{model} name: "
       progress: "%{progress}: "
       schedule: "%{title}: %{schedule}"
@@ -749,14 +749,14 @@ en:
         show_all: Show All
         reply: "Reply: "
       left_column:
-        title: "Opened %{listing}"
-        listing_num: (num)
+        title: "Opened %{Restaurant}"
+        Restaurant_num: (num)
         delivery_ok: Delivery
     review:
       tab:
         to_you: "%{model} to you"
         from_you: "%{model} from you"
-      text: "%{model} will be written after %{listing} schedule. %{model} about you will be shown here and your %{profile}"
+      text: "%{model} will be written after %{Restaurant} schedule. %{model} about you will be shown here and your %{profile}"
       no_review: "%{model} about you has been 0%{unit} yet"
       to_you: "%{model} to you"
       no_target: "No %{model} target"
@@ -778,7 +778,7 @@ en:
         phone: e.g. +83 80 1111 xxxx
         zipcode: e.g. 012-3456
         location: "Input zipcode, and address roughly be shown up automatically"
-      intro: "Write good self-introduction, Let others know you and %{listing} more!"
+      intro: "Write good self-introduction, Let others know you and %{Restaurant} more!"
       submit: Save
     edit_link:
       title: "Your %{profile}"
@@ -788,7 +788,7 @@ en:
       text0: "Reply to "
       name: "%{name}"
       text1: ""
-      text2_html: "You got %{review} of %{listing}.<br>Let's reply."
+      text2_html: "You got %{review} of %{Restaurant}.<br>Let's reply."
     form:
       submit: Reply
   reviews:
@@ -796,10 +796,10 @@ en:
       text0: "Send %{review} to "
       name: "%{name}"
       text1: ""
-      msg_html: "You can send %{review} of %{listing} to %{host}.<br>Take it easy. You should write honestly.<br>Your %{review} helps %{host} to revise %{listing}."
+      msg_html: "You can send %{review} of %{Restaurant} to %{host}.<br>Take it easy. You should write honestly.<br>Your %{review} helps %{host} to revise %{Restaurant}."
     form:
       placeholder: e.g. Really good person! I want to use this again!!
-      msg: "Evaluate %{listing}"
+      msg: "Evaluate %{Restaurant}"
       submit: Send Review
   tools:
     manage:
@@ -887,7 +887,7 @@ en:
       keywords: restaurants food local japan Trip inbound
       tagline: Great local restaurants in Japan.
       subtitle: a whole new experience
-      search: "Let's Search Listings"
+      search: "Let's Search Restaurants"
       flow: About the service
     form:
       num_of_guest:
@@ -905,7 +905,7 @@ en:
       item:
         price:
           value: 3,000
-        title: "Tomoaki's Listing"
+        title: "Tomoaki's Restaurant"
         category_name: Category name
       submit: Search
   message_mailer:
@@ -941,7 +941,7 @@ en:
     send_review_notification:
       greeting1: "Hello! "
       greeting2: ""
-      msg1: "Let's write %{review} of %{host}'s %{listing}, %{listing_title} (%{schedule})"
+      msg1: "Let's write %{review} of %{host}'s %{Restaurant}, %{Restaurant_title} (%{schedule})"
       msg2: "You can write %{review} from the link below."
       msg3: "Once you write %{review}, you get reply from %{host}."
       msg4: "After you get %{review_reply}, %{review} would be published."
@@ -951,7 +951,7 @@ en:
     send_review_reply_notification:
       greeting1: "Hello! "
       greeting2: ""
-      msg1: "Let's write %{review} to %{guest} who joined %{listing_title} (%{schedule})"
+      msg1: "Let's write %{review} to %{guest} who joined %{Restaurant_title} (%{schedule})"
       msg2: "You can write %{review} from the link below."
       msg3: "After you write %{review}, it would be shown in %{profile} page and others."
   kaminari:
@@ -968,7 +968,7 @@ en:
   unit:
     price: $
     people: ''
-    listing: listings
+    Restaurant: Restaurants
     review: ''
     hit_count: hits
   name:
@@ -1004,7 +1004,7 @@ en:
     profile_images:
       save:
         success: "%{model} Image was Updated."
-    listings:
+    Restaurants:
       save:
         success: "%{model} was successfully generated. Next, input more information."
       update:
@@ -1019,8 +1019,8 @@ en:
         success:
         failure: "Failed to publish your %{model}."
       error:
-        invalid_listing_id: "No %{model} was found."
-    listing_images:
+        invalid_Restaurant_id: "No %{model} was found."
+    Restaurant_images:
       save:
         success: "%{model} was successfully uploaded!"
         failure: "%{model} could not be uploaded."
@@ -1039,7 +1039,7 @@ en:
       wafuku:
         only: "Only %{model}"
         not_only: "Any dresses"
-    listing_ngevents:
+    Restaurant_ngevents:
       reason:
         holiday: "Unavailable"
         reserved: "Already reserved"
