@@ -3,7 +3,6 @@
 
 #path = '/home/eatlocaljapan/www/production/eatlocaljapan/current'
 backup_to = "/home/eatlocaljapan/backup/#{Time.now.strftime("%j%H%M%S")}.prd"
-puts backup_to
 `/usr/bin/pg_dump -h www.eatlocaljapan.com -d eatlocaljapan -U eatlocaljapan -f #{backup_to}`
 
 bks = Dir.glob("#{backup_to}")

@@ -1,12 +1,12 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-path = '/Users/js/work/eatlocaljapan'
-backup_to = "#{path}/bin/backup/data/#{Time.now.strftime("%j%H%M%S")}.dev"
+path = '/Users/js/'
+backup_to = "#{path}/backup/#{Time.now.strftime("%j%H%M%S")}.dev"
 puts backup_to
 `/usr/local/bin/pg_dump -h jironbach.iobb.net -d eatlocaljapan_development -U eatlocaljapan -f #{backup_to}`
 
-bks = Dir.glob("#{path}/bin/backup/data/*.dev")
+bks = Dir.glob("#{path}/backup/*.dev")
 if bks.count > 10
   i = 0
   bks.reverse.each do |bk|

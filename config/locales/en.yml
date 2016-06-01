@@ -290,7 +290,7 @@ en:
     created_at: Created At
     updated_at: Updated At
   basic_info:
-    service_name: Service Name
+    service_name: eatlocaljapan
   meta_tags:
     og:
       title: Service Name

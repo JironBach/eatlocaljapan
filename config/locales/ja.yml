@@ -287,7 +287,7 @@ ja:
     created_at: 作成日時
     updated_at: 更新日時
   basic_info:
-    service_name: サービス名
+    service_name: eatlocaljapan
   meta_tags:
     og:
       title: サービス名
