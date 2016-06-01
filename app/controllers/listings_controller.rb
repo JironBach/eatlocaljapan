@@ -60,7 +60,8 @@ class ListingsController < ApplicationController
     #{EasyTranslate.translate(@listing.description, to: :en)}" if @listing.description_en.blank?
     @listing.location_en = "(Translated by Google)
     #{EasyTranslate.translate(@listing.location, to: :en)}" if @listing.location_en.blank?
-    @listing.recommended_en = EasyTranslate.translate(@listing.recommended, to: :en) if @listing.recommended_en.blank?
+    @listing.recommended_en = "(Translated by Google)
+    #{EasyTranslate.translate(@listing.recommended, to: :en)}" if @listing.recommended_en.blank?
     @listing.visit_benefits_en = "(Translated by Google)
     #{EasyTranslate.translate(@listing.visit_benefits, to: :en)}" if @listing.visit_benefits_en.blank?
     @listing.visit_benefits_another_en = "(Translated by Google)
