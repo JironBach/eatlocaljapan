@@ -2704,7 +2704,7 @@ SELECT pg_catalog.setval('user_ngevents_id_seq', 1, false);
 
 COPY users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, confirmation_token, confirmed_at, confirmation_sent_at, unconfirmed_email, failed_attempts, unlock_token, locked_at, created_at, updated_at, uid, provider, username, admin, profile_id) FROM stdin;
 2	junshimo2@gmail.com	$2a$10$4PpLKjPv6/CWskJUncwgVO46Miiuvbzwxh.p0LKKgH22/N/KDO1im	\N	\N	\N	3	2016-05-23 10:09:12.912475	2016-05-23 09:46:28.955363	49.239.68.28	49.239.68.28	\N	2016-05-23 10:09:12.839575	\N	\N	0	\N	\N	2016-05-23 09:04:24.15924	2016-05-23 10:09:12.916234	1133479786718789	facebook	\N	f	\N
-1	jironbach@gmail.com	$2a$10$Ej9Hd533oRFKB5IdGWhGkOxbx7YY2L3TiZ0TuAnIlbE3dEalWyd/6	\N	\N	\N	8	2016-05-27 07:10:24.648474	2016-05-25 04:52:04.312175	42.146.105.241	119.245.199.201	\N	2016-05-31 15:54:55.914404	\N	\N	0	\N	\N	2016-05-23 08:45:15.073502	2016-05-31 15:54:56.002848			\N	t	\N
+1	jironbach@gmail.com	$2a$10$KABeJPeVml0p103NZhILM.5dR/68E1FZOVr1b2zbwn75znfjKX682	\N	\N	\N	8	2016-05-27 07:10:24.648474	2016-05-25 04:52:04.312175	42.146.105.241	119.245.199.201	\N	2016-05-31 22:30:40.588876	\N	\N	0	\N	\N	2016-05-23 08:45:15.073502	2016-05-31 22:30:40.677884			\N	t	\N
 \.
 
 

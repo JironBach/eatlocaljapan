@@ -1958,6 +1958,13 @@ COPY browsing_histories (id, user_id, listing_id, viewed_at, created_at, updated
 115	0	4	2016-05-30 15:00:00	2016-05-30 15:49:04.584103	2016-05-30 15:49:04.584103
 116	0	4	2016-05-30 15:00:00	2016-05-31 02:38:34.004605	2016-05-31 02:38:34.004605
 117	0	4	2016-05-30 15:00:00	2016-05-31 02:48:26.736229	2016-05-31 02:48:26.736229
+118	0	4	2016-05-30 15:00:00	2016-05-31 14:43:43.275059	2016-05-31 14:43:43.275059
+119	0	4	2016-05-31 15:00:00	2016-05-31 15:56:33.186045	2016-05-31 15:56:33.186045
+120	0	4	2016-05-31 15:00:00	2016-05-31 16:03:51.09281	2016-05-31 16:03:51.09281
+121	0	4	2016-05-31 15:00:00	2016-05-31 16:05:41.93786	2016-05-31 16:05:41.93786
+122	0	4	2016-05-31 15:00:00	2016-05-31 16:06:31.585053	2016-05-31 16:06:31.585053
+123	0	4	2016-05-31 15:00:00	2016-05-31 16:07:02.069552	2016-05-31 16:07:02.069552
+124	0	4	2016-05-31 15:00:00	2016-05-31 16:09:29.455034	2016-05-31 16:09:29.455034
 \.
 
 
@@ -1965,7 +1972,7 @@ COPY browsing_histories (id, user_id, listing_id, viewed_at, created_at, updated
 -- Name: browsing_histories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('browsing_histories_id_seq', 117, true);
+SELECT pg_catalog.setval('browsing_histories_id_seq', 124, true);
 
 
 --
@@ -2190,7 +2197,8 @@ COPY listing_pvs (id, listing_id, viewed_at, pv, created_at, updated_at) FROM st
 15	4	2016-05-28	12	2016-05-27 15:02:53.629135	2016-05-27 15:30:49.895481
 16	2	2016-05-28	1	2016-05-27 16:27:19.166543	2016-05-27 16:27:19.166543
 17	4	2016-05-30	1	2016-05-30 05:15:18.906304	2016-05-30 05:15:18.906304
-18	4	2016-05-31	3	2016-05-30 15:49:04.604263	2016-05-31 02:48:26.749556
+18	4	2016-05-31	4	2016-05-30 15:49:04.604263	2016-05-31 14:43:43.290426
+19	4	2016-06-01	6	2016-05-31 15:56:33.222907	2016-05-31 16:09:29.479277
 \.
 
 
@@ -2198,7 +2206,7 @@ COPY listing_pvs (id, listing_id, viewed_at, pv, created_at, updated_at) FROM st
 -- Name: listing_pvs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eatlocaljapan
 --
 
-SELECT pg_catalog.setval('listing_pvs_id_seq', 18, true);
+SELECT pg_catalog.setval('listing_pvs_id_seq', 19, true);
 
 
 --
@@ -2696,7 +2704,7 @@ SELECT pg_catalog.setval('user_ngevents_id_seq', 1, false);
 
 COPY users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, confirmation_token, confirmed_at, confirmation_sent_at, unconfirmed_email, failed_attempts, unlock_token, locked_at, created_at, updated_at, uid, provider, username, admin, profile_id) FROM stdin;
 2	junshimo2@gmail.com	$2a$10$4PpLKjPv6/CWskJUncwgVO46Miiuvbzwxh.p0LKKgH22/N/KDO1im	\N	\N	\N	3	2016-05-23 10:09:12.912475	2016-05-23 09:46:28.955363	49.239.68.28	49.239.68.28	\N	2016-05-23 10:09:12.839575	\N	\N	0	\N	\N	2016-05-23 09:04:24.15924	2016-05-23 10:09:12.916234	1133479786718789	facebook	\N	f	\N
-1	jironbach@gmail.com	$2a$10$YkFL5WYTpSXE9YpKYcKAfe/ku5nwLt38RzrPl8.XpR6.lH7tcxhdO	\N	\N	\N	8	2016-05-27 07:10:24.648474	2016-05-25 04:52:04.312175	42.146.105.241	119.245.199.201	\N	2016-05-31 02:26:58.776854	\N	\N	0	\N	\N	2016-05-23 08:45:15.073502	2016-05-31 02:26:58.859067			\N	t	\N
+1	jironbach@gmail.com	$2a$10$KABeJPeVml0p103NZhILM.5dR/68E1FZOVr1b2zbwn75znfjKX682	\N	\N	\N	8	2016-05-27 07:10:24.648474	2016-05-25 04:52:04.312175	42.146.105.241	119.245.199.201	\N	2016-05-31 22:30:40.588876	\N	\N	0	\N	\N	2016-05-23 08:45:15.073502	2016-05-31 22:30:40.677884			\N	t	\N
 \.
 
 
