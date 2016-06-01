@@ -109,6 +109,7 @@
   width: 100%
 
 .search_area_content
+  clear: both
   padding: 10px 30px
   text-align: center
 
@@ -117,6 +118,23 @@
 
 .bdrn
   border-style: none
+
+.floatwrap
+  overflow: hidden
+
+.floatwrap:after
+  content: ""
+  display: block
+  clear: both
+  height: 1px
+  overflow: hidden
+
+* html .floatwrap
+  height: 1em
+  overflow: visible
+
+.clear
+  clear: both
 
 @media (max-width: 767px)
   .ftlnk a
