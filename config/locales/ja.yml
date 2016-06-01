@@ -290,9 +290,9 @@ ja:
     service_name: eatlocaljapan
   meta_tags:
     og:
-      title: サービス名
-      site_name: サイト名
-      description: 説明
+      title: eatlocaljapan
+      site_name: www.eatlocaljapan.com
+      description: 日本の美味しいお店を英語でご紹介。
     title:
       base_title: 基本タイトル
       separator: " | "
@@ -300,7 +300,7 @@ ja:
       base_description: 基本説明
     keywords:
       base_keywords: 基本キーワード
-    author: 作成者
+    author: 株式会社BizitJapan
   shared:
     modals:
       flow:

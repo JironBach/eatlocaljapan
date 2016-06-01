@@ -293,9 +293,9 @@ en:
     service_name: eatlocaljapan
   meta_tags:
     og:
-      title: Service Name
-      site_name: Site Name
-      description: Description
+      title: eatlocaljapan
+      site_name: www.eatlocaljapan.com
+      description: Great local restaurants in Japan.
     title:
       base_title: Basic Title
       separator: " - "
