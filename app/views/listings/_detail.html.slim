@@ -161,12 +161,11 @@
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
-              - recommended_en =  listing.recommended_en.blank? ? EasyTranslate.translate(listing.recommended, to: :en) :  listing.recommended_en
               = Listing.human_attribute_name t('.shop_description')
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                - shop_description_en = listing.shop_description_en.blank? ? EasyTranslate.translate(listing.shop_description, to: :en) : listing.shop_description_en
+                - shop_description_en = simple_format(listing.shop_description_en.blank? ? "(Translated by Google)" + EasyTranslate.translate(listing.shop_description, to: :en) : listing.shop_description_en)
                 = locale == :ja ? raw(nl2br(h(listing.shop_description))) : raw(nl2br( h(shop_description_en)))
         hr
         .row.row-space-5.row-space-top-5.row-table
@@ -244,7 +243,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                - recommended_en =  listing.recommended_en.blank? ? EasyTranslate.translate(listing.recommended, to: :en) :  listing.recommended_en
+                - recommended_en =  simple_format(listing.recommended_en.blank? ? "(Translated by Google)" + EasyTranslate.translate(listing.recommended, to: :en) : listing.recommended_en)
                 = locale == :ja ? listing.recommended : recommended_en
         /.row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle

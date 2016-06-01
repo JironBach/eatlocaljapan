@@ -11,7 +11,7 @@ footer
             - else
               = link_to t('.corporate.shop'), 'http://eatlocaljapan.com/about/', target: "_blank"
           li
-            = link_to t('.corporate.privacy'), 'http://eatlocaljapan.com/privacypolicy_jp/', target: "_blank"
+            = link_to t('.corporate.privacy'), locale == :ja ? 'http://eatlocaljapan.com/privacypolicy_jp/' : 'http://eatlocaljapan.com/privacypolicy/', target: "_blank"
           li
     hr.hide--sp
     .sns-container.text-center
@@ -19,10 +19,10 @@ footer
         = t '.social_media.title'
       ul.list-unstyled.list-inline
         li
-          = link_to 'https://www.facebook.com/eatlocaljapan/' do
+          = link_to 'https://www.facebook.com/eatlocaljapan/', target: "_blank" do
             i.fa.fa-facebook
         li
-          = link_to 'https://twitter.com/eatlocaljapan' do
+          = link_to 'https://twitter.com/eatlocaljapan', target: "_blank" do
             i.fa.fa-twitter
     #copyright.row-space-top-2.text-center
       h5
