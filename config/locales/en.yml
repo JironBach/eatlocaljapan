@@ -635,7 +635,7 @@ en:
     delivery_ok_button:
       text: delivery
     detail:
-      about_this_listing: About the restaurant
+      about_this_listing: About this listing
       contact_to_host: Contact to this host
       delivery: delivery
       option:
