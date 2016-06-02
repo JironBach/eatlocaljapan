@@ -2,6 +2,7 @@
   div class="listings search"
   .row
     #details-column.col-lg-12
+      hr
       .row-space-12.row-space-top-12
         h4.row-space-12
           = t('.about_this_listing')
@@ -156,6 +157,18 @@
         /    .row
         /      .col-xs-11
         /        = text_area_tag :business_hours_remarks, listing.business_hours_remarks, readonly: :true
+        hr
+        .row-space-12.row-space-top-12
+          .photo-trigger
+            = image_tag(listing_image.try('image') || Settings.images.noimage2.url, class: 'img-responsive')
+          .row
+            .col-lg-12
+              p.text-muted.pull-left.row-space-top-1
+                = listing_image.try('caption') || ''
+            .col-lg-3
+        -if false
+          = t('activerecord.placeholders.listing.longitude')
+          = t('activerecord.placeholders.listing.latitude')
         hr
         = "English of some restaurant's description was machine translated. It may not be 100% accurate." unless locale == :ja
         .row.row-space-5.row-space-top-5.row-table
