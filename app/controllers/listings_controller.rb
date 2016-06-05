@@ -54,7 +54,7 @@ class ListingsController < ApplicationController
     @listing = Listing.new(listing_params)
     #@listing.description_en = "(Translated by Google)
     #{EasyTranslate.translate(@listing.description, to: :en)}" if @listing.description_en.blank?
-    @listing.shop_description_en = @listing.shop_description_en.blank? && !listing.shop_description.blank? ? "(Translated by Google)
+    @listing.shop_description_en = @listing.shop_description_en.blank? && !@listing.shop_description.blank? ? "(Translated by Google)
 #{EasyTranslate.translate(@listing.shop_description, to: :en)}" : ''
     @listing.description_en = @listing.description_en.blank? && !@listing.description.blank? ? "(Translated by Google)
 #{EasyTranslate.translate(@listing.description, to: :en)}" : ''
