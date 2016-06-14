@@ -9,9 +9,9 @@ set :application, 'eatlocaljapan'
 #レポジトリURL
 set :repo_url, 'git@github.com:JironBach/eatlocaljapan.git'
 #対象ブランチ
-set :branch, 'develop'
+set :branch, 'master'
 #デプロイ先ディレクトリ フルパスで指定
-set :deploy_to, '/Users/js/www/staging/eatlocaljapan'
+set :deploy_to, '/home/eatlocaljapan/www/production/eatlocaljapan'
 #バージョン管理方法 subverion, git, mercurial, cvs, bzrなど
 set :scm, :git
 #情報レベル info or debug
@@ -21,7 +21,7 @@ set :pty, true
 #sharedに入るものを指定
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets bundle public/system public/assets public/uploads}
 #capistrano用bundleするのに必要
-set :default_env, { path: "/Users/js/.rbenv/shims:/Users/js/.rbenv/bin:$PATH" }
+set :default_env, { path: "/home/eatlocaljapan/.rbenv/shims:/home/eatlocaljapan/.rbenv/bin:$PATH" }
 set :rbenv_type, :user # or :system, depends on your rbenv setup
 set :rbenv_ruby, '2.2.4'
 
@@ -35,7 +35,7 @@ set :rbenv_custom_path, "/usr/local/bin"
 #5回分のreleasesを保持する
 set :keep_releases, 5
 
-set :passenger_environment_variables, { path: '/Users/js/.rbenv/versions/2.2.4/bin/:$PATH' }
+set :passenger_environment_variables, { path: '/home/js/.rbenv/versions/2.2.4/bin/:$PATH' }
 set :passenger_restart_options, -> { "#{deploy_to} --ignore-app-not-running" }
 
 #タスク定義
