@@ -847,6 +847,7 @@ en:
             pw: Password
             pw_confirm: Password Confirmation
         submit: Regist
+        text-1: Password must be at least 8 alphanumeric characters.
         text0: Once You Regist, You agree with contents below
         text1: ''
         terms_of_use: term of use
