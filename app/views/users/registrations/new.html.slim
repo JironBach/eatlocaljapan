@@ -36,27 +36,27 @@
                   font color="red"
                     = t '.text-1'
                   br
+                  br
                   = t '.text0'
+                  |&nbsp;
                   = link_to t('.terms_of_use'), "#"
                   | 、
                   = link_to t('.privacy'), "#"
                   | 、
-                  = link_to t('.payback'), "#"
-                  | 、
-                  = link_to t('.host'), "#"
                   = t '.text1'
               .form-actions
                 = f.button :submit, t('.submit'), class: "btn btn-primary btn-large btn-block"
           .policy-wrapper.row-space-top-2
             small
+              font color="red"
+                = t '.text-1'
+              br
+              br
               = t '.text0'
               = link_to t('.terms_of_use'), "#"
               | 、
               = link_to t('.privacy'), "#"
               | 、
-              = link_to t('.payback'), "#"
-              | 、
-              = link_to t('.host'), "#"
               = t '.text1'
         .card-body
           p.small1
