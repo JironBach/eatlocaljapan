@@ -7,7 +7,7 @@ puts backup_to
 `/usr/local/bin/pg_dump -h jironbach.iobb.net -d eatlocaljapan_staging -U eatlocaljapan -f #{backup_to}`
 
 bks = Dir.glob("#{path}/*.stg")
-if bks.count > 10
+if bks.count > 12
   i = 0
   bks.reverse.each do |bk|
     i += 1
