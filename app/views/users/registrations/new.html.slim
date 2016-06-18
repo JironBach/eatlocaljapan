@@ -40,7 +40,10 @@
                   = t '.text0'
                   |&nbsp;
                   = link_to t('.terms_of_use'), "#"
-                  | 、
+                  - if locale == :ja
+                    | 、
+                  - else
+                    | &nbsp;and&nbsp;
                   = link_to t('.privacy'), "#"
                   | 、
                   = t '.text1'
@@ -54,9 +57,14 @@
               br
               = t '.text0'
               |&nbsp;
-              = link_to t('.terms_of_use'), "#"
-              | 、
-              = link_to t('.privacy'), "#"
+              - if locale == :ja
+                = link_to t('.terms_of_use'), "http://eatlocaljapan.com/terms_jp/"
+                | 、
+                = link_to t('.privacy'), "http://eatlocaljapan.com/privacypolicy_jp/"
+              - else
+                = link_to t('.terms_of_use'), "http://eatlocaljapan.com/terms/"
+                | &nbsp;and&nbsp;
+                = link_to t('.privacy'), "http://eatlocaljapan.com/privacypolicy/"
               | 、
               = t '.text1'
         .card-body

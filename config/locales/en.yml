@@ -850,8 +850,8 @@ en:
         text-1: Password must be at least 8 alphanumeric characters.
         text0: By signing up, I agree to
         text1: ''
-        terms_of_use: term of use
-        privacy: privacy policy
+        terms_of_use:  the Terms of Service
+        privacy: Privacy Policy
         payback: pay-back policy
         host: Host Insurance
         registered: Already member?
