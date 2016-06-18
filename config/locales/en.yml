@@ -837,16 +837,16 @@ en:
       new:
         title: Sign Up
         facebook:
-          title: Regist via Facebook
+          title: Sign up via Facebook
           sub: ''
         or: Or
         mail:
-          title: Regist via EMail
+          title: Sign up via EMail
           placeholder:
             mail: Mail Address
             pw: Password
             pw_confirm: Password Confirmation
-        submit: Regist
+        submit: Sign up
         text-1: Password must be at least 8 alphanumeric characters.
         text0: By signing up, I agree to
         text1: ''
