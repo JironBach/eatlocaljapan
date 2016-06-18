@@ -39,12 +39,14 @@
                   br
                   = t '.text0'
                   |&nbsp;
-                  = link_to t('.terms_of_use'), "#"
                   - if locale == :ja
+                    = link_to t('.terms_of_use'), "http://eatlocaljapan.com/terms_jp/", target: '_blank'
                     | 、
+                    = link_to t('.privacy'), "http://eatlocaljapan.com/privacypolicy_jp/", target: '_blank'
                   - else
+                    = link_to t('.terms_of_use'), "http://eatlocaljapan.com/terms/", target: '_blank'
                     | &nbsp;and&nbsp;
-                  = link_to t('.privacy'), "#"
+                    = link_to t('.privacy'), "http://eatlocaljapan.com/privacypolicy/", target: '_blank'
                   | 、
                   = t '.text1'
               .form-actions
@@ -58,13 +60,13 @@
               = t '.text0'
               |&nbsp;
               - if locale == :ja
-                = link_to t('.terms_of_use'), "http://eatlocaljapan.com/terms_jp/"
+                = link_to t('.terms_of_use'), "http://eatlocaljapan.com/terms_jp/", target: '_blank'
                 | 、
-                = link_to t('.privacy'), "http://eatlocaljapan.com/privacypolicy_jp/"
+                = link_to t('.privacy'), "http://eatlocaljapan.com/privacypolicy_jp/", target: '_blank'
               - else
-                = link_to t('.terms_of_use'), "http://eatlocaljapan.com/terms/"
+                = link_to t('.terms_of_use'), "http://eatlocaljapan.com/terms/", target: '_blank'
                 | &nbsp;and&nbsp;
-                = link_to t('.privacy'), "http://eatlocaljapan.com/privacypolicy/"
+                = link_to t('.privacy'), "http://eatlocaljapan.com/privacypolicy/", target: '_blank'
               | 、
               = t '.text1'
         .card-body
