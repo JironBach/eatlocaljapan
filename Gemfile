@@ -69,7 +69,7 @@ gem 'rails_config', '0.4.2'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '3.1.10'
 # app server
-gem 'puma', '2.15.3'
+gem 'puma', '3.4.0' #'2.15.3'
 # Annotation of Schema
 gem 'annotate', '2.6.8'
 # meta tag
