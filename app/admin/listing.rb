@@ -77,7 +77,7 @@ ActiveAdmin.register Listing do
       f.input :title_en
       f.input :open
       user_emails = []
-      User.all.each do |user|
+      User.all.order(:email).each do |user|
         user_emails << [user.email, user.id]
       end
       f.input :user_id, :as => :select, collection: user_emails
