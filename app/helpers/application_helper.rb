@@ -104,7 +104,7 @@ module ApplicationHelper
     if results.size.zero?
       return Settings.user.left
     else
-      return "#{results[0].profile.last_name} #{results[0].profile.first_name}"
+      return "#{results[0].profile.last_name} #{results[0].profile.first_name}" unless results[0].profile.nil?
     end
   end
 
