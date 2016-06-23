@@ -147,6 +147,17 @@
         /      .col-xs-11
         /        = text_area_tag :business_hours_remarks, listing.business_hours_remarks, readonly: :true
         hr
+        = "English of some restaurant's description was machine translated. It may not be 100% accurate." unless locale == :ja
+        .row.row-space-5.row-space-top-5.row-table
+          .col-xs-4.text-right.col-middle
+            .h4.text-light
+              = Listing.human_attribute_name t('.shop_description')
+          .col-xs-8.fieldset.col-middle
+            .row
+              .col-xs-11
+                - shop_description_en = listing.shop_description_en.blank? && !listing.shop_description.blank? ? "(Translated by Google)" + EasyTranslate.translate(listing.shop_description, to: :en) : listing.shop_description_en
+                = simple_format(raw(nl2br(h(locale == :ja ? listing.shop_description : shop_description_en))))
+        hr
         .row-space-12.row-space-top-12
           .photo-trigger.dtailpict
             = image_tag(listing_image.try('image') || Settings.images.noimage2.url, class: 'img-responsive')
@@ -158,17 +169,6 @@
         -if false
           = t('activerecord.placeholders.listing.longitude')
           = t('activerecord.placeholders.listing.latitude')
-        hr
-        = "English of some restaurant's description was machine translated. It may not be 100% accurate." unless locale == :ja
-        .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
-            .h4.text-light
-              = Listing.human_attribute_name t('.shop_description')
-          .col-xs-8.fieldset.col-middle
-            .row
-              .col-xs-11
-                - shop_description_en = listing.shop_description_en.blank? && !listing.shop_description.blank? ? "(Translated by Google)" + EasyTranslate.translate(listing.shop_description, to: :en) : listing.shop_description_en
-                = simple_format(raw(nl2br(h(locale == :ja ? listing.shop_description : shop_description_en))))
         hr
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
