@@ -9,7 +9,7 @@ puts backup_to
 bks = Dir.glob("#{path}/*.prd")
 if bks.count > 12
   i = 0
-  bks.each do |bk|
+  bks.sort.reverse.each do |bk|
     i += 1
     if i > 10
       File.delete(bk)

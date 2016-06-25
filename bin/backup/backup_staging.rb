@@ -9,9 +9,9 @@ puts backup_to
 bks = Dir.glob("#{path}/*.stg")
 if bks.count > 12
   i = 0
-  bks.reverse.each do |bk|
+  bks.sort.reverse.each do |bk|
     i += 1
-    if i > 10
+    if i > 12
       File.delete(bk)
     end
   end
