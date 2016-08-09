@@ -110,6 +110,7 @@ en:
         price_range_dinner: Price range - dinner
         info_admin_id: info admin
         open: view
+        prefecture: area
       listing_image:
         image: Image of Listing
         caption: Caption of Listing Image
@@ -602,6 +603,7 @@ en:
         submit_sp: Search Again
         hit_count:
           dot: /
+      prefecture: Area
       submit: Show listings
     search_detail:
       title: Search
@@ -897,8 +899,8 @@ en:
       placeholder:
         schedule: Date
         location: Location
-      category: category
-      prefecture: area
+      category: Category
+      prefecture: Area
       submit: Search
     discovery:
       title: Small but excellent restaurants.

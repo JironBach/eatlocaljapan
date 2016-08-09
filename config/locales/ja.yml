@@ -111,6 +111,7 @@ ja:
         price_range_dinner: 価格帯（ディナー）
         info_admin_id: 店舗情報管理者
         open: 公開
+        prefecture: 地域
       listing_image:
         image: 店舗情報のイメージ画像
         caption: 写真の説明
@@ -594,6 +595,7 @@ ja:
         submit_sp: 再検索する
         hit_count:
           dot: ・
+      prefecture: 地域
       submit: 店舗情報を表示
     search_detail:
       title: 検索
