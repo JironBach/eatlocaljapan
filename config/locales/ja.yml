@@ -625,6 +625,7 @@ ja:
         submit_sp: 再検索する
         hit_count:
           dot: ・
+      prefecture: 地域
       submit: 店舗情報を表示
     delivery_ok_button:
       text: 出張可

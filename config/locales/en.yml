@@ -633,6 +633,7 @@ en:
         submit_sp: Search Again
         hit_count:
           dot: /
+      prefecture: Area
       submit: Show listings
     delivery_ok_button:
       text: delivery
