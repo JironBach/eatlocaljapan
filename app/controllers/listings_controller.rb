@@ -262,7 +262,7 @@ class ListingsController < ApplicationController
     #gon.listings = listings
     @hit_count = listings.count
     @listings = Kaminari.paginate_array(listings).page(params[:page]).per(10)
-    @conditions = search_params
+    @conditions = params
     @listing = Listing.new
   end
 
