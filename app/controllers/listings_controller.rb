@@ -253,7 +253,7 @@ class ListingsController < ApplicationController
     end
     where_id.push(ActiveRecord::Base.send(:sanitize_sql_array, ["select listing_id from listings_shop_services where shop_service_id in (:ids)", ids: shop_services])) unless shop_services.blank?
     sql = "select * from listings "
-    where.push("id in (" + where_id.join + ")") unless where_id.blank?
+    where.push("id in (" + where_id.join(" union ") + ")") unless where_id.blank?
     where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["smoking_id in (:ids)", ids: params[:smoking_id]])) unless params[:smoking_id].blank?
     where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["english_id = ?", params[:english_id]])) unless params[:english_id].blank?
     where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["price_high <= ?", params[:price]])) unless params[:price].blank?
