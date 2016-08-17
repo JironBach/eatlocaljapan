@@ -253,9 +253,9 @@ class ListingsController < ApplicationController
       shop_services = params[:shop_services].compact.delete_if(&:empty?) unless params[:shop_services].blank?
     end
     services_id.push(ActiveRecord::Base.send(:sanitize_sql_array, ["select listing_id from listings_shop_services where shop_service_id in (:ids)", ids: shop_services])) unless shop_services.blank?
-    sql = "select * from listings "fq64
-    where.push("id in (" + categories_id.join(" union ") + ")") unless categories_id.blank?
-    where.push("id in (" + services_id.join(" union ") + ")") unless services_id.blank?
+    sql = "select * from listings "
+    where.push("id in (" + categories_id.join + ")") unless categories_id.blank?
+    where.push("id in (" + services_id.join + ")") unless services_id.blank?
     where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["smoking_id in (:ids)", ids: params[:smoking_id]])) unless params[:smoking_id].blank?
     where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["english_id = ?", params[:english_id]])) unless params[:english_id].blank?
     where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["price_high <= ?", params[:price]])) unless params[:price].blank?
