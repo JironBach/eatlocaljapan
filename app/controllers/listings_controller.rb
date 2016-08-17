@@ -246,7 +246,11 @@ class ListingsController < ApplicationController
       shop_categories = params[:shop_categories].compact.delete_if(&:empty?) unless params[:shop_categories].blank?
     end
     where_id.push(ActiveRecord::Base.send(:sanitize_sql_array, ["select listing_id from listings_shop_categories where shop_category_id in (:ids)", ids: shop_categories])) unless shop_categories.blank?
-    shop_services = params[:shop_services].compact.delete_if(&:empty?) unless params[:shop_services].blank?
+    if params[:shop_services].class == String
+      shop_services = params[:shop_services] unless params[:shop_services].blank?
+    else
+      shop_services = params[:shop_services].compact.delete_if(&:empty?) unless params[:shop_services].blank?
+    end
     where_id.push(ActiveRecord::Base.send(:sanitize_sql_array, ["select listing_id from listings_shop_services where shop_service_id in (:ids)", ids: shop_services])) unless shop_services.blank?
     sql = "select * from listings "
     where.push("id in (" + where_id.join(" union ") + ")") unless where_id.blank?
