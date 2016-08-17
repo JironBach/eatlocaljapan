@@ -239,21 +239,23 @@ class ListingsController < ApplicationController
   def search
     #listings = Listing.search(search_params).opened.page(params[:page])
     where = Array.new
-    where_id = Array.new
+    categories_id = Array.new
+    services_id = Array.new
     if params[:shop_categories].class == String
       shop_categories = params[:shop_categories] unless params[:shop_categories].blank?
     else
       shop_categories = params[:shop_categories].compact.delete_if(&:empty?) unless params[:shop_categories].blank?
     end
-    where_id.push(ActiveRecord::Base.send(:sanitize_sql_array, ["select listing_id from listings_shop_categories where shop_category_id in (:ids)", ids: shop_categories])) unless shop_categories.blank?
+    categories_id.push(ActiveRecord::Base.send(:sanitize_sql_array, ["select listing_id from listings_shop_categories where shop_category_id in (:ids)", ids: shop_categories])) unless shop_categories.blank?
+    where.push("id in (" + categories_id.join(" union ") + ")") unless categories_id.blank?
     if params[:shop_categories].class == String
       shop_services = params[:shop_services] unless params[:shop_services].blank?
     else
       shop_services = params[:shop_services].compact.delete_if(&:empty?) unless params[:shop_services].blank?
     end
-    where_id.push(ActiveRecord::Base.send(:sanitize_sql_array, ["select listing_id from listings_shop_services where shop_service_id in (:ids)", ids: shop_services])) unless shop_services.blank?
+    services_id.push(ActiveRecord::Base.send(:sanitize_sql_array, ["select listing_id from listings_shop_services where shop_service_id in (:ids)", ids: shop_services])) unless shop_services.blank?
     sql = "select * from listings "
-    where.push("id in (" + where_id.join(" union ") + ")") unless where_id.blank?
+    where.push("id in (" + services_id.join(" union ") + ")") unless services_id.blank?
     where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["smoking_id in (:ids)", ids: params[:smoking_id]])) unless params[:smoking_id].blank?
     where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["english_id = ?", params[:english_id]])) unless params[:english_id].blank?
     where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["price_high <= ?", params[:price]])) unless params[:price].blank?
