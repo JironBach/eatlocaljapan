@@ -7,16 +7,19 @@
       .row.row-space-5.row-space-top-5.row-table
         .col-xs-4.text-right.col-middle
           .h4.text-light
+            = Listing.human_attribute_name :title
+        .col-xs-8.fieldset.col-middle
+          .row
+            .col-xs-11
+              = f.input_field :shop_name, class: "decorative-input", required: true
+      .row.row-space-5.row-space-top-5.row-table
+        .col-xs-4.text-right.col-middle
+          .h4.text-light
             = Listing.human_attribute_name :prefecture
         .col-xs-8.fieldset.col-middle
           .row
             .col-xs-11
-              - if locale == :ja
-                = collection_select nil, :prefectures, Prefecture.all.order(:id), :id, (locale == :ja ? :name : :name_en), include_blank: t('.prefecture') do |b|
-                  = b.label { b.select + b.text }
-              - else
-                = collection_select nil, :prefectures, Prefecture.all.order(:name_en), :id, (locale == :ja ? :name : :name_en), include_blank: t('.prefecture') do |b|
-                  = b.label { b.select + b.text }
+              = f.collection_select :prefectures, Prefecture.all.order(locale == :ja ? :id : :name_en), :id, locale == :ja ? :name : :name_en, include_blank: t('.prefecture')
       .row.row-space-5.row-space-top-5.row-table
         .col-xs-4.text-right.col-middle
           .h4.text-light
@@ -24,7 +27,7 @@
         .col-xs-8.fieldset.col-middle
           .row
             .col-xs-11
-              = collection_check_boxes nil, :shop_categories, ShopCategory.all, :id, (locale == :ja ? :name : :name_en) do |b|
+              = f.collection_check_boxes :shop_categories, ShopCategory.all, :id, (locale == :ja ? :name : :name_en) do |b|
                 = b.label { b.check_box + b.text }
       .row.row-space-5.row-space-top-5.row-table
         .col-xs-4.text-right.col-middle
@@ -33,7 +36,7 @@
         .col-xs-8.fieldset.col-middle
           .row
             .col-xs-11
-              = collection_check_boxes nil, :shop_services, ShopService.all, :id, (locale == :ja ? :name : :name_en) do |b|
+              = f.collection_check_boxes :shop_services, ShopService.all, :id, (locale == :ja ? :name : :name_en) do |b|
                 = b.label { b.check_box + b.text }
       .row.row-space-5.row-space-top-5.row-table
         .col-xs-4.text-right.col-middle
@@ -42,7 +45,7 @@
         .col-xs-8.fieldset.col-middle
           .row
             .col-xs-11
-              = collection_select nil, :smoking_id, Smoking.all, :id, (locale == :ja ? :name : :name_en)
+              = f.collection_select :smoking_id, Smoking.all, :id, (locale == :ja ? :name : :name_en)
       .row
       .row.row-space-5.row-space-top-5.row-table
         .col-xs-4.text-right.col-middle
@@ -51,7 +54,7 @@
         .col-xs-8.fieldset.col-middle
           .row
             .col-xs-11
-              = collection_check_boxes nil, :englishes, English.all, :id, (locale == :ja ? :name : :name_en) do |b|
+              = f.collection_check_boxes :englishes, English.all, :id, (locale == :ja ? :name : :name_en) do |b|
                 = b.label { b.check_box + b.text }
       /.row.row-space-5.row-space-top-5.row-table
       /  .col-xs-4.text-right.col-middle

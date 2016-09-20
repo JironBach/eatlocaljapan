@@ -1,18 +1,11 @@
 = simple_form_for(:search, url: i18n_url_for(:controller =>'listings', :action => 'search', :locale => locale), html: { method: 'get', id: 'search_form', class: 'hero-searchForm'}) do |f|
   = f.hidden_field :where, value: 'top'
-
   .search_area.clear
     .search_area_content
-      .col-lg-5.col-md-4.col-xs-4.mgnnolr
-        = collection_select nil, :shop_categories, ShopCategory.all.order(:id), :id, (locale == :ja ? :name : :name_en), include_blank: t('.category') do |b|
-          = b.label { b.select + b.text }
-      .col-lg-4.col-md-4.col-xs-4.mgnnolr
-        - if locale == :ja
-          = collection_select nil, :prefectures, Prefecture.all.order(:id), :id, (locale == :ja ? :name : :name_en), include_blank: t('.prefecture') do |b|
-            = b.label { b.select + b.text }
-        - else
-          = collection_select nil, :prefectures, Prefecture.all.order(:name_en), :id, (locale == :ja ? :name : :name_en), include_blank: t('.prefecture') do |b|
-            = b.label { b.select + b.text }
+      .col-lg-3.col-md-2.col-xs-2.mgnnolr
+        = f.collection_select :prefectures, Prefecture.all.order(locale == :ja ? :id : :name_en), :id, locale == :ja ? :name : :name_en, include_blank: t('.prefecture')
+      .col-lg-3.col-md-3.col-xs-3.mgnnolr
+        = f.input_field :shop_name, class: "decorative-input", placeholder: t('.shop'), required: true
       .col-lg-3.col-md-4.col-xs-4.mgnnolr
         = button_tag(t('.submit'), type: "submit", class: "btn_b btn-primary btn-large bdrn pull-left", id: "submit_location")
         .btnb.btn_bl

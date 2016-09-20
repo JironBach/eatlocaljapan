@@ -44,18 +44,21 @@ Rails.application.configure do
   # Raises error for missing translations
   config.action_view.raise_on_missing_translations = true
   # Mailer
-  config.action_mailer.default_url_options = { :host => 'eatlocaljapan.mydns.jp' }
+  # TODO: change default url options to adapted for local environment
+  config.action_mailer.default_url_options = {host: 'eatlocaljapan.mydns.jp'}
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :enable_starttls_auto => true,
-    :openssl_verify_mode => 'none',
-    :address => Rails.application.secrets.action_mailer_host,
-    :port => Rails.application.secrets.action_mailer_port,
-    :authentication => :plain,
-    :user_name => Rails.application.secrets.action_mailer_user_name,
-    :password => Rails.application.secrets.action_mailer_password,
-  }
+  # TODO: remove configuration about ActionMailer from config/secret.yml
+  config.action_mailer.smtp_settings = \
+    {
+      enable_starttls_auto: true,
+      openssl_verify_mode: 'none',
+      address: Rails.application.secrets.action_mailer_host,
+      port: Rails.application.secrets.action_mailer_port,
+      authentication: :plain,
+      user_name: Rails.application.secrets.action_mailer_user_name,
+      password: Rails.application.secrets.action_mailer_password
+    }
 
   config.action_controller.action_on_unpermitted_parameters = :raise
 end

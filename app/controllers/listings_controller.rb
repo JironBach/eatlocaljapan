@@ -270,59 +270,12 @@ class ListingsController < ApplicationController
       end
   end
 
-  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
   def search
-    # listings = Listing.search(search_params).opened.page(params[:page])
-    where = []
-    categories_id = []
-    services_id = []
-    shop_categories = \
-      if params[:shop_categories].class == String
-        params[:shop_categories] unless params[:shop_categories].blank?
-      else
-        params[:shop_categories].compact.delete_if(&:empty?) unless params[:shop_categories].blank?
-      end
-    unless shop_categories.blank?
-      categories_id.push(
-        ActiveRecord::Base.send(
-          :sanitize_sql_array,
-          ['select listing_id from listings_shop_categories where shop_category_id in (:ids)', ids: shop_categories]
-        )
-      )
-    end
-    where.push('id in (' + categories_id.join(' union ') + ')') unless categories_id.blank?
-    shop_services = \
-      if params[:shop_categories].class == String
-        params[:shop_services] unless params[:shop_services].blank?
-      else
-        params[:shop_services].compact.delete_if(&:empty?) unless params[:shop_services].blank?
-      end
-    unless shop_services.blank?
-      services_id.push(
-        ActiveRecord::Base.send(
-          :sanitize_sql_array,
-          ['select listing_id from listings_shop_services where shop_service_id in (:ids)', ids: shop_services]
-        )
-      )
-    end
-    sql = 'select * from listings '
-    where.push('id in (' + services_id.join(' union ') + ')') unless services_id.blank?
-    where.push(ActiveRecord::Base.send(:sanitize_sql_array, ['smoking_id in (:ids)', ids: params[:smoking_id]])) unless params[:smoking_id].blank?
-    where.push(ActiveRecord::Base.send(:sanitize_sql_array, ['english_id = ?', params[:english_id]])) unless params[:english_id].blank?
-    where.push(ActiveRecord::Base.send(:sanitize_sql_array, ['price_high <= ?', params[:price]])) unless params[:price].blank?
-    pref_id = params[:prefectures]
-    pref = Prefecture.find(pref_id) unless pref_id.blank?
-    where.push(ActiveRecord::Base.send(:sanitize_sql_array, ['(location like ? or location like ?)', "%#{pref.name}%", "%#{pref.name_en}%"])) unless pref.blank?
-    where.push('open = true')
-    sql += 'where ' + where.join(' and ') unless where.blank?
-    listings = ActiveRecord::Base.connection.execute(sql).to_a
-    # gon.listings = listings
-    @hit_count = listings.count
-    @listings = Kaminari.paginate_array(listings).page(params[:page]).per(10)
+    @listings = Listing.search(search_params).opened.page(params[:page]).per(10)
+    @hit_count = @listings.count
     @conditions = params
     @listing = Listing.new
   end
-  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
 
   def publish
     authorize! :publish, @listing
@@ -390,7 +343,11 @@ private
   end
 
   def search_params
-    # params.require(:search).permit(:location, :schedule, :num_of_guest, :price, :keywords, :where, :shop_categories, :shop_services, :englishes)
-    params.require(:search).permit(:location, :schedule, :num_of_guest, :price, :keywords, :where)
+    params \
+      .require(:search) \
+      .permit(
+        :location, :schedule, :num_of_guest, :price, :keywords, :where, :prefectures, :shop_categories, :shop_name, :smoking_id,
+        shop_categories: [], shop_services: [], englishes: []
+      )
   end
 end

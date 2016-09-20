@@ -604,6 +604,7 @@ en:
         hit_count:
           dot: /
       prefecture: Area
+      shop_name: Restaurant Name
       submit: Show listings
     search_detail:
       title: Search
@@ -903,6 +904,7 @@ en:
       category: Category
       prefecture: Area
       submit: Search
+      shop: Restaurant Name
     discovery:
       title: Small but excellent restaurants.
       note: You will be surprisingly amazed at the great taste!
