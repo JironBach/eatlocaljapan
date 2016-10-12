@@ -70,7 +70,7 @@
 #  index_listings_on_zipcode    (zipcode)
 #
 
-class Listing < ActiveRecord::Base
+class Listing < ApplicationRecord
   # include Elasticsearch::Model
   # include Elasticsearch::Model::Callbacks
 
@@ -82,6 +82,7 @@ class Listing < ActiveRecord::Base
   # end
 
   belongs_to :user
+  belongs_to :info_admin
   has_many :listing_images, dependent: :destroy
   has_one :confection, dependent: :destroy
   has_one :tool, dependent: :destroy
@@ -89,17 +90,25 @@ class Listing < ActiveRecord::Base
   has_many :reservations
   has_many :reviews
   has_many :listing_ngevents, class_name: 'UserNgevent'
-  # rubocop:disable Rails/HasAndBelongsToMany
-  has_and_belongs_to_many :shop_categories, dependent: :destroy
-  has_and_belongs_to_many :shop_services, dependent: :destroy
-  # rubocop:enable Rails/HasAndBelongsToMany
+  has_many :listings_shop_categories, dependent: :destroy
+  has_many :shop_categories, through: :listings_shop_categories
+  has_many :listings_shop_services, dependent: :destroy
+  has_many :shop_services, through: :listings_shop_services
   has_many :business_hours, dependent: :destroy
   has_many :weekday_business_hours
   has_one :holiday_business_hour
-  # rubocop:disable Rails/HasAndBelongsToMany
-  has_and_belongs_to_many :englishes, dependent: :destroy
-  has_and_belongs_to_many :english_messages
-  # rubocop:enable Rails/HasAndBelongsToMany
+  has_many :englishes_listings, dependent: :destroy
+  has_many :englishes, through: :englishes_listings
+  has_many :english_messages_listings, dependent: :destroy
+  has_many :english_messages, through: :english_messages_listings
+  belongs_to :smoking
+
+  accepts_nested_attributes_for :listings_shop_categories, allow_destroy: true
+  accepts_nested_attributes_for :listings_shop_services, allow_destroy: true
+  accepts_nested_attributes_for :englishes_listings, allow_destroy: true
+  accepts_nested_attributes_for :english_messages_listings, allow_destroy: true
+  accepts_nested_attributes_for :weekday_business_hours
+  accepts_nested_attributes_for :holiday_business_hour
 
   mount_uploader :cover_image, DefaultImageUploader
 
@@ -118,6 +127,14 @@ class Listing < ActiveRecord::Base
   scope :available_num_of_guest?, ->(num_of_guest) { where('capacity >= ?', num_of_guest) }
   scope :available_price_min?, ->(price_min) { where('price >= ?', price_min) }
   scope :available_price_max?, ->(price_max) { where('price <= ?', price_max) }
+
+  enum from: {today: 0, a_day_ago: 1, two_days_ago: 2, three_days_ago: 3}
+  enum \
+    to: \
+      {
+        this_month: 0, next_month: 1, two_months_later: 2, three_months_later: 3, four_months_later: 4, five_months_later: 5, six_months_later: 6, seven_months_later: 7,
+        eight_months_later: 8, nine_months_later: 9, ten_months_later: 10, eleven_months_later: 11, one_year_later: 12
+      }
 
   class << self
     def search(search_params)
@@ -139,40 +156,47 @@ class Listing < ActiveRecord::Base
   end
 
   def set_lon_lat
-    hash = geocode_with_google_map_api
-    if hash['success'] # .present?
-      self.longitude = hash['lng']
-      self.latitude = hash['lat']
-      self
+    result = geocode_with_google_map_api
+    unless result['success'] # .present?
+      nil
     else
-      return false
+      self.longitude = result['lng']
+      self.latitude = result['lat']
+      self
     end
   end
 
   def geocode_with_google_map_api
     base_url = 'http://maps.google.com/maps/api/geocode/json'
     address = URI.encode(location)
-    hash = {}
+    result = {}
     req_url = "#{base_url}?address=#{address}&sensor=false&language=ja"
     response = Net::HTTP.get_response(URI.parse(req_url))
     case response
     when Net::HTTPSuccess then
       data = JSON.parse(response.body)
       unless data['results'][0].nil?
-        hash['lat'] = data['results'][0]['geometry']['location']['lat']
-        hash['lng'] = data['results'][0]['geometry']['location']['lng']
-        hash['success'] = true
+        result['lat'] = data['results'][0]['geometry']['location']['lat']
+        result['lng'] = data['results'][0]['geometry']['location']['lng']
+        result['success'] = true
       else
-        hash['lat'] = 0.00
-        hash['lng'] = 0.00
-        hash['success'] = false
+        result['lat'] = 0.00
+        result['lng'] = 0.00
+        result['success'] = false
       end
     else
-      hash['lat'] = 0.00
-      hash['lng'] = 0.00
-      hash['success'] = false
+      result['lat'] = 0.00
+      result['lng'] = 0.00
+      result['success'] = false
     end
-    hash
+    result
+  end
+
+  def easy_translate(prefix: nil, fields: [:description, :shop_description, :location, :recommended, :visit_benefits, :visit_benefits_another])
+    assign_attributes \
+      fields \
+        .select { |field| attributes[field].present? && attributes[:"#{field}_en"].blank? }
+        .inject({}) { |tranlated, field| translated[:"#{field}_en"] = [prefix, EasyTranslate.translate(attributes[field], to: :en)].compact.join(' ') }
   end
 
   def current_user_bookmarked?(user_id)

@@ -8,5 +8,7 @@
 #  name       :string
 #  name_en    :string
 #
-class EnglishMessage < ActiveRecord::Base
+class EnglishMessage < ApplicationRecord
+  has_many :english_messages_listings, dependent: :destroy
+  has_many :listings, through: :english_messages_listings
 end

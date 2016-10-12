@@ -15,7 +15,7 @@
 #  index_tools_on_listing_id           (listing_id)
 #  index_tools_on_listing_id_and_name  (listing_id,name) UNIQUE
 #
-class Tool < ActiveRecord::Base
+class Tool < ApplicationRecord
   belongs_to :listing
 
   validates :listing_id, presence: true

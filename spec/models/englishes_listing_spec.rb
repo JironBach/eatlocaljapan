@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: listing_englishes
+# Table name: englishes_lstings
 #
 #  id         :integer          not null, primary key
 #  created_at :datetime         not null
@@ -15,6 +15,6 @@
 
 require 'rails_helper'
 
-RSpec.describe ListingEnglish, type: :model do
+RSpec.describe EnglishesListing, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

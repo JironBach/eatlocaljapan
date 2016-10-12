@@ -6,7 +6,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-class MessageThread < ActiveRecord::Base
+class MessageThread < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :message_thread_users, dependent: :destroy
   has_many :users, through: :message_thread_users, dependent: :destroy

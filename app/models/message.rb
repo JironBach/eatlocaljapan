@@ -22,7 +22,7 @@
 #  index_messages_on_reservation_id     (reservation_id)
 #  index_messages_on_to_user_id         (to_user_id)
 #
-class Message < ActiveRecord::Base
+class Message < ApplicationRecord
   belongs_to :message_thread, touch: true
   belongs_to :to_user, class_name: 'User', foreign_key: 'to_user_id'
   belongs_to :from_user, class_name: 'User', foreign_key: 'from_user_id'

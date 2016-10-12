@@ -15,7 +15,7 @@
 #  index_profile_images_on_profile_id  (profile_id)
 #  index_profile_images_on_user_id     (user_id)
 #
-class ProfileImage < ActiveRecord::Base
+class ProfileImage < ApplicationRecord
   belongs_to :user
   belongs_to :profile
 

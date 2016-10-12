@@ -11,5 +11,5 @@
 #  description    :string
 #  description_en :string
 #
-class Menu < ActiveRecord::Base
+class Menu < ApplicationRecord
 end

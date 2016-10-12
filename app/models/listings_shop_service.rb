@@ -12,5 +12,7 @@
 #
 #  index_listings_shop_services_on_listing_id_and_shop_service_id  (listing_id,shop_service_id) UNIQUE
 #
-class ListingsShopService < ActiveRecord::Base
+class ListingsShopService < ApplicationRecord
+  belongs_to :listing
+  belongs_to :shop_service
 end

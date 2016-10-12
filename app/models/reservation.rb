@@ -31,7 +31,7 @@
 #  index_reservations_on_host_id     (host_id)
 #  index_reservations_on_listing_id  (listing_id)
 #
-class Reservation < ActiveRecord::Base
+class Reservation < ApplicationRecord
   belongs_to :host, class_name: 'User', foreign_key: 'host_id'
   belongs_to :guest, class_name: 'User', foreign_key: 'guest_id'
   belongs_to :listing
@@ -50,7 +50,7 @@ class Reservation < ActiveRecord::Base
   scope :as_guest, ->(user_id) { where(guest_id: user_id) }
   scope :as_host, ->(user_id) { where(host_id: user_id) }
   scope :order_by_created_at_desc, -> { order('created_at desc') }
-  scope :new_requests, ->(user_id) { where(host_id: user_id, progress: 'requested') }
+  scope :new_requests, ->(user_id) { where(host_id: user_id).requested }
   scope :finished_before_yesterday, -> { where('schedule <= ?', Time.zone.yesterday) }
   scope :review_mail_never_be_sent, -> { where(review_mail_sent_at: nil) }
   scope :reviewed, -> { where.not(reviewed_at: nil) }

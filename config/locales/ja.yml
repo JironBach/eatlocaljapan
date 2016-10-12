@@ -1,5 +1,27 @@
 ja:
   activerecord:
+    enum:
+      from:
+        day:
+          today: 当日
+          a_day_ago: １日前
+          two_days_ago: ２日前
+          three_days_ago: ３日前
+      to:
+        month:
+          this_month: 今月
+          next_month: １ヶ月後
+          two_months_later: ２ヶ月後
+          three_months_later: ３ヶ月後
+          four_months_later: ４ヶ月後
+          five_months_later: ５ヶ月後
+          six_months_later: ６ヶ月後
+          seven_months_later: ７ヶ月後
+          eight_months_later: ８ヶ月後
+          nine_months_later: ９ヶ月後
+          ten_months_later: １０ヶ月後
+          eleven_months_later: １１ヶ月後
+          one_year_later: １年後
     models:
       admin_user: 管理者
       auth: 外部サービスとの連携
@@ -436,6 +458,7 @@ ja:
     manage_listing_nav:
       header: 店舗情報情報
       basic_info: 基本情報
+      reservation: 予約情報
       image: イメージ画像
       cal: カレンダーの設定
       item: "%{model}%{opt}"
@@ -565,13 +588,33 @@ ja:
       submit: 保存する
   listing_ngevents:
     manage:
-      title: "%{model}を設定しましょう"
+      title: 予約受付不可の日時を個別設定します
       text: "カレンダーの日付をクリック、またはドラッグすると%{model}を設定できます。"
       label1: 設定済みの予約不可能日
-      label2: 予約済み
+      label2: 予約不可時間帯
     form:
       button: "日程を削除する"
+      close: "閉じる"
+      disable_reservations_settings: "予約不可設定"
+      select: "選択してください"
+      disable_all_day: "終日予約不可"
+      select_time: "時間の指定"
+      start: "開始"
+      end: "終了"
+      cancel: "キャンセル"
+      registration: "登録"
   listings:
+    reservation_form:
+      submit:
+        next: 次へ
+      frame: 予約枠
+      number: 予約枠ごとの席数
+      capacity: 同時刻の受付上限数
+      reservation_frame: 1予約枠の基本人数
+      unit: 予約時刻単位
+      reservation_time_unit: 1予約枠の時間
+      opening_hours: 受付期間
+      lunch_break: 休憩時間
     index:
       no_listing:
         title: 店舗情報を開く予定はありません。
@@ -670,6 +713,7 @@ ja:
         any: 和服でなくて結構です。
       shop_description: レストランの説明
       recommended: お勧めのメニュー・食べ方の説明
+      holiday: 祝
     edit:
       title: 店舗情報編集
     edit_link:
@@ -688,6 +732,8 @@ ja:
         name: 可能です
       capacity:
         more_than: "%{num}%{unit}以上"
+      busubess_hours_and_lunch_break: "営業時間（休憩時間）"
+      holiday: 祝
     host_info:
       name:
         after: さんの紹介
@@ -985,6 +1031,22 @@ ja:
       msg1: "%{listing_title} (%{schedule})に参加していただいた %{guest} さんへの%{review}を記入しましょう。"
       msg2: "以下のリンクから、%{review}の記入ができます。"
       msg3: "%{review}は、記入すると、%{profile}ページなどに公開されます。"
+  settings:
+    edit:
+      title: "予約情報を入力してください。"
+      submit: "次へ"
+    form:
+      submit:
+        next: 次へ
+        update: 更新
+      frame: 予約枠
+      number: 予約枠ごとの席数
+      capacity: 同時刻の受付上限数
+      reservation_frame: 1予約枠の基本人数
+      unit: 予約時刻単位
+      reservation_time_unit: 1予約枠の時間
+      opening_hours: 受付期間
+      lunch_break: 休憩時間
   kaminari:
     first_page:
       first: First
@@ -1075,6 +1137,7 @@ ja:
         holiday: "予約不可能日"
         reserved: "予約済みです"
         canceled: "予約はキャンセルされました"
+        temporary_closed: %{start}-%{end}
     reservation:
       save:
         success: "%{model}を申し込みました。ご確認いただき、%{host}の方からの%{msg}をお待ちください。"

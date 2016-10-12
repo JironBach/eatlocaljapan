@@ -8,5 +8,6 @@
 #  name       :string
 #  name_en    :string
 #
-class InfoAdmin < ActiveRecord::Base
+class InfoAdmin < ApplicationRecord
+  has_many :listings
 end

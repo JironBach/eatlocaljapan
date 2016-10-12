@@ -226,7 +226,7 @@ ActiveRecord::Schema.define(version: 20161018205856) do
     t.string   "link_tabelog"
     t.string   "link_yelp"
     t.string   "link_tripadvisor"
-    t.string   "description_en"
+    t.text     "description_en"
     t.string   "location_en"
     t.string   "visit_benefits_en"
     t.string   "visit_benefits_another_en"

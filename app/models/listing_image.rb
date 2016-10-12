@@ -14,7 +14,7 @@
 #
 #  index_listing_images_on_listing_id  (listing_id)
 #
-class ListingImage < ActiveRecord::Base
+class ListingImage < ApplicationRecord
   belongs_to :listing
 
   mount_uploader :image, DefaultImageUploader

@@ -13,7 +13,7 @@
 #
 #  index_dress_codes_on_listing_id  (listing_id)
 #
-class DressCode < ActiveRecord::Base
+class DressCode < ApplicationRecord
   belongs_to :listing
 
   validates :listing_id, presence: true

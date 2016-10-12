@@ -8,5 +8,6 @@
 #  name       :string           not null
 #  name_en    :string           not null
 #
-class Smoking < ActiveRecord::Base
+class Smoking < ApplicationRecord
+  has_many :listings
 end

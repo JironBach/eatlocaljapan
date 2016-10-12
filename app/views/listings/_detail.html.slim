@@ -128,14 +128,21 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                - 7.times do |wday|
-                  - business_hour = listing.business_hours[wday]
-                  - if business_hour.is_open
+                - I18n.t(:abbr_day_names, scope: [:date]).map.with_index do |wday_name, wday|
+                  - weekday_business_hour = listing.weekday_business_hours.detect { |business_hour| business_hour.wday == wday }
+                  - if weekday_business_hour.is_open
                     p
-                      = I18n.t(:abbr_day_names, scope: [:date])[wday]
-                      = l business_hour.start_hour, format: :hour
+                      = weekday_business_hour.wday_name
+                      = l weekday_business_hour.start_hour, format: :hour
                       | -
-                      = l business_hour.end_hour, format: :hour
+                      = l weekday_business_hour.end_hour, format: :hour
+                - holiday_business_hour = listing.holiday_business_hour
+                - if holiday_business_hour.is_open
+                  p
+                    = t '.holiday'
+                    = l holiday_business_hour.start_hour, format: :hour
+                    | -
+                    = l holiday_business_hour.end_hour, format: :hour
         /.row.row-space-5.row-space-top-5.row-table
         /  .col-xs-4.text-right.col-middle
         /    .h4.text-light

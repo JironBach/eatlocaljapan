@@ -19,7 +19,8 @@
 #  index_user_ngevents_on_reservation_id  (reservation_id)
 #  index_user_ngevents_on_user_id         (user_id)
 #
-class UserNgevent < ActiveRecord::Base
+
+class UserNgevent < ApplicationRecord
   belongs_to :user
   belongs_to :listing
   belongs_to :reservation

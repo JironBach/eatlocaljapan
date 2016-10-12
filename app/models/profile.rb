@@ -35,7 +35,7 @@
 #
 #  index_profiles_on_user_id  (user_id)
 #
-class Profile < ActiveRecord::Base
+class Profile < ApplicationRecord
   belongs_to :user
   has_one :profile_image, dependent: :destroy
   has_one :profile_video, dependent: :destroy

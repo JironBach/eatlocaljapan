@@ -8,8 +8,7 @@
 #  name       :string           not null
 #  name_en    :string           not null
 #
-class ShopService < ActiveRecord::Base
-  # rubocop:disable Rails/HasAndBelongsToMany
-  has_and_belongs_to_many :listing
-  # rubocop:enable Rails/HasAndBelongsToMany
+class ShopService < ApplicationRecord
+  has_many :listings_shop_services, dependent: :destroy
+  has_many :listings, through: :listings_shop_services
 end

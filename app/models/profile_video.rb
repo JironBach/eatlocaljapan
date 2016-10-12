@@ -15,7 +15,7 @@
 #  index_profile_videos_on_profile_id  (profile_id)
 #  index_profile_videos_on_user_id     (user_id)
 #
-class ProfileVideo < ActiveRecord::Base
+class ProfileVideo < ApplicationRecord
   belongs_to :user
   belongs_to :profile
 

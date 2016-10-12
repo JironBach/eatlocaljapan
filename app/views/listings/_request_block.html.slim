@@ -40,7 +40,7 @@
                 .select.select-block
                   = select nil, :hour, Array(1..24), selected: 12
                   | :
-                  = select nil, :minute, Array(0.step(59, @listing.unit))
+                  = select nil, :minute, Array(0.step(59, @listing.unit || 15))
             .row.row-condensed.row-space-3
               .col-md-12
                 label[for='number_of_guests']

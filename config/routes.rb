@@ -407,6 +407,9 @@ Rails.application.routes.draw do
         get 'manage', on: :collection
         get 'search', on: :collection
       end
+      resource :reservations, only: [] do
+        resource :setting, only: [:edit, :update]
+      end
       get 'publish',   action: 'publish',   as: 'publish'
       get 'unpublish', action: 'unpublish', as: 'unpublish'
     end

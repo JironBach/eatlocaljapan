@@ -14,7 +14,7 @@
 #  index_message_thread_users_on_message_thread_id_and_user_id  (message_thread_id,user_id) UNIQUE
 #  index_message_thread_users_on_user_id                        (user_id)
 #
-class MessageThreadUser < ActiveRecord::Base
+class MessageThreadUser < ApplicationRecord
   belongs_to :message_thread
   belongs_to :user
 

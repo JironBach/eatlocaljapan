@@ -15,7 +15,7 @@
 #  index_confections_on_listing_id           (listing_id)
 #  index_confections_on_listing_id_and_name  (listing_id,name) UNIQUE
 #
-class Confection < ActiveRecord::Base
+class Confection < ApplicationRecord
   belongs_to :listing
 
   validates :listing_id, presence: true
