@@ -5,7 +5,8 @@
     = f.hidden_field :host_id, value: @listing.user_id
     = f.hidden_field :guest_id, value: user_id
     = f.hidden_field :listing_id, value: @listing.id
-    = f.hidden_field :progress, value: "requested"
+    = f.hidden_field :progress, value: "accepted"
+    = f.hidden_field :reservation_time_unit, value: @listing.reservation_time_unit
     #book-it-sm-modal.modal[aria-hidden="true" role="dialog"]
       .modal-table
         .modal-cell
@@ -14,13 +15,6 @@
               = link_to "", "#", class: "modal-close", data: { dismiss: "modal" }
               = t('.submit')
     #book_it
-      #pricing
-        #price_amount.pull-left.h3.text-special
-          = t('unit.price')
-          = @listing.price
-        #payment-period-container.pull-right
-          #per_attend
-            = t('.price.per_attend')
       #book_it_container
         .card
           .card-body.card-light
@@ -34,10 +28,27 @@
                       - the_day_for_placeholder = Date.today + 7.days
                       input#checkin.checkin.datepicker[name="reservation[schedule]" type="text" data-listing_id="#{@listing.id}" readonly=true placeholder=the_day_for_placeholder]
                 .col-md-4
-                  label[for="number_of_guests"]
-                    = Reservation.human_attribute_name :num_of_people
-                  .select.select-block
-                    = f.input_field :num_of_people, as: :select, collection: (1..@listing.capacity).map{ |num| ["#{num}#{t('unit.people')}",num] }, default: [1]
+                  .row.row-condensed
+                    .col-sm-12
+                      label[for="number_of_guests"]
+                        = Reservation.human_attribute_name :num_of_people
+                      .select.select-block
+                        = f.input_field :num_of_people, as: :select, collection: (1..20), selected: 1
+            .row.row-condensed.row-space-3
+              .col-md-12
+                label[for="number_of_guests"]
+                  = t('listings.request_block.time')
+                .select.select-block
+                  = select nil, :hour, Array(1..24), selected: 12
+                  = ":"
+                  = select nil, :minute, Array(0.step(59, @listing.unit))
+            .row.row-condensed.row-space-3
+              .col-md-12
+                label[for="number_of_guests"]
+                  = t('listings.request_block.in_english')
+                .select.select-block
+                  = f.check_box :in_english
+
             #book_it_status
               #book_it_enabled.clearfix
                 #subtotal_area
@@ -51,44 +62,3 @@
                   - else
                     button#book_it_button.btn.btn-primary.btn-large.btn-block
                       = t('.submit')
-            #book-it-urgency-commitment
-              .row.row-space-top-3[data-hook="visitor-count-simple"]
-                .col-10.col-center
-                  .text-center.text-muted[data-hook="visitor-count-simple-content"]
-                    = t('.pv.text', num: listing_id_to_weekly_pv(listing.id))
-            /.wishlist-wrapper
-              .rich-toggle.wish_list_button.row-space-top-3.not_saved.wishlist-button
-                p#hogehogehogehoge hhhhhhhhhhhhhhh
-                label.btn.btn-block.btn-large.wishlist-button#hogehogehogehoge
-                  - if listing.current_user_bookmarked?(current_user.id)
-                    /span.rich-toggle-checked
-                    span
-                      i.fa.fa-heart.fa-pink
-                      |  お気に入りに保存しました
-                  - else
-                    /span.rich-toggle-unchecked
-                    span
-                      i.fa.fa-heart-o.fa-light-gray
-                      |  お気に入りに保存
-            .other-actions.hide-sm.text-center
-              .social-share-widget.row-space-top-3
-                span.share-title
-                  = t('.share.title')
-                span.share-triggers
-                  = link_to "javascript:void(0)", class: "share-btn share-envelope-btn", id: "share-via-email-trigger" do
-                    i.fa.fa-envelope-o.fa-gray.social-icon-size
-
-                  = link_to "#", target: "_blank", class: "share-btn share-facebook-btn" do
-                    i.fa.fa-facebook.fa-gray.social-icon-size
-
-                  = link_to "#", class: "share-btn share-twitter-btn" do
-                    i.fa.fa-twitter.fa-gray.social-icon-size
-
-                  = link_to t('.share.line.text'), "#", class: "share-btn share-envelope-btn sns-line-btn show--sp-ib"
-
-        .cancellation-grace-period-container
-          .card-body
-            .media.va-container
-              i.pull-left.fa.fa-check-circle.va-top.fa-size-2
-              .media-body.va-middle
-                = t('.cancel.text')

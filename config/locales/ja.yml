@@ -690,6 +690,8 @@ ja:
           text: LINEで送る
       cancel:
         text: キャンセルをすると全額返金を求めることができます。
+      time: 時間
+      in_english: 英語のご対応が必要ですか?
     similar_listings:
       title: 近くの店舗情報
     subnav:

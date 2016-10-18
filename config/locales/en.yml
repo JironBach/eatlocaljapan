@@ -695,6 +695,8 @@ en:
           text: LINE
       cancel:
         text: Once you cancel, you can request to pay whole fee back.
+      time: Time
+      in_english: English speaking?
     similar_listings:
       title: Similar listings
     subnav:
