@@ -23,9 +23,10 @@
             ul.list-unstyled.list-layout
               li.card-body.hide--sp
                 .row.row-table.row-table-header
-                  .col-xs-4.col-md-3 = Reservation.human_attribute_name :progress
-                  .col-xs-8.col-md-3 = Listing.human_attribute_name :title
+                  .col-xs-4.col-md-2 = Reservation.human_attribute_name :progress
+                  .col-xs-8.col-md-2 = Listing.human_attribute_name :title
                   .col-xs-12.col-md-2 = t 'name.guest'
                   .col-xs-12.col-md-2 = Reservation.human_attribute_name :schedule
                   .col-xs-12.col-md-2 = Reservation.human_attribute_name :num_of_people
+                  .col-xs-12.col-md-2 = Reservation.human_attribute_name :in_english
                   = render partial: 'reservation_item_as_host', locals: { reservations: @reservations }
