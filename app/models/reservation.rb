@@ -40,8 +40,6 @@ class Reservation < ActiveRecord::Base
 
   enum progress: {requested: 0, canceled: 1, holded: 2, accepted: 3, rejected: 4, listing_closed: 5}
 
-  before_save :set_ngevent
-
   validates :host_id, presence: true
   validates :guest_id, presence: true
   validates :listing_id, presence: true
@@ -107,25 +105,5 @@ class Reservation < ActiveRecord::Base
   def save_review_opened_at_now
     self.review_opened_at = Time.zone.now
     save
-  end
-
-private
-  def set_ngevent
-    event = ngevent || UserNgevent.new
-    event_params = \
-      {
-        listing_id: listing_id,
-        user_id: host_id,
-        start: schedule,
-        end: schedule + 1.day,
-        reason: :reserved
-      }
-    event.assign_attributes(event_params)
-    if progress_changed? && (canceled? || rejected?)
-      event.active = false
-      event.reason = :canceled
-    end
-    self.ngevent = event.convert_end_of_day
-    ngevent.validate!
   end
 end

@@ -401,13 +401,13 @@ en:
       copyright: BizitJapan Inc.
     guest_sidenav:
       link: Joined Listings
-      guest_reservation_manager: Reserve
+      guest_reservation_manager: Reservation list
     header:
       new_listing: Make New Listing
       dashboard: Dashboard
       listings: Listings
       host_reservation_manager: Reservation Manager
-      guest_reservation_manager: Join
+      guest_reservation_manager: Reservation list
       profile: Profile
       account: Account
       logout: Logout
@@ -539,6 +539,7 @@ en:
         unpublished: No Open
       msg: "  %{model}"
       receipt: " Receipt"
+      cancel: "Cancel"
     reservation_item_as_host:
       progress:
         requested: Please Reply
@@ -1083,6 +1084,9 @@ en:
         success: "Requested %{model}. Please confirm your request and wait for %{msg} from %{host}."
         failure:
           no_date: "Input Date"
+      update:
+        success: "Reservation updated"
+        failure: "Failed to update reservation"
       requirement:
         profile:
           not_yet: "Complete %{model}"

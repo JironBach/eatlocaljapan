@@ -398,14 +398,14 @@ ja:
       copyright: 株式会社BizitJapan
     guest_sidenav:
       link: 参加した店舗情報
-      guest_reservation_manager: 参加する
+      guest_reservation_manager: 予約一覧
     header:
       search: どこで探しますか？
       new_listing: 店舗情報を作る
       dashboard: ダッシュボード
       listings: 店舗情報
       host_reservation_manager: 予約管理
-      guest_reservation_manager: 参加する
+      guest_reservation_manager: 予約する
       profile: プロフィール
       account: アカウント
       logout: ログアウト
@@ -467,7 +467,7 @@ ja:
       dashboard: ダッシュボード
       messages: メッセージ
       listings: 店舗情報
-      guest_reservation_manager: 参加する
+      guest_reservation_manager: 予約一覧
       profile: プロフィール
       account: アカウント
     tooltip:
@@ -536,6 +536,7 @@ ja:
         unpublished: 非公開になりました
       msg: "  %{model}"
       receipt: " 領収書 "
+      cancel: "キャンセル"
     reservation_item_as_host:
       progress:
         requested: 回答してください
@@ -1080,8 +1081,8 @@ ja:
         failure:
           no_date: "%{model}する日付を入力してください。"
       update:
-        success: "%{model}を更新しました。"
-        success: "%{model}を更新に失敗しました。"
+        success: "予約を更新しました。"
+        failure: "予約の更新に失敗しました。"
       requirement:
         profile:
           not_yet: "%{model}を完成させてください。"

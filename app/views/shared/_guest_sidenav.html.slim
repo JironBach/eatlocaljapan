@@ -1,5 +1,2 @@
 ul.sidenav-list
-  li
-    = link_to t('.guest_reservation_manager'), dashboard_guest_reservation_manager_path, aria: {selected: action_name == 'guest_reservation_manager' ? 'true' : 'false'}, class: 'sidenav-item'
-  /li
-    = link_to t('.joined_listings'), dashboard_guest_reservation_manager_path, aria: {selected: action_name == 'guest_reservation_manager' ? 'false' : 'true'}, class: 'sidenav-item'
+  = link_to t('.guest_reservation_manager'), dashboard_guest_reservation_manager_path, aria: {selected: action_name == 'guest_reservation_manager' ? 'true' : 'false'}, class: 'sidenav-item'
