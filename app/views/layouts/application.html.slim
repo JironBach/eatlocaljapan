@@ -15,11 +15,6 @@ html
     /= include_gon
     = Gon::Base.render_data({})
     = csrf_meta_tags
-
-    javascript:
-      window._wfx_settings={"ent_id":"63b36610-968f-11e6-bcdd-04013d24cf02"};
-    = javascript_include_tag "http://whatfix.com/embed/embed.nocache.js", :async => true,  type: 'text/javascript'
-
   - if controller_name === "welcome"
     |  <body class="
     = controller_name
