@@ -1,4 +1,47 @@
-.calendar-wrapper
-  #delete_mode.row-space-2
-    button = t '.button'
-  #calendar[data-listing_id="#{@listing.id}"]
+.calendar-wrapper.listingNgevent
+  #delete_mode.row-space-2.listingNgevent__deleteMode
+    = button_tag t('.button'), type: :button
+  = content_tag :div, id: 'calendar', class: 'listingNgevent__calendar', data: {listing_id: @listing.id, action_url: listing_listing_ngevents_path(@listing)} do
+    .modal.fade#selectModal.listingNgevent__calendar__selectModal
+      .modal-dialog
+        .modal-content
+          .modal-header
+            = button_tag type: :button, class: 'close', data: {dismiss: :modal} do
+              span[aria-hidden="true"]
+                | ×
+              span.sr-only
+                | Close
+            h4.modal-title
+              = t('listing_ngevents.form.disable_reservations_settings')
+          .modal-body
+            p
+              = t('listing_ngevents.form.select')
+          .modal-footer
+            = form_for(ngevent, as: :event, url: listing_listing_ngevents_path(@listing)) do |f|
+              = f.hidden_field :reason, value: :holiday
+              = f.date_select :start, discard_year: true, discard_month: true, discard_day: true
+              = f.date_select :end, discard_year: true, discard_month: true, discard_day: true
+
+              = button_tag t('listing_ngevents.form.disable_all_day'), type: :button, class: 'btn btn-default listingNgevent__calendar__selectModal__selectDayButton'
+              = button_tag t('listing_ngevents.form.select'), type: :button, class: 'btn btn-primary listingNgevent__calendar__selectModal__selectTimeButton'
+  #timeModal.listingNgevent__timeModal.modal.fade
+    .modal-dialog
+      .modal-content
+        = form_for(ngevent, as: :event, url: listing_listing_ngevents_path(@listing)) do |f|
+          = f.hidden_field :reason
+          .col-md-12
+            = f.label :start do
+              = t('listing_ngevents.form.start')
+            .select.select-block
+              = f.time_select :start, minute_step: 15
+          .col-md-12
+            = f.label :end do
+              = t('listing_ngevents.form.end')
+            .select.select-block
+              = f.time_select :end, minute_step: 15
+          #book_it_status
+            .col-md-6
+              = button_tag t('listing_ngevents.form.cancel'), type: :button, class: 'btn btn-large btn-block listingNgevent__timeModal__cancelButton', data: {dismiss: :modal}
+            .col-md-6
+              = button_tag t('listing_ngevents.form.registration'), type: :button, class: 'btn btn-primary btn-large btn-block listingNgevent__timeModal__registrationButton', data: {dismiss: :modal}
+      .modal-bottom

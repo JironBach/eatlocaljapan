@@ -24,7 +24,7 @@ class Ability
     can [:update], models do |listing|
       listing.user_id == user.id
     end
-    models = [ListingImage, DressCode, Confection, Tool]
+    models = [ListingImage, DressCode, Confection, Tool, UserNgevent]
     can [:update], models do |related|
       related.listing.user_id == user.id
     end

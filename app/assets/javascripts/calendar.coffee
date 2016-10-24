@@ -1,84 +1,5 @@
 $ ->
-
-  delete_mode = false
-  listing_id  = $('#calendar').data('listing_id')
-  action_url  = '/listings/' + listing_id + '/listing_ngevents/'
-
-  # Create Event
-  createEvent = (start, end) ->
-    data = event:
-      start: start._d,
-      end: end._d,
-    $.ajax
-      type: 'POST'
-      url: action_url
-      data: data
-      dataType: 'json'
-      success: ->
-        calendar.fullCalendar 'refetchEvents'
-        return
-      error: ->
-        calendar.fullCalendar 'refetchEvents'
-    return
-
-  resizeEvent = (event, revertFunc) ->
-    data =
-      _method: 'PUT'
-      event:
-        start: event.start._d
-        end: event.end._d
-    $.ajax
-      type: 'PUT'
-      url: action_url + event.id
-      data: data
-      dataType: 'json'
-      success: ->
-        calendar.fullCalendar 'refetchEvents'
-        return false
-      error: ->
-        calendar.fullCalendar 'refetchEvents'
-    return false
-
-  dropEvent = (event, revertFunc) ->
-    data =
-      _method: 'PUT'
-      event:
-        start: event.start._d
-        end: event.end._d
-    $.ajax
-      type: 'PUT'
-      url: action_url + event.id
-      data: data
-      dataType: 'json'
-      success: ->
-        calendar.fullCalendar 'refetchEvents'
-        return false
-      error: ->
-        calendar.fullCalendar 'refetchEvents'
-    return false
-
-  removeEvent = (event, revertFunc) ->
-    if delete_mode == true
-      res = confirm I18n.t('js.calendar.remove_event.alert')
-      if res == false
-        return false
-      data =
-        _method: 'DELETE'
-      $.ajax
-        type: 'DELETE'
-        url: action_url + event.id
-        data: data
-        dataType: 'json'
-        success: ->
-          calendar.fullCalendar 'refetchEvents'
-          return false
-        error: ->
-          calendar.fullCalendar 'refetchEvents'
-    else
-      calendar.fullCalendar 'refetchEvents'
-    return false
-
-  calendar = $('#calendar').fullCalendar(
+  $('.listingNgevent #calendar').fullCalendar(
     header: {
       left: 'today prev,next title',
       center: '',
@@ -137,29 +58,98 @@ $ ->
     ],
     contentHeight: 500,
     slotEventOverlap: false,
-    events: action_url.replace(/\/$/,'') + '.json',
+    events: "#{if I18n.locale == 'ja' then '' else '/en/'}#{$('.listingNgevent #calendar').data('actionUrl').replace(/\/$/, '')}.json",
     selectable: true,
     selectHelper: true,
     ignoreTimezone: false,
     editable: true,
-    select: createEvent,
-    eventClick: removeEvent,
-    eventResize: resizeEvent,
-    eventDrop: dropEvent,
+    select: (start, end, event, view) ->
+      calendar = $(@).closest('#calendar')
+      unless calendar.data('deleteMode')
+        modal = $('.listingNgevent__calendar__selectModal')
+        modal.data('start', start)
+        modal.data('end', end)
+        $.each [['year', 0], ['month', 1], ['date', 0]], (index, info) ->
+          modal.find("input[type='hidden'][name*='start(#{index + 1}i)']").val(start[info[0]]() + info[1])
+          modal.find("input[type='hidden'][name*='end(#{index + 1}i)']").val(end[info[0]]() + info[1])
+        modal.modal('show')
+    eventClick: (event, jsEvent, view) ->
+      calendar = $(@).closest('#calendar')
+      unless calendar.data('deleteMode')
+        calendar.fullCalendar 'refetchEvents'
+      else
+        if confirm(I18n.t('js.calendar.remove_event.alert'))
+          $.ajax
+            type: 'DELETE',
+            url: event.deletionUrl,
+            dataType: 'json',
+            complete: -> calendar.fullCalendar 'refetchEvents'
+    eventResize: (event, delta, revertFunc, jsEvent, ui, view) ->
+      calendar = $(@).closest('#calendar')
+      $.ajax
+        type: 'PUT'
+        url: event.editingUrl
+        data: {event: {end: moment(event.endWas).add(delta)._d}}
+        dataType: 'json'
+        complete: -> calendar.fullCalendar 'refetchEvents'
+    eventDrop: (event, delta, revertFunc, jsEvent, ui, view) ->
+      calendar = $(@).closest('#calendar')
+      $.ajax
+        type: 'PUT'
+        url: event.editingUrl
+        data: {event: {start: moment(event.startWas).add(delta)._d, end: moment(event.endWas).add(delta)._d}}
+        dataType: 'json'
+        complete: -> calendar.fullCalendar 'refetchEvents'
   )
 
+  $('.listingNgevent__calendar .listingNgevent__calendar__selectModal .listingNgevent__calendar__selectModal__selectDayButton').on 'click', (e)->
+    modal = $(@).closest('.modal')
+    calendar = modal.closest('#calendar')
+    form = modal.find('form')
+    modal.modal('hide')
+    $.ajax
+      type: 'POST'
+      url: form.prop('action')
+      data: form.serialize()
+      dataType: 'json'
+      complete: -> calendar.fullCalendar 'refetchEvents'
+
+  $('.listingNgevent__calendar .listingNgevent__calendar__selectModal .listingNgevent__calendar__selectModal__selectTimeButton').on 'click', (e)->
+    modal = $('.listingNgevent .listingNgevent__timeModal')
+    start = $(@).closest('.modal').data('start')
+    $.each [['year', 0], ['month', 1], ['date', 0]], (index, info) ->
+      modal.find("input[type='hidden'][name*='start(#{index + 1}i)']").val(start[info[0]]() + info[1])
+      modal.find("input[type='hidden'][name*='end(#{index + 1}i)']").val(start[info[0]]() + info[1])
+    modal.find('select[name*="start(4i)"]').val('12')
+    modal.find('select[name*="end(4i)"]').val('13')
+    modal.find('select[name*="(5i)"]').val('00')
+    modal.modal 'show'
+
+  $('.listingNgevent .listingNgevent__timeModal .listingNgevent__timeModal__registrationButton').on 'click', (e)->
+    calendar = $('.listingNgevent #calendar')
+    modal = $(@).closest('.modal')
+    form = modal.find('form')
+    modal.modal('hide')
+    $.ajax
+      type: 'POST'
+      url: form.prop('action')
+      data: form.serialize()
+      dataType: 'json'
+      success: -> calendar.find('.modal').modal('hide')
+      complete: -> calendar.fullCalendar 'refetchEvents'
+
   # delete_btn
-  $('#delete_mode').on 'click', ->
-    $(this).empty()
-    if delete_mode == false
-      $(this).append('<button id="no_delete">' + I18n.t("js.calendar.delete_button.on_mode.label") + '</button>')
-      $('.fc-toolbar').append('<div class="calendar-alert">' + I18n.t("js.calendar.delete_button.on_mode.alert") + '</div>')
+  $('.listingNgevent #calendar').data('deleteMode', false)
+  $(document).on 'click', '.listingNgevent__deleteMode', ->
+    calendar = $('.listingNgevent #calendar')
+    $(@).empty()
+    if calendar.data('deleteMode') == false
+      $(@).append('<button id="no_delete">' + I18n.t('js.calendar.delete_button.on_mode.label') + '</button>')
+      $('.fc-toolbar').append("<div class='calendar-alert'>#{I18n.t('js.calendar.delete_button.on_mode.alert')}</div>")
       $('.fc-view-container').addClass('delete-mode')
-      delete_mode = true
+      calendar.data('deleteMode', true)
     else
-      $(this).append('<button id="delete_btn">' + I18n.t("js.calendar.delete_button.off_mode.label") + '</button>')
+      $(@).append("<button id='delete_btn'>#{I18n.t('js.calendar.delete_button.off_mode.label')}</button>")
       $('.fc-view-container').removeClass('delete-mode')
       $('.calendar-alert').remove()
-      delete_mode = false
-    return
-  return
+      calendar.data('deleteMode', false)

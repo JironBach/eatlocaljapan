@@ -1,36 +1,30 @@
 class ListingNgeventsController < ApplicationController
   before_action :authenticate_user?, except: [:show, :search]
-  before_action :set_my_event, only: [:edit, :update, :destroy]
   before_action :set_listing
-  authorize_resource :user_ngevent
+  before_action :set_my_events, only: [:index]
+  before_action :set_new_event, only: [:create]
+  before_action :set_my_event, only: [:edit, :update, :destroy]
+  authorize_resource :ngevent, class: UserNgevent, parent_action: :update
+  skip_authorize_resource only: [:manage]
 
   # GET /listings/1/ngevents.json
   def index
-    @ngevents = UserNgevent.mine(current_user).where(listing_id: params[:listing_id])
   end
 
   # GET /listings/1/ngevents/search.json
   def search
-    ngs = UserNgevent.opened
-    ngs = ngs.where(listing_id: params[:listing_id])
-    ngs = ngs.around_month(Time.zone.parse(params[:first_day]))
-    @ng_days = ngs.flat_map(&:consecutive_days)
+    @ng_days = @listing.listing_ngevents.around_month(Time.zone.parse(params[:first_day])).flat_map(&:consecutive_days)
   end
 
   def manage
+    start_default = Time.zone.local((now = Time.zone.now).year, now.month, now.day, 12, 0, 0)
+    @ngevent = @listing.listing_ngevents.build(user_id: current_user, reason: :temporary_closed, start: start_default, end: start_default.since(1.hour))
     authorize! :manage, @listing
   end
 
   # POST /listings/1/ngevents
   # POST /listings/1/ngevents.json
   def create
-    ngevent_params = \
-      listing_ngevent_params.merge(
-        listing_id: params[:listing_id],
-        reason: :holiday
-      )
-    @ngevent = UserNgevent.new(ngevent_params).convert_end_of_day
-
     respond_to do |format|
       if @ngevent.save
         format.json { render json: {}, status: :created }
@@ -44,7 +38,7 @@ class ListingNgeventsController < ApplicationController
   # PATCH/PUT /ngevents/1.json
   def update
     @ngevent.assign_attributes(listing_ngevent_params)
-    @ngevent.convert_end_of_day
+    @ngevent.convert_end_of_day if @ngevent.holiday?
 
     respond_to do |format|
       if @ngevent.save
@@ -68,19 +62,27 @@ class ListingNgeventsController < ApplicationController
   end
 
 private
-  def set_event
-    @ngevent = UserNgevent.find(params[:id])
-  end
-
-  def set_my_event
-    @ngevent = UserNgevent.where(id: params[:id], listing_id: params[:listing_id], user_id: current_user).first
-  end
-
   def set_listing
     @listing = Listing.find(params[:listing_id])
   end
 
+  def set_event
+    @ngevent = @listing.listing_ngevents.find(params[:id])
+  end
+
+  def set_my_events
+    @ngevents = @listing.listing_ngevents.mine(current_user)
+  end
+
+  def set_new_event
+    @ngevent = @listing.listing_ngevents.build(user: current_user, **listing_ngevent_params.symbolize_keys).tap { |ngevent| ngevent.holiday? && ngevent.convert_end_of_day }
+  end
+
+  def set_my_event
+    @ngevent = @listing.listing_ngevents.mine(current_user).find(params[:id]) rescue nil
+  end
+
   def listing_ngevent_params
-    params.require(:event).permit(:start, :end).merge(user_id: current_user.id)
+    params.fetch(:event, {}).permit(:reason, :start, :end)
   end
 end
