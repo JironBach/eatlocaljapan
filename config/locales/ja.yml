@@ -944,7 +944,7 @@ ja:
       greeting1: ""
       greeting2: "、こんにちは！"
       msg1: ""
-      msg2: さんからメッセージが届きました！
+      msg2: からメッセージが届きました！
       msg3: 以下のリンクから、内容をご確認ください。
   reservation_mailer:
     send_new_reservation_notification:
@@ -952,7 +952,7 @@ ja:
       greeting1: ""
       greeting2: "、こんにちは！"
       msg1: ""
-      msg2: さんから予約リクエストが届きました！
+      msg2: からの予約・予約リクエストが届いています。
       msg3: 以下のリンクから、内容をご確認ください。
     send_update_reservation_notification:
       subject:
@@ -963,7 +963,7 @@ ja:
       greeting1: ""
       greeting2: "、こんにちは！"
       msg1: ""
-      msg2: さんが予約リクエストを更新しました！
+      msg2: が予約リクエストを更新しました！
       msg3: 以下のリンクから、内容をご確認ください。
   review_mailer:
     send_review_mail:
