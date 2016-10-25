@@ -10,11 +10,12 @@ class ListingsController < ApplicationController
   # GET /listings
   # GET /listings.json
   def index
-    if current_user.admin?
-      @listings = Listing.all.order_by_updated_at_desc
-    else
-      @listings = Listing.mine(current_user.id).order_by_updated_at_desc
-    end
+    @listings = \
+      if current_user.admin?
+        Listing.all.order_by_updated_at_desc
+      else
+        Listing.mine(current_user.id).order_by_updated_at_desc
+      end
   end
 
   # GET /listings/1
@@ -28,7 +29,7 @@ class ListingsController < ApplicationController
     @host_info = Profile.find_by(user_id: @listing.user_id)
     @host_image = ProfileImage.find_by(user_id: @listing.user_id)
     @message = Message.new
-    #@wishlists = Wishlist.mine(current_user).order_by_created_at_desc
+    # @wishlists = Wishlist.mine(current_user).order_by_created_at_desc
     gon.listing = @listing
     @reservation = Reservation.new
   end
@@ -48,28 +49,28 @@ class ListingsController < ApplicationController
     @listing.visit_benefits_another_en = EasyTranslate.translate(@listing.visit_benefits_another, to: :en) if @listing.visit_benefits_another_en.blank?
   end
 
+  # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
   # POST /listings
   # POST /listings.json
   def create
     @listing = Listing.new(listing_params)
-    #@listing.description_en = "(Translated by Google)
-    #{EasyTranslate.translate(@listing.description, to: :en)}" if @listing.description_en.blank?
-    @listing.shop_description_en = @listing.shop_description_en.blank? && !@listing.shop_description.blank? ? "(Translated by Google)
-#{EasyTranslate.translate(@listing.shop_description, to: :en)}" : @listing.shop_description_en
-    @listing.description_en = @listing.description_en.blank? && !@listing.description.blank? ? "(Translated by Google)
-#{EasyTranslate.translate(@listing.description, to: :en)}" : @listing.description_en
-    @listing.location_en = @listing.location_en.blank? && !@listing.location.blank? ? "#{EasyTranslate.translate(@listing.location, to: :en)}" : @listing.location_en
-    @listing.recommended_en = @listing.recommended_en.blank? && !@listing.recommended.blank? ? "(Translated by Google)
-#{EasyTranslate.translate(@listing.recommended, to: :en)}" : @listing.recommended_en
-    @listing.visit_benefits_en = @listing.visit_benefits_en.blank? && !@listing.visit_benefits.blank? ? "(Translated by Google)
-#{EasyTranslate.translate(@listing.visit_benefits, to: :en)}" : @listing.visit_benefits_en
-    @listing.visit_benefits_another_en = @listing.visit_benefits_another_en.blank? && !@listing.visit_benefits_another.blank? ? "(Translated by Google)
-#{EasyTranslate.translate(@listing.visit_benefits_another, to: :en)}" : @listing.visit_benefits_another_en
+    # @listing.description_en = "(Translated by Google) #{EasyTranslate.translate(@listing.description, to: :en)}" if @listing.description_en.blank?
+    @listing.shop_description_en = "(Translated by Google) #{EasyTranslate.translate(@listing.shop_description, to: :en)}" \
+      if @listing.shop_description_en.blank? && !@listing.shop_description.blank?
+    @listing.description_en = "(Translated by Google) #{EasyTranslate.translate(@listing.description, to: :en)}" \
+      if @listing.description_en.blank? && !@listing.description.blank?
+    @listing.location_en = EasyTranslate.translate(@listing.location, to: :en) if @listing.location_en.blank? && !@listing.location.blank?
+    @listing.recommended_en = "(Translated by Google) #{EasyTranslate.translate(@listing.recommended, to: :en)}" \
+      if @listing.recommended_en.blank? && !@listing.recommended.blank?
+    @listing.visit_benefits_en = "(Translated by Google) #{EasyTranslate.translate(@listing.visit_benefits, to: :en)}" \
+      if @listing.visit_benefits_en.blank? && !@listing.visit_benefits.blank?
+    @listing.visit_benefits_another_en = "(Translated by Google) #{EasyTranslate.translate(@listing.visit_benefits_another, to: :en)}" \
+      if @listing.visit_benefits_another_en.blank? && !@listing.visit_benefits_another.blank?
     if @listing.valid?
       @listing.save!
-      # 緯度・経度
+      # longitude and latitude
       @listing.set_lon_lat
-      # カテゴリー
+      # categories
       unless params[:shop_categories].nil?
         @listing.shop_categories = []
         params[:shop_categories].each do |sc|
@@ -79,7 +80,7 @@ class ListingsController < ApplicationController
           end
         end
       end
-      # サービス
+      # services
       unless params[:shop_services].nil?
         @listing.shop_services = []
         params[:shop_services].each do |ss|
@@ -89,7 +90,7 @@ class ListingsController < ApplicationController
           end
         end
       end
-      # 英語セット
+      # englishes
       unless params[:englishes].nil?
         @listing.englishes = []
         params[:englishes].each do |e|
@@ -103,8 +104,11 @@ class ListingsController < ApplicationController
       @listing.business_hours = []
       7.times do |wday|
         is_open = params[:is_open][wday.to_s].include?('1')
-        start_hour = DateTime.parse("#{params[:start_hour][wday.to_s]['(1i)']}-#{params[:start_hour][wday.to_s]['(2i)']}-#{params[:start_hour][wday.to_s]['(3i)']} #{params[:start_hour][wday.to_s]['(4i)']}: #{params[:start_hour][wday.to_s]['(5i)']}: 0") unless params[:start_hour][wday.to_s]['(3i)'].blank?
-        end_hour = DateTime.parse("#{params[:end_hour][wday.to_s]['(1i)']}-#{params[:end_hour][wday.to_s]['(2i)']}-#{params[:end_hour][wday.to_s]['(3i)']} #{params[:end_hour][wday.to_s]['(4i)']}: #{params[:end_hour][wday.to_s]['(5i)']}: 0") unless params[:end_hour][wday.to_s]['(3i)'].blank?
+        start_hour, end_hour = \
+          [:start_hour, :end_hour].map do |field|
+            Time.zone.parse(format('%s-%s-%s %s:%s:0', *params[field][wday.to_s].values_at(*(1..5).map { |index| "(#{index}i)" }))) \
+              unless params[field][wday.to_s]['(3i)'].blank?
+          end
         business_hour = BusinessHour.new(wday: wday, is_open: is_open, start_hour: start_hour, end_hour: end_hour)
         @listing.business_hours << business_hour
       end
@@ -118,7 +122,7 @@ class ListingsController < ApplicationController
         end
       end
       @listing.info_admin_id = params[:info_admin_id][0] unless params[:info_admin_id].nil?
-      # 保存
+      # save
       @listing.save!
       respond_to do |format|
         if @listing.save
@@ -130,10 +134,12 @@ class ListingsController < ApplicationController
       end
     else
       flash[:notice] = I18n.t('alerts.listings.set_lon_lat.error')
-      return render :new#, notice: I18n.t('alerts.listings.set_lon_lat.error')
+      return render :new # , notice: I18n.t('alerts.listings.set_lon_lat.error')
     end
   end
+  # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
 
+  # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
   # PATCH/PUT /listings/1
   # PATCH/PUT /listings/1.json
   def update
@@ -141,22 +147,46 @@ class ListingsController < ApplicationController
     user_id = @listing.user_id
     @listing.assign_attributes(listing_params)
     @listing.user_id = user_id if @listing.user_id.nil?
-    #@listing.description_en = "(Translated by Google)
-    #{EasyTranslate.translate(@listing.description, to: :en)}" if @listing.description_en.blank?
-    @listing.shop_description_en = @listing.shop_description_en.blank? && !@listing.shop_description.blank? ? "(Translated by Google)
-#{EasyTranslate.translate(@listing.shop_description, to: :en)}" : @listing.shop_description_en
-    @listing.location_en = @listing.location_en.blank? && !@listing.location.blank? ? "#{EasyTranslate.translate(@listing.location, to: :en)}" : @listing.location_en
-    @listing.recommended_en = @listing.recommended_en.blank? && !@listing.recommended.blank? ? "(Translated by Google)
-#{EasyTranslate.translate(@listing.recommended, to: :en)}" : @listing.recommended_en
-    @listing.visit_benefits_en = @listing.visit_benefits_en.blank? && !@listing.visit_benefits.blank? ? "(Translated by Google)
-#{EasyTranslate.translate(@listing.visit_benefits, to: :en)}" : @listing.visit_benefits_en
-    @listing.visit_benefits_another_en = @listing.visit_benefits_another_en.blank? && !@listing.visit_benefits_another.blank? ? "(Translated by Google)
-#{EasyTranslate.translate(@listing.visit_benefits_another, to: :en)}" : @listing.visit_benefits_another_en
+    # @listing.description_en = "(Translated by Google) #{EasyTranslate.translate(@listing.description, to: :en)}" if @listing.description_en.blank?
+    @listing.shop_description_en = "(Translated by Google) #{EasyTranslate.translate(@listing.shop_description, to: :en)}" \
+      if @listing.shop_description_en.blank? && !@listing.shop_description.blank?
+    @listing.location_en = EasyTranslate.translate(@listing.location, to: :en) if @listing.location_en.blank? && !@listing.location.blank?
+    @listing.recommended_en = "(Translated by Google) #{EasyTranslate.translate(@listing.recommended, to: :en)}" \
+      if @listing.recommended_en.blank? && !@listing.recommended.blank?
+    @listing.visit_benefits_en = "(Translated by Google) #{EasyTranslate.translate(@listing.visit_benefits, to: :en)}" \
+      if @listing.visit_benefits_en.blank? && !@listing.visit_benefits.blank?
+    @listing.visit_benefits_another_en = "(Translated by Google) #{EasyTranslate.translate(@listing.visit_benefits_another, to: :en)}" \
+      if @listing.visit_benefits_another_en.blank? && !@listing.visit_benefits_another.blank?
     if @listing.valid?
-      sql = ActiveRecord::Base.send(:sanitize_sql_array, ["update listings set description_en = ?, shop_description_en = ?, location_en = ?, recommended_en = ?, visit_benefits_en = ?, visit_benefits_another_en = ? where id = #{@listing.id};", @listing.description_en, @listing.shop_description_en, @listing.location_en, @listing.recommended_en, @listing.visit_benefits_en, @listing.visit_benefits_another_en])
-      # 緯度・経度
+      sql = \
+        ActiveRecord::Base.send(
+          :sanitize_sql_array,
+          [
+            <<-EOS,
+              update
+                listings
+              set
+                description_en = ?,
+                shop_description_en = ?,
+                location_en = ?,
+                recommended_en = ?,
+                visit_benefits_en = ?,
+                visit_benefits_another_en = ?
+              where
+                id = #{@listing.id}
+              ;
+            EOS
+            @listing.description_en,
+            @listing.shop_description_en,
+            @listing.location_en,
+            @listing.recommended_en,
+            @listing.visit_benefits_en,
+            @listing.visit_benefits_another_en
+          ]
+        )
+      # longitude and latitude
       @listing.set_lon_lat
-      # カテゴリー
+      # categories
       unless params[:shop_categories].nil?
         @listing.shop_categories = []
         params[:shop_categories].each do |sc|
@@ -166,7 +196,7 @@ class ListingsController < ApplicationController
           end
         end
       end
-      # サービス
+      # services
       unless params[:shop_services].nil?
         @listing.shop_services = []
         params[:shop_services].each do |ss|
@@ -177,7 +207,7 @@ class ListingsController < ApplicationController
         end
       end
       @listing.smoking_id = params[:smoking_id][0]
-      # 英語セット
+      # englishes
       unless params[:englishes].nil?
         @listing.englishes = []
         params[:englishes].each do |e|
@@ -190,8 +220,10 @@ class ListingsController < ApplicationController
       @listing.business_hours = []
       7.times do |wday|
         is_open = params[:is_open][wday.to_s].include?('1')
-        start_hour = DateTime.parse("1-1-1 #{params[:start_hour][wday.to_s]['(4i)']}: #{params[:start_hour][wday.to_s]['(5i)']}:0") unless params[:start_hour][wday.to_s]['(3i)'].blank?
-        end_hour = DateTime.parse("1-1-1 #{params[:end_hour][wday.to_s]['(4i)']}: #{params[:end_hour][wday.to_s]['(5i)']}:0") unless params[:end_hour][wday.to_s]['(3i)'].blank?
+        start_hour = Time.zone.parse("1-1-1 #{params[:start_hour][wday.to_s]['(4i)']}: #{params[:start_hour][wday.to_s]['(5i)']}:0") \
+          unless params[:start_hour][wday.to_s]['(3i)'].blank?
+        end_hour = Time.zone.parse("1-1-1 #{params[:end_hour][wday.to_s]['(4i)']}: #{params[:end_hour][wday.to_s]['(5i)']}:0") \
+          unless params[:end_hour][wday.to_s]['(3i)'].blank?
         business_hour = BusinessHour.new(wday: wday, is_open: is_open, start_hour: start_hour, end_hour: end_hour)
         @listing.business_hours << business_hour
       end
@@ -213,10 +245,11 @@ class ListingsController < ApplicationController
           format.html { redirect_to manage_listing_listing_images_path(@listing.id), notice: I18n.t('alerts.listings.update.failure', model: Listing.model_name.human) }
         end
       end
-    else
-      #return render json: { success: false, errors: 'lonlat_failure'}
+      # else
+      #   return render json: { success: false, errors: 'lonlat_failure'}
     end
   end
+  # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
 
   # DELETE /listings/1
   # DELETE /listings/1.json
@@ -229,48 +262,67 @@ class ListingsController < ApplicationController
   end
 
   def search_detail
-    if current_user.nil?
-      @listings = Listing.mine(0)
-    else
-      @listings = Listing.mine(current_user.id).order_by_updated_at_desc
-    end
+    @listings = \
+      if current_user.nil?
+        Listing.mine(0)
+      else
+        Listing.mine(current_user.id).order_by_updated_at_desc
+      end
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
   def search
-    #listings = Listing.search(search_params).opened.page(params[:page])
-    where = Array.new
-    categories_id = Array.new
-    services_id = Array.new
-    if params[:shop_categories].class == String
-      shop_categories = params[:shop_categories] unless params[:shop_categories].blank?
-    else
-      shop_categories = params[:shop_categories].compact.delete_if(&:empty?) unless params[:shop_categories].blank?
+    # listings = Listing.search(search_params).opened.page(params[:page])
+    where = []
+    categories_id = []
+    services_id = []
+    shop_categories = \
+      if params[:shop_categories].class == String
+        params[:shop_categories] unless params[:shop_categories].blank?
+      else
+        params[:shop_categories].compact.delete_if(&:empty?) unless params[:shop_categories].blank?
+      end
+    unless shop_categories.blank?
+      categories_id.push(
+        ActiveRecord::Base.send(
+          :sanitize_sql_array,
+          ['select listing_id from listings_shop_categories where shop_category_id in (:ids)', ids: shop_categories]
+        )
+      )
     end
-    categories_id.push(ActiveRecord::Base.send(:sanitize_sql_array, ["select listing_id from listings_shop_categories where shop_category_id in (:ids)", ids: shop_categories])) unless shop_categories.blank?
-    where.push("id in (" + categories_id.join(" union ") + ")") unless categories_id.blank?
-    if params[:shop_categories].class == String
-      shop_services = params[:shop_services] unless params[:shop_services].blank?
-    else
-      shop_services = params[:shop_services].compact.delete_if(&:empty?) unless params[:shop_services].blank?
+    where.push('id in (' + categories_id.join(' union ') + ')') unless categories_id.blank?
+    shop_services = \
+      if params[:shop_categories].class == String
+        params[:shop_services] unless params[:shop_services].blank?
+      else
+        params[:shop_services].compact.delete_if(&:empty?) unless params[:shop_services].blank?
+      end
+    unless shop_services.blank?
+      services_id.push(
+        ActiveRecord::Base.send(
+          :sanitize_sql_array,
+          ['select listing_id from listings_shop_services where shop_service_id in (:ids)', ids: shop_services]
+        )
+      )
     end
-    services_id.push(ActiveRecord::Base.send(:sanitize_sql_array, ["select listing_id from listings_shop_services where shop_service_id in (:ids)", ids: shop_services])) unless shop_services.blank?
-    sql = "select * from listings "
-    where.push("id in (" + services_id.join(" union ") + ")") unless services_id.blank?
-    where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["smoking_id in (:ids)", ids: params[:smoking_id]])) unless params[:smoking_id].blank?
-    where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["english_id = ?", params[:english_id]])) unless params[:english_id].blank?
-    where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["price_high <= ?", params[:price]])) unless params[:price].blank?
+    sql = 'select * from listings '
+    where.push('id in (' + services_id.join(' union ') + ')') unless services_id.blank?
+    where.push(ActiveRecord::Base.send(:sanitize_sql_array, ['smoking_id in (:ids)', ids: params[:smoking_id]])) unless params[:smoking_id].blank?
+    where.push(ActiveRecord::Base.send(:sanitize_sql_array, ['english_id = ?', params[:english_id]])) unless params[:english_id].blank?
+    where.push(ActiveRecord::Base.send(:sanitize_sql_array, ['price_high <= ?', params[:price]])) unless params[:price].blank?
     pref_id = params[:prefectures]
     pref = Prefecture.find(pref_id) unless pref_id.blank?
-    where.push(ActiveRecord::Base.send(:sanitize_sql_array, ["(location like ? or location like ?)", "%#{pref.name}%", "%#{pref.name_en}%"])) unless pref.blank?
-    where.push("open = true")
-    sql += "where " + where.join(" and ") unless where.blank?
+    where.push(ActiveRecord::Base.send(:sanitize_sql_array, ['(location like ? or location like ?)', "%#{pref.name}%", "%#{pref.name_en}%"])) unless pref.blank?
+    where.push('open = true')
+    sql += 'where ' + where.join(' and ') unless where.blank?
     listings = ActiveRecord::Base.connection.execute(sql).to_a
-    #gon.listings = listings
+    # gon.listings = listings
     @hit_count = listings.count
     @listings = Kaminari.paginate_array(listings).page(params[:page]).per(10)
     @conditions = params
     @listing = Listing.new
   end
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
 
   def publish
     authorize! :publish, @listing
@@ -297,46 +349,48 @@ class ListingsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_listing
-      @listing = Listing.where(id: params[:id]).first
-      return redirect_to root_path, notice: Settings.listings.error.invalid_listing_id if @listing.blank?
-    end
+private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_listing
+    @listing = Listing.where(id: params[:id]).first
+    return redirect_to root_path, notice: Settings.listings.error.invalid_listing_id if @listing.blank?
+  end
 
-    def set_listing_obj
-      @listing = Listing.find(params[:listing_id])
-    end
+  def set_listing_obj
+    @listing = Listing.find(params[:listing_id])
+  end
 
-    def set_listing_related_data
-      @listing_image = ListingImage.find_by(listing_id: @listing.id)
-      @confection = Confection.find_by(listing_id: @listing.id)
-      @dress_code = DressCode.find_by(listing_id: @listing.id)
-      @tool = Tool.find_by(listing_id: @listing.id)
-    end
+  def set_listing_related_data
+    @listing_image = ListingImage.find_by(listing_id: @listing.id)
+    @confection = Confection.find_by(listing_id: @listing.id)
+    @dress_code = DressCode.find_by(listing_id: @listing.id)
+    @tool = Tool.find_by(listing_id: @listing.id)
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def listing_params
-      params.require(:listing).permit(
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def listing_params
+    params \
+      .require(:listing) \
+      .permit(
         :user_id, :evaluation_count,
         :ave_total, :ave_accuracy, :ave_communication, :ave_cleanliness,
         :ave_location, :ave_check_in, :ave_cost_performance, :open,
         :zipcode, :location, :location_en, :longitude, :latitude, :delivery_flg, :price,
         :description, :description_en, :title, :title_en, :capacity, :direction, :schedule, :listing_images,
         :cover_image, :cover_image_caption, :cover_video, :cover_video_caption,
-        #{shop_categories: []}, {shop_services: []}, {englishes: []},
+        # {shop_categories: []}, {shop_services: []}, {englishes: []},
         :smoking_id,
         :business_hours_remarks, :shop_description, :shop_description_en,
         :price_low, :price_high, :tel, :url, :review_url,
         :recommended, :recommended_en, :visit_benefits, :visit_benefits_en, :visit_benefits_another, :visit_benefits_another_en,
         :price_low_dinner, :price_high_dinner, :link_tabelog, :link_yelp, :link_tripadvisor,
-        listing_image_attributes: [:listing_id, :image, :order, :capacity],
-      ).merge(user_id: current_user.id)
-    end
+        listing_image_attributes: [:listing_id, :image, :order, :capacity]
+      ) \
+      .merge(user_id: current_user.id)
+  end
 
-    def search_params
-      params.require(:search).permit(:location, :schedule, :num_of_guest, :price, :keywords, :where,
-        #:shop_categories, :shop_services, :englishes
-        )
-    end
+  def search_params
+    # params.require(:search).permit(:location, :schedule, :num_of_guest, :price, :keywords, :where, :shop_categories, :shop_services, :englishes)
+    params.require(:search).permit(:location, :schedule, :num_of_guest, :price, :keywords, :where)
+  end
 end

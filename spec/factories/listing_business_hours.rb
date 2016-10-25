@@ -12,10 +12,7 @@
 #
 #  index_listing_business_hours_on_listing_id_and_business_hour_id  (listing_id,business_hour_id) UNIQUE
 #
-
 FactoryGirl.define do
   factory :listing_business_hour do
-    
   end
-
 end

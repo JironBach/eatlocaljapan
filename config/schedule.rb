@@ -17,16 +17,16 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
-#work_hour_per_two = ('6'..'24').to_a.collect {|x| ["#{x}:00"] if x%3 == 0}.flatten
-#every 1.day, at: work_hour_per_two do
-#  rake "review_mail:send"
-#end
+# work_hour_per_two = ('6'..'24').to_a.collect {|x| ["#{x}:00"] if x%3 == 0}.flatten
+# every 1.day, at: work_hour_per_two do
+#   rake "review_mail:send"
+# end
 
 every 1.day at: '0:55 pm' do
-  rake "review_mail:send"
+  rake 'review_mail:send'
 end
 
 every 1.day at: '0:55 am' do
-  rake "ngevent:close"
+  rake 'ngevent:close'
 end
 # Learn more: http://github.com/javan/whenever

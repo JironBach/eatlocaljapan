@@ -13,12 +13,11 @@
 #
 #  index_dress_codes_on_listing_id  (listing_id)
 #
-
 class DressCode < ActiveRecord::Base
   belongs_to :listing
 
   validates :listing_id, presence: true
 
   scope :order_asc, -> { order('order_num asc') }
-  scope :records, -> listing_id { where(listing_id: listing_id) }
+  scope :records, ->(listing_id) { where(listing_id: listing_id) }
 end

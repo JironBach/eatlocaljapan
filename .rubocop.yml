@@ -1,0 +1,128 @@
+AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 2.3
+  Exclude:
+    - Gemfile
+    - db/fixtures/**/*
+    - db/schema.rb
+    - db/migrate/*
+    - vendor/**/*
+    - spec/spec_helper.rb
+
+Style/AccessModifierIndentation:
+  EnforcedStyle: outdent
+
+Style/Documentation:
+  Enabled: false
+
+Style/EmptyLinesAroundAccessModifier:
+  Enabled: false
+
+#Style/Encoding:
+#  Enabled: true
+#  EnforcedStyle: never
+Style/Encoding:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Style/Lambda:
+  Enabled: literal
+
+Style/LambdaCall:
+  Enabled: false
+
+Style/MultilineOperationIndentation:
+  Enabled: false
+
+Style/MultilineTernaryOperator:
+  Enabled: false
+
+Style/NestedTernaryOperator:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+
+Style/PerlBackrefs:
+  Enabled: false
+
+Style/RaiseArgs:
+  EnforcedStyle: compact
+
+Style/RescueModifier:
+  Enabled: false
+
+Style/RegexpLiteral:
+  EnforcedStyle: slashes
+  AllowInnerSlashes: true
+
+Style/SingleLineBlockParams:
+  Enabled: false
+
+Style/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: no_space
+
+Style/SpaceInsideBlockBraces:
+  EnforcedStyle: space
+  EnforcedStyleForEmptyBraces: space
+  SpaceBeforeBlockParameters: true
+
+Style/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
+Style/TrailingBlankLines:
+  Enabled: false
+
+Style/UnlessElse:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 128
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/LineLength:
+  Max: 176
+
+Metrics/MethodLength:
+  Max: 36
+
+Metrics/ParameterLists:
+  Max: 8
+  CountKeywordArgs: true
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+Lint/AssignmentInCondition:
+  Enabled: false
+
+Lint/ConditionPosition:
+  Enabled: false
+
+Lint/HandleExceptions:
+  Enabled: false
+
+Lint/Loop:
+  Enabled: false
+
+Lint/UnusedBlockArgument:
+  Enabled: false
+
+Lint/UnusedMethodArgument:
+  Enabled: false
+
+Rails:
+  Enabled: true

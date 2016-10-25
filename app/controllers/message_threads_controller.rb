@@ -13,7 +13,7 @@ class MessageThreadsController < ApplicationController
       @message_threads << MessageThread.find(mt_id)
     end
     # @message_threads.sort_by! { |mt| mt.updated_at }
-    @message_threads.sort_by! &:updated_at
+    @message_threads.sort_by!(&:updated_at)
     @message_threads.reverse!
   end
 
@@ -23,7 +23,7 @@ class MessageThreadsController < ApplicationController
     Message.make_all_read(@message_thread.id, current_user.id)
     counterpart_user_id = MessageThreadUser.counterpart_user(@message_thread.id, current_user.id)
     @message = Message.new
-    @messages
+    @messages ||= nil
     @counterpart = User.find(counterpart_user_id)
   end
 
@@ -67,22 +67,22 @@ class MessageThreadsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_message_thread
-      @message_thread = MessageThread.find(params[:id])
-    end
+private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_message_thread
+    @message_thread = MessageThread.find(params[:id])
+  end
 
-    def set_messages
-      @messages = Message.message_thread(params[:id]).order_by_created_at_desc
-    end
+  def set_messages
+    @messages = Message.message_thread(params[:id]).order_by_created_at_desc
+  end
 
-    def message_thread_user?
-      redirect_to message_threads_path unless MessageThreadUser.is_a_member(params[:id], current_user.id)
-    end
+  def message_thread_user?
+    redirect_to message_threads_path unless MessageThreadUser.is_a_member(params[:id], current_user.id)
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def message_thread_params
-      params.require(:message_thread).permit(:id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def message_thread_params
+    params.require(:message_thread).permit(:id)
+  end
 end

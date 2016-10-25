@@ -19,20 +19,20 @@ class ConfectionsController < ApplicationController
     @confection = Confection.new(confection_params)
     if @confection.save
       redirect_to manage_listing_confections_path(@listing.id), notice: I18n.t('alerts.confections.save.success', model: Confection.model_name.human)
-      #render json: { success: true, status: :created, location: @confection }
+      # render json: { success: true, status: :created, location: @confection }
     else
       redirect_to manage_listing_confections_path(@listing.id), notice: I18n.t('alerts.confections.save.failure', model: Confection.model_name.human)
-      #render json: { success: false, errors: @confection.errors, status: :unprocessable_entity }
+      # render json: { success: false, errors: @confection.errors, status: :unprocessable_entity }
     end
   end
 
   def update
     if @confection.update(confection_params)
       redirect_to manage_listing_confections_path(@listing.id), notice: I18n.t('alerts.confections.save.success', model: Confection.model_name.human)
-      #render json: { success: true, status: :created, location: @confection }
+      # render json: { success: true, status: :created, location: @confection }
     else
       redirect_to manage_listing_confections_path(@listing.id), notice: I18n.t('alerts.confections.save.failure', model: Confection.model_name.human)
-      #render json: { success: true, errors: @confection.errors, status: :unprocessable_entity }
+      # render json: { success: true, errors: @confection.errors, status: :unprocessable_entity }
     end
   end
 
@@ -44,17 +44,16 @@ class ConfectionsController < ApplicationController
     end
   end
 
-  private
-    def set_confection
-      @confection = Confection.find(params[:id])
-    end
+private
+  def set_confection
+    @confection = Confection.find(params[:id])
+  end
 
-    def set_listing
-      @listing = Listing.find(params[:listing_id])
-    end
+  def set_listing
+    @listing = Listing.find(params[:listing_id])
+  end
 
-    def confection_params
-      params.require(:confection).permit(:listing_id, :name, :image, :url)
-        .merge(listing_id: @listing.id)
-    end
+  def confection_params
+    params.require(:confection).permit(:listing_id, :name, :image, :url).merge(listing_id: @listing.id)
+  end
 end

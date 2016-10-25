@@ -15,7 +15,6 @@
 #  index_confections_on_listing_id           (listing_id)
 #  index_confections_on_listing_id_and_name  (listing_id,name) UNIQUE
 #
-
 class Confection < ActiveRecord::Base
   belongs_to :listing
 
@@ -24,7 +23,7 @@ class Confection < ActiveRecord::Base
 
   mount_uploader :image, DefaultImageUploader
 
-  scope :mine, -> listing_id { where(listing_id: listing_id) }
+  scope :mine, ->(listing_id) { where(listing_id: listing_id) }
   scope :order_asc, -> { order('order_num asc') }
-  scope :records, -> listing_id { where(listing_id: listing_id) }
+  scope :records, ->(listing_id) { where(listing_id: listing_id) }
 end

@@ -23,15 +23,13 @@
 #
 # and, you'll have to watch "config/Guardfile" instead of "Guardfile"
 
-# RSpecが失敗したら、RuboCopをスキップする
+# skip rubocop execution when any cases of rspec is failed
 group :red_green_refactor, halt_on_fail: true, spring: true do
-
   guard :rubocop, all_on_start: false, cli: ['--format', 'clang', '--rails'] do
-    watch(%r{.+\.rb$})
-    watch(%r{.+\.rake$}) # .rakeファイルも監視対象にする
-    watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
+    watch(/.+\.rb$/)
+    watch(/.+\.rake$/) # add rake files to observing targets
+    watch(/(?:.+\/)?\.rubocop\.yml$/) { |m| File.dirname(m[0]) }
   end
-
 
   # Note: The cmd option is now required due to the increasing number of ways
   #       rspec may be run, below are examples of the most common uses.
@@ -42,8 +40,8 @@ group :red_green_refactor, halt_on_fail: true, spring: true do
   #  * zeus: 'zeus rspec' (requires the server to be started separately)
   #  * 'just' rspec: 'rspec'
 
-  guard :rspec, cmd: "bundle exec rspec" do
-    require "guard/rspec/dsl"
+  guard :rspec, cmd: 'bundle exec rspec' do
+    require 'guard/rspec/dsl'
     dsl = Guard::RSpec::Dsl.new(self)
 
     # Feel free to open issues for suggestions and improvements
@@ -77,27 +75,24 @@ group :red_green_refactor, halt_on_fail: true, spring: true do
     watch(rails.app_controller)  { "#{rspec.spec_dir}/controllers" }
 
     # Capybara features specs
-    watch(rails.view_dirs)     { |m| rspec.spec.("features/#{m[1]}") }
+    watch(rails.view_dirs) { |m| rspec.spec.("features/#{m[1]}") }
 
     ## Turnip features and steps
-    #watch(%r{^spec/acceptance/(.+)\.feature$})
-    #watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$}) do |m|
-    #  Dir[File.join("**/#{m[1]}.feature")][0] || "spec/acceptance"
-    #end
+    # watch(/^spec\/acceptance\/(.+)\.feature$/)
+    # watch(/^spec\/acceptance\/steps\/(.+)_steps\.rb$/) do |m|
+    #   Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance'
+    # end
   end
-
 
   guard 'livereload' do
-    watch(%r{app/views/.+\.(erb|haml|slim)$})
-    watch(%r{app/helpers/.+\.rb})
-    watch(%r{public/.+\.(css|js|html)})
-    watch(%r{config/locales/.+\.yml})
+    watch(/app\/views\/.+\.(erb|haml|slim)$/)
+    watch(/app\/helpers\/.+\.rb/)
+    watch(/public\/.+\.(css|js|html)/)
+    watch(/config\/locales\/.+\.yml/)
     # Rails Assets Pipeline
-    watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html|png|jpg))).*}) { |m| "/assets/#{m[3]}" }
+    watch(/(app|vendor)(\/assets\/\w+\/(.+\.(css|js|html|png|jpg))).*/) { |m| "/assets/#{m[3]}" }
   end
-
 end
-
 
 # Note: The cmd option is now required due to the increasing number of ways
 #       rspec may be run, below are examples of the most common uses.
@@ -109,7 +104,7 @@ end
 #  * 'just' rspec: 'rspec'
 
 guard :rspec, cmd: 'spring rspec -f doc' do
-  require "guard/rspec/dsl"
+  require 'guard/rspec/dsl'
   dsl = Guard::RSpec::Dsl.new(self)
 
   # Feel free to open issues for suggestions and improvements
@@ -143,11 +138,11 @@ guard :rspec, cmd: 'spring rspec -f doc' do
   watch(rails.app_controller)  { "#{rspec.spec_dir}/controllers" }
 
   # Capybara features specs
-  watch(rails.view_dirs)     { |m| rspec.spec.("features/#{m[1]}") }
+  watch(rails.view_dirs) { |m| rspec.spec.("features/#{m[1]}") }
 
   # Turnip features and steps
-  watch(%r{^spec/acceptance/(.+)\.feature$})
-  watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$}) do |m|
-    Dir[File.join("**/#{m[1]}.feature")][0] || "spec/acceptance"
+  watch(/^spec\/acceptance\/(.+)\.feature$/)
+  watch(/^spec\/acceptance\/steps\/(.+)_steps\.rb$/) do |m|
+    Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance'
   end
 end

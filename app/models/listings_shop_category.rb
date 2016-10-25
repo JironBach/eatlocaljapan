@@ -12,6 +12,5 @@
 #
 #  index_listing_shop_categories  (listing_id,shop_category_id) UNIQUE
 #
-
 class ListingsShopCategory < ActiveRecord::Base
 end

@@ -15,6 +15,5 @@
 #
 #  index_business_hours_on_listing_id_and_wday  (listing_id,wday) UNIQUE
 #
-
 class BusinessHour < ActiveRecord::Base
 end
