@@ -7,7 +7,7 @@ Rails.application.configure do
   config.cache_classes = false
 
   # Do not eager load code on boot.
-  #config.eager_load = false
+  # config.eager_load = false
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
@@ -33,28 +33,28 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
   # gem bullet
-  #config.after_initialize do
-  #  Bullet.enable = true # Bulletプラグインを有効
-  #  Bullet.alert = true # JavaScriptでの通知
-  #  Bullet.bullet_logger = true # log/bullet.logへの出力
-  #  Bullet.console = true # ブラウザのコンソールログに記録
-  #  Bullet.rails_logger = true # Railsログに出力
-  #end
+  # config.after_initialize do
+  #   Bullet.enable = true # enable Bullet plugin
+  #   Bullet.alert = true # enable JavaScript notification
+  #   Bullet.bullet_logger = true # enable logging
+  #   Bullet.console = true # enable Browser console log with Bullet
+  #   Bullet.rails_logger = true # enable Rails log with Bullet
+  # end
 
   # Raises error for missing translations
   config.action_view.raise_on_missing_translations = true
   # Mailer
-  config.action_mailer.default_url_options = { :host => 'eatlocaljapan.mydns.jp' }
+  config.action_mailer.default_url_options = {host: 'eatlocaljapan.mydns.jp'}
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :enable_starttls_auto => true,
-    :openssl_verify_mode => 'none',
-    :address => Rails.application.secrets.action_mailer_host,
-    :port => Rails.application.secrets.action_mailer_port,
-    :authentication => :plain,
-    :user_name => Rails.application.secrets.action_mailer_user_name,
-    :password => Rails.application.secrets.action_mailer_password,
+    enable_starttls_auto: true,
+    openssl_verify_mode: 'none',
+    address: Rails.application.secrets.action_mailer_host,
+    port: Rails.application.secrets.action_mailer_port,
+    authentication: :plain,
+    user_name: Rails.application.secrets.action_mailer_user_name,
+    password: Rails.application.secrets.action_mailer_password
   }
 
   config.action_controller.action_on_unpermitted_parameters = :raise

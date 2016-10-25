@@ -11,10 +11,7 @@
 #  description    :string
 #  description_en :string
 #
-
 FactoryGirl.define do
   factory :menu do
-    
   end
-
 end

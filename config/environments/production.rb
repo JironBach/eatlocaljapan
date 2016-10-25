@@ -16,37 +16,43 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
-  config.cache_store = :dalli_store,
-   (ENV["MEMCACHIER_SERVERS"] || "").split(","),
-   {:username => ENV["MEMCACHIER_USERNAME"],
-    :password => ENV["MEMCACHIER_PASSWORD"],
-    :failover => true,
-    :socket_timeout => 1.5,
-    :socket_failure_delay => 0.2
-   }
+  config.cache_store = \
+    :dalli_store,
+    (ENV['MEMCACHIER_SERVERS'] || '').split(','),
+    {
+      username: ENV['MEMCACHIER_USERNAME'],
+      password: ENV['MEMCACHIER_PASSWORD'],
+      failover: true,
+      socket_timeout: 1.5,
+      socket_failure_delay: 0.2
+    }
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
   # For large-scale production use, consider using a caching reverse proxy like
   # NGINX, varnish or squid.
   config.action_dispatch.rack_cache = true
-  config.middleware.use Rack::Cache,
-    :verbose => true,
-    :metastore   => 'file:/var/cache/rack/meta',
-    :entitystore => 'file:/var/cache/rack/body'
+  config.middleware.use \
+    Rack::Cache,
+    verbose: true,
+    metastore: 'file:/var/cache/rack/meta',
+    entitystore: 'file:/var/cache/rack/body'
 
-  client = Dalli::Client.new((ENV["MEMCACHIER_SERVERS"] || "").split(","),
-                           :username => ENV["MEMCACHIER_USERNAME"],
-                           :password => ENV["MEMCACHIER_PASSWORD"],
-                           :failover => true,
-                           :socket_timeout => 1.5,
-                           :socket_failure_delay => 0.2,
-                           :value_max_bytes => 10485760)
+  client = \
+    Dalli::Client.new(
+      (ENV['MEMCACHIER_SERVERS'] || '').split(','),
+      username: ENV['MEMCACHIER_USERNAME'],
+      password: ENV['MEMCACHIER_PASSWORD'],
+      failover: true,
+      socket_timeout: 1.5,
+      socket_failure_delay: 0.2,
+      value_max_bytes: 10485760
+    )
   config.action_dispatch.rack_cache = {
-    :metastore    => client,
-    :entitystore  => client
+    metastore: client,
+    entitystore: client
   }
-  config.static_cache_control = "public, max-age=2592000"
+  config.static_cache_control = 'public, max-age=2592000'
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
@@ -99,16 +105,16 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { :host => 'www.eatlocaljapan.com' }
+  config.action_mailer.default_url_options = {host: 'www.eatlocaljapan.com'}
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :enable_starttls_auto => true,
-    :openssl_verify_mode => 'none',
-    :address => Rails.application.secrets.action_mailer_host,
-    :port => Rails.application.secrets.action_mailer_port,
-    :authentication => :plain,
-    :user_name => Rails.application.secrets.action_mailer_user_name,
-    :password => Rails.application.secrets.action_mailer_password,
+    enable_starttls_auto: true,
+    openssl_verify_mode: 'none',
+    address: Rails.application.secrets.action_mailer_host,
+    port: Rails.application.secrets.action_mailer_port,
+    authentication: :plain,
+    user_name: Rails.application.secrets.action_mailer_user_name,
+    password: Rails.application.secrets.action_mailer_password
   }
 end

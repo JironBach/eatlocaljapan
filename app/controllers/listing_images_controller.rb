@@ -7,13 +7,12 @@ class ListingImagesController < ApplicationController
   def manage
     authorize! :manage, @listing
     listing_images = ListingImage.records(params[:listing_id])
-    if listing_images.size.zero?
-      @listing_image = ListingImage.new
-      return
-    else
-      @listing_image = listing_images[0]
-      return
-    end
+    @listing_image = \
+      if listing_images.size.zero?
+        ListingImage.new
+      else
+        listing_images[0]
+      end
   end
 
   def create
@@ -22,20 +21,20 @@ class ListingImagesController < ApplicationController
     @listing_image.order_num = count
     if @listing_image.save
       redirect_to manage_listing_listing_images_path(@listing.id), notice: I18n.t('alerts.listing_images.save.success', model: ListingImage.model_name.human)
-      #render json: { success: true, status: :created, location: @listing_image }
+      # render json: { success: true, status: :created, location: @listing_image }
     else
       redirect_to manage_listing_listing_images_path(@listing.id), notice: I18n.t('alerts.listing_images.save.failure', model: ListingImage.model_name.human)
-      #render json: { success: false, errors: @listing_image.errors, status: :unprocessable_entity }
+      # render json: { success: false, errors: @listing_image.errors, status: :unprocessable_entity }
     end
   end
 
   def update
     if @listing_image.update(listing_image_params)
       redirect_to manage_listing_listing_images_path(@listing.id), notice: I18n.t('alerts.listing_images.save.success', model: ListingImage.model_name.human)
-      #render json: { success: true, status: :ok, location: @listing_image, notice: Settings.listing_images.save.success }
+      # render json: { success: true, status: :ok, location: @listing_image, notice: Settings.listing_images.save.success }
     else
       redirect_to manage_listing_listing_images_path(@listing.id), notice: I18n.t('alerts.listing_images.save.failure', model: ListingImage.model_name.human)
-      #render json: { success: false, errors: @listing_image.errors, status: :unprocessable_entity, notice: Settings.listing_images.save.failure }
+      # render json: { success: false, errors: @listing_image.errors, status: :unprocessable_entity, notice: Settings.listing_images.save.failure }
     end
   end
 
@@ -47,18 +46,16 @@ class ListingImagesController < ApplicationController
     end
   end
 
-  private
-    def set_listing_image
-      @listing_image = ListingImage.find(params[:id])
-    end
+private
+  def set_listing_image
+    @listing_image = ListingImage.find(params[:id])
+  end
 
-    def set_listing
-      @listing = Listing.find(params[:listing_id])
-    end
+  def set_listing
+    @listing = Listing.find(params[:listing_id])
+  end
 
-    def listing_image_params
-      params.require(:listing_image).permit(:listing_id, :image, :caption)
-        .merge(listing_id: @listing.id)
-    end
-
+  def listing_image_params
+    params.require(:listing_image).permit(:listing_id, :image, :caption).merge(listing_id: @listing.id)
+  end
 end

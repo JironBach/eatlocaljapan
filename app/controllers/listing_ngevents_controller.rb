@@ -13,8 +13,8 @@ class ListingNgeventsController < ApplicationController
   def search
     ngs = UserNgevent.opened
     ngs = ngs.where(listing_id: params[:listing_id])
-    ngs = ngs.around_month( DateTime.parse(params[:first_day]) )
-    @ng_days = ngs.map( &:consecutive_days ).flatten
+    ngs = ngs.around_month(Time.zone.parse(params[:first_day]))
+    @ng_days = ngs.flat_map(&:consecutive_days)
   end
 
   def manage
@@ -24,11 +24,12 @@ class ListingNgeventsController < ApplicationController
   # POST /listings/1/ngevents
   # POST /listings/1/ngevents.json
   def create
-    ngevent_params = listing_ngevent_params.merge(
+    ngevent_params = \
+      listing_ngevent_params.merge(
         listing_id: params[:listing_id],
         reason: :holiday
-    )
-    @ngevent = UserNgevent.new( ngevent_params ).convert_end_of_day
+      )
+    @ngevent = UserNgevent.new(ngevent_params).convert_end_of_day
 
     respond_to do |format|
       if @ngevent.save
@@ -42,7 +43,7 @@ class ListingNgeventsController < ApplicationController
   # PATCH/PUT /ngevents/1
   # PATCH/PUT /ngevents/1.json
   def update
-    @ngevent.assign_attributes( listing_ngevent_params )
+    @ngevent.assign_attributes(listing_ngevent_params)
     @ngevent.convert_end_of_day
 
     respond_to do |format|
@@ -66,23 +67,20 @@ class ListingNgeventsController < ApplicationController
     end
   end
 
-  private
+private
+  def set_event
+    @ngevent = UserNgevent.find(params[:id])
+  end
 
-    def set_event
-      @ngevent = UserNgevent.find(params[:id])
-    end
+  def set_my_event
+    @ngevent = UserNgevent.where(id: params[:id], listing_id: params[:listing_id], user_id: current_user).first
+  end
 
-    def set_my_event
-      @ngevent = UserNgevent.where(id: params[:id], listing_id: params[:listing_id], user_id: current_user).first
-    end
+  def set_listing
+    @listing = Listing.find(params[:listing_id])
+  end
 
-    def set_listing
-      @listing = Listing.find(params[:listing_id])
-    end
-
-    def listing_ngevent_params
-      params.require(:event).permit(
-        :start, :end
-      ).merge(user_id: current_user.id)
-    end
+  def listing_ngevent_params
+    params.require(:event).permit(:start, :end).merge(user_id: current_user.id)
+  end
 end

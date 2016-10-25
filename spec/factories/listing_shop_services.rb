@@ -12,10 +12,7 @@
 #
 #  index_listing_shop_services_on_listing_id_and_shop_service_id  (listing_id,shop_service_id) UNIQUE
 #
-
 FactoryGirl.define do
   factory :listing_shop_service do
-    
   end
-
 end

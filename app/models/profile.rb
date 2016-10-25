@@ -35,27 +35,22 @@
 #
 #  index_profiles_on_user_id  (user_id)
 #
-
 class Profile < ActiveRecord::Base
   belongs_to :user
   has_one :profile_image, dependent: :destroy
   has_one :profile_video, dependent: :destroy
 
-  enum gender: { female: 0, male: 1, others: 2, not_specified: 3 }
+  enum gender: {female: 0, male: 1, others: 2, not_specified: 3}
 
   validates :user_id, presence: true
 
   def self.minimun_requirement?(user_id)
-    profile = Profile.where(user_id: user_id).first
-    if profile.first_name.present? && 
-      profile.last_name.present? && 
-      profile.birthday.present? && 
-      profile.phone.present? && 
-      profile.location.present? && 
-      profile.self_introduction.present?
-      return true
-    else
-      return false
-    end
+    profile = Profile.find_bt(user_id: user_id)
+    profile.first_name.present? &&
+    profile.last_name.present? &&
+    profile.birthday.present? &&
+    profile.phone.present? &&
+    profile.location.present? &&
+    profile.self_introduction.present?
   end
 end

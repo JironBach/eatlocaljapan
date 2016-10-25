@@ -153,7 +153,7 @@ group :development, :test do
   gem 'guard-rspec', '4.5.0', require: false
 
   # ruby code checker
-  gem 'rubocop', '0.29.1'
+  gem 'rubocop', '~> 0.36.0', require: false
   gem 'guard-rubocop', '1.2.0'
 
   # livereload

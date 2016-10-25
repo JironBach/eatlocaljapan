@@ -21,10 +21,8 @@
 #  index_admin_users_on_email                 (email) UNIQUE
 #  index_admin_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-
 class AdminUser < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, 
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 end

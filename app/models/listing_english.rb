@@ -12,6 +12,5 @@
 #
 #  index_listing_englishes_on_listing_id_and_english_id  (listing_id,english_id) UNIQUE
 #
-
 class ListingEnglish < ActiveRecord::Base
 end

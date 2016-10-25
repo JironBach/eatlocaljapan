@@ -8,10 +8,7 @@
 #  name       :string
 #  name_en    :string
 #
-
 FactoryGirl.define do
   factory :english_message do
-    
   end
-
 end

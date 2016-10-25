@@ -37,17 +37,15 @@
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 #  index_users_on_username              (username) UNIQUE
 #
-
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :timeoutable
-  devise :database_authenticatable, :registerable, :lockable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
+  devise :database_authenticatable, :registerable, :lockable, :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
 
   has_many :auths, dependent: :destroy
   has_one :profile, dependent: :destroy
-  #has_many :wishlists, dependent: :destroy
-  #has_many :emergency, through: :user_emergencies
+  # has_many :wishlists, dependent: :destroy
+  # has_many :emergency, through: :user_emergencies
   has_one :profile_image, dependent: :destroy
   has_one :profile_video, dependent: :destroy
   has_many :listings, dependent: :destroy
@@ -56,70 +54,75 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true
   validates :email, uniqueness: true
-  #VALID_EMAIL_REGREX = [a-zA-Z0-9_!#$%&*+=?^`{}~|'\-\/\.]+@[a-zA-Z0-9_!#$%&*+=?^`{}~|'\-\/]+(\.[a-zA-Z0-9_!#$%&*+=?^`{}~|'\-\/]+)+
+  # VALID_EMAIL_REGREX = [a-zA-Z0-9_!#$%&*+=?^`{}~|'\-\/\.]+@[a-zA-Z0-9_!#$%&*+=?^`{}~|'\-\/]+(\.[a-zA-Z0-9_!#$%&*+=?^`{}~|'\-\/]+)+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, format: { with: VALID_EMAIL_REGEX }
+  validates :email, format: {with: VALID_EMAIL_REGEX}
   validates :password, presence: true
   validates :password, length: 6..32
 
-  scope :mine, -> user_id { where(id: user_id) }
+  scope :mine, ->(user_id) { where(id: user_id) }
 
-  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
-    p '------------------------------------------------'
-    pp auth
-    p '------------------------------------------------'
-    unless user = User.where(provider: auth.provider, uid: auth.uid).first
-      user = User.new(
-        provider: auth.provider,
-        uid:      auth.uid,
-        email:    auth.info.email,
-        password: Devise.friendly_token[0,20]
-      )
-    end
-    user.skip_confirmation!
-    user.save
-
-    unless Profile.exists?(user_id: user.id)
-      profile = Profile.new(
-        user_id: user.id,
-        last_name: auth.info.last_name || '',
-        first_name: auth.info.first_name || ''
-      )
-      profile.save
-      
-      unless ProfileImage.exists?(user_id: user.id, profile_id: profile.id)
-        profile_image = ProfileImage.new(
-          user_id: user.id,
-          profile_id: profile.id,
-          caption: ''
+  class << self
+    # rubocop:disable Metrics/MethodLength
+    def find_for_facebook_oauth(auth, signed_in_resource=nil)
+      Rails.logger.debug('------------------------------------------------')
+      Rails.logger.debug(auth)
+      Rails.logger.debug('------------------------------------------------')
+      unless user = User.find_by(provider: auth.provider, uid: auth.uid)
+        user = User.new(
+          provider: auth.provider,
+          uid:      auth.uid,
+          email:    auth.info.email,
+          password: Devise.friendly_token[0, 20]
         )
-        profile_image.remote_image_url = auth['info']['image'].gsub('http://','https://')
-        profile_image.save
       end
+      user.skip_confirmation!
+      user.save
+
+      unless Profile.exists?(user_id: user.id)
+        profile = Profile.new(
+          user_id: user.id,
+          last_name: auth.info.last_name || '',
+          first_name: auth.info.first_name || ''
+        )
+        profile.save
+
+        unless ProfileImage.exists?(user_id: user.id, profile_id: profile.id)
+          profile_image = ProfileImage.new(
+            user_id: user.id,
+            profile_id: profile.id,
+            caption: ''
+          )
+          profile_image.remote_image_url = auth['info']['image'].gsub('http://', 'https://')
+          profile_image.save
+        end
+      end
+
+      auth_obj = Auth.find_bt(user_id: user.id, provider: auth.provider)
+      if auth_obj.present?
+        auth_obj.access_token = auth.credentials.token
+      else
+        auth_obj = \
+          Auth.new(
+            user_id: user.id,
+            provider: auth.provider,
+            uid: auth.uid,
+            access_token: auth.credentials.token
+          )
+      end
+      auth_obj.save
+
+      user
+    end
+    # rubocop:enable Metrics/MethodLength
+
+    def create_unique_string
+      SecureRandom.uuid
     end
 
-    auth_obj = Auth.where(user_id: user.id, provider: auth.provider).first
-    if auth_obj.present?
-      auth_obj.access_token = auth.credentials.token
-    else
-      auth_obj = Auth.new(
-        user_id: user.id,
-        provider: auth.provider,
-        uid: auth.uid,
-        access_token: auth.credentials.token
-      )
+    def user_id_to_profile_id(user_id)
+      user = User.find(user_id)
+      user.profile.id
     end
-    auth_obj.save
-
-    user
-  end
-
-  def self.create_unique_string
-    SecureRandom.uuid
-  end
-
-  def self.user_id_to_profile_id(user_id)
-    user = User.find(user_id)
-    user.profile.id
   end
 end

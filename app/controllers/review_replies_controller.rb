@@ -26,42 +26,42 @@ class ReviewRepliesController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_review_reply
-      @review_reply = ReviewReply.find_by(review_id: @review.id)
-    end
+private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_review_reply
+    @review_reply = ReviewReply.find_by(review_id: @review.id)
+  end
 
-    def set_review
-      @review = Review.find_by(reservation_id: params[:reservation_id])
-    end
+  def set_review
+    @review = Review.find_by(reservation_id: params[:reservation_id])
+  end
 
-    def set_reservation
-      @reservation = Reservation.find(params[:reservation_id])
-    end
+  def set_reservation
+    @reservation = Reservation.find(params[:reservation_id])
+  end
 
-    def regulate_user!
-      reservation = Reservation.where(id: params[:reservation_id].to_i).first
-      review = Review.where(reservation_id: params[:reservation_id].to_i).first
-      if reservation.present?
-        if current_user.id == reservation.host_id
-          if review.present?
-            if ReviewReply.exists?(review_id: review.id)
-              redirect_to root_path, alert: I18n.t('alerts.regulate_user.entry.duplicated')
-            end
-          else
-            redirect_to root_path, alert: I18n.t('alerts.regulate_user.review_not_found', review: Review.model_name.human)
-          end
+  def regulate_user!
+    reservation = Reservation.where(id: params[:reservation_id].to_i).first
+    review = Review.where(reservation_id: params[:reservation_id].to_i).first
+    if reservation.present?
+      if current_user.id == reservation.host_id
+        if review.present?
+          # rubocop:disable Metrics/BlockNesting
+          redirect_to root_path, alert: I18n.t('alerts.regulate_user.entry.duplicated') if ReviewReply.exists?(review_id: review.id)
+          # rubocop:enable Metrics/BlockNesting
         else
-          redirect_to root_path, alert: I18n.t('alerts.regulate_user.user_id.failure')
+          redirect_to root_path, alert: I18n.t('alerts.regulate_user.review_not_found', review: Review.model_name.human)
         end
       else
-        direct_to root_path, alert: I18n.t('alerts.regulate_user.reservation_id.failure', rsrv: Reservation.model_name.human)
+        redirect_to root_path, alert: I18n.t('alerts.regulate_user.user_id.failure')
       end
+    else
+      direct_to root_path, alert: I18n.t('alerts.regulate_user.reservation_id.failure', rsrv: Reservation.model_name.human)
     end
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def review_reply_params
-      params.require(:review_reply).permit(:review_id, :msg)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def review_reply_params
+    params.require(:review_reply).permit(:review_id, :msg)
+  end
 end

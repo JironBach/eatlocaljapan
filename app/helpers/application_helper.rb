@@ -1,5 +1,5 @@
+# rubocop:disable Metrics/ModuleLength
 module ApplicationHelper
-
   def default_meta_tags(request, title, description, keywords)
     {
       charset: Settings.charset,
@@ -26,9 +26,7 @@ module ApplicationHelper
   end
 
   def i18n_url_for(options)
-    if options[:locale] == I18n.default_locale
-      options[:locale] = nil
-    end
+    options[:locale] = nil if options[:locale] == I18n.default_locale
     url_for(options)
   end
 
@@ -46,7 +44,7 @@ module ApplicationHelper
     if page_description.empty?
       base_description
     else
-      "#{page_description}"
+      page_description
     end
   end
 
@@ -55,31 +53,31 @@ module ApplicationHelper
     if page_words.empty?
       base_words
     else
-      "#{page_words}"
+      page_words
     end
   end
 
   def listing_cover_image_url(listing_id)
     ci = Listing.find(listing_id)
     if ci.blank?
-      return ''
+      ''
     else
-      return ci.cover_image
+      ci.cover_image
     end
   end
 
   def listing_name(listing_id)
     ci = Listing.find(listing_id)
     if ci.blank?
-      return ''
+      ''
     else
-      return ci.title
+      ci.title
     end
   end
 
   # TODO: fix
   def number_to_yen(number)
-    number_to_currency( number, :unit => '円' , :format => "%n%u")
+    number_to_currency(number, unit: '円', format: '%n%u')
   end
 
   def unread_messages
@@ -89,7 +87,7 @@ module ApplicationHelper
   def user_id_to_user_obj(user_id)
     users = User.mine(user_id)
     if users.size.zero?
-      return false # todo
+      false # todo
     else
       users[0]
     end
@@ -211,7 +209,7 @@ module ApplicationHelper
   def profile_image_link
     profile_image = ProfileImage.where(user_id: current_user.id, profile_id: current_user.profile.id).first
     if profile_image.present?
-      return edit_profile_profile_image_path(current_user.profile.id, profile_image.id)
+      edit_profile_profile_image_path(current_user.profile.id, profile_image.id)
     else
       new_profile_profile_image_path(current_user.profile.id)
     end
@@ -219,45 +217,43 @@ module ApplicationHelper
 
   def each_manager_link(reservation)
     if current_user.id == reservation.host_id
-      return dashboard_host_reservation_manager_path
-    else current_user.id == reservation.guest_id
+      dashboard_host_reservation_manager_path
+    elsif current_user.id == reservation.guest_id
       dashboard_guest_reservation_manager_path
     end
   end
 
   def string_of_read(read, sender_flg)
-    if read == true
+    if read
       if sender_flg
-        return t 'message.already_read.string'
+        t 'message.already_read.string'
       else
-        return t 'message.read.string'
+        t 'message.read.string'
       end
+    elsif sender_flg
+      t 'message.waiting_for_read.string'
     else
-      if sender_flg
-        return t 'message.waiting_for_read.string'
-      else
-        t 'message.unread.string'
-      end
+      t 'message.unread.string'
     end
   end
 
   def review_id_to_review_reply_msg(review_id)
     rr = ReviewReply.where(review_id: review_id).select('msg').first
     if rr.present?
-      return rr.msg
+      rr.msg
     else
-      return ''
+      ''
     end
   end
 
   def sender?(user_id, from_user_id)
-    pp user_id
-    pp from_user_id
-    return false unless user_id == from_user_id
-    true
+    Rails.logger.info(user_id)
+    Rails.logger.info(from_user_id)
+    user_id != from_user_id
   end
 
   def nl2br(str)
-    str.gsub(/\r\n|\r|\n/, "<br />")
+    str.gsub(/\r\n|\r|\n/, '<br />')
   end
 end
+# rubocop:enable Metrics/ModuleLength
