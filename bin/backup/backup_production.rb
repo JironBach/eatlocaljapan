@@ -16,3 +16,8 @@ if bks.count > 12
     end
   end
 end
+
+`rm -f /tmp/backup.tgz`
+`cd`
+`tar cvf /tmp/backup.tgz backup`
+
