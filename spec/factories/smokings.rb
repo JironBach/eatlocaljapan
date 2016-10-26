@@ -8,10 +8,7 @@
 #  name       :string           not null
 #  name_en    :string           not null
 #
-
 FactoryGirl.define do
   factory :smoking do
-    
   end
-
 end

@@ -17,31 +17,29 @@ class Ability
     # All
     can [:read, :create], :all
 
-    if user.admin?
-      can [:update], :all
-    end
+    can [:update], :all if user.admin?
 
     # Listing Resources
-    models = [ Listing ]
+    models = [Listing]
     can [:update], models do |listing|
       listing.user_id == user.id
     end
-    models = [ ListingImage, DressCode, Confection, Tool ]
+    models = [ListingImage, DressCode, Confection, Tool]
     can [:update], models do |related|
       related.listing.user_id == user.id
     end
 
     # Profile Resources
-    models = [ Profile, ProfileImage ]
+    models = [Profile, ProfileImage]
     can [:update], models do |profile|
       profile.user_id == user.id
     end
 
     # Two User's Resources
-    models = [ Reservation ]
-    can [:update], models do |model|;pp model
-      ( model.host_id == user.id ) || ( model.guest_id == user.id )
+    models = [Reservation]
+    can [:update], models do |model|
+      Rails.logger.info(model)
+      model.host_id == user.id || model.guest_id == user.id
     end
-
   end
 end

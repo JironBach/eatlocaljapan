@@ -54,27 +54,26 @@ class ProfileImagesController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_profile_image
-      @profile_image = ProfileImage.find(params[:id])
-    end
+private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_profile_image
+    @profile_image = ProfileImage.find(params[:id])
+  end
 
-    def set_my_profile_image
-      @profile_image = ProfileImage.where(user_id: current_user.id, profile_id: current_user.profile.id).first || ProfileImage.new
-    end
+  def set_my_profile_image
+    @profile_image = ProfileImage.where(user_id: current_user.id, profile_id: current_user.profile.id).first || ProfileImage.new
+  end
 
-    def set_profile
-      @profile = Profile.find(params[:profile_id])
-    end
+  def set_profile
+    @profile = Profile.find(params[:profile_id])
+  end
 
-    def set_my_profile
-      @profile = Profile.find(current_user.profile.id)
-    end
+  def set_my_profile
+    @profile = Profile.find(current_user.profile.id)
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def profile_image_params
-      params.require(:profile_image).permit(:user_id, :profile_id, :image, :caption)
-        .merge(user_id: current_user.id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def profile_image_params
+    params.require(:profile_image).permit(:user_id, :profile_id, :image, :caption).merge(user_id: current_user.id)
+  end
 end

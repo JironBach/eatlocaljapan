@@ -17,6 +17,5 @@
 #  index_emergencies_on_profile_id  (profile_id)
 #  index_emergencies_on_user_id     (user_id)
 #
-
 class Emergency < ActiveRecord::Base
 end

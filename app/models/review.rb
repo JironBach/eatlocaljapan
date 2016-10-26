@@ -25,7 +25,6 @@
 #  index_reviews_on_listing_id      (listing_id)
 #  index_reviews_on_reservation_id  (reservation_id)
 #
-
 class Review < ActiveRecord::Base
   belongs_to :user, class_name: 'User', foreign_key: 'host_id'
   belongs_to :user, class_name: 'User', foreign_key: 'guest_id'
@@ -46,29 +45,29 @@ class Review < ActiveRecord::Base
   validates :cost_performance, presence: true
   validates :total, presence: true
 
-  scope :this_listing, -> listing_id { where(listing_id: listing_id) }
+  scope :this_listing, ->(listing_id) { where(listing_id: listing_id) }
   scope :order_by_created_at_desc, -> { order('created_at desc') }
   scope :order_by_updated_at_desc, -> { order('updated_at desc') }
-  scope :i_do, -> user_id { where(guest_id: user_id) }
-  scope :they_do, -> user_id { where(host_id: user_id) }
+  scope :i_do, ->(user_id) { where(guest_id: user_id) }
+  scope :they_do, ->(user_id) { where(host_id: user_id) }
 
   def calc_average
-    self.calc_ave_of_listing
-    self.calc_ave_of_profile
+    calc_ave_of_listing
+    calc_ave_of_profile
   end
 
   def calc_ave_of_listing
-    l = Listing.find(self.listing_id)
-    r_count = Review.where(listing_id: self.listing_id).count
-    ave_total = (l.ave_total + self.total) / r_count
+    l = Listing.find(listing_id)
+    r_count = Review.where(listing_id: listing_id).count
+    ave_total = (l.ave_total + total) / r_count
     l.ave_total = ave_total
     l.save
   end
 
   def calc_ave_of_profile
-    prof = Profile.find(self.host_id)
-    r_count = Review.where(host_id: self.host_id).count
-    ave_total = (prof.ave_total + self.total) / r_count
+    prof = Profile.find(host_id)
+    r_count = Review.where(host_id: host_id).count
+    ave_total = (prof.ave_total + total) / r_count
     prof.ave_total = ave_total
     prof.save
   end

@@ -8,10 +8,7 @@
 #  listing_id         :integer          not null
 #  english_message_id :integer          not null
 #
-
 FactoryGirl.define do
   factory :english_messages_listing do
-    
   end
-
 end

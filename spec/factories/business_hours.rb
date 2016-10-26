@@ -15,10 +15,7 @@
 #
 #  index_business_hours_on_listing_id_and_wday  (listing_id,wday) UNIQUE
 #
-
 FactoryGirl.define do
   factory :business_hour do
-    
   end
-
 end

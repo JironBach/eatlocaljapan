@@ -8,6 +8,5 @@
 #  name       :string
 #  name_en    :string
 #
-
 class InfoAdmin < ActiveRecord::Base
 end

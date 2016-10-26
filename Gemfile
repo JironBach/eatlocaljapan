@@ -6,7 +6,7 @@ source 'https://rubygems.org'
 # source "http://bundler-api.herokuapp.com"
 # source 'http://production.s3.rubygems.org'
 
-#ruby '2.2.1'
+ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2.0'
@@ -153,7 +153,7 @@ group :development, :test do
   gem 'guard-rspec', '4.5.0', require: false
 
   # ruby code checker
-  gem 'rubocop', '0.29.1'
+  gem 'rubocop', '~> 0.36.0', require: false
   gem 'guard-rubocop', '1.2.0'
 
   # livereload

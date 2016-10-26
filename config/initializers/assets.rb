@@ -8,8 +8,8 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w( *.sass *.scss *.woff *.eot *.svg *.ttf *.png *.jpg *.jpeg *.gif )
+Rails.application.config.assets.precompile += %w(*.sass *.scss *.woff *.eot *.svg *.ttf *.png *.jpg *.jpeg *.gif)
 
 files = Dir[Rails.root.join('app', 'assets', 'javascripts', 'i18n', '*.js')]
-files.map! {|file| file.sub(%r(#{Rails.root}/app/assets/javascripts/), '') }
+files.map! { |file| file.sub(/#{Rails.root}\/app\/assets\/javascripts\//, '') }
 Rails.application.config.assets.precompile += files

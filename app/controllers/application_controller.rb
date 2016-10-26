@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  #protect_from_forgery with: :exception
+  # protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
 
   # before_action :set_default_locale
@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
       format.html { redirect_to root_url, alert: Settings.regulate_user.cancan.failure }
-      format.json { head :no_content  }
+      format.json { head :no_content }
     end
   end
 
@@ -22,10 +22,10 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options(options={})
-    { locale: I18n.locale == I18n.default_locale ? nil : I18n.locale }
+    {locale: I18n.locale == I18n.default_locale ? nil : I18n.locale}
   end
 
   def authenticate_user?
-    authenticate_user! or current_user.admin?
+    authenticate_user! || current_user.admin?
   end
 end

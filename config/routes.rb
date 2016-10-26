@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/LineLength
 # == Route Map
 #
 #                                  Prefix Verb       URI Pattern                                                                   Controller#Action
@@ -321,35 +322,40 @@
 #                                         PUT        (/:locale)/reservations/:id(.:format)                                         reservations#update {:locale=>/en/}
 #                                    root GET        /(:locale)(.:format)                                                          welcome#index {:locale=>/en/}
 #
+# rubocop:enable Metrics/LineLength
 
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  devise_for :users,
-  skip: [
-    :session,
-    :password,
-    :registration,
-    :confirmation
-  ],
-  controllers: {
-    omniauth_callbacks: 'users/omniauth_callbacks'
-  }
+  devise_for \
+    :users,
+    skip:
+      [
+        :session,
+        :password,
+        :registration,
+        :confirmation
+      ],
+    controllers:
+      {
+        omniauth_callbacks: 'users/omniauth_callbacks'
+      }
 
   scope '(:locale)', locale: /en/ do
-
     # We define here a route inside the locale thats just saves the current locale in the session
     get 'omniauth/:provider' => 'users/omniauth#localized', as: :localized_omniauth
-    devise_for :users,
-    skip: :omniauth_callbacks,
-    controllers: {
-      sessions:            'users/sessions',
-      registrations:       'users/registrations',
-      passwords:           'users/passwords',
-      confirmations:       'users/confirmations'
-    }
+    devise_for \
+      :users,
+      skip: :omniauth_callbacks,
+      controllers:
+        {
+          sessions:            'users/sessions',
+          registrations:       'users/registrations',
+          passwords:           'users/passwords',
+          confirmations:       'users/confirmations'
+        }
 
     resources :profiles, only: [:show] do
       resources :profile_images, only: [:show]
@@ -359,7 +365,7 @@ Rails.application.routes.draw do
       resource :profile_image, except: [:index, :show]
     end
 
-  #  resources :auths
+    # resources :auths
 
     get 'dashboard'                           => 'dashboard#index'
     get 'dashboard/host_reservation_manager'  => 'dashboard#host_reservation_manager'
@@ -385,13 +391,13 @@ Rails.application.routes.draw do
       resources :listing_images, only: [:show, :create, :update, :destroy] do
         get 'manage', on: :collection
       end
-      #resources :listing_videos do
-      #  get 'manage', on: :collection
-      #end
+      # resources :listing_videos do
+      #   get 'manage', on: :collection
+      # end
       resources :dress_codes, only: [:show, :create, :update, :destroy] do
         get 'manage', on: :collection
       end
-      resources :confections, only: [:show, :create, :update, :destroy]  do
+      resources :confections, only: [:show, :create, :update, :destroy] do
         get 'manage', on: :collection
       end
       resources :tools, only: [:show, :create, :update, :destroy] do
@@ -411,9 +417,8 @@ Rails.application.routes.draw do
       end
     end
 
-    #resources :wishlists
+    # resources :wishlists
 
     root 'welcome#index'
   end
-
 end

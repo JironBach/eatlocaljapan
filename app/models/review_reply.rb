@@ -12,7 +12,6 @@
 #
 #  index_review_replies_on_review_id  (review_id)
 #
-
 class ReviewReply < ActiveRecord::Base
   belongs_to :review
 
