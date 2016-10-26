@@ -596,6 +596,7 @@ ja:
         hit_count:
           dot: ・
       prefecture: 地域
+      shop_name: 店舗名
       submit: 店舗情報を表示
     search_detail:
       title: 検索
@@ -899,6 +900,7 @@ ja:
       submit: 検索
       category: カテゴリ
       prefecture: 地域
+      shop: 店舗名
     discovery:
       title: 日本には美味しいお店が沢山あります。
       note: もっと英語で情報発信して、海外からのお客様に楽しんでもらいましょう。

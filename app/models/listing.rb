@@ -117,38 +117,20 @@ class Listing < ActiveRecord::Base
 
   class << self
     def search(search_params)
-      location = Listing.arel_table['location']
-      location_sel = location.matches("\%#{search_params['location']}\%")
-      if search_params['where'] == 'top' || search_params['where'] == 'header'
-        listing = Listing.search_location(location_sel).available_num_of_guest?(search_params['num_of_guest'])
-        if search_params['schedule'].present?
-          listing = listing.where(UserNgevent.enable_search_condition(Time.zone.parse(search_params['schedule'])).exists.not)
-        end
-        listing
-      elsif search_params['where'] == 'listing_search'
-        # tba: schedule
-        price = search_params['price'].split(',')
-        price_min = price[0].to_i
-        price_max = price[1].to_i
-        keywords = Listing.arel_table['description']
-        keywords_sel = keywords.matches("\%#{search_params['keywords']}\%")
-        if search_params['wafuku'].present?
-          Listing
-            .search_location(location_sel)
-            .available_num_of_guest?(search_params['num_of_guest'])
-            .available_price_min?(price_min)
-            .available_price_max?(price_max)
-            .joins { dress_code.outer }.where { (dress_code.wafuku == search_params['wafuku']) }
-            .search_keywords(keywords_sel)
-        else
-          Listing
-            .search_location(location_sel)
-            .available_num_of_guest?(search_params['num_of_guest'])
-            .available_price_min?(price_min)
-            .available_price_max?(price_max)
-            .search_keywords(keywords_sel)
+      listings = where(search_params[:shop_name].presence && [:title, :title_en].map { |field| arel_table[field].matches("%#{search_params[:shop_name]}%") }.inject(:or))
+      [:shop_categories, :shop_services, :englishes].each do |category_name|
+        if search_params[category_name].present?
+          categories = Array(search_params[category_name]).reject(&:blank?).map(&:to_i)
+          listings = listings.includes(category_name).where(category_name => {id: categories}) if categories.present?
         end
       end
+      listings = listings.where(smoking_id: search_params[:smoking_id]) if search_params[:smoking_id].present?
+      listings = listings.where(Listing.arel_table[:price].lteq(search_params[:price])) if search_params[:price].present?
+      if search_params[:prefectures].present?
+        pref = Prefecture.find(search_params[:prefectures].to_i)
+        listings = listings.where([[:location, :name], [:location_en, :name_en]].map { |(field, name)| arel_table[field].matches("%#{pref[name]}%") }.inject(&:or))
+      end
+      listings
     end
   end
 
