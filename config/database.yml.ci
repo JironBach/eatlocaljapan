@@ -1,0 +1,15 @@
+default: &default
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+  encoding: utf8
+  collation: ja_JP.UTF8
+  template: template0
+  host: localhost
+  port: 5432
+
+test:
+  <<: *default
+  database: circle_ruby_test
+  username: ubuntu
+  host: localhost
