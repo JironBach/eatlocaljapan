@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160523093306) do
+ActiveRecord::Schema.define(version: 20161018205856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,16 +73,19 @@ ActiveRecord::Schema.define(version: 20160523093306) do
   add_index "browsing_histories", ["viewed_at"], name: "index_browsing_histories_on_viewed_at", using: :btree
 
   create_table "business_hours", force: :cascade do |t|
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "listing_id"
-    t.integer  "wday",                      null: false
-    t.boolean  "is_open",    default: true, null: false
+    t.integer  "wday"
+    t.boolean  "is_open",                default: true, null: false
     t.time     "start_hour"
     t.time     "end_hour"
+    t.string   "type"
+    t.time     "lunch_break_start_hour"
+    t.time     "lunch_break_end_hour"
   end
 
-  add_index "business_hours", ["listing_id", "wday"], name: "index_business_hours_on_listing_id_and_wday", unique: true, using: :btree
+  add_index "business_hours", ["listing_id", "wday"], name: "index_business_hours_on_listing_id_and_wday", using: :btree
 
   create_table "confections", force: :cascade do |t|
     t.integer  "listing_id"
@@ -227,6 +230,11 @@ ActiveRecord::Schema.define(version: 20160523093306) do
     t.string   "location_en"
     t.string   "visit_benefits_en"
     t.string   "visit_benefits_another_en"
+    t.integer  "reservation_frame"
+    t.integer  "unit"
+    t.integer  "from"
+    t.integer  "to"
+    t.integer  "reservation_time_unit"
   end
 
   add_index "listings", ["capacity"], name: "index_listings_on_capacity", using: :btree
@@ -392,6 +400,9 @@ ActiveRecord::Schema.define(version: 20160523093306) do
     t.datetime "review_opened_at"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.time     "time"
+    t.integer  "reservation_time_unit"
+    t.boolean  "in_english"
   end
 
   add_index "reservations", ["guest_id"], name: "index_reservations_on_guest_id", using: :btree

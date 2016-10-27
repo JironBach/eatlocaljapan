@@ -4,6 +4,7 @@ ja:
       admin_user: 管理者
       auth: 外部サービスとの連携
       browsing_history: 閲覧履歴
+      business_hour: 営業時間
       comment: コメント
       confection: お菓子
       dress_code: 服装
@@ -39,6 +40,14 @@ ja:
         provider: 連携サービス
         uid: UID
         access_token: アクセストークン
+      business_hour: &business_hour
+        listing_id: 店舗情報
+        wday: 曜日
+        is_open: 営業
+        start_hour: 開店時間
+        end_hour: 閉店時間
+        lunch_break_start_hour: 昼休開始時間
+        lunch_break_end_hour: 昼休終了時間
       confection:
         name: お菓子
         image: お菓子画像
@@ -112,6 +121,11 @@ ja:
         info_admin_id: 店舗情報管理者
         open: 公開
         prefecture: 地域
+        reservation_frame: 1予約枠の基本人数
+        unit: 予約時刻の単位
+        from: 自
+        to: 至
+        reservation_time_unit: 1予約枠の時間
       listing_image:
         image: 店舗情報のイメージ画像
         caption: 写真の説明
@@ -167,6 +181,8 @@ ja:
         guest: ゲスト
         ngevent: NG日
         in_english: 英語
+        time: 予約時刻
+        reservation_time_unit: 1予約枠の時間
       review:
         msg: メッセージ
         total: 合計値

@@ -21,6 +21,9 @@
 #  review_opened_at       :datetime
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  time                   :time
+#  reservation_time_unit  :integer
+#  in_english             :boolean
 #
 # Indexes
 #

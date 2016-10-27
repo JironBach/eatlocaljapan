@@ -52,6 +52,11 @@
 #  location_en               :string
 #  visit_benefits_en         :string
 #  visit_benefits_another_en :string
+#  reservation_frame         :integer
+#  unit                      :integer
+#  from                      :integer
+#  to                        :integer
+#  reservation_time_unit     :integer
 #
 # Indexes
 #

@@ -4,6 +4,7 @@ en:
       admin_user: Admin User
       auth: Auth
       browsing_history: Browsing History
+      business_hour: 'Business Hour'
       comment: Comment
       confection: Confection
       dress_code: Dress Code
@@ -39,6 +40,14 @@ en:
         provider: Auth Service
         uid: Unique ID
         access_token: Access Token
+      business_hour: &business_hour
+        listing_id: Listing
+        wday: 'Day of week'
+        is_open: Open
+        start_hour: 'Opening hours'
+        end_hour: 'Closing hours'
+        lunch_break_start_hour: 'Lunch break beginning hours'
+        lunch_break_end_hour: 'Lunch break beginning hours'
       confection:
         name: Name
         image: Image
@@ -111,6 +120,11 @@ en:
         info_admin_id: info admin
         open: view
         prefecture: area
+        reservation_frame: 'Standard number of guests in a unit'
+        unit: 'Reservation time interval'
+        from: From
+        to: To
+        reservation_time_unit: 'Length of one reservation'
       listing_image:
         image: Image of Listing
         caption: Caption of Listing Image
@@ -170,6 +184,8 @@ en:
         guest: Guest
         ngevent: NG Days
         in_english: Language
+        time: 'Time of reservation'
+        reservation_time_unit: 'Time of one reservaiton'
       review:
         msg: Message
         total: Total Value
