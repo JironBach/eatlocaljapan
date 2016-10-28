@@ -166,6 +166,7 @@ ja:
         host: ホスト
         guest: ゲスト
         ngevent: NG日
+        in_english: 英語
       review:
         msg: メッセージ
         total: 合計値
@@ -523,6 +524,9 @@ ja:
         unpublished: 非公開にしました
       reply: " 返答する "
       contact: " %{model}を送る"
+      english:
+        needed: 必要
+        not_needed: 不要
   dress_codes:
     manage:
       title: "%{model}（オプション3）に関して"

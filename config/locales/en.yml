@@ -169,6 +169,7 @@ en:
         host: Host
         guest: Guest
         ngevent: NG Days
+        in_english: Language
       review:
         msg: Message
         total: Total Value
@@ -526,6 +527,9 @@ en:
         unpublished: You unpublished
       reply: "  Reply"
       contact: "  Send %{model}"
+      english:
+        needed: English
+        not_needed: Japanese
   dress_codes:
     manage:
       title: "About %{model}(Option3)"
