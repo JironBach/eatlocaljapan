@@ -6,21 +6,21 @@ set :stage, :staging # environment name
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 # server 'git.mydns.jp', user: 'js', roles: %w{app db web}
 
-# roles configuration about servers
-role :app, %w(js@jironbach.iobb.net) # , my_property: :my_value
-role :web, %w(js@jironbach.iobb.net) # , other_property: :other_value
-role :db,  %w(js@jironbach.iobb.net)
+# roles of servers
+role :app, %w(eatlocaljapan@staging.eatlocaljapan.com) # , my_property: :my_value
+role :web, %w(eatlocaljapan@staging.eatlocaljapan.com) # , other_property: :other_value
+role :db,  %w(eatlocaljapan@staging.eatlocaljapan.com)
 
-# inforomation of servers
+# information of servers
 server \
-  'jironbach.iobb.net',
-  user: 'js',
+  'staging.eatlocaljapan.com',
+  user: 'eatlocaljapan',
   roles: %w(web app db),
   ssh_options: \
     {
-      port: 12321,
-      user: 'js',
-      keys: %w(/Users/js/.ssh/jironmac),
+      port: 22,
+      user: 'eatlocaljapan',
+      keys: %w(/Users/js/.ssh/eatlocaljapan.key),
       forward_agent: true,
       auth_methods: %w(publickey password)
       # password: 'please use keys'

@@ -1,0 +1,33 @@
+machine:
+  timezone: Asia/Tokyo
+  ruby:
+    version: 2.3.1
+
+dependencies:
+  pre:
+    - sudo locale-gen ja_JP.UTF-8
+    - sudo service postgresql restart
+  override:
+    - bundle install:
+        timeout: 300
+        environment:
+          RAILS_ENV: test
+  post:
+    - bundle exec rubocop:
+        environment:
+          RAILS_ENV: test
+
+database:
+  pre:
+    - mv config/secrets.yml.ci config/secrets.yml
+    - mv config/database.yml.ci config/database.yml
+  override:
+    - bundle exec rake db:create db:schema:load:
+        environment:
+          RAILS_ENV: test
+
+test:
+  override:
+    - bundle exec rspec spec:
+        environment:
+          RAILS_ENV: test

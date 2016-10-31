@@ -3,7 +3,7 @@
   - guest = reservation_to_guest(r)
   li.card-body
     .row.row-table
-      .col-md-3
+      .col-md-2
         - if r.requested?
           span.label.text-blue = t '.progress.requested'
         - elsif r.canceled?
@@ -16,7 +16,7 @@
           span.label.text-starlight = t '.progress.holded'
         - else
           span.label.text-danger = t '.progress.unpublished'
-      .col-md-3
+      .col-md-2
         = link_to listing.title, listing_path(r.listing_id)
       .col-md-2
         = link_to user_id_to_name(r.guest_id), profile_path(r.guest_id)
@@ -25,6 +25,11 @@
       .col-md-2
         = r.num_of_people
         = t 'unit.people'
+      .col-md-2
+        - if r.in_english
+          = t '.english.needed'
+        - else
+          = t '.english.not_needed'
       .link-group.reservation-item-as-host-launch-message
         = link_to "#", id: "reservation-item-as-host-launch-message-#{r.id}", data: { num: r.id } do
           - if r.continued?

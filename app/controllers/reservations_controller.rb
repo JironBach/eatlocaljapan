@@ -70,6 +70,6 @@ private
   end
 
   def reservation_params
-    params.require(:reservation).permit(:listing_id, :host_id, :guest_id, :schedule, :num_of_people, :content, :progress, :reason)
+    params.require(:reservation).permit(:listing_id, :host_id, :guest_id, :schedule, :num_of_people, :content, :progress, :reason, :reservation_time_unit, :in_english)
   end
 end
