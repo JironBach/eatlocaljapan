@@ -38,7 +38,7 @@ class MessagesController < ApplicationController
           @reservation = Reservation.find(reservation_params['id'])
           @reservation.progress = reservation_params['progress']
           unless @reservation.save
-            format.html { return redirect_to dashboard_path, notice: Settings.message.save.failure }
+            format.html { return redirect_to dashboard_path, notice: I18n.t('message.save.failure') }
             # rubocop:disable Metrics/BlockNesting
             format.json { return render json: {success: false} } if request.xhr?
             # rubocop:enable Metrics/BlockNesting
@@ -54,10 +54,10 @@ class MessagesController < ApplicationController
           # MessageMailer.send_new_message_notification(mt_obj, message_params).deliver_later!(wait: 1.minute) # if you want to use active job, use this line.
           MessageMailer.send_new_message_notification(mt_obj, message_params).deliver_now! # if you don't want to use active job, use this line.
         end
-        format.html { return redirect_to message_thread_path(mt_obj.id), notice: Settings.message.save.success }
+        format.html { return redirect_to message_thread_path(mt_obj.id), notice: I18n.t('message.save.success') }
         format.json { return render json: {success: true} } if request.xhr?
       else
-        format.html { return redirect_to message_thread_path(mt_obj.id), notice: Settings.message.save.failure }
+        format.html { return redirect_to message_thread_path(mt_obj.id), notice: I18n.t('message.save.failure') }
         format.json { return render json: {success: false} } if request.xhr?
       end
     end
