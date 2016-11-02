@@ -9,6 +9,7 @@ en:
       confection: Confection
       dress_code: Dress Code
       emergency: Emergency
+      holiday_business_hour: 'Holiday Business Hour'
       listing: Listing
       listing_image: Listing Image
       listing_pv: Listing PV
@@ -25,6 +26,7 @@ en:
       tool: Tool
       user: User
       user_ngevent: Unavailable Day
+      weekday_business_hour: 'Weekday Business Hour'
       wishlist: Wishlist
     attributes:
       admin_user:
@@ -60,6 +62,8 @@ en:
         phone: Phone Number
         email: Email
         relationship: Relationship
+      holiday_business_hour:
+        <<: *business_hour
       listing:
         title: Restaurant Name
         title_en: Restaurant Name(English)
@@ -221,6 +225,8 @@ en:
         locked_at: Locked At
         uid: Unique ID
         provider: Auth Provider
+      weekday_business_hour:
+        <<: *business_hour
       wishlist:
         name: Name
     placeholders:
