@@ -19,5 +19,5 @@
 #  index_business_hours_on_listing_id_and_wday  (listing_id,wday)
 #
 
-class BusinessHour < ActiveRecord::Base
+class HolidayBusinessHour < BusinessHour
 end

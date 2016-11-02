@@ -52,6 +52,11 @@
 #  location_en               :string
 #  visit_benefits_en         :string
 #  visit_benefits_another_en :string
+#  reservation_frame         :integer
+#  unit                      :integer
+#  from                      :integer
+#  to                        :integer
+#  reservation_time_unit     :integer
 #
 # Indexes
 #
@@ -89,11 +94,10 @@ class Listing < ActiveRecord::Base
   has_and_belongs_to_many :shop_services, dependent: :destroy
   # rubocop:enable Rails/HasAndBelongsToMany
   has_many :business_hours, dependent: :destroy
+  has_many :weekday_business_hours
+  has_one :holiday_business_hour
   # rubocop:disable Rails/HasAndBelongsToMany
   has_and_belongs_to_many :englishes, dependent: :destroy
-  # rubocop:enable Rails/HasAndBelongsToMany
-  has_many :business_hours, dependent: :destroy
-  # rubocop:disable Rails/HasAndBelongsToMany
   has_and_belongs_to_many :english_messages
   # rubocop:enable Rails/HasAndBelongsToMany
 
