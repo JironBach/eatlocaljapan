@@ -1,11 +1,10 @@
-= simple_form_for(@listing, html: {class: "form--sp"}) do |f|
+= simple_form_for(@listing, html: {class: 'form--sp'}) do |f|
   = f.error_notification
   = @listing.errors.messages.inspect unless @listing.errors.messages.blank?
   = f.hidden_field :user_id, value: current_user.id
   = f.hidden_field :open, value: false
-  -if false
-    = f.input_field :longitude, as: :string, placeholder: t('activerecord.placeholders.listing.longitude')
-    = f.input_field :latitude, as: :string, placeholder: t('activerecord.placeholders.listing.latitude')
+  / = f.input_field :longitude, as: :string, placeholder: t('activerecord.placeholders.listing.longitude')
+  / = f.input_field :latitude, as: :string, placeholder: t('activerecord.placeholders.listing.latitude')
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
@@ -30,7 +29,7 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = collection_check_boxes nil, :shop_categories, ShopCategory.all, :id, (locale == :ja ? :name : :name_en), checked: @listing.shop_categories.collect {|sc| sc.id} do |b|
+          = collection_check_boxes nil, :shop_categories, ShopCategory.all, :id, (locale == :ja ? :name : :name_en), checked: @listing.shop_categories.pluck(:id) do |b|
             = b.label { b.check_box + b.text }
   hr
   .row.row-space-5.row-space-top-5.row-table
@@ -40,7 +39,7 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = collection_check_boxes nil, :shop_services, ShopService.all, :id, (locale == :ja ? :name : :name_en), checked: @listing.shop_services.collect {|ss| ss.id} do |b|
+          = collection_check_boxes nil, :shop_services, ShopService.all, :id, (locale == :ja ? :name : :name_en), checked: @listing.shop_services.plucck(:id) do |b|
             = b.label { b.check_box + b.text }
   / .row.row-space-5.row-space-top-5.row-table
   /   .col-xs-4.text-right.col-middle
@@ -62,9 +61,8 @@
   /    .row
   /      .col-xs-6.col-md-3
   /        .select.select-block
-  /          - arr = (1..15).map{|p| ["#{p}#{t('unit.people')}",p] }
-  /          - arr <<  ["#{t('.capacity.more_than', num: 16, unit: t('unit.people'))}", :"16+"]
-  /          = f.input_field :capacity, as: :select, collection: arr, default:  [1]
+  /          - capacities = (1..15).map { |p| ["#{p}#{t('unit.people')}", p] }.push(["#{t('.capacity.more_than', num: 16, unit: t('unit.people'))}", :'16+'])
+  /          = f.input_field :capacity, as: :select, collection: capacities, default: [1]
   /.row.row-space-5.row-space-top-5.row-table
   /  .col-xs-4.text-right.col-middle
   /    .h4.text-light
@@ -73,7 +71,7 @@
   /  .col-xs-8.fieldset.col-middle
   /    .row
   /      .col-xs-5.add-value--price.add--help
-  /        = f.input_field :price, as: :string, value: (@listing.price > 0 ? @listing.price : "" ), placeholder: t('activerecord.placeholders.listing.price')
+  /        = f.input_field :price, as: :string, value: (@listing.positive? ? @listing.price : ''), placeholder: t('activerecord.placeholders.listing.price')
   /        p.help.text-pink #{t('.caution.price')}
   /.row.row-space-5.row-space-top-5.row-table
   /hr
@@ -83,15 +81,15 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = f.input_field :description, rows: "6", placeholder: t('activerecord.placeholders.listing.description')
+          = f.input_field :description, rows: '6', placeholder: t('activerecord.placeholders.listing.description')
   /hr
     .col-xs-4.text-right.col-middle
       .h4.text-light
-        | #{Listing.human_attribute_name :description_en}
+        = Listing.human_attribute_name :description_en
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = f.input_field :description_en, rows: "6", placeholder: t('activerecord.placeholders.listing.description_en')
+          = f.input_field :description_en, rows: '6', placeholder: t('activerecord.placeholders.listing.description_en')
   hr
   - if @listing.cover_image.present?
     .row.row-space-5.row-space-top-5.row-table
@@ -110,7 +108,7 @@
       .row
         .col-xs-11.regist-pics
           = f.file_field :cover_image, as: :file
-          /= f.input_field :cover_image_caption, placeholder: "イメージ画像の説明を入力できます", class: "row-space-top-2"
+          /= f.input_field :cover_image_caption, placeholder: 'イメージ画像の説明を入力できます', class: 'row-space-top-2'
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
@@ -118,7 +116,7 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-6.col-md-4
-          = f.input_field :zipcode, placeholder: t('activerecord.placeholders.listing.zipcode'), class: "zip-format"
+          = f.input_field :zipcode, placeholder: t('activerecord.placeholders.listing.zipcode'), class: 'zip-format'
         .question-icon-container
           i#zipcode-tooltip.fa.fa-question-circle.tooltip-trigger
   .row.row-space-5.row-space-top-5.row-table
@@ -128,7 +126,7 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = f.input_field :location, placeholder: t('activerecord.placeholders.listing.location'), class: "zip-address"
+          = f.input_field :location, placeholder: t('activerecord.placeholders.listing.location'), class: 'zip-address'
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
@@ -136,7 +134,7 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = f.input_field :location_en, placeholder: t('activerecord.placeholders.listing.location_en'), class: "zip-address-rome"
+          = f.input_field :location_en, placeholder: t('activerecord.placeholders.listing.location_en'), class: 'zip-address-rome'
   /.row.row-space-5.row-space-top-5.row-table
   /  .col-xs-4.text-right.col-middle
   /    .h4.text-light
@@ -144,7 +142,7 @@
   /  .col-xs-8.fieldset.col-middle
   /    .row
   /      .col-xs-11
-  /        = f.input_field :direction, rows: "4", placeholder: t('activerecord.placeholders.listing.direction')
+  /        = f.input_field :direction, rows: '4', placeholder: t('activerecord.placeholders.listing.direction')
   /.row.row-space-5.row-space-top-5.row-table
   /  .col-xs-4.text-right.col-middle
   /    .h4.text-light
@@ -153,10 +151,10 @@
   /    .row
   /      .col-xs-11.checkbox
   /        = f.input_field :delivery_flg, boolean_style: :inline
-  /        label[for="listing_delivery_flg"]
+  /        label[for='listing_delivery_flg']
   /          = t('.delivery.name')
   /        .question-icon-container.inline
-  /          i#togo-tooltip.fa.fa-question-circle.tooltip-trigger[data-placement="bottom"]
+  /          i#togo-tooltip.fa.fa-question-circle.tooltip-trigger[data-placement='bottom']
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
@@ -173,7 +171,7 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = collection_check_boxes nil, :englishes, English.all, :id, (locale == :ja ? :name : :name_en), checked: @listing.englishes.collect {|e| e.id} do |b|
+          = collection_check_boxes nil, :englishes, English.all, :id, (locale == :ja ? :name : :name_en), checked: @listing.englishes.pluck(:id) do |b|
             = b.label { b.check_box + b.text }
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
@@ -185,14 +183,11 @@
           - 7.times do |wday|
             - business_hour = @listing.business_hours[wday]
             p
-              - if locale == :ja
-                = %w(日 月 火 水 木 金 土)[wday]
-              - else
-                = %w(Sun Mon Tue Wed Thu Fri Sat)[wday]
-              = check_box "is_open[#{wday}]", nil, {checked: business_hour.nil? ? true : business_hour.is_open}
-              = time_select "start_hour[#{wday}]", nil, {minute_step: 15, default: business_hour.nil? ? DateTime.parse('1-1-1 11:30:00') : business_hour.start_hour}, style: "display:inline-block;width:auto;"
+              = I18n.t(:abbr_day_names, scope: [:date])[wday]
+              = check_box "is_open[#{wday}]", nil, checked: business_hour.nil? ? true : business_hour.is_open
+              = time_select "start_hour[#{wday}]", nil, {minute_step: 15, default: business_hour.nil? ? Time.zone.parse('1-1-1 11:30:00') : business_hour.start_hour}, style: 'display:inline-block;width:auto'
               = ' - '
-              = time_select "end_hour[#{wday}]", nil, {minute_step: 15, default: business_hour.nil? ? DateTime.parse('1-1-1 23:00:00') : business_hour.end_hour}, style: "display:inline-block;width:auto;"
+              = time_select "end_hour[#{wday}]", nil, {minute_step: 15, default: business_hour.nil? ? Time.zone.parse('1-1-1 23:00:00') : business_hour.end_hour}, style: 'display:inline-block;width:auto'
   /.row.row-space-5.row-space-top-5.row-table
   /  .col-xs-4.text-right.col-middle
   /    .h4.text-light
@@ -200,7 +195,7 @@
   /  .col-xs-8.fieldset.col-middle
   /    .row
   /      .col-xs-11
-  /        = f.input_field :business_hours_remarks, rows: "4", placeholder: t('activerecord.placeholders.listing.business_hours_remarks')
+  /        = f.input_field :business_hours_remarks, rows: '4', placeholder: t('activerecord.placeholders.listing.business_hours_remarks')
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
@@ -208,7 +203,7 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = f.input_field :shop_description, rows: "4", placeholder: t('activerecord.placeholders.listing.shop_description')
+          = f.input_field :shop_description, rows: '4', placeholder: t('activerecord.placeholders.listing.shop_description')
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
@@ -216,7 +211,7 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = f.input_field :shop_description_en, rows: "4", placeholder: t('activerecord.placeholders.listing.shop_description_en')
+          = f.input_field :shop_description_en, rows: '4', placeholder: t('activerecord.placeholders.listing.shop_description_en')
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
@@ -224,10 +219,10 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          /= f.input_field :price_low, as: :string, value: (@listing.price_low > 0 ? @listing.price_low : "" ), placeholder: t('activerecord.placeholders.listing.price_low')
+          /= f.input_field :price_low, as: :string, value: (@listing.price_low.positive? ? @listing.price_low : ''), placeholder: t('activerecord.placeholders.listing.price_low')
           = f.input_field :price_low, as: :string, placeholder: t('activerecord.placeholders.listing.price_low')
           | -
-          /= f.input_field :price_high, as: :string, value: (@listing.price_high > 0 ? @listing.price_high : "" ), placeholder: t('activerecord.placeholders.listing.price_high')
+          /= f.input_field :price_high, as: :string, value: (@listing.price_high.positive? ? @listing.price_high : ''), placeholder: t('activerecord.placeholders.listing.price_high')
           = f.input_field :price_high, as: :string, placeholder: t('activerecord.placeholders.listing.price_high')
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
@@ -236,10 +231,10 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          /= f.input_field :price_low_dinner, as: :string, value: (@listing.price_low_dinner > 0 ? @listing.price_low_dinner : "" ), placeholder: t('activerecord.placeholders.listing.price_low_dinner')
+          /= f.input_field :price_low_dinner, as: :string, value: (@listing.price_low_dinner.positive? ? @listing.price_low_dinner : ''), placeholder: t('activerecord.placeholders.listing.price_low_dinner')
           = f.input_field :price_low_dinner, as: :string, placeholder: t('activerecord.placeholders.listing.price_low_dinner')
           | -
-          /= f.input_field :price_high_dinner, as: :string, value: (@listing.price_high_dinner > 0 ? @listing.price_high_dinner : "" ), placeholder: t('activerecord.placeholders.listing.price_high_dinner')
+          /= f.input_field :price_high_dinner, as: :string, value: (@listing.price_high_dinner.positive? ? @listing.price_high_dinner : ''), placeholder: t('activerecord.placeholders.listing.price_high_dinner')
           = f.input_field :price_high_dinner, as: :string, placeholder: t('activerecord.placeholders.listing.price_high_dinner')
   /.row.row-space-5.row-space-top-5.row-table
   /  .col-xs-4.text-right.col-middle
@@ -296,7 +291,7 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = f.input_field :recommended, rows: "4", placeholder: t('activerecord.placeholders.listing.recommended')
+          = f.input_field :recommended, rows: '4', placeholder: t('activerecord.placeholders.listing.recommended')
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
@@ -304,7 +299,7 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = f.input_field :recommended_en, rows: "4", placeholder: t('activerecord.placeholders.listing.recommended_en')
+          = f.input_field :recommended_en, rows: '4', placeholder: t('activerecord.placeholders.listing.recommended_en')
   /.row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
@@ -344,7 +339,7 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = collection_check_boxes nil, :english_messages, EnglishMessage.all, :id, (locale == :ja ? :name : :name_en), checked: @listing.english_messages.nil? ? nil : @listing.english_messages.collect {|em| em.id} do |b|
+          = collection_check_boxes nil, :english_messages, EnglishMessage.all, :id, (locale == :ja ? :name : :name_en), checked: @listing.english_messages.nil? ? nil : @listing.english_messages.pluck(:id) do |b|
             = b.label { b.check_box + b.text }
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
@@ -357,6 +352,6 @@
   .row
     .col-xs-9.col-offset-3.text-reset-center
       - if 'edit' == controller.action_name
-        = f.button :submit, t('.submit.update'), class: "btn-primary btn-large", id: 'listing-manager-listing-submit'
+        = f.button :submit, t('.submit.update'), class: 'btn-primary btn-large', id: 'listing-manager-listing-submit'
       - else
-        = f.button :submit, t('.submit.next'), class: "btn-primary btn-large"
+        = f.button :submit, t('.submit.next'), class: 'btn-primary btn-large'

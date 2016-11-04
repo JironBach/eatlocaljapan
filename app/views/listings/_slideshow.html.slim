@@ -3,7 +3,7 @@
   /.photo-slider-items
   - unless listing_image.blank?
     /= link_to(image_tag(listing_image.image.url), class: 'photo-slider-item', title: listing_image.caption)
-    a.photo-slider-item[href="#{listing_image.image.url}" title="#{listing_image.caption}"]
-      /= image_tag(listing_image.image.url)
+    a.photo-slider-item[href=listing_image.image.url title=listing_image.caption]
+      /= image_tag(listing_image.image)
   /.cover-img-container
-  /  | <div class="cover-img" style="background-image:url(#{@listing.try('cover_image') || ''})">
+  /  | <div class='cover-img' style="background-image:url(#{@listing&.cover_image || ''})">

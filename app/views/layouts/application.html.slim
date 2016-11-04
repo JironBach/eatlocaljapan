@@ -1,63 +1,49 @@
 doctype html
 html
   head
-    - title = yield :title
-    - description = yield :description
-    - keywords = yield :keywords
+    - title, description, keywords = [:title, :description, :keyrowds].map { |name| yield name }
     = display_meta_tags default_meta_tags(request, title, description, keywords)
-    meta[http-equiv="X-UA-Compatible" content="IE=edge"]
-    meta[name="apple-mobile-web-app-title" content="app-name"]
-    meta[name="globalsign-domain-verification" content="o9LhLyMC0TgrJEtKuph7X1W94TIbKDjKD2eVF_3Wmy"]
-    = favicon_link_tag 'apple-touch-icon.png', rel:'apple-touch-icon-precomposed', type:'image/png'
+    meta[http-equiv='X-UA-Compatible' content='IE=edge']
+    meta[name='apple-mobile-web-app-title' content='app-name']
+    meta[name='globalsign-domain-verification' content='o9LhLyMC0TgrJEtKuph7X1W94TIbKDjKD2eVF_3Wmy']
+    = favicon_link_tag 'apple-touch-icon.png', rel: 'apple-touch-icon-precomposed', type: 'image/png'
     = favicon_link_tag 'favicon.ico'
     = stylesheet_link_tag 'application', media: 'all'
-    = javascript_include_tag "/modernizr-2.8.3.min.js"
+    = javascript_include_tag '/modernizr-2.8.3.min.js'
     /= include_gon
     = Gon::Base.render_data({})
     = csrf_meta_tags
     / whatfix
     javascript:
-      window._wfx_settings={"ent_id":"63b36610-968f-11e6-bcdd-04013d24cf02"};
+      window._wfx_settings={ent_id: '63b36610-968f-11e6-bcdd-04013d24cf02'};
     = javascript_include_tag '//whatfix.com/embed/embed.nocache.js', async: 'async', type: 'text/javascript'
 
-  - if controller_name === "welcome"
-    |  <body class="
-    = controller_name
-    '
-    = action_name
-    |  is-simpleHeader">
-  - else
-    | <body class="
-    = controller_name
-    '
-    = action_name
-    | ">
-  = render partial: 'shared/google_analytics'
-  = render partial: 'shared/header'
-  - if notice
-    .alert.alert-notice
-      div
-        = notice
-  - if alert
-    .alert.alert-error
-      div
-        = alert
-  = yield
-  = render partial: 'shared/footer'
-  = render partial: 'shared/tooltip'
-  = render partial: 'shared/modals/flow'
+  body class="#{controller_name}'#{action_name}#{controller_name == 'welcome' ? ' is-simpleHeader' : ''}"
 
-  = javascript_include_tag 'application'
+    = render 'shared/google_analytics'
+    = render 'shared/header'
 
-  javascript:
-    I18n.defaultLocale = #{raw I18n.default_locale.to_json};
-    I18n.locale = #{raw I18n.locale.to_json};
+    - if notice
+      .alert.alert-notice
+        div
+          = notice
 
-  - if Rails.env.development?
-    = javascript_include_tag "i18n/translations"
-  - else
-    = javascript_include_tag "i18n/#{I18n.locale}"
+    - if alert
+      .alert.alert-error
+        div
+          = alert
 
-  = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=ja&region=jp'
+    = yield
 
-  | </body>
+    = render 'shared/footer'
+    = render 'shared/tooltip'
+    = render 'shared/modals/flow'
+
+    = javascript_include_tag 'application'
+
+    javascript:
+      I18n.defaultLocale = #{raw I18n.default_locale.to_json};
+      I18n.locale = #{raw I18n.locale.to_json};
+
+    = javascript_include_tag "i18n/#{Rails.env.development? ? 'translations' : I18n.locale}"
+    = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=ja&region=jp'

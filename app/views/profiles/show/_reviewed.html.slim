@@ -10,13 +10,13 @@
           .row.text-center-sm
             .col-md-2.col-sm-12
               .avatar-wrapper
-                = link_to profile_path(r.guest_id), class: "text-muted" do
+                = link_to profile_path(r.guest_id), class: 'text-muted' do
                   .media-photo.media-round.row-space-1.text-center
                     = image_tag(user_id_to_profile_image(r.guest_id), width: 68)
                   .text-center.profile-name.text-wrap
                     = user_id_to_name(r.guest_id)
                 /.text-muted.date.show-sm
-                  = r.created_at.strftime("%y年%m月%d日")
+                  = l r.created_at, format: :date
             .col-md-10.col-sm-12
               .row-space-2
                 .comment-container.expandable.row-space-2
@@ -26,9 +26,9 @@
                         p
                           = simple_format(r.msg)
                       .expandable-indicator
-                  = link_to "#", class: "expandable-trigger-more strong" do
+                  = link_to '#', class: 'expandable-trigger-more strong' do
                     = t '.show_all'
-                  /a.expandable-trigger-more.text-muted href="#"
+                  /a.expandable-trigger-more.text-muted href='#'
                     /strong もっと詳しく
               /.text-muted.date.hide-sm
                 - reserv = reservation_id_to_reservation_obj(r.reservation_id)

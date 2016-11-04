@@ -1,4 +1,4 @@
-= simple_form_for(:search, url: '/listings/search', html: { method: 'get', id: 'search_form', class: 'hero-searchForm'}) do |f|
+= simple_form_for(:search, url: search_listings_path, html: {method: 'get', id: 'search_form', class: 'hero-searchForm'}) do |f|
   = f.hidden_field :where, value: 'top'
   .card
     .discovery-container
@@ -11,7 +11,7 @@
         .col-xs-8.fieldset.col-middle
           .row
             .col-xs-11
-              = f.input_field :shop_name, class: "decorative-input", required: true
+              = f.input_field :shop_name, class: 'decorative-input', required: true
       .row.row-space-5.row-space-top-5.row-table
         .col-xs-4.text-right.col-middle
           .h4.text-light
@@ -65,4 +65,4 @@
       /      .col-xs-11
       /        = text_field_tag :price
 
-  = button_tag(t('.submit'), type: "submit", class: "btn btn-primary btn-large", id: "submit_location")
+  = button_tag(t('.submit'), type: 'submit', class: 'btn btn-primary btn-large', id: 'submit_location')

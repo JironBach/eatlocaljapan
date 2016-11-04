@@ -18,16 +18,16 @@
             .signin-form
               = f.error_notification
               .control-group.row-space-1
-                = f.input_field :email, class: "decorative-input", placeholder: t('.placeholder.mail'), required: true
+                = f.input_field :email, class: 'decorative-input', placeholder: t('.placeholder.mail'), required: true
               .control-group.row-space-2
-                = f.input_field :password, class: "decorative-input", placeholder: t('.placeholder.pw'), required: false
+                = f.input_field :password, class: 'decorative-input', placeholder: t('.placeholder.pw'), required: false
               .clearfix.checkbox.row-space-2
-                label.remember-me[for="remember_me2"]
-                  = f.input_field :remember_me, as: :boolean, boolean_style: :inline, id: "remember_me2", class: "remember-me" if devise_mapping.rememberable?
+                label.remember-me[for='remember_me2']
+                  = f.input_field :remember_me, as: :boolean, boolean_style: :inline, id: 'remember_me2', class: 'remember-me' if devise_mapping.rememberable?
                   = t '.remember'
-                = link_to t('.forgot_pw'), new_password_path(resource_name), class: "pull-right row-space-top-2"
+                = link_to t('.forgot_pw'), new_password_path(resource_name), class: 'pull-right row-space-top-2'
               .form-actions
-                = f.button :submit, t('.login'), class: "btn btn-primary btn-large btn-block"
+                = f.button :submit, t('.login'), class: 'btn btn-primary btn-large btn-block'
         .card-body
           p.small1.row-space-2
             = t '.account'

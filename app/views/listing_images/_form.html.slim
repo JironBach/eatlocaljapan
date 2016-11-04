@@ -1,4 +1,4 @@
-= simple_form_for([@listing, @listing_image], html: {class: "form--sp"} ) do |f|
+= simple_form_for([@listing, @listing_image], html: {class: 'form--sp'}) do |f|
   = f.error_notification
   = f.hidden_field :listing_id, value: @listing.id
   - if @listing_image.id.present?
@@ -28,4 +28,4 @@
           = f.input_field :caption, placeholder: t('activerecord.placeholders.listing_image.caption')
   .row
     .col-xs-9.col-offset-3.text-reset-center
-      = f.button :submit, t('.submit'), class: "btn-primary btn-large", id: 'listing-manager-listing-image-submit'
+      = f.button :submit, t('.submit'), class: 'btn-primary btn-large', id: 'listing-manager-listing-image-submit'

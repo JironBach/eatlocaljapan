@@ -9,8 +9,8 @@
 /            = reviews.count
 /            = t('unit.review')
 /            .star-rating
-/              = render partial: 'listings/stars', locals: { rate: listing.ave_total }
+/              = render 'listings/stars', rate: listing.ave_total
 /        .review-content
 /          .card-body
-/            = render partial: 'review_item', locals: { reviews: reviews, host_info: host_info, host_image: host_image }
+/            = render 'review_item', reviews: reviews, host_info: host_info, host_image: host_image
 /            = paginate reviews

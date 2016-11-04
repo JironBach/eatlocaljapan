@@ -1,4 +1,5 @@
-= simple_form_for([@profile, @profile_image], url: '/profile/profile_image', method: :patch, html: { class: "form--sp" }) do |f|
+/ HACK: need to reconsider routing definication about profile_image as singular resource.
+= simple_form_for([@profile, @profile_image], url: '/profile/profile_image', method: :patch, html: {class: 'form--sp'}) do |f|
   = f.error_notification
   = f.hidden_field :user_id, value: current_user.id
   = f.hidden_field :profile_id, value: current_user.profile.id
@@ -15,7 +16,7 @@
         label.text-right.col-3
           = ProfileImage.human_attribute_name :image
         .col-8
-          = f.file_field :image, class: "row-space-top-1-file"
+          = f.file_field :image, class: 'row-space-top-1-file'
           span.text-pink
             = t('.text1')
       /.row.row-condensed.row-space-4
@@ -25,4 +26,4 @@
           = f.input_field :caption
           .text-muted.row-space-top-1
             = t '.text3'
-  = f.button :submit, t('.submit'), class: "btn btn-primary btn-large row-space-4"
+  = f.button :submit, t('.submit'), class: 'btn btn-primary btn-large row-space-4'

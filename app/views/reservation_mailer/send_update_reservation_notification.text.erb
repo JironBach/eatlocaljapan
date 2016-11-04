@@ -4,9 +4,9 @@
 
 <%= t '.msg3' %>
 
-<% if @dest == "host" %>
+<% if @dest == 'host' %>
   <%= dashboard_host_reservation_manager_url %>
-<% elsif @dest == "guest" %>
+<% elsif @dest == 'guest' %>
   <%= dashboard_guest_reservation_manager_url %>
 <% end %>
 

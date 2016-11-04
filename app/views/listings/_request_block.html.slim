@@ -5,14 +5,14 @@
     = f.hidden_field :host_id, value: @listing.user_id
     = f.hidden_field :guest_id, value: user_id
     = f.hidden_field :listing_id, value: @listing.id
-    = f.hidden_field :progress, value: "accepted"
+    = f.hidden_field :progress, value: 'accepted'
     = f.hidden_field :reservation_time_unit, value: @listing.reservation_time_unit
-    #book-it-sm-modal.modal[aria-hidden="true" role="dialog"]
+    #book-it-sm-modal.modal[aria-hidden='true' role='dialog']
       .modal-table
         .modal-cell
           #book-it-sm-modal-content.modal-content
             .card-header.card-wax
-              = link_to "", "#", class: "modal-close", data: { dismiss: "modal" }
+              = link_to '', '#', class: 'modal-close', data: {dismiss: 'modal'}
               = t('.submit')
     #book_it
       #book_it_container
@@ -23,28 +23,27 @@
                 .col-md-8
                   .row.row-condensed
                     .col-sm-12
-                      label.js-checkin-label[for="checkin"]
+                      label.js-checkin-label[for='checkin']
                         = Reservation.human_attribute_name :schedule
-                      - the_day_for_placeholder = Date.today + 7.days
-                      input#checkin.checkin.datepicker[name="reservation[schedule]" type="text" data-listing_id="#{@listing.id}" readonly=true placeholder=the_day_for_placeholder]
+                      input#checkin.checkin.datepicker[name='reservation[schedule]' type='text' data-listing_id=@listing.id readonly=true placeholder=(Time.zone.today + 7.days)]
                 .col-md-4
                   .row.row-condensed
                     .col-sm-12
-                      label[for="number_of_guests"]
+                      label[for='number_of_guests']
                         = Reservation.human_attribute_name :num_of_people
                       .select.select-block
                         = f.input_field :num_of_people, as: :select, collection: (1..20), selected: 1
             .row.row-condensed.row-space-3
               .col-md-12
-                label[for="number_of_guests"]
+                label[for='number_of_guests']
                   = t('listings.request_block.time')
                 .select.select-block
                   = select nil, :hour, Array(1..24), selected: 12
-                  = ":"
+                  | :
                   = select nil, :minute, Array(0.step(59, @listing.unit))
             .row.row-condensed.row-space-3
               .col-md-12
-                label[for="number_of_guests"]
+                label[for='number_of_guests']
                   = t('listings.request_block.in_english')
                 .select.select-block
                   = f.check_box :in_english
@@ -55,10 +54,7 @@
 
                   #book_it_button_container
                   - if user_signed_in?
-                    - if current_user.id == listing.user_id
-                      = f.submit t('.submit'), id: 'book_it_button', class: "btn btn-primary btn-large btn-block disabled"
-                    - else
-                      = f.submit t('.submit'), id: 'book_it_button', class: "btn btn-primary btn-large btn-block"
+                    = f.submit t('.submit'), id: 'book_it_button', class: "btn btn-primary btn-large btn-block#{current_user == listing.user ? ' disabled' : ''}"
                   - else
                     button#book_it_button.btn.btn-primary.btn-large.btn-block
                       = t('.submit')

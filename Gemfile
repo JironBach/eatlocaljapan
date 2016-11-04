@@ -156,6 +156,10 @@ group :development, :test do
   gem 'rubocop', '~> 0.36.0', require: false
   gem 'guard-rubocop', '1.2.0'
 
+  # slim lint
+  gem 'slim_lint'
+  gem 'guard-slimlint'
+
   # livereload
   gem 'guard-livereload', '2.4.0', require: false
 

@@ -3,21 +3,21 @@
     .row.row-table.row-reset
       .col-md-3.col-middle.text-center.col-reset
         = link_to profile_path(host_info.id), class: 'media-photo media-round' do
-          = image_tag(user_id_to_profile_image(listing.user_id), class: "size90")
+          = image_tag(user_id_to_profile_image(listing.user_id), class: 'size90')
       .col-md-9.col-middle.col-reset
         h1#listing_name.overflow.h3.row-space-1.text-center--sp
           = locale == :ja ? listing.title : listing.title_en
         .text-muted.text-center--sp.row-space-1
-          = link_to "#neighborhood", class: "link-reset" do
+          = link_to '#neighborhood', class: 'link-reset' do
             = locale == :ja ? listing.location : listing.location_en
-          = link_to "#reviews", class: "link-reset" do
+          = link_to '#reviews', class: 'link-reset' do
             .star-rating
-              = render partial: 'listings/stars', locals: { rate: listing.ave_total }
+              = render 'listings/stars', rate: listing.ave_total
           | (
-          span[itemprop="reviewCount"]
+          span[itemprop='reviewCount']
             = reviews.count
           | )
-        = render partial: 'delivery_ok_button', locals: { listing: listing }
+        = render 'delivery_ok_button', listing: listing
     .row.hide--sp
       .col-md-3.text-muted.text-center
         = link_to profile_path(host_info.id), class: 'link-reset.text-wrap' do

@@ -1,6 +1,6 @@
 - provide :title, t('.title', listing_image: ListingImage.model_name.human)
 .manage-listings
-  = render partial: 'shared/manage_listing_header', locals: { listing: @listing }
+  = render 'shared/manage_listing_header', listing: @listing
   .manage-listing-row-container
     .manage-listing-content.col-md-9.col-offset-3
       .row-space-top-4
@@ -10,4 +10,4 @@
           = t('.text_html', guest: t('name.guest'), listing: Listing.model_name.human, listing_image: ListingImage.model_name.human)
       = render 'form'
 
-    = render partial: 'shared/manage_listing_nav'
+    = render 'shared/manage_listing_nav'

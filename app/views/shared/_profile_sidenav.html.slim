@@ -1,13 +1,5 @@
 ul.sidenav-list
-  - if controller_name == 'profiles'
-    li
-      = link_to t('.edit'), edit_profile_path, class: "sidenav-item", aria: {selected: "true"}
-  - else
-    li
-      = link_to t('.edit'), edit_profile_path, class: "sidenav-item", aria: {selected: "false"}
-  - if controller_name == 'profile_images'
-    li
-      = link_to t('.edit_image'), edit_profile_profile_image_path, class: "sidenav-item", aria: {selected: "true"}
-  - else
-    li
-      = link_to t('.edit_image'), edit_profile_profile_image_path, class: "sidenav-item", aria: {selected: "false"}
+  li
+    = link_to t('.edit'), edit_profile_path, class: 'sidenav-item', aria: {selected: controller_name == 'profiles' ? 'true' : 'false'}
+  li
+    = link_to t('.edit_image'), edit_profile_profile_image_path, class: 'sidenav-item', aria: {selected: controller_name == 'profile_images' ? 'true' : 'false'}

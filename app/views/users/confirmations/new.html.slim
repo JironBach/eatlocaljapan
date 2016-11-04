@@ -5,16 +5,16 @@
       .card
         .card-header = t '.header'
         .card-body
-          = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+          = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: {method: :post}) do |f|
             .signin-form
               = f.error_notification
               = f.full_error :confirmation_token
               p.row-space-2
                 = t '.msg_html'
               .control-group.row-space-2
-                = f.input_field :email, class: "decorative-input", placeholder: t('.placeholder'), required: true
+                = f.input_field :email, class: 'decorative-input', placeholder: t('.placeholder'), required: true
               .form-actions
-                = f.button :submit, t('.submit'), class: "btn btn-primary btn-large btn-block"
+                = f.button :submit, t('.submit'), class: 'btn btn-primary btn-large btn-block'
         .card-body
           p.small1.row-space-2
             = t '.back_text'

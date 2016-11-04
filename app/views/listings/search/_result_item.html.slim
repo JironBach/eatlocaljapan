@@ -2,9 +2,9 @@
   .col-sm-12.col-md-6.row-space-2
     .listing
       .card-image.listing-img
-        = link_to listing_path(listing['id']), class: "media-photo media-cover"
+        = link_to listing_path(listing['id']), class: 'media-photo media-cover'
           .listing-img-container.media-cover.text-center
-            = image_tag("/uploads/listing/cover_image/#{listing['id']}/#{listing['cover_image']}", class: "img-responsive-height")
+            = image_tag(listing.cover_image, class: 'img-responsive-height')
         /.card-overlay-bottom-left.card-overlay-label.card-overlay-listing-label
           /div
           /  sup.h5.text-contrast ¥
@@ -14,15 +14,15 @@
           /  sup.h6.text-contrast
         .card-overlay-top-right.wl-social-connection-card
           span.rich-toggle.wishlist-button
-            input#wishlist-widget-1 name="" type="checkbox"
-            label.hide--sp for="wishlist-widget-1"
+            input#wishlist-widget-1 name='' type='checkbox'
+            label.hide--sp for='wishlist-widget-1'
               i.fa.fa-heart.wishlist-heart-unchecked.fa-size-2
               i.fa.fa-heart-o.fa-white.fa-size-2
       .card-body.card-card-section
         .media
-          /= link_to listing_path(listing['id'], anchor: 'host-profile'), class: "pull-right media-photo media-round card-profile-picture card-profile-picture-offset" do
+          /= link_to listing_path(listing['id'], anchor: 'host-profile'), class: 'pull-right media-photo media-round card-profile-picture card-profile-picture-offset' do
           /  = image_tag(user_id_to_profile_image(listing['user_id']))
           .h5.listing-name.text-truncate.row-space-top-1
-            = link_to locale == :ja ? listing['title'] : listing['title_en'], listing_path(listing['id']), class: "text-normal"
+            = link_to locale == :ja ? listing['title'] : listing['title_en'], listing_path(listing['id']), class: 'text-normal'
           .text-muted.listing-location.text-truncate
-            = link_to locale == :ja ? listing['location'] : listing['location_en'], listing_path(listing['id']), class: "text-normal link-reset small1"
+            = link_to locale == :ja ? listing['location'] : listing['location_en'], listing_path(listing['id']), class: 'text-normal link-reset small1'

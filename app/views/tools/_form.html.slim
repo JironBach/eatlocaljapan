@@ -1,4 +1,4 @@
-= simple_form_for([@listing, @tool], html: {class: "url-check form--sp"}) do |f|
+= simple_form_for([@listing, @tool], html: {class: 'url-check form--sp'}) do |f|
   = f.error_notification
   = f.hidden_field :listing_id, value: @listing.id
   .row.row-space-5.row-space-top-5.row-table
@@ -36,4 +36,4 @@
           = f.input_field :url, placeholder: t('activerecord.placeholders.tool.url')
   .row
     .col-xs-9.col-offset-3.text-reset-center
-      = f.button :submit, t('.submit'), class: "btn-primary btn-large", id: 'listing-manager-tool-submit'
+      = f.button :submit, t('.submit'), class: 'btn-primary btn-large', id: 'listing-manager-tool-submit'
