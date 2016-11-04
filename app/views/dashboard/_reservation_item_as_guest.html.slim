@@ -23,12 +23,12 @@
       .col-md-2
         = link_to user_id_to_name(host.id), profile_path(host.profile.id)
       .col-md-2
-        = r.schedule.strftime("%y/%m/%d")
+        = l r.schedule, format: :little_short
       .link-group
-        = link_to "#", id: "reservation-item-as-guest-launch-message-#{r.id}", data: { num: r.id } do
+        = link_to '#', id: "reservation-item-as-guest-launch-message-#{r.id}", data: {num: r.id} do
           i.fa.fa-envelope-o
           = t('.msg', model: Message.model_name.human)
-        = link_to "#", id: "reservation-item-show-receipt-#{r.id}", data: { num: r.id } do
+        = link_to '#', id: "reservation-item-show-receipt-#{r.id}", data: {num: r.id} do
           i.fa.fa-jpy
           = t '.receipt'
-    = render partial: 'shared/modals/message_to_host_from_reservation_manger', locals: { r: r, listing: reservation_to_listing(r) }
+    = render 'shared/modals/message_to_host_from_reservation_manger', r: r, listing: reservation_to_listing(r)

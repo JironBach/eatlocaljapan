@@ -1,6 +1,7 @@
-- provide :title, t('.title')
-- provide :description, t('.description')
-- provide :keywords, t('.keywords')
+ruby:
+  provide :title, t('.title')
+  provide :description, t('.description')
+  provide :keywords, t('.keywords')
 .hero-wrapper
   #hero
     ul#slideshow.list-unstyled
@@ -19,13 +20,9 @@
           /    span.input-stem.input-large.fake-search-field
           /      = t '.search'
           /    i.input-suffix.btn.btn-primary.fa.fa-full.fa-search
-          - if locale == :ja
-            a.btn.btn-large.btn-transparent.hide--sp[href="http://eatlocaljapan.com/about_jp/" target="blank"]
-              = t '.flow'
-          - else
-              a.btn.btn-large.btn-transparent.hide--sp[href="http://eatlocaljapan.com/about/" target="blank"]
-                = t '.flow'
+          a.btn.btn-large.btn-transparent.hide--sp href=(locale == :ja ? 'http://eatlocaljapan.com/about_jp/' : 'http://eatlocaljapan.com/about/') target='blank'
+            = t '.flow'
         .hero-search
           .col-xs-12
-            = render partial: 'form'
-= render partial: 'discovery'
+            = render 'form'
+= render 'discovery'

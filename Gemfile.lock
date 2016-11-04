@@ -136,6 +136,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     colored (1.2)
+    colorize (0.8.1)
     columnize (0.9.0)
     concord (0.1.5)
       adamantium (~> 0.2.0)
@@ -299,6 +300,11 @@ GEM
     guard-rubocop (1.2.0)
       guard (~> 2.0)
       rubocop (~> 0.20)
+    guard-slimlint (1.2.1)
+      colorize
+      guard
+      guard-compat
+      slim_lint
     has_scope (0.6.0)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
@@ -589,6 +595,11 @@ GEM
       activesupport (>= 3.1, < 5.0)
       railties (>= 3.1, < 5.0)
       slim (~> 3.0)
+    slim_lint (0.8.2)
+      rake (>= 10, < 12)
+      rubocop (>= 0.36.0)
+      slim (~> 3.0)
+      sysexits (~> 1.1)
     slop (3.6.0)
     spring (1.3.3)
     spring-commands-rspec (1.0.4)
@@ -608,6 +619,7 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     syck (1.1.0)
+    sysexits (1.2.0)
     temple (0.7.7)
     terminal-notifier-guard (1.6.4)
     therubyracer (0.12.2)
@@ -691,6 +703,7 @@ DEPENDENCIES
   guard-livereload (= 2.4.0)
   guard-rspec (= 4.5.0)
   guard-rubocop (= 1.2.0)
+  guard-slimlint
   hirb (= 0.7.3)
   hirb-unicode (= 0.0.5)
   i18n-js (>= 3.0.0.rc11)
@@ -734,6 +747,7 @@ DEPENDENCIES
   simple_form (~> 3.1.0)
   sitemap_generator (= 5.0.5)
   slim-rails (= 3.0.1)
+  slim_lint
   spring (= 1.3.3)
   spring-commands-rspec (= 1.0.4)
   squeel (= 1.2.3)

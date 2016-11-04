@@ -1,5 +1,5 @@
 .page-container
-  div class="listings search"
+  div class='listings search'
   .row
     #details-column.col-lg-12
       .row-space-12.row-space-top-12
@@ -45,7 +45,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = listing.shop_categories.pluck((locale == :ja ? :name : :name_en)).join(", ")
+                = listing.shop_categories.pluck((locale == :ja ? :name : :name_en)).join(', ')
         hr
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
@@ -54,7 +54,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = listing.shop_services.pluck((locale == :ja ? :name : :name_en)).join(", ")
+                = listing.shop_services.pluck((locale == :ja ? :name : :name_en)).join(', ')
         /hr
         /.row.row-space-5.row-space-top-5.row-table
         /  .col-xs-4.text-right.col-middle
@@ -110,7 +110,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = Smoking.where(id: listing.smoking_id).pluck((locale == :ja ? :name : :name_en)).join()
+                = Smoking.where(id: listing.smoking_id).pluck(locale == :ja ? :name : :name_en).join
         hr
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
@@ -119,7 +119,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = listing.englishes.pluck((locale == :ja ? :name : :name_en)).join(", ")
+                = listing.englishes.pluck((locale == :ja ? :name : :name_en)).join(', ')
         hr
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
@@ -132,12 +132,10 @@
                   - business_hour = listing.business_hours[wday]
                   - if business_hour.is_open
                     p
-                      - if locale == :ja
-                        = %w(日 月 火 水 木 金 土)[wday]
-                      - else
-                        = %w(Sun Mon Tue Wed Thu Fri Sat)[wday]
-                      = business_hour.start_hour.strftime(" %H:%M - ")
-                      = business_hour.end_hour.strftime("%H:%M")
+                      = I18n.t(:abbr_day_names, scope: [:date])[wday]
+                      = l business_hour.start_hour, format: :hour
+                      | -
+                      = l business_hour.end_hour, format: :hour
         /.row.row-space-5.row-space-top-5.row-table
         /  .col-xs-4.text-right.col-middle
         /    .h4.text-light
@@ -147,7 +145,8 @@
         /      .col-xs-11
         /        = text_area_tag :business_hours_remarks, listing.business_hours_remarks, readonly: :true
         hr
-        = "English of some restaurant's description was machine translated. It may not be 100% accurate." unless locale == :ja
+        - unless locale == :ja
+          | English of some restaurant's description was machine translated. It may not be 100% accurate.
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h4.text-light
@@ -155,7 +154,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                - shop_description_en = listing.shop_description_en.blank? && !listing.shop_description.blank? ? "(Translated by Google)" + EasyTranslate.translate(listing.shop_description, to: :en) : listing.shop_description_en
+                - shop_description_en = listing.shop_description_en.blank? && !listing.shop_description.blank? ? '(Translated by Google)' + EasyTranslate.translate(listing.shop_description, to: :en) : listing.shop_description_en
                 = simple_format(raw(nl2br(h(locale == :ja ? listing.shop_description : shop_description_en))))
         hr
         .row-space-12.row-space-top-12
@@ -166,9 +165,8 @@
               p.text-muted.pull-left.row-space-top-1
                 = listing_image.try('caption') || ''
             .col-lg-3
-        -if false
-          = t('activerecord.placeholders.listing.longitude')
-          = t('activerecord.placeholders.listing.latitude')
+        / = t('activerecord.placeholders.listing.longitude')
+        / = t('activerecord.placeholders.listing.latitude')
         hr
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
@@ -217,7 +215,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = link_to image_tag('logo_tabelog.svg', :height => "30"), listing.link_tabelog, target: '_blank' unless listing.link_tabelog.blank?
+                = link_to image_tag('logo_tabelog.svg', height: '30'), listing.link_tabelog, target: '_blank' unless listing.link_tabelog.blank?
         hr
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
@@ -226,7 +224,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = link_to image_tag('yelp_logo.png', :height => "30"), listing.link_yelp, target: '_blank' unless listing.link_yelp.blank?
+                = link_to image_tag('yelp_logo.png', height: '30'), listing.link_yelp, target: '_blank' unless listing.link_yelp.blank?
         hr
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
@@ -235,9 +233,10 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = link_to image_tag('trip_logo.svg', :height => "30"), listing.link_tripadvisor, target: '_blank' unless listing.link_tripadvisor.blank?
+                = link_to image_tag('trip_logo.svg', height: '30'), listing.link_tripadvisor, target: '_blank' unless listing.link_tripadvisor.blank?
         hr
-        = "English of some restaurant's description was machine translated. It may not be 100% accurate." unless locale == :ja
+        - unless locale == :ja
+          | English of some restaurant's description was machine translated. It may not be 100% accurate.
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
             .h5.text-light
@@ -245,7 +244,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                - recommended_en =  listing.recommended_en.blank? && !listing.recommended.blank? ? "(Translated by Google)" + EasyTranslate.translate(listing.recommended, to: :en) : listing.recommended_en
+                - recommended_en = listing.recommended_en.blank? && !listing.recommended.blank? ? '(Translated by Google)' + EasyTranslate.translate(listing.recommended, to: :en) : listing.recommended_en
                 = simple_format(raw(nl2br(h(locale == :ja ? listing.recommended : recommended_en))))
         /.row.row-space-5.row-space-top-5.row-table
         /  .col-xs-4.text-right.col-middle
@@ -273,7 +272,7 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = listing.english_messages.pluck((locale == :ja ? :name : :name_en)).join(", ")
+                = listing.english_messages.pluck((locale == :ja ? :name : :name_en)).join(', ')
         hr
         .row.row-space-5.row-space-top-5.row-table
           .col-xs-4.text-right.col-middle
@@ -282,4 +281,4 @@
           .col-xs-8.fieldset.col-middle
             .row
               .col-xs-11
-                = InfoAdmin.where(id: listing.info_admin_id).pluck((locale == :ja ? :name : :name_en)).join()
+                = InfoAdmin.where(id: listing.info_admin_id).pluck((locale == :ja ? :name : :name_en)).join

@@ -1,9 +1,9 @@
-= simple_form_for(:search, url: '/listings/search', html: { method: 'get', class: 'search_form', id: 'search-form-sp' }) do |f|
+= simple_form_for(:search, url: search_listings_path, html: {method: 'get', class: 'search_form', id: 'search-form-sp'}) do |f|
   = f.hidden_field :where, value: 'top'
   .row
     .col-sm-12
-      label[for="header-location--sp"]
-        = f.input_field :location, placeholder: t('.location.placeholder'), autocomplete: "off", class: 'input-large location', id: 'header-location--sp'
+      label[for='header-location--sp']
+        = f.input_field :location, placeholder: t('.location.placeholder'), autocomplete: 'off', class: 'input-large location', id: 'header-location--sp'
   .row.row-condensed.row-space-2
     .col-sm-6
       label.checkin
@@ -11,9 +11,8 @@
     .col-sm-6
       label.count
         .select.select-block.select-large
-          - arr = (1..15).map{|p| ["#{t('.num_of_guest.unit_text', num: p, unit: t('unit.people'))}",p] }
-          - arr <<  ["#{t('.num_of_guest.more_than', num: 16, unit: t('unit.people'))}", :"16+"]
-          = f.input_field :num_of_guest, as: :select, id: 'header-search-guests', collection: arr, default:  [1]
+          - num_of_guests = (1..15).map { |p| [t('.num_of_guest.unit_text', num: p, unit: t('unit.people')), p] }.push([t('.num_of_guest.more_than', num: 16, unit: t('unit.people')), :'16+'])
+          = f.input_field :num_of_guest, as: :select, id: 'header-search-guests', collection: num_of_guests, default: [1]
   .row.row-space-top-2
     .col-sm-12
       = button_tag(type: 'submit', class: 'btn btn-primary btn-large btn-block') do

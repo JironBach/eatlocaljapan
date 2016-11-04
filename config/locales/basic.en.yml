@@ -33,6 +33,7 @@ en:
     formats:
       default: "%Y-%m-%d"
       long: "%B %d, %Y"
+      little_short: '%y/%m/%d'
       short: "%b %d"
     month_names:
     -
@@ -200,5 +201,11 @@ en:
     formats:
       default: "%a, %d %b %Y %H:%M:%S %z"
       long: "%B %d, %Y %H:%M"
+      little_short: '%Y/%m/%d %H:%M'
       short: "%d %b %H:%M"
+      without_year: '%m/%d %H:%M'
+      month: '%B, %Y'
+      hour: '%H:%M'
+      year: '%Y'
+      date: '%B %d, %Y'
     pm: pm

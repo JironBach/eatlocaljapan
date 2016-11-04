@@ -361,7 +361,7 @@ Rails.application.routes.draw do
       resources :profile_images, only: [:show]
     end
 
-    resource :profile, except: [:index, :show] do
+    resource :profile, except: [:show] do
       resource :profile_image, except: [:index, :show]
     end
 

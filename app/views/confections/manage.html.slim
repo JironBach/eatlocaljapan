@@ -1,7 +1,7 @@
 - model = Confection.human_attribute_name :name
 - provide :title, t('.title', model: model)
 .manage-listings
-  = render partial: 'shared/manage_listing_header', locals: { listing: @listing }
+  = render 'shared/manage_listing_header', listing: @listing
   .manage-listing-row-container
     .manage-listing-content.col-md-9.col-offset-3
       .row-space-top-4
@@ -11,4 +11,4 @@
           = t('.text_html', model: model)
       = render 'form'
 
-    = render partial: 'shared/manage_listing_nav'
+    = render 'shared/manage_listing_nav'

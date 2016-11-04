@@ -16,6 +16,9 @@ dependencies:
     - bundle exec rubocop:
         environment:
           RAILS_ENV: test
+    - bundle exec slim-lint app/**/*.slim:
+        environment:
+          RAILS_ENV: test
 
 database:
   pre:

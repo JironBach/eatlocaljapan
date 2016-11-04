@@ -12,61 +12,51 @@
                 = t '.facebook.title'
           .text-center.social-links.hide
             - resource_class.omniauth_providers.each do |provider|
-              = link_to "facebook", omniauth_authorize_path(resource_name, provider), class: ''
+              = link_to 'facebook', omniauth_authorize_path(resource_name, provider), class: ''
               = t '.facebook.sub'
           .text-include-separator
             h6.text
               = t '.or'
             hr
           .text-center
-            = link_to "#", id: "to-signup-form", class: 'btn btn-primary btn-large btn-block' do
+            = link_to '#', id: 'to-signup-form', class: 'btn btn-primary btn-large btn-block' do
               i.fa.fa-envelope-o
               = t '.mail.title'
           = simple_form_for(resource, as: resource_name, url: user_registration_path) do |f|
             .signup-form.hide
               = f.error_notification
               .control-group.row-space-1
-                = f.input_field :email, class: "decorative-input", placeholder: t('.mail.placeholder.mail'), required: true
+                = f.input_field :email, class: 'decorative-input', placeholder: t('.mail.placeholder.mail'), required: true
               .control-group.row-space-1
-                = f.input_field :password, class: "decorative-input", placeholder: t('.mail.placeholder.pw'), required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable)
+                = f.input_field :password, class: 'decorative-input', placeholder: t('.mail.placeholder.pw'), required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable)
               .control-group.row-space-1
-                = f.input_field :password_confirmation, class: "decorative-input", placeholder: t('.mail.placeholder.pw_confirm'), required: true
+                = f.input_field :password_confirmation, class: 'decorative-input', placeholder: t('.mail.placeholder.pw_confirm'), required: true
               .row-space-2.row-space-top-2
                 small
-                  font color="red"
+                  font color='red'
                     = t '.text-1'
                   br
                   br
                   = t '.text0'
                   |&nbsp;
-                  - if locale == :ja
-                    = link_to t('.terms_of_use'), "http://eatlocaljapan.com/terms_jp/", target: '_blank'
-                    | 、
-                    = link_to t('.privacy'), "http://eatlocaljapan.com/privacypolicy_jp/", target: '_blank'
-                  - else
-                    = link_to t('.terms_of_use'), "http://eatlocaljapan.com/terms/", target: '_blank'
-                    | &nbsp;and&nbsp;
-                    = link_to t('.privacy'), "http://eatlocaljapan.com/privacypolicy/", target: '_blank'
+                  = link_to t('.terms_of_use'), locale == :ja ? 'http://eatlocaljapan.com/terms_jp/' : 'http://eatlocaljapan.com/terms/', target: '_blank'
+                  | 、
+                  = link_to t('.privacy'), locale == :ja ? 'http://eatlocaljapan.com/privacypolicy_jp/' : 'http://eatlocaljapan.com/privacypolicy/', target: '_blank'
                   | 、
                   = t '.text1'
               .form-actions
-                = f.button :submit, t('.submit'), class: "btn btn-primary btn-large btn-block"
+                = f.button :submit, t('.submit'), class: 'btn btn-primary btn-large btn-block'
           .policy-wrapper.row-space-top-2
             small
-              font color="red"
+              font color='red'
                 = t '.text-1'
               br
               br
               = t '.text0'
               |&nbsp;
-              - if locale == :ja
-                = link_to t('.terms_of_use'), "http://eatlocaljapan.com/terms_jp/", target: '_blank'
-                | 、
-                = link_to t('.privacy'), "http://eatlocaljapan.com/privacypolicy_jp/", target: '_blank'
-              - else
-                = link_to t('.terms_of_use'), "http://eatlocaljapan.com/terms/", target: '_blank'
-                | &nbsp;and&nbsp;
-                = link_to t('.privacy'), "http://eatlocaljapan.com/privacypolicy/", target: '_blank'
+              = link_to t('.terms_of_use'), locale == :ja ? 'http://eatlocaljapan.com/terms_jp/' : 'http://eatlocaljapan.com/terms/', target: '_blank'
+              | 、
+              = link_to t('.privacy'), locale == :ja ? 'http://eatlocaljapan.com/privacypolicy_jp/' : 'http://eatlocaljapan.com/privacypolicy/', target: '_blank'
               | 、
               = t '.text1'
         .card-body

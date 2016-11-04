@@ -1,6 +1,5 @@
 - @reservations.each do |r|
   - listing = reservation_to_listing(r)
-  - guest = reservation_to_guest(r)
   li.card-body
     .row.row-table
       .col-md-2
@@ -31,11 +30,11 @@
         - else
           = t '.english.not_needed'
       .link-group.reservation-item-as-host-launch-message
-        = link_to "#", id: "reservation-item-as-host-launch-message-#{r.id}", data: { num: r.id } do
+        = link_to '#', id: "reservation-item-as-host-launch-message-#{r.id}", data: {num: r.id} do
           - if r.continued?
             i.fa.fa-reply
             = t '.reply'
           - else
             i.fa.fa-envelope-o
             = t('.contact', model: Message.model_name.human)
-    = render partial: 'shared/modals/message_to_guest_from_reservation_manger', locals: { r: r, listing: reservation_to_listing(r) }
+    = render 'shared/modals/message_to_guest_from_reservation_manger', r: r, listing: reservation_to_listing(r)

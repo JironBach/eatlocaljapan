@@ -1,5 +1,5 @@
 / modal guest-flow
-#guest-flow.modal[role="dialog" aria-hidden="true"]
+#guest-flow.modal[role='dialog' aria-hidden='true']
   .modal-paper
     .page-container
       .row
@@ -18,6 +18,6 @@
             = image_tag Settings.images.welcome.flow.no_illust
             .h3.row-space-top-3.row-space-2 = t '.step3.title'
             p = t '.step3.text'
-    = link_to "#", class: "panel-close close-guest-flow", data: { dismiss: "modal" } do
+    = link_to '#', class: 'panel-close close-guest-flow', data: {dismiss: 'modal'} do
       i.fa.fa-times
       = t '.close'

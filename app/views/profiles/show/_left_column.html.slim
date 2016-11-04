@@ -10,7 +10,7 @@
     ul.hostings-list.list-layout
       - listings.each do |l|
         li.row-space-2
-          = link_to listing_path(l.id), class: "media-photo media-photo-block row-space-1" do
+          = link_to listing_path(l.id), class: 'media-photo media-photo-block row-space-1' do
             = image_tag(l.cover_image, class: 'img-responsive')
             .media-caption
               div

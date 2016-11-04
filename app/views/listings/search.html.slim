@@ -8,7 +8,7 @@
           br
           = t('.no_match.sidebar.text2')
   - else
-    = render partial: '/listings/search/result_block', locals: { listings: @listings, conditions: @conditions }
+    = render 'listings/search/result_block', listings: @listings, conditions: @conditions
   /.card-btn--sp.filters-btn.fixed.show--sp
   /  button.js-small-filter-toggle.btn.btn-large.btn-block.btn-primary 検索条件
   .card
@@ -78,4 +78,4 @@
       /    .row
       /      .col-xs-11
       /        = text_field_tag "[search][price]"
-    = button_tag(t('.submit'), type: "submit", class: 'btn btn-primary btn-large', id: "submit_location")
+    = button_tag(t('.submit'), type: 'submit', class: 'btn btn-primary btn-large', id: 'submit_location')

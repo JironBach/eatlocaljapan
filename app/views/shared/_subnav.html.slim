@@ -1,51 +1,26 @@
 / shared/subnav
-.subnav.hide--sp[data-sticky="true"]
+.subnav.hide--sp[data-sticky='true']
   .page-container
     ul.subnav-list.list-unstyled
-      - if action_name !="guest_reservation_manager" && action_name !="host_reservation_manager" && controller_name =="dashboard"
-        li.active
-          = link_to t('.dashboard'), dashboard_path
-      - else
-        li
-          = link_to t('.dashboard'), dashboard_path
-      - if controller_name =="messages" || controller_name =="message_threads"
-        li.active
-          = link_to t('.messages'), message_threads_path
-      - else
-        li
-          = link_to t('.messages'), message_threads_path
-      - if controller_name =="listings" || action_name =="host_reservation_manager"
-        li.active
-          = link_to t('.listings'), listings_path
-      - else
-        li
-          = link_to t('.listings'), listings_path
+      li class=(action_name != 'guest_reservation_manager' && action_name != 'host_reservation_manager' && controller_name == 'dashboard' ? ['active'] : [])
+        = link_to t('.dashboard'), dashboard_path
 
-      /- if action_name =="guest_reservation_manager"
-      /  li.active
-      /    = link_to t('.guest_reservation_manager'), dashboard_guest_reservation_manager_path
-      /- else
-      /  li
-      /    = link_to t('.guest_reservation_manager'), dashboard_guest_reservation_manager_path
+      li class=(controller_name == 'messages' || controller_name == 'message_threads' ? ['active'] : [])
+        = link_to t('.messages'), message_threads_path
 
-      /- if controller_name =="wishlists"
-        /li.active
-          /= link_to Settings.page.wishlists, wishlists_path
-      /- else
-        /li
-          /= link_to Settings.page.wishlists, wishlists_path
+      li class=(controller_name == 'listings' || action_name == 'host_reservation_manager' ? ['active'] : [])
+        = link_to t('.listings'), listings_path
 
-      - if controller_name =="profiles" || action_name == "review" || controller_name == 'profile_images'
-        li.active
-          = link_to t('.profile'), edit_profile_path
-      - else
-        li
-          = link_to t('.profile'), edit_profile_path
+      /li class=(action_name == 'guest_reservation_manager' ? ['active'] : [])
+      /  = link_to t('.guest_reservation_manager'), dashboard_guest_reservation_manager_path
 
-      - if params[:mode] =="account"
-        li.active
-          = link_to t('.account'), edit_user_registration_path(mode: "account")
-      - else
-        li
-          = link_to t('.account'), edit_user_registration_path(mode: "account")
+      /li class=(controller_name == 'wishlists' ? ['active'] : [])
+      /  = link_to Settings.page.wishlists, wishlists_path
+
+      li class=(controller_name == 'profiles' || action_name == 'review' || controller_name == 'profile_images' ? ['active'] : [])
+        = link_to t('.profile'), edit_profile_path
+
+      li class=(params[:mode] == 'account' ? ['active'] : [])
+        = link_to t('.account'), edit_user_registration_path(mode: 'account')
+
 .subnav-placeholder.hide--sp.hide

@@ -1,5 +1,5 @@
 - provide :title, t('.title')
-= render partial: 'shared/subnav'
+= render 'shared/subnav'
 - model = Message.model_name.human
 - profile = Profile.model_name.human
 .page-container.row-space-top-4.row-space-8
@@ -61,8 +61,8 @@
                       .col-xs-9.col-md-7
                         = user_obj_to_name(from_user)
                         .small2
-                          = um.created_at.strftime("%m/%d %H:%M")
-                  = link_to message_thread_path(um.message_thread_id), class: "link-reset" do
+                          = l um.created_at, format: :without_year
+                  = link_to message_thread_path(um.message_thread_id), class: 'link-reset' do
                     .col-md-5
                       .text-muted
                         = um.content
@@ -72,7 +72,7 @@
                     - r = reservation_id_to_reservation_obj(um.reservation_id)
                     - l = listing_id_to_listing_obj(um.listing_id)
                     .col-md-3
-                      = render partial: 'progress', locals: { r: r }
+                      = render 'progress', r: r
                       .small1
                         b
                           = t 'unit.price'
@@ -81,7 +81,7 @@
                           = r.num_of_people
                           = t 'unit.people'
                         br
-                        = r.schedule.strftime("%m/%d")
+                        = l r.schedule, format: :short
                   - else
                     .col-mod-2
                       span.label.status-contact.text-starlight
