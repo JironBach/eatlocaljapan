@@ -18,20 +18,6 @@
             - if r.continued?
               = hidden_field :reservation, :id, value: r.id
               span.share-error
-              p
-                .select
-                  = select :reservation, :progress, [[t('.text.hold'), 'holded'], [t('.text.accept'), 'accepted'], [t('.text.reject'), 'rejected']], include_blank: t('.selected.continued'), selected: t('.selected.continued')
-            - elsif r.accepted?
-              span.share-error
-              p
-                .select
-                  = select :reservation, :progress, [[t('.text.hold'), 'holded'], [t('.text.reject'), 'rejected']], include_blank: t('.selected.accepted'), selected: t('.selected.accepted')
-            - elsif r.rejected?
-              span.share-error
-              p
-                .select
-                  = select :reservation, :progress, [[t('.text.hold'), 'holded'], [t('.text.accept'), 'accepted']], include_blank: t('.selected.rejected'), selected: t('.selected.rejected')
-            span.share-error
             p
               = text_area :message, :content, id: 'email_message', class: 'input-large input-block', rows: 6, placeholder: t('.placeholder')
           .card-footer

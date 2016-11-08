@@ -22,9 +22,5 @@ li#question2_post_383275631.thread-list-item
             br
             = t('.num_of_people', title: num_of_people, num: reservation_obj.num_of_people, unit: t('unit.people'))
             br
-            b = t '.price.title'
-            | ¥&nbsp;
-            = listing_obj.price * reservation_obj.num_of_people
-            = t '.price.text'
           = link_to each_manager_link(reservation_obj) do
             b = t '.show_detail'
