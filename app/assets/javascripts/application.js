@@ -23,6 +23,8 @@
 //= require lib/bootstrap-slider.min
 //= require lib/spin.min
 //= require lib/jquery.spin
+//= require lib/jquery.timepicker
+//= require lib/uri
 
 //= require i18n.js
 

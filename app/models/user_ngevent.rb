@@ -44,7 +44,7 @@ class UserNgevent < ApplicationRecord
   scope :disable_date?, ->(date) { opened.where(arel_table[:start].lteq(date.beginning_of_day)).where(arel_table[:end].gteq(date.end_of_day)) }
   scope :same_day, ->(date) { where(arel_table[:start].gteq(date.beginning_of_day)).where(arel_table[:end].lteq(date.end_of_day)) }
   scope :overlapped_to, ->(from, to) { where.not(arel_table[:start].gteq(to).or(arel_table[:end].lteq(from))) }
-
+  scope :on, ->(date) { where(arel_table[:start].gteq(date.beginning_of_day)).where(arel_table[:end].lteq(date.end_of_day)).opened }
   enum reason: {holiday: 0, reserved: 1, canceled: 2, temporary_closed: 3}
 
   # @return [1st date, 2nd date, 3rd date, ..., last date]

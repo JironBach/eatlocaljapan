@@ -44,6 +44,7 @@ class Reservation < ApplicationRecord
   validates :guest_id, presence: true
   validates :listing_id, presence: true
   validates :schedule, presence: true, date: {after: Time.zone.now.yesterday.end_of_day}
+  validates :time, presence: true
   validates :num_of_people, presence: true
   validates :progress, presence: true
 
@@ -56,6 +57,29 @@ class Reservation < ApplicationRecord
   scope :reviewed, -> { where.not(reviewed_at: nil) }
   scope :review_reply_mail_never_be_sent, -> { where(reply_mail_sent_at: nil) }
   scope :review_open?, -> { where(arel_table[:review_opened_at].not_eq(nil)) }
+  scope \
+    :at,
+    ->(date, time) do
+      ->(value) { Arel::Nodes.build_quoted(value) }
+      make_interval = \
+        ->(hours: 0, minutes: 0) do
+          Arel::Nodes::NamedFunction.new('make_interval', [hours, minutes])
+        end
+      # TODO: need to modify about late night behavior
+      minutes_since = ->(from, minutes) { Arel::Nodes::InfixOperation.new('+', from, make_interval.(minutes: minutes)) }
+      coalesce = ->(*values) { Arel::Nodes::NamedFunction.new('COALESCE', values) }
+      # HACK: need to reconsider this implementation
+      requested_time = time.strftime('%H:%M') rescue nil
+      includes(:listing) \
+        .references(:lisiting) \
+        .where(schedule: date) \
+        .where(arel_table[:time].lteq(requested_time)) \
+        .where(minutes_since.(arel_table[:time], coalesce.(arel_table[:reservation_time_unit], Arel::Nodes.build_quoted(15))).gteq(requested_time))
+    end
+
+  def occupied_frames
+    (num_of_people.to_f / listing.reservation_frame).ceil
+  end
 
   def continued?
     requested? || holded?

@@ -202,13 +202,13 @@ $ ->
 
     # message-host-link-subnav
     $('#message-host-link-subnav').on 'click', ->
-      $('#checkin').focus()
+      $('.bookIt__checkin').focus()
 
     # responsive request-block moving
     requestMove = ->
-      modalWrap = $('#book-it-sm-modal-content')
-      bookWrap = $('#book_it')
-      parentForm = $('#new_reservation')
+      modalWrap = $('.bookIt__modal_size_sm')
+      bookWrap = $('.book_it')
+      parentForm = $('.bookIt_form')
       if $('#request-btn-fixed').css('display') == 'block'
         bookWrap.appendTo(modalWrap)
       else
@@ -226,43 +226,13 @@ $ ->
       ), 100)
       return
 
-    # bootstrap datepicker
-    $('.datepicker')
-      .datepicker
-        autoclose: true
-        startDate: '+1d'
-        language: 'ja'
-        clearBtn: true
-      .on 'show', (e)->
-        return
-      .on 'changeMonth', (e)->
-        that = this
-        listing_id = $(this).data('listing_id');
-        if !listing_id
-          return
-        if e.date
-          currYear = String(e.date).split(" ")[3] - 0
-          currMonth = new Date(e.date).getMonth() - 0
-          firstDay = new Date( Date.UTC( currYear, currMonth, 1 ) ).toISOString()
-        else
-          currYear = new Date().getFullYear() - 0
-          currMonth = new Date().getMonth() - 0
-          firstDay = new Date( Date.UTC( currYear, currMonth, 1 ) ).toISOString()
-        $.ajax
-          type: 'GET'
-          url: '/listings/' + listing_id + '/listing_ngevents/search.json'
-          data: { first_day: firstDay }
-          dataType: 'json'
-          success: (days)->
-            $(that).datepicker('setDatesDisabled',days)
-          error: ->
-        return true
-      .trigger 'changeMonth'
-
     # book_it_button action
-    $('#book_it_button').on 'click', ->
-      if $('#checkin').val() == ''
-        $('#checkin').datepicker('show')
+    $('.bookIt .bookIt__submitButton').on 'click', ->
+      if $('.bookIt__checkin').val() == ''
+        $('.bookIt__checkin').datepicker('show')
+        return false
+      else if $('.bookIt .bookIt__checkinTime.timepicker').val() == ''
+        $('.bookIt .bookIt__checkinTime.timepicker').timepicker('show')
         return false
 
     # share-via-email modal

@@ -1,3 +1,5 @@
+require 'constraints/date_constraint.rb'
+
 # rubocop:disable Metrics/LineLength
 # == Route Map
 #
@@ -420,6 +422,19 @@ Rails.application.routes.draw do
       end
       resource :reservations, only: [] do
         resource :setting, only: [:edit, :update]
+      end
+      resources :year, path: '', only: [], constraints: {year_id: /\d{4}/} do
+        resources :month, path: '', only: [], constraints: {month_id: /(?:(?:1[012])|(?:0?[1-9]))/} do
+          resource :closed_days, only: [:show]
+          resources :day, path: '', only: [], constraints: DatesConstraint.new do
+            resource :busy_times, only: [:show]
+            resources :hour, path: '', only: [], constrainrs: {hour_id: /(?:(?:2[0-3])|(?:[01]?[0-9]))/} do
+              resources :minute, path: '', only: [], constraints: {minute_id: /(?:[0-5]?[0-9])/} do
+                resource :free_spaces, only: [:show]
+              end
+            end
+          end
+        end
       end
       get 'publish',   action: 'publish',   as: 'publish'
       get 'unpublish', action: 'unpublish', as: 'unpublish'

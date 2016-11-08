@@ -1,52 +1,43 @@
 .col-lg-4
-  = simple_form_for([@listing, @reservation], html: {class: 'info new-o2-form-inline'}) do |f|
+  = simple_form_for([@listing, @reservation], html: {class: 'info new-o2-form-inline bookIt_form'}) do |f|
     = f.hidden_field :progress, value: 'accepted'
-    #book-it-sm-modal.modal[aria-hidden='true' role='dialog']
+    #book-it-sm-modal.modal.bookIt__modal_size_sm[aria-hidden='true' role='dialog']
       .modal-table
         .modal-cell
           #book-it-sm-modal-content.modal-content
             .card-header.card-wax
-              = link_to '', '#', class: 'modal-close', data: {dismiss: 'modal'}
+              = link_to '', '#', class: 'modal-close bookIt__modal__closeButton', data: {dismiss: 'modal'}
               = t('.submit')
-    #book_it
+    #book_it.bookIt
       #book_it_container
         .card
           .card-body.card-light
             .form-fields
               .row.row-condensed.row-space-3
-                .col-md-8
-                  .row.row-condensed
-                    .col-sm-12
-                      label.js-checkin-label[for='checkin']
-                        = Reservation.human_attribute_name :schedule
-                      = f.text_field :schedule, id: 'checkin', class: 'checkin datepicker', readonly: true, placeholder: Time.zone.today + 7.days, data: {listing_id: @listing.id}
-                .col-md-4
-                  .row.row-condensed
-                    .col-sm-12
-                      label[for='number_of_guests']
-                        = Reservation.human_attribute_name :num_of_people
-                      .select.select-block
-                        = f.input_field :num_of_people, as: :select, collection: (1..20), selected: 1
-            .row.row-condensed.row-space-3
-              .col-md-12
-                label[for='number_of_guests']
-                  = t('listings.request_block.time')
-                .select.select-block
-                  = f.time_select :time, ignore_date: true, include_sconds: false, time_separator: ':', minute_step: (@listing.unit || 15)
-            .row.row-condensed.row-space-3
-              .col-md-12
-                .select.select-block
-                  label[for='in_english']
-                    = f.check_box :in_english
-                    = t('listings.request_block.in_english')
+                .col-md-12
+                  label.bookIt__checkinLabel[for='checkin']
+                    = Reservation.human_attribute_name :schedule
+                  = f.text_field :schedule, id: 'checkin', class: 'datepicker bookIt__checkin', data: {'listing_id': @listing.id, date_start_date: "+#{listing[:from]}d", date_end_date: "+#{listing[:to]}m"}
+              .row.row-condensed.row-space-3
+                .col-md-12
+                  label.bookIt__checkinLabel[for='checkin_time']
+                    = Reservation.human_attribute_name :time
+                  = f.text_field :time, id: 'checkin_time', class: 'timepicker bookIt__checkinTime', data: {listing_id: @listing.id, time_format: 'H:i', step: @listing.unit}, placeholder: '12:00', disabled: true, readonly: false
+              .row.row-condensed.row-space-3
+                .col-md-12
+                  label[for='num_of_people']
+                    = Reservation.human_attribute_name :num_of_people
+                  = f.input_field :num_of_people, id: 'num_of_people', disabled: true, class: 'bookIt__numOfPeople', as: :select
+              .row.row-condensed.row-space-3
+                .col-md-12
+                  #book_it_button_container
+                  .select.select-block
+                    label[for='in_english']
+                      = f.check_box :in_english
+                      = t('listings.request_block.in_english')
 
             #book_it_status
               #book_it_enabled.clearfix
+                / HACK: need to rewrite by class and rename
                 #subtotal_area
-
-                  #book_it_button_container
-                  - if user_signed_in?
-                    = f.submit t('.submit'), id: 'book_it_button', class: "btn btn-primary btn-large btn-block#{current_user == listing.user ? ' disabled' : ''}"
-                  - else
-                    button#book_it_button.btn.btn-primary.btn-large.btn-block
-                      = t('.submit')
+                  = f.submit t('.submit'), id: 'book_it_button', class: "btn btn-primary btn-large btn-block#{user_signed_in? && (current_user != listing.user) ? '' : ' disabled'} bookIt__submitButton"
