@@ -1,27 +1,5 @@
 en:
   activerecord:
-    enum:
-      from:
-        day:
-          today: Today
-          a_day_ago: A day ago
-          two_days_ago: Two days ago
-          three_days_ago: Three days ago
-      to:
-        month:
-          this_month: This month
-          next_month: Next month
-          two_months_later: Two months later
-          three_months_later: Three months later
-          four_months_later: Four months later
-          five_months_later: Five months later
-          six_months_later: Six months later
-          seven_months_later: Seven months later
-          eight_months_later: Eight months later
-          nine_months_later: Nine months later
-          ten_months_later: Ten months later
-          eleven_months_later: Eleven months later
-          one_year_later: One year later
     models:
       admin_user: Admin User
       auth: Auth
@@ -338,6 +316,40 @@ en:
     viewed_at: Viewed At
     created_at: Created At
     updated_at: Updated At
+  enum:
+    from:
+      today: 'Today'
+      a_day_ago: 'A day ago'
+      two_days_ago: 'Two days ago'
+      three_days_ago: 'Three days ago'
+    to:
+      this_month: 'This month'
+      next_month: 'Next month'
+      two_months_later: 'Two months later'
+      three_months_later: 'Three months later'
+      four_months_later: 'Four months later'
+      five_months_later: 'Five months later'
+      six_months_later: 'Six months later'
+      seven_months_later: 'Seven months later'
+      eight_months_later: 'Eight months later'
+      nine_months_later: 'Nine months later'
+      ten_months_later: 'Ten months later'
+      eleven_months_later: 'Eleven months later'
+      one_year_later: 'One year later'
+    profile:
+      gender:
+        female: female
+        male: male
+        others: others
+        not_specified: 'not specified'
+    reservation:
+      progress:
+        requested: 'Requested'
+        canceled: 'Canceled'
+        holded: 'Holded'
+        accepted: 'Accepted'
+        rejected: 'Rejected'
+        listing_closed: 'Unpublished'
   basic_info:
     service_name: eatlocaljapan
   meta_tags:
@@ -840,11 +852,6 @@ en:
       year: Y
       month: M
       day: D
-      gender:
-        female: female
-        male: male
-        others: others
-        not_specified: not specified
       placeholder:
         phone: e.g. +83 80 1111 xxxx
         zipcode: e.g. 012-3456
@@ -1080,13 +1087,6 @@ en:
       string: "Waiting for read"
     already_read:
       string: "Already been read"
-  string_of_progress:
-    requested: Requested
-    canceled: Canceled
-    holded: Holded
-    accepted: Accepted
-    rejected: Rejected
-    unpublished: Unpublished
   alerts:
     profile:
       save:

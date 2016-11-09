@@ -1,27 +1,5 @@
 ja:
   activerecord:
-    enum:
-      from:
-        day:
-          today: 当日
-          a_day_ago: １日前
-          two_days_ago: ２日前
-          three_days_ago: ３日前
-      to:
-        month:
-          this_month: 今月
-          next_month: １ヶ月後
-          two_months_later: ２ヶ月後
-          three_months_later: ３ヶ月後
-          four_months_later: ４ヶ月後
-          five_months_later: ５ヶ月後
-          six_months_later: ６ヶ月後
-          seven_months_later: ７ヶ月後
-          eight_months_later: ８ヶ月後
-          nine_months_later: ９ヶ月後
-          ten_months_later: １０ヶ月後
-          eleven_months_later: １１ヶ月後
-          one_year_later: １年後
     models:
       admin_user: 管理者
       auth: 外部サービスとの連携
@@ -332,6 +310,41 @@ ja:
     viewed_at: 閲覧日時
     created_at: 作成日時
     updated_at: 更新日時
+  enum:
+    listing:
+      from:
+        today: '当日'
+        a_day_ago: '1日前'
+        two_days_ago: '2日前'
+        three_days_ago: '3日前'
+      to:
+        this_month: '今月'
+        next_month: '1ヶ月後'
+        two_months_later: '2ヶ月後'
+        three_months_later: '3ヶ月後'
+        four_months_later: '4ヶ月後'
+        five_months_later: '5ヶ月後'
+        six_months_later: '6ヶ月後'
+        seven_months_later: '7ヶ月後'
+        eight_months_later: '8ヶ月後'
+        nine_months_later: '9ヶ月後'
+        ten_months_later: '10ヶ月後'
+        eleven_months_later: '11ヶ月後'
+        one_year_later: '1年後'
+    profile:
+      gender:
+        female: 女性
+        male: 男性
+        others: その他
+        not_specified: 指定しない
+    reservation:
+      progress:
+        requested: 回答待
+        canceled: キャンセル済
+        holded: 保留中
+        accepted: 承諾済
+        rejected: 拒否済
+        listing_closed: 非公開
   basic_info:
     service_name: eatlocaljapan
   meta_tags:
@@ -843,11 +856,6 @@ ja:
       year: 年
       month: 月
       day: 日
-      gender:
-        female: 女性
-        male: 男性
-        others: その他
-        not_specified: 指定しない
       placeholder:
         phone: 例) +83 80 1111 xxxx
         zipcode: 例） 012-3456
@@ -1083,13 +1091,6 @@ ja:
       string: "既読待ち"
     already_read:
       string: "既読済"
-  string_of_progress:
-    requested: "参加希望"
-    canceled: "キャンセル"
-    holded: "保留"
-    accepted: "承諾"
-    rejected: "拒否"
-    unpublished: "非公開"
   alerts:
     profile:
       save:

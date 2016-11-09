@@ -1,5 +1,6 @@
 class ApplicationRecord < ActiveRecord::Base
   include Decoratable
+  include BetterEnum
 
   self.abstract_class = true
 

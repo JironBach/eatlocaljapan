@@ -61,15 +61,6 @@ class Reservation < ApplicationRecord
     requested? || holded?
   end
 
-  def string_of_progress
-    return I18n.t('string_of_progress.requested') if requested?
-    return I18n.t('string_of_progress.canceled') if canceled?
-    return I18n.t('string_of_progress.holded') if holded?
-    return I18n.t('string_of_progress.accepted') if accepted?
-    return I18n.t('string_of_progress.rejected') if rejected?
-    return I18n.t('string_of_progress.unpublished') if listing_closed?
-  end
-
   def subject_of_update_mail
     return I18n.t('reservation_mailer.send_update_reservation_notification.subject.canceled') if canceled?
     return I18n.t('reservation_mailer.send_update_reservation_notification.subject.holded') if holded?

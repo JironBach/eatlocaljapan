@@ -20,7 +20,7 @@
                 p
                   = hidden_field :reservation, :id, value: r.id
                   .select
-                    = select :reservation, :progress, [[t('.cancel'), 'canceled']], include_blank: t('.progress.select_by_guest'), selected: t('.progress.select_by_guest')
+                    = select :reservation, :progress, Reservation.progresses.grep { |(key, value)| key == :canceled }.map { |(key, value)| [Reservation.progress_text(key), key] }, include_blank: t('.progress.select_by_guest'), selected: nil
             span.share-error
             p
               = text_area :message, :content, id: 'email_message', class: 'input-large input-block', rows: 6, placeholder: t('.placeholder')

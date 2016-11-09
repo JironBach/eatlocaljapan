@@ -21,7 +21,7 @@
               i.fa.fa-lock.fa-green
             .col-9
               .select
-                = f.input_field :gender, as: :select, collection: [[t('.gender.female'), :female], [t('.gender.male'), :male], [t('.gender.others'), :others], [t('.gender.not_specified'), :not_specified]], default: ['female']
+                = f.input_field :gender, as: :select, collection: Profile.genders.map { |(key, value)| [Profile.gender_text(key), key] }, include_blank: true
               .text-muted.row-space-top-1 = t '.text_closed'
           .row.row-condensed.row-space-4
             label.text-right.col-3[for='user_birthdate']

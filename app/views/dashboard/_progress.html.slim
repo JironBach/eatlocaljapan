@@ -1,15 +1,16 @@
-- if r.requested?
-  span.label.status-request.text-pink
-    = r.string_of_progress
-- elsif r.canceled? || r.listing_closed?
-  span.label.status-contact
-    = r.string_of_progress
-- elsif r.holded?
-  span.label.status-withhold.text-blue
-    = r.string_of_progress
-- elsif r.accepted?
-  span.label.status-ok.text-green
-    = r.string_of_progress
-- elsif r.rejected?
-  span.label.status-reject
-    = r.string_of_progress
+ruby:
+  progress_class = \
+    case r.progress
+    when 'requested' then
+      'status-request text-pink'
+    when 'canceled' then
+      'status-contact'
+    when 'holded' then
+      'status-withhold text-blue'
+    when 'accepted' then
+      'status-ok text-green'
+    when 'rejected' then
+      'status-reject'
+    end
+- if r.progress.blank?
+  span class="label #{progress_class}" =r.progress_text

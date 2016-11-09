@@ -33,7 +33,7 @@ class ReservationMailer < ApplicationMailer
     to_user = User.find(to_user_id)
     @to_user_name = "#{to_user.profile.last_name} #{to_user.profile.first_name}"
 
-    @progress = reservation.string_of_progress
+    @progress = reservation.progress_text
 
     # rubocop:disable Style/SymbolProc
     mail(
