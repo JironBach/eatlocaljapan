@@ -12,7 +12,7 @@
 #
 #  index_review_replies_on_review_id  (review_id)
 #
-class ReviewReply < ActiveRecord::Base
+class ReviewReply < ApplicationRecord
   belongs_to :review
 
   validates :review_id, presence: true

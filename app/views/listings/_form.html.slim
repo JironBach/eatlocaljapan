@@ -22,25 +22,33 @@
         .col-xs-11
           = f.input_field :title_en, placeholder: t('activerecord.placeholders.listing.title_en')
   hr
-  .row.row-space-5.row-space-top-5.row-table
+  .row.row-space-5.row-space-top-5.row-table.listing__listingsShopCategories
     .col-xs-4.text-right.col-middle
       .h4.text-light
         = Listing.human_attribute_name :shop_category
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = collection_check_boxes nil, :shop_categories, ShopCategory.all, :id, (locale == :ja ? :name : :name_en), checked: @listing.shop_categories.pluck(:id) do |b|
-            = b.label { b.check_box + b.text }
+          = f.simple_fields_for :listings_shop_categories, ShopCategory.all.map { |shop_category| @listing.listings_shop_categories.detect { |listings_shop_category| listings_shop_category.shop_category == shop_category } || @listing.listings_shop_categories.build(shop_category: shop_category).tap(&:mark_for_destruction) } do |cf|
+            = cf.label :listings_shop_category do
+              = cf.hidden_field :shop_category_id
+              = cf.hidden_field :_destroy
+              = check_box nil, :_active, checked: !cf.object.marked_for_destruction?, class: 'listing__listingsShopCategories__activeCheckbox'
+              = cf.object.shop_category.send(locale == :ja ? :name : :name_en)
   hr
-  .row.row-space-5.row-space-top-5.row-table
+  .row.row-space-5.row-space-top-5.row-table.listing__listingsShopServices
     .col-xs-4.text-right.col-middle
       .h4.text-light
         = Listing.human_attribute_name :shop_service
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = collection_check_boxes nil, :shop_services, ShopService.all, :id, (locale == :ja ? :name : :name_en), checked: @listing.shop_services.plucck(:id) do |b|
-            = b.label { b.check_box + b.text }
+          = f.simple_fields_for :listings_shop_services, ShopService.all.map { |shop_service| @listing.listings_shop_services.detect { |listings_shop_service| listings_shop_service.shop_service == shop_service } || @listing.listings_shop_services.build(shop_service: shop_service).tap(&:mark_for_destruction) } do |sf|
+            = sf.label :listings_shop_service do
+              = sf.hidden_field :shop_service_id
+              = sf.hidden_field :_destroy
+              = check_box nil, :_active, checked: !sf.object.marked_for_destruction?, class: 'listing__listingsShopServices__activeCheckbox'
+              = sf.object.shop_service.send(locale == :ja ? :name : :name_en)
   / .row.row-space-5.row-space-top-5.row-table
   /   .col-xs-4.text-right.col-middle
   /     .h4.text-light
@@ -162,40 +170,62 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = collection_select :smoking_id, nil, Smoking.all, :id, (locale == :ja ? :name : :name_en), selected: @listing.smoking_id
+          = f.collection_select :smoking_id, Smoking.all, :id, (locale == :ja ? :name : :name_en), include_blank: true
   .row
-  .row.row-space-5.row-space-top-5.row-table
+  .row.row-space-5.row-space-top-5.row-table.listing__englishesListings
     .col-xs-4.text-right.col-middle
       .h4.text-light
         = Listing.human_attribute_name :english_id
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = collection_check_boxes nil, :englishes, English.all, :id, (locale == :ja ? :name : :name_en), checked: @listing.englishes.pluck(:id) do |b|
-            = b.label { b.check_box + b.text }
+          = f.simple_fields_for :englishes_listings, English.all.map { |english| @listing.englishes_listings.detect { |englishes_listing| englishes_listing.english == english } || @listing.englishes_listings.build(english: english).tap(&:mark_for_destruction) } do |ef|
+            = ef.label :englishes_listing do
+              = ef.hidden_field :english_id
+              = ef.hidden_field :_destroy
+              = check_box nil, :_active, checked: !ef.object.marked_for_destruction?, class: 'listing__englishesListings__activeCheckbox'
+              = ef.object.english.send(locale == :ja ? :name : :name_en)
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
-        = Listing.human_attribute_name :business_hours
+        = t('.busubess_hours_and_lunch_break')
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          - 7.times do |wday|
-            - business_hour = @listing.business_hours[wday]
+          ruby:
+            defaults = \
+              {
+                is_open: true,
+                start_hour: Time.zone.local(1, 1, 1, 11, 30, 0),
+                end_hour: Time.zone.local(1, 1, 1, 23, 0, 0),
+                lunch_break_start_hour: Time.zone.local(1, 1, 1, 12, 0, 0),
+                lunch_break_end_hour: Time.zone.local(1, 1, 1, 13, 0, 0)
+              }
+          = f.simple_fields_for :weekday_business_hours, I18n.t(:abbr_day_names, scope: [:date]).map.with_index { |wday_name, wday| @listing.weekday_business_hours.detect { |weekday_business_hour| weekday_business_hour.wday == wday } || @listing.weekday_business_hours.build(defaults.merge(wday: wday)) } do |wf|
             p
-              = I18n.t(:abbr_day_names, scope: [:date])[wday]
-              = check_box "is_open[#{wday}]", nil, checked: business_hour.nil? ? true : business_hour.is_open
-              = time_select "start_hour[#{wday}]", nil, {minute_step: 15, default: business_hour.nil? ? Time.zone.parse('1-1-1 11:30:00') : business_hour.start_hour}, style: 'display:inline-block;width:auto'
+              = wf.object.wday_name
+              = wf.hidden_field :wday
+              = wf.check_box :is_open
+              = wf.time_select :start_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
               = ' - '
-              = time_select "end_hour[#{wday}]", nil, {minute_step: 15, default: business_hour.nil? ? Time.zone.parse('1-1-1 23:00:00') : business_hour.end_hour}, style: 'display:inline-block;width:auto'
-  /.row.row-space-5.row-space-top-5.row-table
-  /  .col-xs-4.text-right.col-middle
-  /    .h4.text-light
-  /      = Listing.human_attribute_name :business_hours_remarks
-  /  .col-xs-8.fieldset.col-middle
-  /    .row
-  /      .col-xs-11
-  /        = f.input_field :business_hours_remarks, rows: '4', placeholder: t('activerecord.placeholders.listing.business_hours_remarks')
+              = wf.time_select :end_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
+              = ' ( '
+              = wf.time_select :lunch_break_start_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
+              = ' - '
+              = wf.time_select :lunch_break_end_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
+              = ' ) '
+          = f.simple_fields_for :holiday_business_hour, @listing.holiday_business_hour || @listing.build_holiday_business_hour(defaults) do |hf|
+            p
+              = t('.holiday')
+              = hf.check_box :is_open
+              = hf.time_select :start_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
+              = ' - '
+              = hf.time_select :end_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
+              = ' ( '
+              = hf.time_select :lunch_break_start_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
+              = ' - '
+              = hf.time_select :lunch_break_end_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
+              = ' ) '
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
@@ -332,15 +362,19 @@
       .row
         .col-xs-11
           = f.input_field :visit_benefits_another_en, placeholder: t('activerecord.placeholders.listing.visit_benefits_another_en')
-  .row.row-space-5.row-space-top-5.row-table
+  .row.row-space-5.row-space-top-5.row-table.listing__englishMessagesListings
     .col-xs-4.text-right.col-middle
       .h4.text-light
         = Listing.human_attribute_name :english_messages
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = collection_check_boxes nil, :english_messages, EnglishMessage.all, :id, (locale == :ja ? :name : :name_en), checked: @listing.english_messages.nil? ? nil : @listing.english_messages.pluck(:id) do |b|
-            = b.label { b.check_box + b.text }
+          = f.simple_fields_for :english_messages_listings, EnglishMessage.all.map { |english_message| @listing.english_messages_listings.detect { |english_messages_listing| english_messages_listing.english_message == english_message } || @listing.english_messages_listings.build(english_message: english_message).tap(&:mark_for_destruction) } do |mf|
+            = mf.label :english_messages_listing do
+              = mf.hidden_field :english_message_id
+              = mf.hidden_field :_destroy
+              = check_box nil, :_active, checked: !mf.object.marked_for_destruction?, class: 'listing__englishMessagesListings__activeCheckbox'
+              = mf.object.english_message.send(locale == :ja ? :name : :name_en)
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
@@ -348,7 +382,7 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = collection_select :info_admin_id, nil, InfoAdmin.all, :id, (locale == :ja ? :name : :name_en), selected: @listing.info_admin_id
+          = f.collection_select :info_admin_id, InfoAdmin.all, :id, (locale == :ja ? :name : :name_en), include_blank: true
   .row
     .col-xs-9.col-offset-3.text-reset-center
       - if 'edit' == controller.action_name

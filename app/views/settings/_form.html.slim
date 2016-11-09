@@ -1,0 +1,55 @@
+= simple_form_for(@listing, url: listing_reservations_setting_path(@listing), html: {class: 'form--sp'}) do |f|
+  = f.error_notification
+  = @listing.errors.messages.inspect unless @listing.errors.messages.blank?
+  = f.hidden_field :user_id, value: current_user.id
+  = f.hidden_field :open, value: false
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = t('.reservation_frame')
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :reservation_frame, collection: 1..10, selected: @listing.reservation_frame || 2
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = t('.capacity')
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :capacity, collection: 1..10, selected: @listing.capacity || 2
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = t('.unit')
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :unit, as: :select, collection: [15, 30, 60], selected: @listing.unit || 15
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = t('.reservation_time_unit')
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = f.input_field :reservation_time_unit, as: :select, collection: [15, 30, 60], selected: @listing.reservation_time_unit || 15
+  .row.row-space-5.row-space-top-5.row-table
+    .col-xs-4.text-right.col-middle
+      .h4.text-light
+        = t('.opening_hours')
+    .col-xs-8.fieldset.col-middle
+      .row
+        .col-xs-11
+          = locale == :ja ? '常に' : 'Always accept from'
+          = f.input_field :from, as: :select, collection: Listing.froms.map { |(key, value)| [Listing.from_text(key), key] }, selected: @listing.from || :a_day_ago
+          = locale == :ja ? 'から' : 'to'
+          = f.input_field :to, as: :select, collection: Listing.tos.map { |(key, value)| [Listing.to_text(key), key] }, selected: @listing.to || :three_months_later
+          = locale == :ja && 'まで予約を受け付ける。'
+  .row
+    .col-xs-9.col-offset-3.text-reset-center
+      - if 'edit' == controller.action_name
+        = f.button :submit, t(:submit, scope: [controller_name, action_name]), class: 'btn-primary btn-large', id: 'listing-manager-listing-submit'
+      - else
+        = f.button :submit, t('.submit.next'), class: 'btn-primary btn-large'

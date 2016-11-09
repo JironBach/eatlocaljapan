@@ -120,6 +120,7 @@ gem 'cancancan', '~> 1.10'
 gem 'date_validator', '~> 0.7.0'
 gem 'fullcalendar-rails', '~> 2.4.0'
 gem 'momentjs-rails', '~> 2.10.6'
+gem 'holiday_jp'
 
 #JironBach addition
 gem 'net-ssh'

@@ -18,7 +18,7 @@ html
       window._wfx_settings={ent_id: '63b36610-968f-11e6-bcdd-04013d24cf02'};
     = javascript_include_tag '//whatfix.com/embed/embed.nocache.js', async: 'async', type: 'text/javascript'
 
-  body class="#{controller_name}'#{action_name}#{controller_name == 'welcome' ? ' is-simpleHeader' : ''}"
+  body class="#{controller_name} #{action_name}#{controller_name == 'welcome' ? ' is-simpleHeader' : ''}"
 
     = render 'shared/google_analytics'
     = render 'shared/header'

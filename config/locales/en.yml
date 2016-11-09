@@ -28,6 +28,9 @@ en:
       user_ngevent: Unavailable Day
       weekday_business_hour: 'Weekday Business Hour'
       wishlist: Wishlist
+      business_hour: Business Hour
+      weekday: weekday
+      holiday: holiday
     attributes:
       admin_user:
         email: Mail Address
@@ -313,6 +316,40 @@ en:
     viewed_at: Viewed At
     created_at: Created At
     updated_at: Updated At
+  enum:
+    from:
+      today: 'Today'
+      a_day_ago: 'A day ago'
+      two_days_ago: 'Two days ago'
+      three_days_ago: 'Three days ago'
+    to:
+      this_month: 'This month'
+      next_month: 'Next month'
+      two_months_later: 'Two months later'
+      three_months_later: 'Three months later'
+      four_months_later: 'Four months later'
+      five_months_later: 'Five months later'
+      six_months_later: 'Six months later'
+      seven_months_later: 'Seven months later'
+      eight_months_later: 'Eight months later'
+      nine_months_later: 'Nine months later'
+      ten_months_later: 'Ten months later'
+      eleven_months_later: 'Eleven months later'
+      one_year_later: 'One year later'
+    profile:
+      gender:
+        female: female
+        male: male
+        others: others
+        not_specified: 'not specified'
+    reservation:
+      progress:
+        requested: 'Requested'
+        canceled: 'Canceled'
+        holded: 'Holded'
+        accepted: 'Accepted'
+        rejected: 'Rejected'
+        listing_closed: 'Unpublished'
   basic_info:
     service_name: eatlocaljapan
   meta_tags:
@@ -439,6 +476,7 @@ en:
     manage_listing_nav:
       header: Listing Info
       basic_info: Basic Info
+      reservation: Reservation Info
       image: Image
       cal: Calendar
       item: "%{model}%{opt}"
@@ -580,6 +618,16 @@ en:
         reserved: Reserved
         canceled: Canceled
   listings:
+    reservation_form:
+      submit:
+        next: Next
+      frame: Reservation frame
+      capacity: Seat number per reservation
+      reservation_frame: Available frame in the same time
+      unit: Unit time of the reservation
+      reservation_time_unit: Time of one reservaiton
+      opening_hours: Opening hours
+      lunch_break: Lunch break
     index:
       no_listing:
         title: No Scheduled Listing
@@ -695,6 +743,8 @@ en:
         name: ok
       capacity:
         more_than: "more than %{num}"
+      busubess_hours_and_lunch_break: Business hours (Lunch break)
+      holiday: Holiday
     host_info:
       name:
         after: "'s info"
@@ -802,11 +852,6 @@ en:
       year: Y
       month: M
       day: D
-      gender:
-        female: female
-        male: male
-        others: others
-        not_specified: not specified
       placeholder:
         phone: e.g. +83 80 1111 xxxx
         zipcode: e.g. 012-3456
@@ -959,6 +1004,23 @@ en:
       msg1: "You got a reservation request from "
       msg2: ""
       msg3: Check the detail through a link below.
+  settings:
+    edit:
+      title: "Enter reservation infomation"
+      submit: "Next"
+    manage:
+      title: "Reservation details"
+    form:
+      submit:
+        next: Next
+      frame: Reservation unit
+      number: Number of seats in a unit
+      capacity: Number of unit accepted at the same time
+      reservation_frame: Standard number of guests in a unit
+      unit: Reservation time interval
+      reservation_time_unit: Length of one reservation
+      opening_hours: Reservation accepted
+      lunch_break: Lunch break
     send_update_reservation_notification:
       subject:
         canceled: Reservation request was canceled.
@@ -1025,13 +1087,6 @@ en:
       string: "Waiting for read"
     already_read:
       string: "Already been read"
-  string_of_progress:
-    requested: Requested
-    canceled: Canceled
-    holded: Holded
-    accepted: Accepted
-    rejected: Rejected
-    unpublished: Unpublished
   alerts:
     profile:
       save:

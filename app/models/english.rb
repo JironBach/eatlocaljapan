@@ -6,8 +6,7 @@
 #  name    :string           not null
 #  name_en :string           not null
 #
-class English < ActiveRecord::Base
-  # rubocop:disable Rails/HasAndBelongsToMany
-  has_and_belongs_to_many :listing
-  # rubocop:enable Rails/HasAndBelongsToMany
+class English < ApplicationRecord
+  has_many :englishes_listings, dependent: :destroy
+  has_many :listings, through: :englishes_listings
 end

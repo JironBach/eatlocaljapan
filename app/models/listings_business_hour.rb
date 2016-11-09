@@ -12,5 +12,5 @@
 #
 #  index_listing_business_hours  (listing_id,business_hour_id) UNIQUE
 #
-class ListingsBusinessHour < ActiveRecord::Base
+class ListingsBusinessHour < ApplicationRecord
 end

@@ -14,7 +14,7 @@
 #  index_wishlists_on_user_id           (user_id)
 #  index_wishlists_on_user_id_and_name  (user_id,name) UNIQUE
 #
-class Wishlist < ActiveRecord::Base
+class Wishlist < ApplicationRecord
   belongs_to :user, counter_cache: :wishlist_count
   has_many :favorites, dependent: :destroy
 

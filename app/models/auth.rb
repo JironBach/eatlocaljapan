@@ -14,7 +14,7 @@
 #
 #  index_auths_on_user_id  (user_id)
 #
-class Auth < ActiveRecord::Base
+class Auth < ApplicationRecord
   belongs_to :user
 
   validates :user_id, presence: true

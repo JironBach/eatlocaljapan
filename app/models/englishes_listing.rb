@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: listing_englishes
+# Table name: englishes_listings
 #
 #  id         :integer          not null, primary key
 #  created_at :datetime         not null
@@ -10,7 +10,10 @@
 #
 # Indexes
 #
-#  index_listing_englishes_on_listing_id_and_english_id  (listing_id,english_id) UNIQUE
+#  index_englishes_listings_on_listing_id_and_english_id  (listing_id,english_id) UNIQUE
 #
-class ListingEnglish < ActiveRecord::Base
+
+class EnglishesListing < ActiveRecord::Base
+  belongs_to :english
+  belongs_to :listing
 end

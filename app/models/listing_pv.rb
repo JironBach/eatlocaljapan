@@ -14,7 +14,7 @@
 #  index_listing_pvs_on_listing_id                (listing_id)
 #  index_listing_pvs_on_viewed_at_and_listing_id  (viewed_at,listing_id) UNIQUE
 #
-class ListingPv < ActiveRecord::Base
+class ListingPv < ApplicationRecord
   belongs_to :listing
 
   validates :listing_id, presence: true

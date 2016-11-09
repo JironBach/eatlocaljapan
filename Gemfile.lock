@@ -314,6 +314,7 @@ GEM
       hirb (~> 0.5)
       unicode-display_width (~> 0.1.1)
     hitimes (1.2.4)
+    holiday_jp (0.5.0)
     http_parser.rb (0.6.0)
     i18n (0.7.0)
     i18n-js (3.0.0.rc12)
@@ -706,6 +707,7 @@ DEPENDENCIES
   guard-slimlint
   hirb (= 0.7.3)
   hirb-unicode (= 0.0.5)
+  holiday_jp
   i18n-js (>= 3.0.0.rc11)
   jbuilder (~> 2.0)
   jquery-rails (~> 4.0.3)
@@ -761,5 +763,8 @@ DEPENDENCIES
   web-console (~> 2.0)
   whenever (= 0.9.4)
 
+RUBY VERSION
+   ruby 2.3.1p112
+
 BUNDLED WITH
-   1.11.2
+   1.13.2

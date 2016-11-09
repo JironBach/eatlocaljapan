@@ -25,7 +25,7 @@
 #  index_reviews_on_listing_id      (listing_id)
 #  index_reviews_on_reservation_id  (reservation_id)
 #
-class Review < ActiveRecord::Base
+class Review < ApplicationRecord
   belongs_to :user, class_name: 'User', foreign_key: 'host_id'
   belongs_to :user, class_name: 'User', foreign_key: 'guest_id'
   belongs_to :listing

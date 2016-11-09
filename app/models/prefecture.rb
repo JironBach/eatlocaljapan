@@ -8,5 +8,5 @@
 #  name       :string           not null
 #  name_en    :string           not null
 #
-class Prefecture < ActiveRecord::Base
+class Prefecture < ApplicationRecord
 end

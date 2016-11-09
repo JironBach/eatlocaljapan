@@ -15,7 +15,7 @@
 #  index_browsing_histories_on_user_id     (user_id)
 #  index_browsing_histories_on_viewed_at   (viewed_at)
 #
-class BrowsingHistory < ActiveRecord::Base
+class BrowsingHistory < ApplicationRecord
   belongs_to :user
   belongs_to :listing
 

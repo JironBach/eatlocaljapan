@@ -37,7 +37,7 @@
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 #  index_users_on_username              (username) UNIQUE
 #
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :timeoutable
   devise :database_authenticatable, :registerable, :lockable, :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable

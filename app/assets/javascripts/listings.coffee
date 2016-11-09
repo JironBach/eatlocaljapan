@@ -404,3 +404,6 @@ $ ->
         return
       ), 200)
       return
+
+  $('.listing__listingsShopCategories .listing__listingsShopCategories__activeCheckbox, .listing__listingsShopServices .listing__listingsShopServices__activeCheckbox, .listing__englishesListings .listing__englishesListings__activeCheckbox, .listing__englishMessagesListings .listing__englishMessagesListings__activeCheckbox').on 'change', (e) ->
+    $(@).closest('label').find('input[type="hidden"][name*="[_destroy]"]').val(not $(@).prop('checked'))
