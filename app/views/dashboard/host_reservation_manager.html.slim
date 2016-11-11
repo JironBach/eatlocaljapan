@@ -27,6 +27,7 @@
                   .col-xs-8.col-md-2 = Listing.human_attribute_name :title
                   .col-xs-12.col-md-2 = t 'name.guest'
                   .col-xs-12.col-md-2 = Reservation.human_attribute_name :schedule
-                  .col-xs-12.col-md-2 = Reservation.human_attribute_name :num_of_people
-                  .col-xs-12.col-md-2 = Reservation.human_attribute_name :in_english
+                  .col-xs-12.col-md-2 = Reservation.human_attribute_name :time
+                  .col-xs-12.col-md-1 = Reservation.human_attribute_name :num_of_people
+                  .col-xs-12.col-md-1 = Reservation.human_attribute_name :in_english
                   = render 'reservation_item_as_host', reservations: @reservations
