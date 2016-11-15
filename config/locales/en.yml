@@ -911,6 +911,7 @@ en:
         back: Back
     passwords:
       new:
+        title: Change Password
         header: Change Password
         msg_html: "Reset Password.<br>Input mail address and click send button. You will recieve mail for password reset."
         placeholder: Mail Address
@@ -925,6 +926,9 @@ en:
         submit: Change
         back_text: Back to Login?
         back: Back
+        placeholder:
+          password: Password
+          password_confirmation: Password Confirmation
     registrations:
       new:
         title: Sign Up

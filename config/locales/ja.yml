@@ -922,6 +922,9 @@ ja:
         submit: 変更する
         back_text: ログイン画面に戻りますか？
         back: 戻る
+        placeholder:
+          password: パスワード
+          password_confirmation: パスワード（確認）
     registrations:
       new:
         title: 新規登録
