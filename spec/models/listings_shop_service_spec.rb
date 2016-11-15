@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: listing_shop_services
+# Table name: listings_shop_services
 #
 #  id              :integer          not null, primary key
 #  created_at      :datetime         not null
@@ -10,7 +10,7 @@
 #
 # Indexes
 #
-#  index_listing_shop_services_on_listing_id_and_shop_service_id  (listing_id,shop_service_id) UNIQUE
+#  index_listings_shop_services_on_listing_id_and_shop_service_id  (listing_id,shop_service_id) UNIQUE
 #
 
 require 'rails_helper'

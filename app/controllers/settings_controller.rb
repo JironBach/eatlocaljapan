@@ -2,7 +2,7 @@ class SettingsController < ApplicationController
   before_action :authenticate_user?
   before_action :load_listing
 
-  authorize_resource :listing, class: :listing, parent_action: :update
+  authorize_resource :listing, class: Listing, parent_action: :update
 
   def edit
     @listing.easy_translate

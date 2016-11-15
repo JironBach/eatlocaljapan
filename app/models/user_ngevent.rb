@@ -6,7 +6,7 @@
 #  user_id        :integer
 #  listing_id     :integer
 #  reservation_id :integer
-#  reason         :string           not null
+#  reason         :integer          not null
 #  start          :datetime         not null
 #  end            :datetime         not null
 #  active         :boolean          default(TRUE)
@@ -35,6 +35,9 @@ class UserNgevent < ApplicationRecord
     end
   end
 
+  validates :start, presence: true, date: {after: Time.zone.now.yesterday.end_of_day}
+  validates :end, presence: true, date: {after: :start}
+
   scope :mine, ->(user_id) { where(user_id: user_id) }
   scope :order_by_updated_at_desc, -> { order('updated_at desc') }
   scope :opened, -> { where(active: true) }
@@ -44,6 +47,8 @@ class UserNgevent < ApplicationRecord
     :around_month,
     ->(first_day_of_month) { where(arel_table[:start].gteq(first_day_of_month - 15.days)).where(arel_table[:end].lteq(first_day_of_month + 1.month + 15.days)) }
   scope :disable_date?, ->(date) { opened.where(arel_table[:start].lteq(date.beginning_of_day)).where(arel_table[:end].gteq(date.end_of_day)) }
+
+  enum reason: {holiday: 0, reserved: 1, canceled: 2, temporary_closed: 3}
 
   # @return [1st date, 2nd date, 3rd date, ..., last date]
   def consecutive_days

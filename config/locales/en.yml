@@ -350,6 +350,12 @@ en:
         accepted: 'Accepted'
         rejected: 'Rejected'
         listing_closed: 'Unpublished'
+    user_ngevent:
+      reason:
+        holiday: 'holiday'
+        reserved: 'reserved'
+        canceled: 'canceled'
+        temporary_closed: 'temporary closed'
   basic_info:
     service_name: eatlocaljapan
   meta_tags:
@@ -606,17 +612,25 @@ en:
       submit: Save
   listing_ngevents:
     manage:
-      title: "Set %{model}"
+      title: "Dates and times reservations are not accepted"
       text: "Click or drag cell of calendar, and you can set %{model}"
       label1: Unavailable day already set
-      label2: Reserved day
+      label2: Disable time
     form:
       button: Delete unavailable day
+      close: "Close"
+      disable_reservations_settings: "Setting disable reservation"
+      select: "Please select"
+      disable_all_day: "Disable all day"
+      select_time: "Select time"
+      start: "Start"
+      end: "End"
+      cancel: "Cancel"
+      registration: "Registration"
     reason:
-      reason:
-        holiday: Unavailable Day
-        reserved: Reserved
-        canceled: Canceled
+      holiday: Unavailable Day
+      reserved: Reserved
+      canceled: Canceled
   listings:
     reservation_form:
       submit:
@@ -1134,6 +1148,7 @@ en:
         holiday: "Unavailable"
         reserved: "Already reserved"
         canceled: "Canceled"
+        temporary_closed: %{start}-%{end}
     reservation:
       save:
         success: "Requested %{model}. Please confirm your request and wait for %{msg} from %{host}."
@@ -1169,3 +1184,11 @@ en:
         failure: "You cannot access to this page. No authority."
     regulate_term:
       expired: "The term to write %{review} has been passed.。"
+  time:
+    am: am
+    formats:
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      long: "%B %d, %Y %H:%M"
+      short: "%d %b %H:%M"
+      hours: '%-H:%M'
+    pm: pm

@@ -345,6 +345,12 @@ ja:
         accepted: 承諾済
         rejected: 拒否済
         listing_closed: 非公開
+    user_ngevent:
+      reason:
+        holiday: 臨時休業
+        reserved: 予約あり
+        canceled: キャンセル済
+        temporary_closed: 一時閉店
   basic_info:
     service_name: eatlocaljapan
   meta_tags:
@@ -1174,6 +1180,14 @@ ja:
         failure: "このページにはアクセスできません。アクセス権限がありません。"
     regulate_term:
       expired: "%{review}の書き込み期間が経過しました。"
+  time:
+    am: 午前
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+      short: "%y/%m/%d %H:%M"
+      hours: '%-H:%M'
+    pm: 午後
   # views:
   #   pagination:
   #     first: "&laquo;"

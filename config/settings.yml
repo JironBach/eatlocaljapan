@@ -27,7 +27,7 @@ images:
 listing_ngevents:
   color:
     holiday: "gray"
-    reserved: "#FA8B9F"
+    temporary_closed: "#FA8B9F"
     canceled: "#ccc"
 # user:
 #   host:
