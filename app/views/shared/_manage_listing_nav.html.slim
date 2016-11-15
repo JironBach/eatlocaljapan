@@ -21,7 +21,7 @@ ruby:
       li class="nav-item#{controller_name == 'listings' ? ' nav-active' : ''}"
         = link_to new_or_edit_path(@listing) do
           = t '.basic_info'
-          - if controller_name == 'settings' && @listing.reservation_frame.blank?
+          - if controller_name == 'listings' && @listing.title.blank?
             i.fa.fa-exclamation-circle
           - else
             i.fa.fa-check
