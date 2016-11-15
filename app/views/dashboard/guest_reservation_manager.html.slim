@@ -31,7 +31,8 @@
               li.card-body.hide--sp
                 .row.row-table.row-table-header
                   .col-xs-4.col-md-3 = Reservation.human_attribute_name :progress
-                  .col-xs-8.col-md-5 = Listing.human_attribute_name :title
+                  .col-xs-8.col-md-3 = Listing.human_attribute_name :title
                   .col-xs-12.col-md-2 = t 'name.host'
                   .col-xs-12.col-md-2 = Reservation.human_attribute_name :schedule
+                  .col-xs-12.col-md-2 = Reservation.human_attribute_name :time
                   = render 'reservation_item_as_guest', reservations: @reservations
