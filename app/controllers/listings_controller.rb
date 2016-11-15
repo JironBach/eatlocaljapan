@@ -70,7 +70,7 @@ class ListingsController < ApplicationController
       if @listing.save
         format.html { redirect_to edit_listing_reservations_setting_path(@listing), notice: I18n.t('alerts.listings.update.success', model: Listing.model_name.human) }
       else
-        format.html { redirect_to edit_listing_reservations_setting_path(@listing), notice: I18n.t('alerts.listings.update.failure', model: Listing.model_name.human) }
+        format.html { redirect_to edit_listing_path(@listing), notice: I18n.t('alerts.listings.update.failure', model: Listing.model_name.human) }
       end
     end
   end
