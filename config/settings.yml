@@ -55,3 +55,10 @@ listings:
 regulate_user:
   cancan:
     failure: "cancan faillure"
+categories_for_discovery:
+  - 13
+  - 11
+  - 26
+  - 10
+  - 14
+  - 18
