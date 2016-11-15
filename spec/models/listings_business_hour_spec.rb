@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: listing_business_hours
+# Table name: listings_business_hours
 #
 #  id               :integer          not null, primary key
 #  created_at       :datetime         not null
@@ -10,7 +10,7 @@
 #
 # Indexes
 #
-#  index_listing_business_hours_on_listing_id_and_business_hour_id  (listing_id,business_hour_id) UNIQUE
+#  index_listing_business_hours  (listing_id,business_hour_id) UNIQUE
 #
 
 require 'rails_helper'
