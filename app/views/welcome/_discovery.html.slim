@@ -25,51 +25,5 @@
                     .va-middle.text-center.text-contrast
                       .h2.strong
                         'About eatlocaljapan
-          .col-lg-4.col-md-12.rm-padding--sp
-            .discovery-card.rm-padding--sp.row-space-4.wall2
-              - category = 13
-              = link_to "#{search_listings_path}?search[location]=&shop_categories=#{category}", class: 'link-reset', target: '_blank' do
-                .va-container.va-container-v.va-container-h
-                  .va-middle.text-center.text-contrast
-                    .h2.strong
-                      = locale == :ja ? ShopCategory.find(category).name : ShopCategory.find(category).name_en
-          .col-lg-4.col-md-12.rm-padding--sp
-            .discovery-card.rm-padding--sp.row-space-4.wall3
-              - category = 11
-              = link_to "#{search_listings_path}?search[location]=&shop_categories=#{category}", class: 'link-reset', target: '_blank' do
-                .va-container.va-container-v.va-container-h
-                  .va-middle.text-center.text-contrast
-                    .h2.strong
-                      = locale == :ja ? ShopCategory.find(category).name : ShopCategory.find(category).name_en
-          .col-lg-8.col-md-12.rm-padding--sp
-            .discovery-card.rm-padding--sp.row-space-4.wall4
-              - category = 26
-              = link_to "#{search_listings_path}?search[location]=&shop_categories=#{category}", class: 'link-reset', target: '_blank' do
-                .va-container.va-container-v.va-container-h
-                  .va-middle.text-center.text-contrast
-                    .h2.strong
-                      = locale == :ja ? ShopCategory.find(category).name : ShopCategory.find(category).name_en
-          .col-lg-4.col-md-12.rm-padding--sp
-            .discovery-card.rm-padding--sp.row-space-4.wall5
-              - category = 10
-              = link_to "#{search_listings_path}?search[location]=&shop_categories=#{category}", class: 'link-reset', target: '_blank' do
-                .va-container.va-container-v.va-container-h
-                  .va-middle.text-center.text-contrast
-                    .h2.strong
-                      = locale == :ja ? ShopCategory.find(category).name : ShopCategory.find(category).name_en
-          .col-lg-4.col-md-12.rm-padding--sp
-            .discovery-card.rm-padding--sp.row-space-4.wall6
-              - category = 14
-              = link_to "#{search_listings_path}?search[location]=&shop_categories=#{category}", class: 'link-reset', target: '_blank' do
-                .va-container.va-container-v.va-container-h
-                  .va-middle.text-center.text-contrast
-                    .h2.strong
-                      = locale == :ja ? ShopCategory.find(category).name : ShopCategory.find(category).name_en
-          .col-lg-4.col-md-12.rm-padding--sp
-            .discovery-card.rm-padding--sp.row-space-4.wall7
-              - category = 18
-              = link_to "#{search_listings_path}?search[location]=&shop_categories=#{category}", class: 'link-reset', target: '_blank' do
-                .va-container.va-container-v.va-container-h
-                  .va-middle.text-center.text-contrast
-                    .h2.strong
-                      = locale == :ja ? ShopCategory.find(category).name : ShopCategory.find(category).name_en
+          - ShopCategory.find(Settings.categories_for_discovery).each.with_index(2) do |shop_category, index|
+            = render shop_category, index: index

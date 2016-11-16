@@ -1,0 +1,7 @@
+.col-lg-4.col-md-12.rm-padding--sp
+  div class="discovery-card rm-padding--sp row-space-4 wall#{index}"
+    = link_to search_listings_path(search: {shop_categories: shop_category}), class: 'link-reset', target: '_blank' do
+      .va-container.va-container-v.va-container-h
+        .va-middle.text-center.text-contrast
+          .h2.strong
+            = shop_category.send(locale == :ja ? :name : :name_en)
