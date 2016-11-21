@@ -7,7 +7,12 @@ $ ->
     },
     defaultView: 'month',
     # 時間の書式
-    timeFormat: 'H(:mm)',
+    timeFormat: 'H:mm',
+    views: {
+      month: {
+        displayEventEnd: true
+      }
+    },
     # 列の書式
     columnFormat: {
         month: 'ddd',    # 月
