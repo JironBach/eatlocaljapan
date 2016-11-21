@@ -68,20 +68,17 @@
                         = um.content
                       .text-muted
                         = from_user_profile.location
-                  - if um.reservation_id.present? && !um.reservation_id.zero?
-                    - r = reservation_id_to_reservation_obj(um.reservation_id)
-                    - l = listing_id_to_listing_obj(um.listing_id)
+                  - if um.reservation.present?
                     .col-md-3
-                      = render 'progress', r: r
+                      = render 'progress', r: um.reservation
                       .small1
-                        b
-                          = t 'unit.price'
-                          = l.price
                         span.col-space-left-1
-                          = r.num_of_people
+                          = um.reservation.num_of_people
                           = t 'unit.people'
                         br
-                        = l r.schedule, format: :short
+                        = l um.reservation.schedule, format: :short
+                        |&nbsp;
+                        = l um.reservation.time, format: :hour
                   - else
                     .col-mod-2
                       span.label.status-contact.text-starlight

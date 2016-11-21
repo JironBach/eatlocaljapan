@@ -26,6 +26,7 @@ class Message < ApplicationRecord
   belongs_to :message_thread, touch: true
   belongs_to :to_user, class_name: 'User', foreign_key: 'to_user_id'
   belongs_to :from_user, class_name: 'User', foreign_key: 'from_user_id'
+  belongs_to :reservation
 
   validates :message_thread_id, presence: true
   validates :from_user_id, presence: true
