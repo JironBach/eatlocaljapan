@@ -276,6 +276,12 @@ ja:
         msg: "例）こちらこそ楽しいひと時を過ごさせていただきました。どうぞまたご参加ください。"
       dress_code:
        note: "特別に注意していただきたい点などある場合はこちらに注意点やお願いなどをご記入ください。"
+    errors:
+      models:
+        user_ngevent:
+          attributes:
+            base:
+              overlapped: 予約不可日時に重複があります
   attributes:
     id: ID
     user: ユーザー

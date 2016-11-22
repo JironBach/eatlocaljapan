@@ -29,14 +29,9 @@ class UserNgevent < ApplicationRecord
   validates :start, presence: true, date: {after: Time.zone.now.yesterday.end_of_day}
   validates :end, presence: true, date: {after: :start}
   validate do |event|
-    ng_days = UserNgevent.ng_days(event.id, event.user_id, event.listing_id)
-    unless (event.consecutive_days & ng_days).size.zero?
-      errors.add(:ng_days, 'NGevent is already exists at this day')
-    end
+    errors.add(:base, :overlapped) if (consecutive_days & listing.listing_ngevents.opened.not_me(id).holiday.flat_map(&:consecutive_days)).present?
+    errors.add(:base, :overlapped) if temporary_closed? && listing.listing_ngevents.opened.not_me(id).temporary_closed.same_day(start).overlapped_to(start, self.end).exists?
   end
-
-  validates :start, presence: true, date: {after: Time.zone.now.yesterday.end_of_day}
-  validates :end, presence: true, date: {after: :start}
 
   scope :mine, ->(user_id) { where(user_id: user_id) }
   scope :order_by_updated_at_desc, -> { order('updated_at desc') }
@@ -47,6 +42,8 @@ class UserNgevent < ApplicationRecord
     :around_month,
     ->(first_day_of_month) { where(arel_table[:start].gteq(first_day_of_month - 15.days)).where(arel_table[:end].lteq(first_day_of_month + 1.month + 15.days)) }
   scope :disable_date?, ->(date) { opened.where(arel_table[:start].lteq(date.beginning_of_day)).where(arel_table[:end].gteq(date.end_of_day)) }
+  scope :same_day, ->(date) { where(arel_table[:start].gteq(date.beginning_of_day)).where(arel_table[:end].lteq(date.end_of_day)) }
+  scope :overlapped_to, ->(from, to) { where.not(arel_table[:start].gteq(to).or(arel_table[:end].lteq(from))) }
 
   enum reason: {holiday: 0, reserved: 1, canceled: 2, temporary_closed: 3}
 
