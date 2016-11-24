@@ -166,8 +166,8 @@ private
         listings_shop_services_attributes: [:id, :shop_service_id, :_destroy],
         englishes_listings_attributes: [:id, :english_id, :_destroy],
         english_messages_listings_attributes: [:id, :english_message_id, :_destroy],
-        weekday_business_hours_attributes: [:id, :wday, :is_open, :start_hour, :end_hour, :lunch_break_start_hour, :lunch_break_end_hour, :_destroy],
-        holiday_business_hour_attributes: [:id, :is_open, :start_hour, :end_hour, :lunch_break_start_hour, :lunch_break_end_hour, :_destroy]
+        weekday_business_hours_attributes: [:id, :wday, :is_open, :start_hour, :end_hour, :lunch_break_start_hour, :lunch_break_end_hour, :has_lunch_break, :_destroy],
+        holiday_business_hour_attributes: [:id, :is_open, :start_hour, :end_hour, :lunch_break_start_hour, :lunch_break_end_hour, :has_lunch_break, :_destroy]
       ) \
       .merge(user_id: current_user.id)
   end

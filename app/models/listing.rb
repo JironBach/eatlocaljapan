@@ -170,9 +170,10 @@ class Listing < ApplicationRecord
     HolidayJp.holiday?(schedule.to_date) ? holiday_business_hour : weekday_business_hours.find_by(wday: schedule.wday)
   end
 
-  def busy_times(schedule)
-    listing_ngevents.on(schedule).map { |event| [event.start, event.end] } \
-      << [(business_hour = business_hour_on(schedule)).lunch_break_start_hour, business_hour.lunch_break_end_hour]
+  def busy_times(schedule, requested_time_unit=nil)
+    time_unit = (requested_time_unit || reservation_time_unit || 60).minutes
+    ((business_hour = business_hour_on(schedule)).has_lunch_break? && [[business_hour.lunch_break_start_hour.ago(time_unit), business_hour.lunch_break_end_hour]] || []) \
+      .unshift(*listing_ngevents.on(schedule).map { |event| [event.start, event.end] })
   end
 
   def on_time(schedule)

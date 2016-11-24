@@ -199,7 +199,7 @@
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
-        = t('.busubess_hours_and_lunch_break')
+        = t('.business_hour_and_lunch_break')
         i.fa.fa-asterisk.fa-danger
       p
         = t('.business_hours_and_lunch_break_description')
@@ -225,7 +225,9 @@
                 = wf.time_select :start_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
                 = ' - '
                 = wf.time_select :end_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
+                | &nbsp;
                 = ' ( '
+                = wf.check_box :has_lunch_break
                 = wf.time_select :lunch_break_start_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
                 = ' - '
                 = wf.time_select :lunch_break_end_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
@@ -239,7 +241,9 @@
                 = hf.time_select :start_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
                 = ' - '
                 = hf.time_select :end_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
+                | &nbsp;
                 = ' ( '
+                = hf.check_box :has_lunch_break
                 = hf.time_select :lunch_break_start_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
                 = ' - '
                 = hf.time_select :lunch_break_end_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'

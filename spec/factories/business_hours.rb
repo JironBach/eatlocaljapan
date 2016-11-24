@@ -13,6 +13,7 @@
 #  type                   :string
 #  lunch_break_start_hour :time
 #  lunch_break_end_hour   :time
+#  has_lunch_break        :boolean          default(FALSE), not null
 #
 # Indexes
 #

@@ -347,8 +347,11 @@ en:
           attributes:
             end_hour:
               after: 'cannot be earlier than 6 a.m.'
+            lunch_break_start_hour:
+              after: 'cannot be earlier than the start time.'
             lunch_break_end_hour:
-              after: 'cannot be later than the end time.'
+              after: 'cannot be earlier than the lunch break start time.'
+              before: 'cannot be later than the end time.'
         holiday_business_hour:
           <<: *business_hour_errors
         weekday_business_hour:
@@ -864,6 +867,7 @@ en:
       recommended: Additional information
       holiday: holiday
       about_business_hours: (Break/Closed hours)
+      business_hour_and_lunch_break: "Business hours (Lunch break)"
     edit:
       title: Edit Listing
     edit_link:
@@ -881,12 +885,15 @@ en:
         name: ok
       capacity:
         more_than: "more than %{num}"
-      busubess_hours_and_lunch_break: Business hours (Lunch break)
+      business_hour_and_lunch_break: Business hours (Lunch break)
       holiday: Holiday
       shop_category_description: (Max 3)
       service_description: (Tick all services offered)
       business_hours_and_lunch_break_description: Enter break (closed) hours during business hours in the parentheses, if any.
       cover_image_description: Main Image. Click「ファイルを選択」and upload the file. (Max. 1M)
+      business_hour: Business Hour
+      lunch_break: Lunch Break
+    host_info:
       name:
         after: "'s info"
       profile:

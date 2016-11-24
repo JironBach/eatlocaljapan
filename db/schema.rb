@@ -73,16 +73,17 @@ ActiveRecord::Schema.define(version: 20170113072645) do
   add_index "browsing_histories", ["viewed_at"], name: "index_browsing_histories_on_viewed_at", using: :btree
 
   create_table "business_hours", force: :cascade do |t|
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.integer  "listing_id"
     t.integer  "wday"
-    t.boolean  "is_open",                default: true, null: false
+    t.boolean  "is_open",                default: true,  null: false
     t.time     "start_hour"
     t.time     "end_hour"
     t.string   "type"
     t.time     "lunch_break_start_hour"
     t.time     "lunch_break_end_hour"
+    t.boolean  "has_lunch_break",        default: false, null: false
   end
 
   add_index "business_hours", ["listing_id", "wday"], name: "index_business_hours_on_listing_id_and_wday", using: :btree
