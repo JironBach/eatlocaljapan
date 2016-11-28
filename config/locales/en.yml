@@ -56,8 +56,8 @@ en:
         is_open: Open
         start_hour: 'Opening hours'
         end_hour: 'Closing hours'
-        lunch_break_start_hour: 'Lunch break beginning hours'
-        lunch_break_end_hour: 'Lunch break beginning hours'
+        lunch_break_start_hour: 'The start time of lunch break'
+        lunch_break_end_hour: 'The end time of lunch break'
       payment_method: &payment_method
         user_id: 'User'
         user: 'User'
@@ -101,8 +101,10 @@ en:
         phone: Phone Number
         email: Email
         relationship: Relationship
-      holiday_business_hour:
+      holiday_business_hour: &holiday_business_hour
         <<: *business_hour
+      listing/holiday_business_hour:
+        <<: *holiday_business_hour
       listing:
         title: Restaurant Name
         title_en: Restaurant Name(English)
@@ -273,8 +275,10 @@ en:
         provider: Auth Provider
         gmo_member_seq: 'Payment Registration Sequence'
         member_id: 'Payment Registration ID'
-      weekday_business_hour:
+      weekday_business_hour: &weekday_business_hour
         <<: *business_hour
+      listing/weekday_business_hours:
+        <<: *weekday_business_hour
       wishlist:
         name: Name
     placeholders:
@@ -343,6 +347,14 @@ en:
               overlapped: 'Charge is overlapped.'
             'payment_method/expiration_date':
               expired: 'expired.'
+        business_hour:
+          attributes:
+            lunch_break_end_hour:
+              after: 'cannot be later than the end time.'
+        holiday_business_hour:
+          <<: *business_hour
+        weekday_business_hour:
+          <<: *business_hour
   attributes:
     id: ID
     user: User

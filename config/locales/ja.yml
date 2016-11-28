@@ -104,8 +104,10 @@ ja:
         phone: 電話番号
         email: メールアドレス
         relationship: 関係性
-      holiday_business_hour:
+      holiday_business_hour: &holiday_business_hour
         <<: *business_hour
+      listing/holiday_business_hour:
+        <<: *holiday_business_hour
       listing:
         title: 店舗名
         title_en: 店舗名（英語）
@@ -273,8 +275,10 @@ ja:
         provider: 現在の認証サービス
         gmo_member_seq: '課金登録連番'
         member_id: '課金登録ID'
-      weekday_business_hour:
+      weekday_business_hour: &weekday_business_hour
         <<: *business_hour
+      listing/weekday_business_hours:
+        <<: *weekday_business_hour
       wishlist:
         name: お気に入りリストの名前
     placeholders:
@@ -343,6 +347,14 @@ ja:
               overlapped: '課金の指定が重複しています'
             'payment_method/expiration_date':
               expired: '有効期限が切れています'
+        business_hour:
+          attributes:
+            lunch_break_end_hour:
+              after: は昼休開始時間よりも後に設定してください
+        holiday_business_hour:
+          <<: *business_hour
+        weekday_business_hour:
+          <<: *business_hour
   attributes:
     id: ID
     user: ユーザー
