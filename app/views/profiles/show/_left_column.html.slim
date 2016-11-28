@@ -6,7 +6,7 @@
     h2.h5.row-space-3
       = t('.title', listing: Listing.model_name.human)
       small
-        = t('.listing_num', num: listings.count)
+        = '(' + t('.listing_num', num: listings.count) + ')'
     ul.hostings-list.list-layout
       - listings.each do |l|
         li.row-space-2

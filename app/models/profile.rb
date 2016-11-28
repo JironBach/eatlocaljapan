@@ -44,13 +44,7 @@ class Profile < ApplicationRecord
 
   validates :user_id, presence: true
 
-  def self.minimun_requirement?(user_id)
-    profile = Profile.find_bt(user_id: user_id)
-    profile.first_name.present? &&
-    profile.last_name.present? &&
-    profile.birthday.present? &&
-    profile.phone.present? &&
-    profile.location.present? &&
-    profile.self_introduction.present?
+  def minimum_requirement?
+    [:first_name, :last_name].all? { |field| self[field].present? }
   end
 end

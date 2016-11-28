@@ -3,6 +3,7 @@ class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
   before_action :set_listing_obj, only: [:publish, :unpublish]
   before_action :set_listing_related_data, only: [:show, :edit]
+  before_action :check_profile, only: [:create]
 
   authorize_resource
 
@@ -125,6 +126,11 @@ class ListingsController < ApplicationController
   end
 
 private
+  def check_profile
+    user = User.find(listing_params[:user_id])
+    redirect_to edit_profile_path, notice: I18n.t('alerts.reservation.requirement.profile.not_yet', model: Profile.model_name.human) unless user.profile&.minimum_requirement?
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_listing
     @listing = Listing.find(params[:id])
