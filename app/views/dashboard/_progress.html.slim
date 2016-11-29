@@ -12,5 +12,5 @@ ruby:
     when 'rejected' then
       'status-reject'
     end
-- if r.progress.blank?
+- unless r.progress.blank?
   span class="label #{progress_class}" =r.progress_text
