@@ -282,6 +282,12 @@ en:
         msg: "e.g. I had really fun time. Thank you for very kind omotenashi"
       dress_code:
        note: Write special instructions here.
+    errors:
+      models:
+        user_ngevent:
+          attributes:
+            base:
+              overlapped: 'NGevent is overlapped'
   attributes:
     id: ID
     user: User
