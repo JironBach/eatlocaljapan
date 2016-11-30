@@ -349,6 +349,8 @@ en:
               expired: 'expired.'
         business_hour:
           attributes:
+            end_hour:
+              after: 'cannot be earlier than 6 a.m.'
             lunch_break_end_hour:
               after: 'cannot be later than the end time.'
         holiday_business_hour:

@@ -349,6 +349,8 @@ ja:
               expired: '有効期限が切れています'
         business_hour:
           attributes:
+            end_hour:
+              after:  は午前6時まで設定可能です
             lunch_break_end_hour:
               after: は昼休開始時間よりも後に設定してください
         holiday_business_hour:
