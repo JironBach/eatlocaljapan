@@ -1,5 +1,4 @@
 - provide :title, Profile.model_name.human
-- reviewed_count = @reviewed.count
 - if user_signed_in? && @profile.user == current_user
   = render 'edit_link'
 .page-container.row-space-top-4.row-space-8
@@ -7,11 +6,3 @@
     = render 'profiles/show/left_column', profile: @profile, listings: @listings
     .col-lg-9.col-md-8.col-sm-12
       = render 'profiles/show/self_introduction', profile: @profile
-      /.row-space-6.row-space-top-6.row.row-condenced
-        .col-md-12
-          = link_to '#reviews', class: 'link-reset btn btn-guest' do
-            span.badge-pill-count
-              = t('.review_num', model: Review.model_name.human, num: reviewed_count)
-      .social_connections_and_reviews.row-space-top-6
-        /= render 'profiles/show/wishlists'
-        = render 'profiles/show/reviewed', reviewed: @reviewed, reviewed_count: reviewed_count

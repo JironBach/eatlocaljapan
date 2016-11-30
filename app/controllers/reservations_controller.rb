@@ -1,15 +1,11 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user?
   before_action :set_reservation, only: [:show, :update, :destroy]
+  before_action :check_profile, only: [:create]
   authorize_resource
 
-  # rubocop:disable Metrics/MethodLength
   def create
     @reservation = Reservation.new(reservation_params)
-    profile_id = User.user_id_to_profile_id(@reservation.guest_id)
-    # return redirect_to edit_profile_path, notice: Settings.reservation.requirement.profile.not_yet unless Profile.minimun_requirement?(@reservation.guest_id)
-    return redirect_to edit_profile_profile_image_path, notice: I18n.t('alerts.reservation.requirement.profile_image.not_yet', model: ListingImage.model_name.human) \
-        unless ProfileImage.minimun_requirement?(@reservation.guest_id, profile_id)
     respond_to do |format|
       if @reservation.save
         # ReservationMailer.send_new_reservation_notification(@reservation).deliver_later!(wait: 1.minute) # if you want to use active job, use this line.
@@ -66,6 +62,11 @@ class ReservationsController < ApplicationController
   end
 
 private
+  def check_profile
+    guest = User.find(reservation_params[:guest_id])
+    redirect_to edit_profile_path, notice: I18n.t('alerts.reservation.requirement.profile.not_yet', model: Profile.model_name.human) unless guest.profile&.minimum_requirement?
+  end
+
   def set_reservation
     @reservation = Reservation.find(params[:id])
   end

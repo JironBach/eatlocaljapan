@@ -853,7 +853,7 @@ en:
         reply: "Reply: "
       left_column:
         title: "Opened %{listing}"
-        listing_num: (num)
+        listing_num: %{num}
         delivery_ok: Delivery
     review:
       tab:

@@ -8,17 +8,18 @@
           .row.row-condensed.row-space-4
             label.text-right.col-3
               = Profile.human_attribute_name :last_name
+              i.fa.fa-lock.fa-green
             .col-8
               = f.input_field :last_name
           .row.row-condensed.row-space-4
             label.text-right.col-3
               = Profile.human_attribute_name :first_name
+              i.fa.fa-lock.fa-green
             .col-8
               = f.input_field :first_name
           .row.row-condensed.row-space-4
             label.text-right.col-3[for='user_gender']
               = Profile.human_attribute_name :gender
-              i.fa.fa-lock.fa-green
             .col-9
               .select
                 = f.input_field :gender, as: :select, collection: Profile.genders.map { |(key, value)| [Profile.gender_text(key), key] }, include_blank: true
@@ -26,7 +27,6 @@
           .row.row-condensed.row-space-4
             label.text-right.col-3[for='user_birthdate']
               = Profile.human_attribute_name :birthday
-              i.fa.fa-lock.fa-green
             .col-9
               .select.select-opt
                 /= f.input_field :birthday, as: :date, use_month_numbers: true, start_year: Date.today.year - 120, end_year: Date.today.year - 12, order: [:year, :month, :day], date_separator: '/'
@@ -36,14 +36,12 @@
           .row.row-condensed.row-space-4
             label.text-right.col-3[for='user_phone']
               = Profile.human_attribute_name :phone
-              i.fa.fa-lock.fa-green
             .col-7
               = f.input_field :phone, placeholder: t('.placeholder.phone')
               .text-muted.row-space-top-1 = t '.text_limited'
           .row.row-condensed.row-space-4
             label.text-right.col-3[for='user_phone']
               = Profile.human_attribute_name :zipcode
-              i.fa.fa-lock.fa-green
             .col-6
               = f.input_field :zipcode, id: 'user-zipcode', placeholder: t('.placeholder.zipcode'), class: 'zip-format'
               .text-muted.row-space-top-1 = t '.text_closed'

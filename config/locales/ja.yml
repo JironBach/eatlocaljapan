@@ -849,7 +849,7 @@ ja:
         reply: "返信: "
       left_column:
         title: "開催している%{listing}"
-        listing_num: （num）
+        listing_num: %{num}
         delivery_ok: 出張可
     review:
       tab:

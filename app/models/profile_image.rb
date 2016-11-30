@@ -31,10 +31,7 @@ class ProfileImage < ApplicationRecord
 
   scope :mine, ->(user_id) { where(user_id: user_id) }
 
-  class << self
-    def minimun_requirement?(user_id, profile_id)
-      profile_image = ProfileImage.find_by(user_id: user_id, profile_id: profile_id)
-      profile_image&.image.present?
-    end
+  def minimum_requirement?
+    image.present?
   end
 end
