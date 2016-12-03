@@ -2,7 +2,7 @@ require 'capistrano/rbenv'
 require 'capistrano/bundler'
 
 # config valid only for current version of Capistrano
-lock '3.5.0'
+lock '3.6.1'
 
 # application name
 set :application, 'eatlocaljapan'
