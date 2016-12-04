@@ -9,4 +9,4 @@ set :stage, :production # environment name
 # roles of servers
 role :app, %w(www@eatlocaljapan-application-production-a) # , my_property: :my_value
 role :web, %w(www@eatlocaljapan-application-production-a) # , other_property: :other_value
-role :db,  %w()
+role :db,  %w(www@eatlocaljapan-application-production-a)
