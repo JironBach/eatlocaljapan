@@ -71,6 +71,11 @@ GEM
     arel (6.0.3)
     ast (2.3.0)
     awesome_print (1.6.1)
+    aws-ses (0.6.0)
+      builder
+      mail (> 2.2.5)
+      mime-types
+      xml-simple
     bcrypt (3.1.10)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -662,6 +667,7 @@ GEM
       sprockets-rails (>= 2.0, < 4.0)
     whenever (0.9.4)
       chronic (>= 0.6.3)
+    xml-simple (1.1.5)
     yard (0.9.5)
 
 PLATFORMS
@@ -671,6 +677,7 @@ DEPENDENCIES
   activeadmin!
   annotate (= 2.6.8)
   awesome_print (= 1.6.1)
+  aws-ses (~> 0.6)
   bcrypt (= 3.1.10)
   better_errors (= 2.1.1)
   binding_of_caller (= 0.7.2)

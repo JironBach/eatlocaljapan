@@ -79,6 +79,7 @@ gem 'sitemap_generator', '5.0.5'
 gem 'seed-fu'
 gem 'syck'
 gem 'easy_translate'
+gem 'aws-ses', '~> 0.6', require: 'aws/ses'
 
 # Use Capistrano for deployment
 group :development, :staging, :production do

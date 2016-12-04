@@ -7,21 +7,6 @@ set :stage, :production # environment name
 # server 'git.mydns.jp', user: 'js', roles: %w{app db web}
 
 # roles of servers
-role :app, %w(eatlocaljapan@www.eatlocaljapan.com) # , my_property: :my_value
-role :web, %w(eatlocaljapan@www.eatlocaljapan.com) # , other_property: :other_value
-role :db,  %w(eatlocaljapan@www.eatlocaljapan.com)
-
-# information of servers
-server \
-  'www.eatlocaljapan.com',
-  user: 'eatlocaljapan',
-  roles: %w(web app db),
-  ssh_options: \
-    {
-      port: 22,
-      user: 'eatlocaljapan',
-      keys: %w(/Users/js/.ssh/eatlocaljapan.key),
-      forward_agent: true,
-      auth_methods: %w(publickey password)
-      # password: 'please use keys'
-    }
+role :app, %w(www@eatlocaljapan-application-production-a) # , my_property: :my_value
+role :web, %w(www@eatlocaljapan-application-production-a) # , other_property: :other_value
+role :db,  %w()
