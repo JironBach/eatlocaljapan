@@ -11,7 +11,7 @@ set :repo_url, 'ssh://git@github.com/bizitjapan/eatlocaljapan.git'
 # target branch to deploy
 set :branch, 'master'
 # full path of directory to deploy
-set :deploy_to, '/var/www/www.eatlocaljapan.com'
+set :deploy_to, '/var/www/eatlocaljapan'
 # version control system
 set :scm, :git
 # log level
@@ -37,6 +37,9 @@ set :keep_releases, 5
 
 set :passenger_environment_variables, path: "#{fetch(:rbenv_path)}/versions/#{fetch(:rbenv_ruby)}/bin:$PATH"
 set :passenger_restart_options, -> { "#{deploy_to} --ignore-app-not-running" }
+
+# set bundle config. because if this config does not have, nokogiri require libxml2 new version
+set :bundle_env_variables, nokogiri_use_system_libraries: 1
 
 # task definication
 namespace :deploy do # namespace for tasks
