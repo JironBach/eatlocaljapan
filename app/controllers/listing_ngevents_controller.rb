@@ -30,7 +30,7 @@ class ListingNgeventsController < ApplicationController
   def create
     respond_to do |format|
       if @listing.with_lock { @ngevent.save }
-        format.json { render json: {}, status: :created }
+        format.json { render :create, status: :created }
       else
         format.json { render json: @ngevent.errors, status: :unprocessable_entity }
       end
@@ -45,7 +45,7 @@ class ListingNgeventsController < ApplicationController
 
     respond_to do |format|
       if @listing.with_lock { @ngevent.save }
-        format.json { render json: {}, status: :ok }
+        format.json { render :update, status: :ok }
       else
         format.json { render json: @ngevent.errors, status: :unprocessable_entity }
       end
@@ -57,7 +57,7 @@ class ListingNgeventsController < ApplicationController
   def destroy
     respond_to do |format|
       if @listing.with_lock { @ngevent.destroy }
-        format.json { render json: {}, status: :ok }
+        format.json { render json: {id: @ngevent.id}, status: :ok }
       else
         format.json { render json: @ngevent.errors, status: :unprocessable_entity }
       end
@@ -74,7 +74,10 @@ private
   end
 
   def set_my_events
-    @ngevents = @listing.listing_ngevents.mine(current_user)
+    @ngevents = \
+      [[:start, :gteq], [:end, :lteq]].inject(@listing.listing_ngevents.mine(current_user)) do |ngevents, (field, operator)|
+        params[field].present? ? ngevents.where(UserNgevent.arel_table[field].send(operator, params[field])) : ngevents
+      end
   end
 
   def set_new_event
