@@ -3,7 +3,7 @@ class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
   before_action :set_listing_obj, only: [:publish, :unpublish]
   before_action :set_listing_related_data, only: [:show, :edit]
-  before_action :check_profile, only: [:create]
+  before_action :check_profile, only: [:new, :create]
 
   authorize_resource
 
@@ -152,7 +152,7 @@ private
   # Never trust parameters from the scary internet, only allow the white list through.
   def listing_params
     params \
-      .require(:listing) \
+      .fetch(:listing, {}) \
       .permit(
         :user_id, :evaluation_count, :zipcode, :location, :location_en, :longitude, :latitude, :delivery_flg, :price, :info_admin_id,
         :ave_total, :ave_accuracy, :ave_communication, :ave_cleanliness, :ave_location, :ave_check_in, :ave_cost_performance, :open,
@@ -169,7 +169,7 @@ private
         weekday_business_hours_attributes: [:id, :wday, :is_open, :start_hour, :end_hour, :lunch_break_start_hour, :lunch_break_end_hour, :_destroy],
         holiday_business_hour_attributes: [:id, :is_open, :start_hour, :end_hour, :lunch_break_start_hour, :lunch_break_end_hour, :_destroy]
       ) \
-      .merge({user_id: current_user.id}.compact)
+      .merge(user_id: current_user.id)
   end
 
   def search_params
