@@ -30,8 +30,10 @@ Style/FrozenStringLiteralComment:
 Style/GuardClause:
   Enabled: false
 
+#Style/Lambda:
+#  Enabled: literal
 Style/Lambda:
-  Enabled: literal
+  Enabled: false
 
 Style/LambdaCall:
   Enabled: false
