@@ -43,10 +43,10 @@
                   = select nil, :minute, Array(0.step(59, @listing.unit || 15))
             .row.row-condensed.row-space-3
               .col-md-12
-                label[for='number_of_guests']
-                  = t('listings.request_block.in_english')
                 .select.select-block
-                  = f.check_box :in_english
+                  label[for='in_english']
+                    = f.check_box :in_english
+                    = t('listings.request_block.in_english')
 
             #book_it_status
               #book_it_enabled.clearfix
