@@ -236,8 +236,8 @@ Devise.setup do |config|
 
   # API key
   config.omniauth :facebook,
-                  Rails.application.secrets.facebook_app_id,
-                  Rails.application.secrets.facebook_app_secret,
+                  ENV['FACEBOOK_APP_ID'],
+                  ENV['FACEBOOK_APP_SECRET'],
                   scope: Settings.oauth.facebook.scope, # change scope as your service's aim
                   info_fields: Settings.oauth.facebook.info_fields,
                   image_size: Settings.oauth.facebook.image_size
