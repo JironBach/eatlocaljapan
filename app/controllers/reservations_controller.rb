@@ -1,35 +1,20 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user?
+  before_action :set_listing
   before_action :set_reservation, only: [:show, :update, :destroy]
   before_action :check_profile, only: [:create]
+
   authorize_resource
 
   def create
-    @reservation = Reservation.new(reservation_params)
+    @reservation = @listing.reservations.build(reservation_params)
     respond_to do |format|
       if @reservation.save
         # ReservationMailer.send_new_reservation_notification(@reservation).deliver_later!(wait: 1.minute) # if you want to use active job, use this line.
         ReservationMailer.send_new_reservation_notification(@reservation).deliver_now! # if you don't want to use active job, use this line.
+        message_params = {reservation_id: @reservation.id, listing_id: @listing.id, content: I18n.t('alerts.reservation.msg.request', model: Message.model_name.human)}
 
-        msg_params = Hash[
-          'reservation_id' => @reservation.id,
-          'listing_id' => @reservation.listing_id,
-          'from_user_id' => @reservation.guest_id,
-          'to_user_id' => @reservation.host_id,
-          'progress' => @reservation.progress,
-          'schedule' => @reservation.schedule,
-          'num_of_people' => @reservation.num_of_people,
-          'content' => I18n.t('alerts.reservation.msg.request', model: Message.model_name.human)
-        ]
-
-        mt_obj = \
-          if res = MessageThread.exists_thread?(msg_params)
-            MessageThread.find(res)
-          else
-            MessageThread.create_thread(msg_params)
-          end
-
-        if Message.send_message(mt_obj, msg_params)
+        if MessageThread.send_message(from: @reservation.guest, to: @reservation.host, message: message_params)
           format.html do
             redirect_to \
               dashboard_guest_reservation_manager_path,
@@ -37,11 +22,11 @@ class ReservationsController < ApplicationController
           end
           format.json { render :show, status: :created, location: @reservation }
         else
-          format.html { redirect_to listing_path(@reservation.listing_id), notice: I18n.t('alerts.reservation.save.failure.no_date', model: Reservation.model_name.human) }
+          format.html { redirect_to listing_path(@listing), notice: I18n.t('alerts.reservation.save.failure.no_date', model: Reservation.model_name.human) }
           format.json { render json: @reservation.errors, status: :unprocessable_entity }
         end
       else
-        format.html { redirect_to listing_path(@reservation.listing_id), notice: I18n.t('alerts.reservation.save.failure.no_date', model: Reservation.model_name.human) }
+        format.html { redirect_to listing_path(@listing), notice: I18n.t('alerts.reservation.save.failure.no_date', model: Reservation.model_name.human) }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
       end
     end
@@ -67,11 +52,18 @@ private
     redirect_to edit_profile_path, notice: I18n.t('alerts.reservation.requirement.profile.not_yet', model: Profile.model_name.human) unless guest.profile&.minimum_requirement?
   end
 
+  def set_listing
+    @listing = Listing.find(params[:listing_id])
+  end
+
   def set_reservation
     @reservation = Reservation.find(params[:id])
   end
 
   def reservation_params
-    params.require(:reservation).permit(:listing_id, :host_id, :guest_id, :schedule, :num_of_people, :content, :progress, :reason, :reservation_time_unit, :in_english)
+    params \
+      .fetch(:reservation, {}) \
+      .permit(:schedule, :num_of_people, :content, :progress, :reason, :reservation_time_unit, :time, :in_english) \
+      .merge(host_id: @listing.user.id, guest_id: current_user&.id || 0, reservation_time_unit: @listing.reservation_time_unit)
   end
 end

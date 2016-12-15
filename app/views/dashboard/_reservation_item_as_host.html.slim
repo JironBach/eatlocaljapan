@@ -22,7 +22,7 @@
       .col-md-2
         = r.schedule
       .col-md-2
-        = r.time.strftime('%H:%M')
+        = r.time && l(r.time, format: :hour)
       .col-md-1
         = r.num_of_people
         = t 'unit.people'

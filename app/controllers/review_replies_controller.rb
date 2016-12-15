@@ -1,17 +1,15 @@
 class ReviewRepliesController < ApplicationController
   before_action :authenticate_user!
   before_action :regulate_user!
-  before_action :set_reservation
-  before_action :set_review
-  before_action :set_review_reply
+  before_action :set_listing, :set_reservation, :set_review, :set_review_reply
 
   def new
-    @review_reply = ReviewReply.new
+    @review_reply = @review.build_review_reply
     @reservation.save_reply_landed_at_now if @reservation.reply_landed_at.blank?
   end
 
   def create
-    @review_reply = ReviewReply.new(review_reply_params)
+    @review_reply = @review.build_review_reply(review_reply_params)
     respond_to do |format|
       if @review_reply.save
         @reservation.save_replied_at_now
@@ -27,17 +25,21 @@ class ReviewRepliesController < ApplicationController
   end
 
 private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_review_reply
-    @review_reply = ReviewReply.find_by(review_id: @review.id)
-  end
-
-  def set_review
-    @review = Review.find_by(reservation_id: params[:reservation_id])
+  def set_listing
+    @listing = Listing.find(params[:listing_id])
   end
 
   def set_reservation
-    @reservation = Reservation.find(params[:reservation_id])
+    @reservation = @listing.reservations.find(params[:reservation_id])
+  end
+
+  def set_review
+    @review = @reservation.review
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_review_reply
+    @review_reply = @review&.review_reply
   end
 
   def regulate_user!
@@ -62,6 +64,6 @@ private
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def review_reply_params
-    params.require(:review_reply).permit(:review_id, :msg)
+    params.require(:review_reply).permit(:msg)
   end
 end

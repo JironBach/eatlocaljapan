@@ -82,6 +82,6 @@
                   - else
                     .col-mod-2
                       span.label.status-contact.text-starlight
-                        = Settings.message.unread.string
+                        = string_of_read(um.read, current_user == um.from_user)
         .card-body
           = link_to t('.message.all', model: model), message_threads_path

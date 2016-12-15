@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
   before_action :set_message_new_instance
 
   def index
-    @unread_messages = MessageThread.unread_messages(current_user.id)
+    @unread_messages = MessageThread.unread_messages(current_user)
     @never_replied_reservations = Reservation.new_requests(current_user.id).order_by_created_at_desc
     Rails.logger.info(@never_replied_reservations)
   end

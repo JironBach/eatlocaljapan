@@ -24,17 +24,14 @@ class MessagesController < ApplicationController
 
   # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def create
-    mt_obj = \
-      if res = MessageThread.exists_thread?(message_params)
-        MessageThread.find(res)
-      else
-        MessageThread.create_thread(message_params)
-      end
+    from, to = message_params.values_at(:from_user_id, :to_user_id).map { |user_id| User.find(user_id) }
+
     respond_to do |format|
-      if Message.send_message(mt_obj, message_params)
+      if message_thread = MessageThread.send_message(from: from, to: to, message: message_params)
         reservation_params = params['reservation']
 
         if reservation_params.present? && reservation_params['progress'].present?
+          # HACK: need to refactoring
           @reservation = Reservation.find(reservation_params['id'])
           @reservation.progress = reservation_params['progress']
           unless @reservation.save
@@ -47,17 +44,17 @@ class MessagesController < ApplicationController
             # ReservationMailer.send_update_reservation_notification(@reservation, current_user.id).deliver_later!(wait: 1.minute)
             ReservationMailer.send_update_reservation_notification(@reservation, current_user.id).deliver_now! # if you don't want to use active job, use this line.
           else
-            # MessageMailer.send_new_message_notification(mt_obj, message_params).deliver_later!(wait: 1.minute) # if you want to use active job, use this line.
-            MessageMailer.send_new_message_notification(mt_obj, message_params).deliver_now! # if you don't want to use active job, use this line.
+            # MessageMailer.send_new_message_notification(message_thread, message_params).deliver_later!(wait: 1.minute) # if you want to use active job, use this line.
+            MessageMailer.send_new_message_notification(message_thread, message_params).deliver_now! # if you don't want to use active job, use this line.
           end
         else
-          # MessageMailer.send_new_message_notification(mt_obj, message_params).deliver_later!(wait: 1.minute) # if you want to use active job, use this line.
-          MessageMailer.send_new_message_notification(mt_obj, message_params).deliver_now! # if you don't want to use active job, use this line.
+          # MessageMailer.send_new_message_notification(message_thread, message_params).deliver_later!(wait: 1.minute) # if you want to use active job, use this line.
+          MessageMailer.send_new_message_notification(message_thread, message_params).deliver_now! # if you don't want to use active job, use this line.
         end
-        format.html { return redirect_to message_thread_path(mt_obj.id), notice: I18n.t('message.save.success') }
+        format.html { return redirect_to message_thread_path(message_thread), notice: I18n.t('message.save.success') }
         format.json { return render json: {success: true} } if request.xhr?
       else
-        format.html { return redirect_to message_thread_path(mt_obj.id), notice: I18n.t('message.save.failure') }
+        format.html { return redirect_to message_thread_path(message_thread), notice: I18n.t('message.save.failure') }
         format.json { return render json: {success: false} } if request.xhr?
       end
     end
@@ -72,6 +69,6 @@ private
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def message_params
-    params.require(:message).permit(:message_thread_id, :from_user_id, :to_user_id, :schedule, :num_of_people, :content, :progress, :read, :reservation_id, :listing_id)
+    params.fetch(:message, {}).permit(:from_user_id, :to_user_id, :content, :read, :reservation_id, :listing_id).merge(from_user_id: current_user&.id)
   end
 end
