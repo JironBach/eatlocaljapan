@@ -37,10 +37,10 @@ class ReservationsController < ApplicationController
     respond_to do |format|
       if @reservation.update(reservation_params)
         ReservationMailer.send_update_reservation_notification(@reservation, @reservation.guest_id).deliver_now!
-        format.html { redirect_to dashboard_guest_reservation_manager_path(@listing, @reservation), notice: I18n.t('alerts.reservation.update.success') }
+        format.html { redirect_to dashboard_guest_reservation_manager_path, notice: I18n.t('alerts.reservation.update.success') }
         format.json { render :show, status: :ok, location: @reservation }
       else
-        format.html { render :edit }
+        format.html { redirect_to dashboard_guest_reservation_manager_path, notice: I18n.t('alerts.reservation.update.failure') }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
       end
     end
