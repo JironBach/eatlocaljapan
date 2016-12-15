@@ -81,7 +81,7 @@ module ApplicationHelper
   end
 
   def unread_messages
-    Message.unread_messages(current_user.id).count
+    Message.unread_messages(current_user).count
   end
 
   def user_id_to_user_obj(user_id)
@@ -178,7 +178,7 @@ module ApplicationHelper
   end
 
   def new_messages_came(user_id)
-    MessageThread.unread(user_id).count
+    MessageThread.unreads(User.find(user_id)).count
   end
 
   def counterpart_user_id(message_thread_id)

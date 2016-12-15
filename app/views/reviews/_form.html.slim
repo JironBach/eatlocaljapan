@@ -1,4 +1,4 @@
-= simple_form_for([@reservation, @review], url: reservation_reviews_path) do |f|
+= simple_form_for(@review, url: listing_reservation_review_path(@listing, @reservation)) do |f|
   .card-body
       - if @review.errors.any?
         #error_explanation
@@ -6,10 +6,6 @@
           ul
             - @review.errors.full_messages.each do |message|
               li = message
-      = f.hidden_field :guest_id, value: current_user.id
-      = f.hidden_field :host_id, value: @reservation.host_id
-      = f.hidden_field :reservation_id, value: @reservation.id
-      = f.hidden_field :listing_id, value: @reservation.listing_id
       = f.hidden_field :accuracy, value: 0
       = f.hidden_field :communication, value: 0
       = f.hidden_field :cleanliness, value: 0

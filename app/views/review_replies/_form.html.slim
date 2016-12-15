@@ -1,4 +1,4 @@
-= simple_form_for([@reservation, @review, @review_reply], url: reservation_reviews_review_replies_path) do |f|
+= simple_form_for(@review_reply, url: listing_reservation_review_review_reply_path(@listing, @reservation)) do |f|
   .card-body
     - if @review_reply.errors.any?
       #error_explanation
@@ -6,7 +6,6 @@
         ul
           - @review_reply.errors.full_messages.each do |message|
             li = message
-    = f.hidden_field :review_id, value: @review.id
     .row-space-5
       = f.text_area :msg, required: true, rows: '7', placeholder: t('activerecord.placeholders.review.msg')
 

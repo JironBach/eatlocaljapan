@@ -39,23 +39,6 @@ class Message < ApplicationRecord
   scope :reservation, ->(reservation_id) { where(reservation_id: reservation_id) }
 
   class << self
-    def send_message(mt_obj, message_params)
-      content = message_params['content'].present? ? message_params['content'] : ''
-      listing_id = message_params['listing_id'].present? ? message_params['listing_id'] : 0
-      reservation_id = message_params['reservation_id'].present? ? message_params['reservation_id'] : 0
-      obj = \
-        Message.new(
-          message_thread_id: mt_obj.id,
-          content: content,
-          read: false,
-          from_user_id: message_params['from_user_id'],
-          to_user_id: message_params['to_user_id'],
-          listing_id: listing_id,
-          reservation_id: reservation_id
-        )
-      obj.save
-    end
-
     def make_all_read(message_thread_id, to_user_id)
       Message.where(message_thread_id: message_thread_id, to_user_id: to_user_id, read: false).update_all(read: true, read_at: Time.zone.now)
     end

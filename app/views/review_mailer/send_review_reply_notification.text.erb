@@ -4,7 +4,7 @@
 
 <%= t('.msg2', review: Review.model_name.human) %>
 
-<%= new_reservation_reviews_review_replies_url(nil, @reservation.id) %>
+<%= new_listing_reservation_review_review_reply_url(@reservation.listing, @reservation, @reservation.review) %>
 
 <%= t('.msg3', review: Review.model_name.human, profile: Profile.model_name.human) %>
 

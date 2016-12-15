@@ -1,16 +1,15 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user?
   before_action :regulate_user!
-  before_action :set_reservation
-  before_action :set_review
+  before_action :set_listing, :set_reservation, :set_review
 
   def new
-    @review = Review.new
+    @review = @reservation.build_review
     @reservation.save_review_landed_at_now if @reservation.review_landed_at.blank?
   end
 
   def create
-    @review = Review.new(review_params)
+    @review = @reservation.build_review(review_params.tap { |params| Rails.logger.debug("[debug] params: #{params}") })
     respond_to do |format|
       if @review.save
         @reservation.save_reviewed_at_now
@@ -28,12 +27,16 @@ class ReviewsController < ApplicationController
   end
 
 private
-  def set_review
-    @review = Review.find_by(reservation_id: params[:reservation_id])
+  def set_listing
+    @listing = Listing.find(params[:listing_id])
   end
 
   def set_reservation
-    @reservation = Reservation.find(params[:reservation_id])
+    @reservation = @listing.reservations.find(params[:reservation_id])
+  end
+
+  def set_review
+    @review = @reservation.review
   end
 
   def regulate_user!
@@ -56,6 +59,7 @@ private
   def review_params
     params \
       .require(:review) \
-      .permit(:host_id, :guest_id, :listing_id, :reservation_id, :accuracy, :communication, :cleanliness, :location, :check_in, :cost_performance, :total, :msg)
+      .permit(:listing_id, :host_id, :guest_id, :accuracy, :communication, :cleanliness, :location, :check_in, :cost_performance, :total, :msg) \
+      .merge(listing_id: @listing.id, host_id: @listing.user.id, guest_id: current_user.id)
   end
 end

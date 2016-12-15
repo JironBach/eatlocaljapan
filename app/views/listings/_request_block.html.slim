@@ -1,12 +1,6 @@
 .col-lg-4
-  = simple_form_for(@reservation, html: {class: 'info new-o2-form-inline'}) do |f|
-    - user_id = 0
-    - user_id = current_user.id if user_signed_in?
-    = f.hidden_field :host_id, value: @listing.user_id
-    = f.hidden_field :guest_id, value: user_id
-    = f.hidden_field :listing_id, value: @listing.id
+  = simple_form_for([@listing, @reservation], html: {class: 'info new-o2-form-inline'}) do |f|
     = f.hidden_field :progress, value: 'accepted'
-    = f.hidden_field :reservation_time_unit, value: @listing.reservation_time_unit
     #book-it-sm-modal.modal[aria-hidden='true' role='dialog']
       .modal-table
         .modal-cell
@@ -25,7 +19,7 @@
                     .col-sm-12
                       label.js-checkin-label[for='checkin']
                         = Reservation.human_attribute_name :schedule
-                      input#checkin.checkin.datepicker[name='reservation[schedule]' type='text' data-listing_id=@listing.id readonly=true placeholder=(Time.zone.today + 7.days)]
+                      = f.text_field :schedule, id: 'checkin', class: 'checkin datepicker', readonly: true, placeholder: Time.zone.today + 7.days, data: {listing_id: @listing.id}
                 .col-md-4
                   .row.row-condensed
                     .col-sm-12
@@ -38,9 +32,7 @@
                 label[for='number_of_guests']
                   = t('listings.request_block.time')
                 .select.select-block
-                  = select nil, :hour, Array(1..24), selected: 12
-                  | :
-                  = select nil, :minute, Array(0.step(59, @listing.unit || 15))
+                  = f.time_select :time, ignore_date: true, include_sconds: false, time_separator: ':', minute_step: (@listing.unit || 15)
             .row.row-condensed.row-space-3
               .col-md-12
                 .select.select-block
