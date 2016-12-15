@@ -189,21 +189,13 @@ $ ->
     # auto address
     $('.zip-format').change ->
       zip = setPostcode($(this).val())
-      if !zip
-        return
-      $(this).val zip
-      url = '//api.zipaddress.net/?callback=?'
-      query = 'zipcode': zip
-      $.getJSON url, query, (json) ->
-        $('.zip-address').val(json.pref + json.address).focus()
-      $(this).val zip
-      # 英語
-      url = '//api.zipaddress.net/?callback=?&lang=rome'
-      query = 'zipcode': zip
-      $.getJSON url, query, (json) ->
-        $('.zip-address-rome').val(json.pref + json.address).focus()
-        return
-      return
+      if zip
+        $(this).val(zip)
+        $.each [null, 'rome'], (index, lang) ->
+          query = 'zipcode': zip
+          query['lang'] = lang if lang
+          $.getJSON '//api.zipaddress.net', query, (json) ->
+            $(".zip-address#{if lang then "-#{lang}" else ''}").val(json.data?.pref + json.data?.address).focus() if json.code != 400 && json.code != 404
 
   # google place-auto-complete
   initialize()
