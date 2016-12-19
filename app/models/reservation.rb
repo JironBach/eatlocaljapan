@@ -40,13 +40,17 @@ class Reservation < ApplicationRecord
 
   enum progress: {requested: 0, canceled: 1, holded: 2, accepted: 3, rejected: 4, listing_closed: 5}
 
-  validates :host_id, presence: true
-  validates :guest_id, presence: true
-  validates :listing_id, presence: true
-  validates :schedule, presence: true, date: {after: Time.zone.now.yesterday.end_of_day}
-  validates :time, presence: true
-  validates :num_of_people, presence: true
-  validates :progress, presence: true
+  validates :host_id, :guest_id, :listing_id, :schedule, :time, :num_of_people, :progress, presence: true
+  validates :schedule, date: {after: Time.zone.now.yesterday.end_of_day}, allow_blank: true
+  validates \
+    :num_of_people,
+    numericality: \
+      {
+        only_integer: true,
+        greater_than_or_equal_to: 0,
+        less_than_or_equal_to: ->(record) { record.listing.free_spaces(record.schedule, record.time, record.reservation_time_unit) }
+      },
+    allow_blank: true
 
   scope :as_guest, ->(user_id) { where(guest_id: user_id) }
   scope :as_host, ->(user_id) { where(host_id: user_id) }

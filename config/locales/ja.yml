@@ -357,6 +357,10 @@ ja:
           <<: *business_hour_errors
         weekday_business_hour:
           <<: *business_hour_errors
+        reservation:
+          attributes:
+            num_of_people:
+              less_than_or_equal_to: 'が空席数を超えています'
   attributes:
     id: ID
     user: ユーザー
