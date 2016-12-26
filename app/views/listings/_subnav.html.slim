@@ -11,17 +11,8 @@
     .page-container
       ul.subnav-list
         li
-          = link_to '#photos', aria: {selected: 'true'}, class: 'subnav-item' do
-            = t('.photos')
-        li
           = link_to '#summary', aria: {selected: 'false'}, class: 'subnav-item' do
             = t('.details')
-        li
-          = link_to '#reviews', aria: {selected: 'false'}, class: 'subnav-item' do
-            = t('.reviews')
-        li
-          = link_to '#host-profile', aria: {selected: 'false'}, class: 'subnav-item' do
-            = t('.host_profile')
         li
           = link_to '#neighborhood', aria: {selected: 'false'}, class: 'subnav-item' do
             = t('.neighborhood')
