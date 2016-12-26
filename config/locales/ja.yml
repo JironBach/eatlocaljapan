@@ -354,9 +354,9 @@ ja:
             lunch_break_end_hour:
               after: は昼休開始時間よりも後に設定してください
         holiday_business_hour:
-          << *business_hour_errors
+          <<: *business_hour_errors
         weekday_business_hour:
-          << *business_hour_errors
+          <<: *business_hour_errors
   attributes:
     id: ID
     user: ユーザー
