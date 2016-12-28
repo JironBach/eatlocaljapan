@@ -136,6 +136,30 @@ class Listing < ApplicationRecord
         eight_months_later: 8, nine_months_later: 9, ten_months_later: 10, eleven_months_later: 11, one_year_later: 12
       }
 
+  def closed_days(first_day)
+    ng_days = listing_ngevents.opened.holiday.around_month(first_day).flat_map(&:consecutive_days)
+    holidays = !holiday_business_hour.is_open? && HolidayJp.between((today = Time.zone.today.since(self[:from].days)), today.since(self[:to].month)).map(&:date) || []
+    w_days = weekday_business_hours.where(is_open: false).map(&:wday).compact
+    {dates: ng_days | holidays, w_days: w_days}
+  end
+
+  def business_hour_on(schedule)
+    HolidayJp.holiday?(schedule) ? holiday_business_hour : weekday_business_hours.find_by(wday: schedule.wday)
+  end
+
+  def busy_times(schedule)
+    UserNgevent.on(schedule).map { |event| [event.start, event.end] } \
+      << [(business_hour = business_hour_on(schedule)).lunch_break_start_hour, business_hour.lunch_break_end_hour]
+  end
+
+  def on_time(schedule)
+    [(business_hour = business_hour_on(schedule)).start_hour, business_hour.end_hour - (reservation_time_unit || 15).minutes]
+  end
+
+  def free_spaces(schedule, requested_time)
+    (capacity - (schedule && reservations.at(schedule, requested_time).map(&:occupied_frames).compact.inject(&:+) || 0)) * reservation_frame
+  end
+
   class << self
     def search(search_params)
       listings = where(search_params[:shop_name].presence && [:title, :title_en].map { |field| arel_table[field].matches("%#{search_params[:shop_name]}%") }.inject(:or))

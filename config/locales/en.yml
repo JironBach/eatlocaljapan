@@ -746,6 +746,7 @@ en:
         any: Any dress is ok.
       shop_description: About the restaurant
       recommended: Chef's recommendation
+      holiday: Holiday
     edit:
       title: Edit Listing
     edit_link:

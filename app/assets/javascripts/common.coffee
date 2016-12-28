@@ -57,7 +57,6 @@ $ ->
     $('.close-guest-flow').on 'click', ->
       $('body').removeClass('paper')
 
-
   # subnav
   if $('.subnav').length
     # subnav sticky
@@ -148,23 +147,6 @@ $ ->
           return false
       return
 
-  # bootstrap datepicker
-  if $('.datepicker').length
-    $('.datepicker').datepicker(
-      autoclose: true
-      startDate: '+1d'
-      language: 'ja').on('show', (e) ->
-      # alert 666
-      backdrop = '<div class="datepicker-backdrop"></div>'
-      if !$('.datepicker-backdrop').length
-        $('.datepicker-dropdown').before(backdrop)
-    ).on('hide', (e) ->
-      # alert 777
-      setTimeout (->
-        $('.datepicker-backdrop').remove()
-      ), 200
-      return false
-    )
     # for touch devices
     if $('html').hasClass('touch')
       $('.datepicker').attr('readonly', 'readonly')
@@ -172,7 +154,7 @@ $ ->
         # alert 555
         $(this).datepicker('show')
         e.preventDefault()
-      $('.js-checkin-label').on 'touchstart', (e) ->
+      $('.bookIt__checkinLabel').on 'touchstart', (e) ->
         # alert 444
         e.preventDefault()
 
@@ -247,7 +229,6 @@ initialize = ->
       location_being_changed = true
     return
   return
-
 
 # google place autocomplete
 initialize2 = ->
