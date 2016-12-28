@@ -28,9 +28,9 @@ class Message < ApplicationRecord
   belongs_to :from_user, class_name: 'User', foreign_key: 'from_user_id'
   belongs_to :reservation
 
-  validates :message_thread_id, presence: true
-  validates :from_user_id, presence: true
-  validates :to_user_id, presence: true
+  validates :message_thread, presence: true
+  validates :from_user, presence: true
+  validates :to_user, presence: true
   validates :content, presence: true
 
   scope :unread_messages, ->(user_id) { where(to_user_id: user_id, read: false) }
