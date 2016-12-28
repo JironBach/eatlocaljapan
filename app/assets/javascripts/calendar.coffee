@@ -69,7 +69,7 @@ $ ->
     ignoreTimezone: false,
     editable: true,
     select: (start, end, event, view) ->
-      calendar = $(@).closest('#calendar')
+      calendar = $(@.el).closest('#calendar')
       unless calendar.data('deleteMode')
         modal = $('.listingNgevent__calendar__selectModal')
         modal.data('start', start)
