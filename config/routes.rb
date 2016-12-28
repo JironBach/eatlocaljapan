@@ -415,13 +415,13 @@ Rails.application.routes.draw do
         get 'search', on: :collection
       end
 
+      resource :reservations, only: [] do
+        resource :setting, only: [:edit, :update]
+      end
       resources :reservations, only: [:show, :create, :update] do
         resource :review do
           resource :review_reply
         end
-      end
-      resource :reservations, only: [] do
-        resource :setting, only: [:edit, :update]
       end
       resources :year, path: '', only: [], constraints: {year_id: /\d{4}/} do
         resources :month, path: '', only: [], constraints: {month_id: /(?:(?:1[012])|(?:0?[1-9]))/} do
