@@ -372,6 +372,9 @@ Rails.application.routes.draw do
       resource :profile_image, except: [:index, :show]
     end
 
+    resources :payment_methods, only: [:index]
+    resources :credit_cards, except: [:index, :show]
+
     # resources :auths
 
     get 'dashboard'                           => 'dashboard#index'
@@ -415,6 +418,7 @@ Rails.application.routes.draw do
         get 'search', on: :collection
       end
 
+      resources :reservation_charges
       resource :reservations, only: [] do
         resource :setting, only: [:edit, :update]
       end

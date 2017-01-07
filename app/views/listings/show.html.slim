@@ -9,10 +9,11 @@
 = render 'subnav'
 = render 'slideshow', listing_image: @listing_image, listing: @listing
 #summary.card.listing-section
-  .page-container
-    .row
-      .col-lg-8
-      = render 'request_block', listing: @listing
+  - if @listing.reservation_enabled?
+    .page-container
+      .row
+        .col-lg-8
+        = render 'request_block', listing: @listing
 #details.details-section
   = render 'detail', listing: @listing, listing_image: @listing_image, confection: @confection, tool: @tool, dress_code: @dress_code
 #reviews.listing-section

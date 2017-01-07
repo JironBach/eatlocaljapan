@@ -102,6 +102,10 @@ class Listing < ApplicationRecord
   has_many :english_messages_listings, dependent: :destroy
   has_many :english_messages, through: :english_messages_listings
   belongs_to :smoking
+  # HACK: need to reconsider dependency behavior
+  has_many :charges, as: :charger
+  has_many :services, through: :charges
+  has_many :credit_card_charges, as: :charger
 
   accepts_nested_attributes_for :listings_shop_categories, allow_destroy: true
   accepts_nested_attributes_for :listings_shop_services, allow_destroy: true
@@ -136,6 +140,25 @@ class Listing < ApplicationRecord
         eight_months_later: 8, nine_months_later: 9, ten_months_later: 10, eleven_months_later: 11, one_year_later: 12
       }
 
+  class << self
+    def search(search_params)
+      listings = where(search_params[:shop_name].presence && [:title, :title_en].map { |field| arel_table[field].matches("%#{search_params[:shop_name]}%") }.inject(:or))
+      [:shop_categories, :shop_services, :englishes].each do |category_name|
+        if search_params[category_name].present?
+          categories = Array(search_params[category_name]).reject(&:blank?).map(&:to_i)
+          listings = listings.includes(category_name).where(category_name => {id: categories}) if categories.present?
+        end
+      end
+      listings = listings.where(smoking_id: search_params[:smoking_id]) if search_params[:smoking_id].present?
+      listings = listings.where(Listing.arel_table[:price].lteq(search_params[:price])) if search_params[:price].present?
+      if search_params[:prefectures].present?
+        pref = Prefecture.find(search_params[:prefectures].to_i)
+        listings = listings.where([[:location, :name], [:location_en, :name_en]].map { |(field, name)| arel_table[field].matches("%#{pref[name]}%") }.inject(&:or))
+      end
+      listings
+    end
+  end
+
   def closed_days(first_day)
     ng_days = listing_ngevents.opened.holiday.around_month(first_day).flat_map(&:consecutive_days)
     holidays = !holiday_business_hour.is_open? && HolidayJp.between((today = Time.zone.today.since(self[:from].days)), today.since(self[:to].month)).map(&:date) || []
@@ -158,25 +181,6 @@ class Listing < ApplicationRecord
 
   def free_spaces(schedule, requested_time)
     (capacity - (schedule && reservations.at(schedule, requested_time).map(&:occupied_frames).compact.inject(&:+) || 0)) * reservation_frame
-  end
-
-  class << self
-    def search(search_params)
-      listings = where(search_params[:shop_name].presence && [:title, :title_en].map { |field| arel_table[field].matches("%#{search_params[:shop_name]}%") }.inject(:or))
-      [:shop_categories, :shop_services, :englishes].each do |category_name|
-        if search_params[category_name].present?
-          categories = Array(search_params[category_name]).reject(&:blank?).map(&:to_i)
-          listings = listings.includes(category_name).where(category_name => {id: categories}) if categories.present?
-        end
-      end
-      listings = listings.where(smoking_id: search_params[:smoking_id]) if search_params[:smoking_id].present?
-      listings = listings.where(Listing.arel_table[:price].lteq(search_params[:price])) if search_params[:price].present?
-      if search_params[:prefectures].present?
-        pref = Prefecture.find(search_params[:prefectures].to_i)
-        listings = listings.where([[:location, :name], [:location_en, :name_en]].map { |(field, name)| arel_table[field].matches("%#{pref[name]}%") }.inject(&:or))
-      end
-      listings
-    end
   end
 
   def set_lon_lat
@@ -250,5 +254,17 @@ class Listing < ApplicationRecord
   def unpublish
     self.open = false
     save
+  end
+
+  def reservation_available?
+    charges.reservation.available.present?
+  end
+
+  def reservation_configured?
+    reservation_frame.present?
+  end
+
+  def reservation_enabled?
+    reservation_available? && reservation_configured?
   end
 end

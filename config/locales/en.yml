@@ -5,6 +5,9 @@ en:
       auth: Auth
       browsing_history: Browsing History
       business_hour: 'Business Hour'
+      credit_card: 'Credit Card'
+      charge: 'Charge'
+      credit_card_charge: 'Charge by Credit Card'
       comment: Comment
       confection: Confection
       dress_code: Dress Code
@@ -17,12 +20,14 @@ en:
       message: Message
       message_thread: Message Thread
       message_thread_user: Message Thread User
+      payment_method: 'Payment Method'
       profile: Profile
       profile_image: Profile Image
       profile_video: Profile Video
       reservation: Reservation
       review: Review
       review_reply: Reply of Reviews
+      service: 'Service'
       tool: Tool
       user: User
       user_ngevent: Unavailable Day
@@ -53,6 +58,35 @@ en:
         end_hour: 'Closing hours'
         lunch_break_start_hour: 'Lunch break beginning hours'
         lunch_break_end_hour: 'Lunch break beginning hours'
+      payment_method: &payment_method
+        user_id: 'User'
+        user: 'User'
+        type: 'Payment Method Type'
+        card_no1: 'Card No(first)'
+        card_no2: 'Card No(second)'
+        card_no3: 'Card No(third)'
+        card_no4: 'Card No(fourth)'
+        card_no: 'Card No'
+        expired_on: 'Exprired On'
+        gmo_card_seq: 'Card Sequence'
+        registered_at: 'Registered At'
+      credit_card:
+        <<: *payment_method
+      charge: &charge
+        service_id: 'Service'
+        service: 'Service'
+        payment_method_type: 'Payment Method Type'
+        payment_method_id: 'Payment Method'
+        payment_method: 'Payment Method'
+        charger_type: 'Charger Type'
+        charger_id: 'Charger'
+        status: 'Status'
+        order_no: 'Order Number'
+        expiration_date: 'Expiration Date'
+        ordered_at: 'Orderd At'
+      credit_card_charge:
+        <<: *charge
+        'credit_card/expiration_date': 'Expiration Date of Credit Card'
       confection:
         name: Name
         image: Image
@@ -204,6 +238,13 @@ en:
         cost_performance: Cost Performance Value
       review_reply:
         msg: Message
+      service:
+        name: 'Name(Japanese)'
+        name_en: 'Name'
+        code: 'Code'
+        charge_type: 'Charge Type'
+        amount: 'Amount'
+        description: 'Description'
       tool:
         name: Name
         image: Image
@@ -228,6 +269,8 @@ en:
         locked_at: Locked At
         uid: Unique ID
         provider: Auth Provider
+        gmo_member_seq: 'Payment Registration Sequence'
+        member_id: 'Payment Registration ID'
       weekday_business_hour:
         <<: *business_hour
       wishlist:
@@ -288,6 +331,14 @@ en:
           attributes:
             base:
               overlapped: 'NGevent is overlapped'
+        credit_card:
+          attributes:
+            base:
+              gmo_error: 'Failed to update card information.'
+        credit_card_charge:
+          attributes:
+            'credit_card/expiration_date':
+              expired: 'expired.'
   attributes:
     id: ID
     user: User
@@ -362,6 +413,17 @@ en:
         reserved: 'reserved'
         canceled: 'canceled'
         temporary_closed: 'temporary closed'
+    service:
+      charge_type:
+        monthly: 'Monthly'
+        each_time: 'Each time'
+    charge:
+      status:
+        ordered: 'Ordered'
+        charging: 'Charging'
+        paid: 'Paid'
+        canceling: 'Canceling'
+        terminated: 'Terminated'
   basic_info:
     service_name: eatlocaljapan
   meta_tags:
@@ -488,6 +550,7 @@ en:
     manage_listing_nav:
       header: Listing Info
       basic_info: Basic Info
+      reservation_charge: 'Charge Info'
       reservation: Reservation Info
       image: Image
       cal: Calendar
@@ -499,6 +562,7 @@ en:
       step: "%{num} steps left"
       unpublish: unpublish
       unpublished: now not published
+      charge: Charge
     profile_sidenav:
       edit: Edit Profile
       edit_image: Edit Profile Image
@@ -549,6 +613,21 @@ en:
       third:
         title: Secure Payment
         text: "You can choose rapid and flexible payment system. Host can receive fees after 24 hr from guest checked in."
+    user_side_nav:
+      basic_info: 'Basic Info'
+      payment_method_management: 'Manage Payment Method'
+  credit_cards:
+    edit:
+      title: "Edit %{model}"
+    new:
+      title: "New %{model}"
+    form:
+      header: 'Payment Method'
+      year: ''
+      month: '/'
+      submit: 'Save'
+    credit_card:
+      destroy: 'Delete'
   confections:
     manage:
       title: "Add information of %{model} (Option1)"
@@ -832,6 +911,13 @@ en:
       title: "Conversation with %{name}"
     my_msg:
       read: Read
+  payment_methods:
+    index:
+      title: '%{model} Index'
+      no_payment_method:
+       title: 'No registered Payment Method'
+      add_payment_method: 'Make new Payment Method'
+      destroy: 'Delete'
   profile_images:
     edit:
       title: "Edit %{model}"
@@ -882,6 +968,21 @@ en:
     edit_link:
       title: "Your %{profile}"
       edit: "Edit %{profile}"
+  reservation_charges:
+    index:
+      title: '%{model} Index'
+      no_reservation_charge:
+        title: 'No registrered Charge'
+      add_reservation_charge: 'Make new Charge'
+    charge:
+      destroy: 'Delete'
+    edit:
+      title: "%{model}の編集"
+    new:
+      title: "%{model}の作成"
+    form:
+      header: '課金登録'
+      submit: '保存する'
   review_replies:
     new:
       text0: "Reply to "
@@ -962,7 +1063,6 @@ en:
       edit:
         title: Edit User Info
       form:
-        sidenav_item: Basic Info
         header: Change Password
         confirm_msg: "We sent confirmation mail to mail address below. Please check it and activate your account.: "
         current_pw: Current Password
@@ -1125,6 +1225,9 @@ en:
       update:
         success: "%{model} was successfully updated."
         failure: "%{model} was failed to updated."
+      destroy:
+        success: '%{model} was successfully destroyed.'
+        failure: "%{model} couldn't be destroyed."
       set_lon_lat:
         error: "Failed to get lon lat. Input accurate location."
       publish:
@@ -1160,6 +1263,14 @@ en:
         reserved: "Already reserved"
         canceled: "Canceled"
         temporary_closed: %{start}-%{end}
+    credit_cards:
+      create:
+        success: "%{model} was successfully created."
+      update:
+        success: "%{model} was successfully updated."
+      destroy:
+        success: "%{model} was successfully destroyed."
+        failure: "%{model} couldn't be destroyed."
     reservation:
       save:
         success: "Requested %{model}. Please confirm your request and wait for %{msg} from %{host}."
@@ -1173,6 +1284,14 @@ en:
           not_yet: "Complete %{model}"
         profile_image:
           not_yet: "Upload %{model}"
+        payment_method:
+          not_yat: 'Please add %{model}.'
+        charge:
+          not_yat: 'Please add %{model}.'
+        setting:
+          not_yat: 'Please configure %{model}.'
+        configure:
+          not_yat: "%{model} couldn't be enabled."
       msg:
         request: "%{model} request was sent."
     review:
@@ -1195,6 +1314,10 @@ en:
         failure: "You cannot access to this page. No authority."
     regulate_term:
       expired: "The term to write %{review} has been passed.。"
+  messages:
+    application:
+      destroy:
+        confirmation: 'Are you sure?'
   time:
     am: am
     formats:

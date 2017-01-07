@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = @reservation.build_review(review_params.tap { |params| Rails.logger.debug("[debug] params: #{params}") })
+    @review = @reservation.build_review(review_params)
     respond_to do |format|
       if @review.save
         @reservation.save_reviewed_at_now

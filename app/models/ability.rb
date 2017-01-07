@@ -29,10 +29,10 @@ class Ability
       related.listing.user_id == user.id
     end
 
-    # Profile Resources
-    models = [Profile, ProfileImage]
-    can [:update], models do |profile|
-      profile.user_id == user.id
+    # User related Resources
+    models = [Profile, ProfileImage, PaymentMethod, CreditCard]
+    can [:update], models do |related|
+      related.user_id == user.id
     end
 
     # Two User's Resources

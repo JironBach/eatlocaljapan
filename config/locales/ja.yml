@@ -1,10 +1,18 @@
 ja:
   activerecord:
+    errors:
+      models:
+        user_ngevent:
+          attributes:
+            base:
+              overlapped: 予約不可日時に重複があります
     models:
       admin_user: 管理者
       auth: 外部サービスとの連携
       browsing_history: 閲覧履歴
       business_hour: 営業時間
+      credit_card: 'クレジットカード'
+      charge: '課金'
       comment: コメント
       confection: お菓子
       dress_code: 服装
@@ -17,12 +25,14 @@ ja:
       message: メッセージ
       message_thread: メッセージスレッド
       message_thread_user: メッセージスレッドのユーザー
+      payment_method: '支払方法'
       profile: プロフィール
       profile_image: プロフィールのイメージ画像
       profile_video: プロフィールのイメージ動画
       reservation: 予約
       review: レビュー
       review_reply: レビューの返答
+      service: 'サービス'
       tool: お道具
       user: ユーザー
       user_ngevent: 都合の悪い日
@@ -50,6 +60,36 @@ ja:
         end_hour: 閉店時間
         lunch_break_start_hour: 昼休開始時間
         lunch_break_end_hour: 昼休終了時間
+      payment_method: &payment_method
+        user_id: 'ユーザー'
+        user: 'ユーザー'
+        type: '支払方法種別'
+        card_no1: 'カード番号(1)'
+        card_no2: 'カード番号(2)'
+        card_no3: 'カード番号(3)'
+        card_no4: 'カード番号(4)'
+        card_no: 'カード番号'
+        expired_on: '有効期限'
+        gmo_card_seq: 'カード連番'
+        registered_at: '登録日時'
+      credit_card:
+        <<: *payment_method
+      charge: &charge
+        type: '課金種別'
+        service_id: 'Service'
+        service: 'Service'
+        payment_method_type: '支払方法種別'
+        payment_method_id: '支払方法'
+        payment_method: '支払方法'
+        charger_type: '課金対象種別'
+        charger_id: '課金対象'
+        status: 'ステータス'
+        order_no: '注文番号'
+        expiration_date: '有効期限'
+        ordered_at: '課金日時'
+      card_charge:
+        <<: *charge
+        'credit_card/expiration_date': 'クレジットカード有効期限'
       confection:
         name: お菓子
         image: お菓子画像
@@ -198,6 +238,13 @@ ja:
         cost_performance: コスパ値
       review_reply:
         msg: メッセージ
+      service:
+        name: '名称'
+        name_en: '名称(英語)'
+        code: 'コード'
+        charge_type: '課金種別'
+        amount: '金額'
+        description: '備考'
       tool:
         name: お道具
         image: お道具画像
@@ -222,6 +269,8 @@ ja:
         locked_at: アカウントをロックした日時
         uid: ユニークID
         provider: 現在の認証サービス
+        gmo_member_seq: '課金登録連番'
+        member_id: '課金登録ID'
       weekday_business_hour:
         <<: *business_hour
       wishlist:
@@ -282,6 +331,16 @@ ja:
           attributes:
             base:
               overlapped: 予約不可日時に重複があります
+        credit_card:
+          attributes:
+            base:
+              gmo_error: '更新処理でエラーが発生しました'
+        credit_card_charge:
+          attributes:
+            base:
+              overlapped: '課金の指定が重複しています'
+            'credit_card/expiration_date':
+              expired: '有効期限が切れています'
   attributes:
     id: ID
     user: ユーザー
@@ -357,6 +416,17 @@ ja:
         reserved: 予約あり
         canceled: キャンセル済
         temporary_closed: 一時閉店
+    service:
+      charge_type:
+        monthly: '月次'
+        each_time: '都度'
+    charge:
+      status:
+        ordered: '申込済'
+        charging: '課金中'
+        paid: '支払済'
+        canceling: '解約中'
+        terminated: '解約済'
   basic_info:
     service_name: eatlocaljapan
   meta_tags:
@@ -483,6 +553,7 @@ ja:
     manage_listing_nav:
       header: 店舗情報情報
       basic_info: 基本情報
+      reservation_charge: 課金登録
       reservation: 予約情報
       image: イメージ画像
       cal: カレンダーの設定
@@ -494,6 +565,7 @@ ja:
       step: "あと%{num}ステップ"
       unpublish: 一時的に非公開にする
       unpublished: 現在非公開中です
+      charge: 課金
     profile_sidenav:
       edit: プロフィール編集
       edit_image: プロフィール画像編集
@@ -544,6 +616,21 @@ ja:
       third:
         title: セキュアな支払い
         text: 迅速で融通が利く支払いシステムではお支払い方法をお選びいただけます。ホストの受取金は、ゲストがチェックインして24時間後に送金致します。
+    user_sidenav:
+      basic_info: '基本情報'
+      payment_method_management: '支払方法管理'
+  credit_cards:
+    edit:
+      title: "%{model}の編集"
+    new:
+      title: "%{model}の作成"
+    form:
+      header: '支払方法'
+      year: 年
+      month: 月
+      submit: '保存する'
+    credit_card:
+      destroy: '削除'
   confections:
     manage:
       title: "%{model}（オプション1）の情報を登録しましょう。"
@@ -827,6 +914,13 @@ ja:
       title: "%{name}さんとの会話"
     my_msg:
       read: 既読
+  payment_methods:
+    index:
+      title: '%{model}一覧'
+      no_payment_method:
+        title: '支払方法の登録はありません'
+      add_payment_method: '支払方法を作成'
+      destroy: '削除'
   profile_images:
     edit:
       title: "%{model}の編集"
@@ -877,6 +971,21 @@ ja:
     edit_link:
       title: "あなたの%{profile}です。"
       edit: "%{profile}を編集する"
+  reservation_charges:
+    index:
+      title: '%{model}一覧'
+      no_reservation_charge:
+        title: '課金の登録はありません'
+      add_reservation_charge: '課金登録'
+    charge:
+      destroy: '削除'
+    edit:
+      title: "%{model}の編集"
+    new:
+      title: "%{model}の作成"
+    form:
+      header: '課金登録'
+      submit: '保存する'
   review_replies:
     new:
       text0: ""
@@ -957,7 +1066,6 @@ ja:
       edit:
         title: 登録情報編集
       form:
-        sidenav_item: 基本情報
         header: パスワードを変更
         confirm_msg: "現在以下のアドレスにアカウント有効化メールを送信しておりますので、そちらからアカウントを有効化してください。: "
         current_pw: 現在のパスワード
@@ -1119,6 +1227,9 @@ ja:
       update:
         success: "%{model}の登録に成功しました。"
         failure: "%{model}の登録に失敗しました。"
+      destroy:
+        success: '%{model}を削除しました。'
+        failure: '%{model}の削除に失敗しました。'
       set_lon_lat:
         error: "緯度経度情報の取得に失敗しました。以下より正確な場所を入力してください。"
       publish:
@@ -1154,6 +1265,14 @@ ja:
         reserved: "予約済みです"
         canceled: "予約はキャンセルされました"
         temporary_closed: %{start}-%{end}
+    credit_cards:
+      create:
+        success: "%{model}を登録しました。"
+      update:
+        success: "%{model}を更新しました。"
+      destroy:
+        success: "%{model}を削除しました。"
+        failure: "%{model}の削除に失敗しました。"
     reservation:
       save:
         success: "%{model}を申し込みました。ご確認いただき、%{host}の方からの%{msg}をお待ちください。"
@@ -1167,6 +1286,14 @@ ja:
           not_yet: "%{model}を完成させてください。"
         profile_image:
           not_yet: "%{model}をアップロードしてください。"
+        payment_method:
+          not_yat: '%{model}を登録して下さい。'
+        charge:
+          not_yat: '%{model}を登録して下さい。'
+        setting:
+          not_yat: '%{model}を設定して下さい。'
+        configure:
+          not_yat: '%{model}は利用できません。'
       msg:
         request: "%{model}リクエストをお送りしました。"
     review:
@@ -1189,6 +1316,10 @@ ja:
         failure: "このページにはアクセスできません。アクセス権限がありません。"
     regulate_term:
       expired: "%{review}の書き込み期間が経過しました。"
+  messages:
+    application:
+      destroy:
+        confirmation: '本当に削除しますか?'
   time:
     am: 午前
     formats:

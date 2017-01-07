@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104080700) do
+ActiveRecord::Schema.define(version: 20161124134305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,21 @@ ActiveRecord::Schema.define(version: 20161104080700) do
   end
 
   add_index "business_hours", ["listing_id", "wday"], name: "index_business_hours_on_listing_id_and_wday", using: :btree
+
+  create_table "charges", force: :cascade do |t|
+    t.integer  "service_id"
+    t.string   "type"
+    t.string   "charger_type"
+    t.integer  "charger_id"
+    t.string   "payment_method_type"
+    t.integer  "payment_method_id"
+    t.integer  "status"
+    t.integer  "order_no"
+    t.date     "expiration_date"
+    t.datetime "ordered_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "confections", force: :cascade do |t|
     t.integer  "listing_id"
@@ -318,6 +333,25 @@ ActiveRecord::Schema.define(version: 20161104080700) do
   add_index "messages", ["reservation_id"], name: "index_messages_on_reservation_id", using: :btree
   add_index "messages", ["to_user_id"], name: "index_messages_on_to_user_id", using: :btree
 
+  create_table "payment_methods", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "type"
+    t.string   "encrypted_card_no1"
+    t.string   "encrypted_card_no1_iv"
+    t.string   "encrypted_card_no2"
+    t.string   "encrypted_card_no2_iv"
+    t.string   "encrypted_card_no3"
+    t.string   "encrypted_card_no3_iv"
+    t.string   "encrypted_card_no4"
+    t.string   "encrypted_card_no4_iv"
+    t.integer  "expired_year"
+    t.integer  "expired_month"
+    t.integer  "gmo_card_seq"
+    t.datetime "registered_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "prefectures", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -440,6 +474,17 @@ ActiveRecord::Schema.define(version: 20161104080700) do
   add_index "reviews", ["listing_id"], name: "index_reviews_on_listing_id", using: :btree
   add_index "reviews", ["reservation_id"], name: "index_reviews_on_reservation_id", using: :btree
 
+  create_table "services", force: :cascade do |t|
+    t.string   "name"
+    t.string   "name_en"
+    t.string   "code"
+    t.integer  "charge_type"
+    t.integer  "amount"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "shop_categories", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -514,6 +559,7 @@ ActiveRecord::Schema.define(version: 20161104080700) do
     t.string   "username"
     t.boolean  "admin",                  default: false
     t.integer  "profile_id"
+    t.integer  "gmo_member_seq",         default: 0
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

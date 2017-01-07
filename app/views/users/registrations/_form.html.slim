@@ -1,9 +1,6 @@
   .row
     .col-lg-3
-      ul.sidenav-list
-        li
-          a.sidenav-item[href='#' aria-selected='true']
-            = t '.sidenav_item'
+      = render 'shared/user_sidenav'
     .col-lg-9
       .card.row-space-4
         = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f|

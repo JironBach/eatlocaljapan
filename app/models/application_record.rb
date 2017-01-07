@@ -9,4 +9,8 @@ class ApplicationRecord < ActiveRecord::Base
       super
     end
   end
+
+  def encryption_key
+    ENV['ENCRYPTION_KEY']
+  end
 end

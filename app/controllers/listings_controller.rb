@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-  before_action :authenticate_user?, except: [:index, :show, :search, :search_detail]
+  before_action :authenticate_user?, except: [:show, :search, :search_detail]
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
   before_action :set_listing_obj, only: [:publish, :unpublish]
   before_action :set_listing_related_data, only: [:show, :edit]
@@ -53,7 +53,7 @@ class ListingsController < ApplicationController
         format.html { render :new }
       else
         if @listing.save
-          format.html { redirect_to edit_listing_reservations_setting_path(@listing.id), notice: I18n.t('alerts.listings.save.success', model: Listing.model_name.human) }
+          format.html { redirect_to manage_listing_listing_images_path(@listing), notice: I18n.t('alerts.listings.save.success', model: Listing.model_name.human) }
         else
           format.html { render :new }
           format.json { render json: @listing.errors, status: :unprocessable_entity }
@@ -69,9 +69,9 @@ class ListingsController < ApplicationController
     @listing.easy_translate(prefix: '(Translated by Google)', fields: [:shop_description, :location, :recommended, :visit_benefits, :visit_benefits_another])
     respond_to do |format|
       if @listing.save
-        format.html { redirect_to edit_listing_reservations_setting_path(@listing), notice: I18n.t('alerts.listings.update.success', model: Listing.model_name.human) }
+        format.html { redirect_to manage_listing_listing_images_path(@listing), notice: I18n.t('alerts.listings.update.success', model: Listing.model_name.human) }
       else
-        format.html { redirect_to edit_listing_path(@listing), notice: I18n.t('alerts.listings.update.failure', model: Listing.model_name.human) }
+        format.html { redirect_to edit_listing_path(@listing), alert: I18n.t('alerts.listings.update.failure', model: Listing.model_name.human) }
       end
     end
   end
@@ -81,8 +81,13 @@ class ListingsController < ApplicationController
   def destroy
     @listing.destroy
     respond_to do |format|
-      format.html { redirect_to listings_url, notice: 'Listing was successfully destroyed.' }
-      format.json { head :no_content }
+      if @listing.destroy
+        format.html { redirect_to listings_url, notice: I18n.t('alerts.listings.destroy.success', model: Listing.model_name.human) }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to listings_path, alert: I18n.t('alerts.listings.destroy.failure', model: Listing.model_name.human) }
+        format.json { render json: @listing.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -108,7 +113,7 @@ class ListingsController < ApplicationController
       if @listing.publish
         format.html { redirect_to listing_path(@listing), notice: I18n.t('alerts.listings.publish.success', model: Listing.model_name.human) }
       else
-        format.html { redirect_to edit_listing_path(@listing), notice: I18n.t('alerts.listings.publish.failure', model: Listing.model_name.human) }
+        format.html { redirect_to edit_listing_path(@listing), alert: I18n.t('alerts.listings.publish.failure', model: Listing.model_name.human) }
         format.json { render json: @listing.errors, status: :unprocessable_entity }
       end
     end
@@ -119,7 +124,7 @@ class ListingsController < ApplicationController
       if @listing.unpublish
         format.html { redirect_to edit_listing_path(@listing), notice: I18n.t('alerts.listings.unpublish.success', model: Listing.model_name.human) }
       else
-        format.html { redirect_to edit_listing_path(@listing), notice: I18n.t('alerts.listings.unpublish.failure', model: Listing.model_name.human) }
+        format.html { redirect_to edit_listing_path(@listing), alert: I18n.t('alerts.listings.unpublish.failure', model: Listing.model_name.human) }
         format.json { render json: @listing.errors, status: :unprocessable_entity }
       end
     end
@@ -128,7 +133,7 @@ class ListingsController < ApplicationController
 private
   def check_profile
     user = User.find(listing_params[:user_id])
-    redirect_to edit_profile_path, notice: I18n.t('alerts.reservation.requirement.profile.not_yet', model: Profile.model_name.human) unless user.profile&.minimum_requirement?
+    redirect_to edit_profile_path, alert: I18n.t('alerts.reservation.requirement.profile.not_yet', model: Profile.model_name.human) unless user.profile&.minimum_requirement?
   end
 
   # Use callbacks to share common setup or constraints between actions.
