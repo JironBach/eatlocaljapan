@@ -1,6 +1,8 @@
 class BusyTimesController < ApplicationController
+  include AroundReservation
+
   before_action :authenticate_user?
-  before_action :set_listing, :set_schedule, only: [:show]
+  before_action :set_listing, :reservation_enabled?, :set_schedule, only: [:show]
 
   authorize_resource :listing, class: Listing
 

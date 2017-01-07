@@ -1,0 +1,28 @@
+- provide :title, t('.title', model: PaymentMethod.model_name.human)
+= render 'shared/subnav'
+.page-container.row-space-top-4.row-space-8
+  .row
+    .col-md-3
+      = render 'shared/user_sidenav'
+    - if @payment_methods.blank?
+      .col-md-9
+        .card
+          .card-body
+            h3
+              = t('.no_payment_method.title')
+            = link_to new_credit_card_path, class: 'btn btn-primary' do
+              = t('.add_payment_method')
+    - else
+      .col-md-9
+        .card
+          .card-header
+            .row
+              .col-xs-12.col-lg-8
+                = t('.title', model: PaymentMethod.model_name.human)
+              .col-md-12.col-lg-4
+                .pull-right
+                  = link_to t('.add_payment_method'), new_credit_card_path, class: 'btn btn-primary'
+          .suspension-container
+            ul.list-unstyled.list-layout
+              - @payment_methods.each do |payment_method|
+                = render payment_method

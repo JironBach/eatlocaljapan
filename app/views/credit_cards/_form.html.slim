@@ -1,0 +1,37 @@
+.card.row-space-4
+  = simple_form_for(credit_card) do |f|
+    / TODO: replace by partial
+    = f.error_notification
+    .card-header
+      = t '.header'
+    .card-body
+      .row
+        .col-md-10
+          .row.row-condensed.row-space-2
+            .col-md-4.text-right.text-left--md
+              label for='card_no'
+                = CreditCard.human_attribute_name(:card_no)
+                i.fa.fa-asterisk.fa-danger
+            - if credit_card.persisted?
+              = credit_card.crushed_card_no
+            - else
+              - (1..4).each do |index|
+                .col-md-2
+                  = f.text_field :"card_no#{index}", maxlength: 4
+          .row.row-condensed.row-space-2
+            .col-md-4.text-right.text-left--md
+              label for='expired_on'
+                = CreditCard.human_attribute_name(:expired_on)
+                i.fa.fa-asterisk.fa-danger
+            .col-md-3.form-inline
+              = f.select :expired_month, (1..12).map { |month| [format('%02d', month), month] }, include_blank: true, class: 'form-control'
+            .col-md-1.text-left
+              = t '.month'
+            .col-md-3
+              = f.select :expired_year, ((current_year = Time.zone.now.year)..(current_year + 15)).map { |year| [format('%02d', (year % 100)), year] }, include_blank: true
+            .col-md-1.text-left
+              = t '.year'
+        .col-md-2
+
+    .card-footer
+      = f.button :submit, t('.submit'), class: 'btn btn-primary'

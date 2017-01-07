@@ -20,7 +20,7 @@
       li class=(controller_name == 'profiles' || action_name == 'review' || controller_name == 'profile_images' ? ['active'] : [])
         = link_to t('.profile'), edit_profile_path
 
-      li class=(params[:mode] == 'account' ? ['active'] : [])
+      li class=(params[:mode] == 'account' || controller_name == 'payment_methods' ? ['active'] : [])
         = link_to t('.account'), edit_user_registration_path(mode: 'account')
 
 .subnav-placeholder.hide--sp.hide

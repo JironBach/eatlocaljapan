@@ -70,6 +70,8 @@ GEM
       activesupport (>= 3.0.0)
     arel (6.0.3)
     ast (2.3.0)
+    attr_encrypted (3.0.3)
+      encryptor (~> 3.0.0)
     awesome_print (1.6.1)
     aws-ses (0.6.0)
       builder
@@ -174,6 +176,7 @@ GEM
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
+    encryptor (3.0.0)
     equalizer (0.0.11)
     erubis (2.7.0)
     eventmachine (1.2.1)
@@ -278,6 +281,9 @@ GEM
       momentjs-rails (>= 2.9.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    gmo (0.2.6)
+      multi_json
+      rack
     gon (5.2.3)
       actionpack (>= 2.3.0)
       json
@@ -431,7 +437,6 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
-    public_suffix (2.0.4)
     puma (3.4.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
@@ -676,6 +681,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   annotate (= 2.6.8)
+  attr_encrypted
   awesome_print (= 1.6.1)
   aws-ses (~> 0.6)
   bcrypt (= 3.1.10)
@@ -705,6 +711,7 @@ DEPENDENCIES
   faker (= 1.4.3)
   fog (= 1.28.0)
   fullcalendar-rails (~> 2.4.0)
+  gmo
   gon (= 5.2.3)
   guard (= 2.12.5)
   guard-livereload (= 2.4.0)

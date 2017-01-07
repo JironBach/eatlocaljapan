@@ -1,6 +1,9 @@
 class ListingNgeventsController < ApplicationController
+  include AroundReservation
+
   before_action :authenticate_user?, except: [:show, :search]
   before_action :set_listing
+  before_action :reservation_enabled?
   before_action :set_my_events, only: [:index]
   before_action :set_new_event, only: [:create]
   before_action :set_my_event, only: [:edit, :update, :destroy]

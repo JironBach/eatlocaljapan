@@ -1,0 +1,17 @@
+.card.row-space-4
+  = simple_form_for(charge, url: charge.new_record? ? listing_reservation_charges_path(charge.charger) : listing_reservation_charge_path(charge.charger, charge)) do |f|
+    / TODO: replace by partial
+    = f.error_notification
+    .card-header
+      = t '.header'
+    .card-body
+      .row.row-condensed.row-space-2
+        .col-md-3.text-right.text-left--md
+          label for='payment_method'
+            = Charge.human_attribute_name(:payment_method)
+            i.fa.fa-asterisk.fa-danger
+        .col-md-9
+            = f.input_field :payment_method_id, as: :select, collection: current_user.credit_cards.available, label_method: :title, value_method: :id
+
+    .card-footer
+      = f.button :submit, t('.submit'), class: 'btn btn-primary'

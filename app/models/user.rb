@@ -27,6 +27,7 @@
 #  username               :string
 #  admin                  :boolean          default(FALSE)
 #  profile_id             :integer
+#  gmo_member_seq         :integer          default(0)
 #
 # Indexes
 #
@@ -37,6 +38,7 @@
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 #  index_users_on_username              (username) UNIQUE
 #
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :timeoutable
@@ -51,14 +53,13 @@ class User < ApplicationRecord
   has_many :listings, dependent: :destroy
   has_many :message_thread_users, dependent: :destroy
   has_many :message_threads, through: :message_thread_users, dependent: :destroy
+  has_many :payment_methods, dependent: :destroy
+  has_many :credit_cards
+  has_many :charges, as: :charger, dependent: :destroy
+  has_many :services, through: :charges
 
   validates :email, presence: true
   validates :email, uniqueness: true
-  # VALID_EMAIL_REGREX = [a-zA-Z0-9_!#$%&*+=?^`{}~|'\-\/\.]+@[a-zA-Z0-9_!#$%&*+=?^`{}~|'\-\/]+(\.[a-zA-Z0-9_!#$%&*+=?^`{}~|'\-\/]+)+
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, format: {with: VALID_EMAIL_REGEX}
-  validates :password, presence: true
-  validates :password, length: 6..32
 
   scope :mine, ->(user_id) { where(id: user_id) }
 
@@ -124,5 +125,9 @@ class User < ApplicationRecord
       user = User.find(user_id)
       user.profile.id
     end
+  end
+
+  def member_id
+    [id, gmo_member_seq].join('-')
   end
 end

@@ -1,5 +1,7 @@
 class ClosedDaysController < ApplicationController
-  before_action :set_listing, :set_first_day, only: [:show]
+  include AroundReservation
+
+  before_action :set_listing, :reservation_enabled?, :set_first_day, only: [:show]
 
   def show
     render json: @listing.closed_days(@first_day)

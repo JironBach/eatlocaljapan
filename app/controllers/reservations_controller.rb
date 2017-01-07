@@ -1,6 +1,9 @@
 class ReservationsController < ApplicationController
+  include AroundReservation
+
   before_action :authenticate_user?
   before_action :set_listing
+  before_action :reservation_enabled?
   before_action :set_reservation, only: [:show, :update, :destroy]
   before_action :check_profile, only: [:create]
 

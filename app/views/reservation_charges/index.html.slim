@@ -1,0 +1,26 @@
+- provide :title, t('.title', model: Charge.model_name.human)
+.manage-listings
+  = render 'shared/manage_listing_header', listing: @listing
+  .manage-listing-row-container
+    .manage-listing-content.col-md-9.col-offset-3
+      .card
+        - if @charges.blank?
+          .card-body
+            h3
+              = t('.no_reservation_charge.title')
+            = link_to new_listing_reservation_charge_path(@listing), class: 'btn btn-primary' do
+              = t('.add_reservation_charge')
+        - else
+          .card-header
+            .row
+              .col-sm-10
+                = t('.title', model: Charge.model_name.human)
+              .col-sm-2
+                .pull-right
+                  = link_to_unless(@listing.charges.reservation.continuing.exists?, t('.add_reservation_charge'), new_listing_reservation_charge_path(@listing), class: 'btn btn-primary') { }
+          .suspension-container
+            ul.list-unstyled.list-layout
+              - @charges.each do |charge|
+                = render 'charge', charge: charge
+
+    = render 'shared/manage_listing_nav'

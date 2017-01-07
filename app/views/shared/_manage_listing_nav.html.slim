@@ -25,13 +25,6 @@ ruby:
             i.fa.fa-exclamation-circle
           - else
             i.fa.fa-check
-      li class="nav-item#{controller_name == 'settings' ? ' nav-active' : ''}"
-        = link_to edit_listing_reservations_setting_path(@listing) do
-          = t '.reservation'
-          - if controller_name == 'settings' && @listing.reservation_frame.blank?
-            i.fa.fa-exclamation-circle
-          - else
-            i.fa.fa-check
       li class="nav-item#{controller_name == 'listing_images' ? ' nav-active' : ''}"
         = link_to manage_listing_listing_images_path(@listing) do
           = t '.image'
@@ -39,10 +32,23 @@ ruby:
             i.fa.fa-exclamation-circle
           - else
             i.fa.fa-check
-      li class="nav-item#{controller_name == 'listing_ngevents' ? ' nav-active' : ''}"
-        = link_to manage_listing_listing_ngevents_path(@listing) do
-          = t '.cal'
+      li class="nav-item#{controller_name == 'reservation_charges' ? ' nav-active' : ''}"
+        = link_to listing_reservation_charges_path(@listing) do
+          = t '.charge'
           i.fa.fa-plus
+      - if @listing.reservation_available?
+        li class="nav-item#{controller_name == 'settings' ? ' nav-active' : ''}"
+          = link_to edit_listing_reservations_setting_path(@listing) do
+            = t '.reservation'
+            - unless @listing.reservation_configured?
+              i.fa.fa-exclamation-circle
+            - else
+              i.fa.fa-check
+      - if @listing.reservation_enabled?
+        li class="nav-item#{controller_name == 'listing_ngevents' ? ' nav-active' : ''}"
+          = link_to manage_listing_listing_ngevents_path(@listing) do
+            = t '.cal'
+            i.fa.fa-plus
       /- if controller_name == 'confections'
       /  li.nav-item.nav-active
       /    = link_to manage_listing_confections_path(@listing.id) do
