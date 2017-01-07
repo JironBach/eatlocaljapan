@@ -977,12 +977,12 @@ en:
     charge:
       destroy: 'Delete'
     edit:
-      title: "%{model}の編集"
+      title: "Edit %{model}"
     new:
-      title: "%{model}の作成"
+      title: "Make new %{model}"
     form:
-      header: '課金登録'
-      submit: '保存する'
+      header: 'Mange Charges'
+      submit: 'Save'
   review_replies:
     new:
       text0: "Reply to "
@@ -1132,12 +1132,8 @@ en:
   settings:
     edit:
       title: "Enter reservation infomation"
-      submit: "Next"
-    manage:
-      title: "Reservation details"
     form:
-      submit:
-        next: Next
+      submit: 'Save'
       frame: Reservation unit
       number: Number of seats in a unit
       capacity: Number of unit accepted at the same time
