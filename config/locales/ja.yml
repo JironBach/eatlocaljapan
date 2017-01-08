@@ -89,7 +89,7 @@ ja:
         ordered_at: '課金日時'
       card_charge:
         <<: *charge
-        'credit_card/expiration_date': 'クレジットカード有効期限'
+        'payment_method/expiration_date': '有効期限'
       confection:
         name: お菓子
         image: お菓子画像
@@ -1262,6 +1262,14 @@ ja:
         reserved: "予約済みです"
         canceled: "予約はキャンセルされました"
         temporary_closed: %{start}-%{end}
+    charges:
+      create:
+        success: "%{model}を登録しました。"
+      update:
+        success: "%{model}を更新しました。"
+      destroy:
+        success: "%{model}を削除しました。"
+        failure: "%{model}の削除に失敗しました。"
     credit_cards:
       create:
         success: "%{model}を登録しました。"

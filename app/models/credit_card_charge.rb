@@ -18,18 +18,17 @@
 #
 
 class CreditCardCharge < Charge
-  belongs_to :credit_card, polymorphic: true
-
+  validates :service, :payment_method, presence: true
   validate :charge_overlapping
   validate :credit_card_availability
 
 private
   # NOTE: reconsider this implementation
   def charge_overlapping
-    charges.reservation.continuing.where.not(id: id).exists? && errors.add(:base, :overlapped)
+    charger.charges.reservation.continuing.where.not(id: id).exists? && errors.add(:base, :overlapped)
   end
 
   def credit_card_availability
-    credit_card.expired? && errors.add(:'credit_card/expiration_date', :expired)
+    payment_method&.expired? && errors.add(:'payment_method/expiration_date', :expired)
   end
 end

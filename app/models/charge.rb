@@ -34,4 +34,12 @@ class Charge < ApplicationRecord
   scope :reservation, -> { includes(:service).where(services: {id: Service.reservation.id}) }
 
   enum status: {ordered: 0, charging: 1, paid: 2, canceling: 3, terminated: 4}
+
+  before_validation :normalize_payment_method
+
+private
+  # NOTE: not work well presence validation on polymorphic association in default
+  def normalize_payment_method
+    self.payment_method = PaymentMethod.find(payment_method_id) rescue nil if payment_method_id_changed?
+  end
 end
