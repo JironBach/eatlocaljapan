@@ -67,6 +67,8 @@ en:
         card_no3: 'Card No(third)'
         card_no4: 'Card No(fourth)'
         card_no: 'Card No'
+        expired_year: 'Expired Year'
+        expired_month: 'Expired Month'
         expired_on: 'Exprired On'
         gmo_card_seq: 'Card Sequence'
         registered_at: 'Registered At'
@@ -337,7 +339,9 @@ en:
               gmo_error: 'Failed to update card information.'
         credit_card_charge:
           attributes:
-            'credit_card/expiration_date':
+            base:
+              overlapped: 'Charge is overlapped.'
+            'payment_method/expiration_date':
               expired: 'expired.'
   attributes:
     id: ID
