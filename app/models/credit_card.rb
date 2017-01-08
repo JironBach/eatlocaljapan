@@ -26,8 +26,8 @@ class CreditCard < PaymentMethod
     :available,
     -> { where(arel_table[:expired_year].gt((now = Time.zone.now).year).or(arel_table[:expired_year].eq(now.year).and(arel_table[:expired_month].gteq(now.month)))) }
 
-  after_validation :regist_credit_card, on: :create
-  after_validation :update_credit_card, on: :update
+  after_validation :regist_credit_card, on: :create, if: ->(record) { record.errors.empty? }
+  after_validation :update_credit_card, on: :update, if: ->(record) { record.errors.empty? }
   before_destroy :delete_credit_card
 
   validates :card_no1, :card_no2, :card_no3, :card_no4, :expired_year, :expired_month, presence: true
@@ -44,7 +44,7 @@ class CreditCard < PaymentMethod
   end
 
   def expired_on(format: '%<expired_year>02d%<expired_month>02d')
-    format % {expired_year: expired_year % 100, expired_month: expired_month}
+    attributes.values_at('expired_year', 'expired_month').all?(&:present?) && format % {expired_year: expired_year % 100, expired_month: expired_month} || nil
   end
 
   def expired?

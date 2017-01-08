@@ -28,7 +28,7 @@ class PaymentMethod < ApplicationRecord
 
   attr_encrypted :card_no1, :card_no2, :card_no3, :card_no4, key: :encryption_key
 
-  after_validation :regist_member
+  after_validation :regist_member, if: ->(record) { record.errors.empty? }
   before_destroy :prepare_destroy
 
 private

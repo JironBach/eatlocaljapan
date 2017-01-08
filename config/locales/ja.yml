@@ -69,6 +69,8 @@ ja:
         card_no3: 'カード番号(3)'
         card_no4: 'カード番号(4)'
         card_no: 'カード番号'
+        expired_year: '有効期限(年)'
+        expired_month: '有効期限(月)'
         expired_on: '有効期限'
         gmo_card_seq: 'カード連番'
         registered_at: '登録日時'
@@ -339,7 +341,7 @@ ja:
           attributes:
             base:
               overlapped: '課金の指定が重複しています'
-            'credit_card/expiration_date':
+            'payment_method/expiration_date':
               expired: '有効期限が切れています'
   attributes:
     id: ID
