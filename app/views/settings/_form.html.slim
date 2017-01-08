@@ -49,7 +49,4 @@
           = locale == :ja && 'まで予約を受け付ける。'
   .row
     .col-xs-9.col-offset-3.text-reset-center
-      - if 'edit' == controller.action_name
-        = f.button :submit, t(:submit, scope: [controller_name, action_name]), class: 'btn-primary btn-large', id: 'listing-manager-listing-submit'
-      - else
-        = f.button :submit, t('.submit.next'), class: 'btn-primary btn-large'
+      = f.button :submit, t('.submit'), class: 'btn-primary btn-large', id: 'listing-manager-listing-submit'

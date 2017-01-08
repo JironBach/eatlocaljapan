@@ -1165,11 +1165,8 @@ ja:
   settings:
     edit:
       title: "予約情報を入力してください。"
-      submit: "次へ"
     form:
-      submit:
-        next: 次へ
-        update: 更新
+      submit: '保存する'
       frame: 予約枠
       number: 予約枠ごとの席数
       capacity: 同時刻の受付上限数
