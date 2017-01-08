@@ -14,4 +14,5 @@
             = f.input_field :payment_method_id, as: :select, collection: current_user.credit_cards.available, label_method: :title, value_method: :id
 
     .card-footer
-      = f.button :submit, t('.submit'), class: 'btn btn-primary'
+      .text-reset-center
+        = f.button :submit, t('.submit'), class: 'btn btn-primary'

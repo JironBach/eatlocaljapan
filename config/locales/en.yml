@@ -86,7 +86,7 @@ en:
         ordered_at: 'Orderd At'
       credit_card_charge:
         <<: *charge
-        'credit_card/expiration_date': 'Expiration Date of Credit Card'
+        'payment_method/expiration_date': 'Expiration Date of Credit Card'
       confection:
         name: Name
         image: Image
@@ -1259,6 +1259,14 @@ en:
         reserved: "Already reserved"
         canceled: "Canceled"
         temporary_closed: %{start}-%{end}
+    charges:
+      create:
+        success: "%{model} was successfully created."
+      update:
+        success: "%{model} was successfully updated."
+      destroy:
+        success: "%{model} was successfully destroyed."
+        failure: "%{model} couldn't be destroyed."
     credit_cards:
       create:
         success: "%{model} was successfully created."

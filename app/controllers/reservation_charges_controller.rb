@@ -63,8 +63,8 @@ private
     @charge = @instance = @listing.charges.reservation.find(params[:id]).tap { |instance| instance.assign_attributes(reservation_charge_params) }
   end
 
-  # TODO: need to reconsider of behavior around cancelation
+  # TODO: need to reconsider of behavior around type and cancelation
   def reservation_charge_params
-    params.fetch(:charge, {}).permit(:type, :payment_method_id).merge(service: Service.reservation)
+    params.fetch(:credit_card_charge, {}).permit(:payment_method_id).merge(type: 'CreditCardCharge', service: Service.reservation)
   end
 end
