@@ -354,9 +354,9 @@ en:
             lunch_break_end_hour:
               after: 'cannot be later than the end time.'
         holiday_business_hour:
-          << *business_hour_errors
+          <<: *business_hour_errors
         weekday_business_hour:
-          << *business_hour_errors
+          <<: *business_hour_errors
   attributes:
     id: ID
     user: User
@@ -843,7 +843,7 @@ en:
         any: Any dress is ok.
       shop_description: About the restaurant
       recommended: Chef's recommendation
-      holiday: Holiday
+      holiday: holiday
     edit:
       title: Edit Listing
     edit_link:
