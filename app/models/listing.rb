@@ -180,7 +180,7 @@ class Listing < ApplicationRecord
   end
 
   def free_spaces(schedule, requested_time)
-    (capacity - (schedule && reservations.at(schedule, requested_time).map(&:occupied_frames).compact.inject(&:+) || 0)) * reservation_frame
+    (capacity - (schedule && reservations.at(schedule, requested_time, reservation_time_unit || 15).map(&:occupied_frames).compact.inject(&:+) || 0)) * reservation_frame
   end
 
   def set_lon_lat

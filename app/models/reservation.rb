@@ -59,22 +59,22 @@ class Reservation < ApplicationRecord
   scope :review_open?, -> { where(arel_table[:review_opened_at].not_eq(nil)) }
   scope \
     :at,
-    ->(date, time) do
+    ->(date, time, time_unit) do
       ->(value) { Arel::Nodes.build_quoted(value) }
       make_interval = \
-        ->(hours: 0, minutes: 0) do
-          Arel::Nodes::NamedFunction.new('make_interval', [hours, minutes])
+        ->(years: 0, months: 0, weeks: 0, days: 0, hours: 0, minutes: 0, seconds: 0) do
+          Arel::Nodes::NamedFunction.new('make_interval', [years, months, weeks, days, hours, minutes, seconds])
         end
       # TODO: need to modify about late night behavior
       minutes_since = ->(from, minutes) { Arel::Nodes::InfixOperation.new('+', from, make_interval.(minutes: minutes)) }
       coalesce = ->(*values) { Arel::Nodes::NamedFunction.new('COALESCE', values) }
-      # HACK: need to reconsider this implementation
-      requested_time = time.strftime('%H:%M') rescue nil
       includes(:listing) \
         .references(:lisiting) \
         .where(schedule: date) \
-        .where(arel_table[:time].lteq(requested_time)) \
-        .where(minutes_since.(arel_table[:time], coalesce.(arel_table[:reservation_time_unit], Arel::Nodes.build_quoted(15))).gteq(requested_time))
+        .where.not(
+          arel_table[:time].gteq(time.since((time_unit || 15).minutes).to_s(:time)) \
+            .or(minutes_since.(arel_table[:time], coalesce.(arel_table[:reservation_time_unit], Arel::Nodes.build_quoted(15))).lteq(time.to_s(:time)))
+        )
     end
 
   def occupied_frames
