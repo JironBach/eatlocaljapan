@@ -21,4 +21,6 @@
 
 class BusinessHour < ApplicationRecord
   belongs_to :listing
+
+  validates :lunch_break_end_hour, date: {after: :lunch_break_start_hour}
 end
