@@ -347,14 +347,16 @@ en:
               overlapped: 'Charge is overlapped.'
             'payment_method/expiration_date':
               expired: 'expired.'
-        business_hour:
+        business_hour: &business_hour_errors
           attributes:
+            end_hour:
+              after: 'cannot be earlier than 6 a.m.'
             lunch_break_end_hour:
               after: 'cannot be later than the end time.'
         holiday_business_hour:
-          <<: *business_hour
+          << *business_hour_errors
         weekday_business_hour:
-          <<: *business_hour
+          << *business_hour_errors
   attributes:
     id: ID
     user: User
