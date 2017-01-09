@@ -57,16 +57,14 @@ $ ->
       disableTimeRanges: []
       disableTextInput: true
     .on 'changeTime', (e)->
-      time = $(@).val()
+      time = moment($(@).val(), 'HH:mm')
       form = $(@).closest('form')
       date = form.find('.bookIt__checkin.datepicker').datepicker('getDate')
       date = if date then new Date(date) else new Date()
-      # HACK: reconsider this implementation
-      [hour, minute] = time.split(':')
       # HACK: reconsider to replace by javascript base
       $.ajax
         type: 'GET'
-        url: new URI(location.href).segmentCoded(['listings', $(@).data('listing-id'),date.getFullYear(), date.getMonth() + 1, date.getDate(), hour, minute, 'free_spaces']).href()
+        url: new URI(location.href).segmentCoded(['listings', $(@).data('listing-id'),date.getFullYear(), date.getMonth() + 1, date.getDate(), time.hour(), time.minute(), 'free_spaces']).href()
         dataType: 'json'
         success: (data)->
           if data.spaces <= 0
