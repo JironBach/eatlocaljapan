@@ -79,9 +79,11 @@ ja:
     sessions:
       signed_in: "ログインしました。"
       signed_out: "ログアウトしました。"
+      already_signed_out: "ログアウトしました。"
       user:
         signed_in: "ログインしました。"
         signed_out: "ログアウトしました。"
+        already_signed_out: "ログアウトしました。"
     unlocks:
       user:
         send_instructions: "アカウントのロックを解除する方法をメールでご連絡します。"
