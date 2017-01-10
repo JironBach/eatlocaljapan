@@ -13,7 +13,7 @@ class SettingsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @listing.update(listing_params)
+      if @listing.with_lock { @listing.update(listing_params) }
         format.html { redirect_to edit_listing_reservations_setting_path(@listing), notice: I18n.t('alerts.listings.update.success', model: Listing.model_name.human) }
       else
         format.html { redirect_to edit_listing_reservations_setting_path(@listing), notice: I18n.t('alerts.listings.update.failure', model: Listing.model_name.human) }

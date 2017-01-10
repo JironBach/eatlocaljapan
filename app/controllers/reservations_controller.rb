@@ -12,7 +12,7 @@ class ReservationsController < ApplicationController
   def create
     @reservation = @listing.reservations.build(reservation_params)
     respond_to do |format|
-      if @reservation.save
+      if @listing.with_lock { @reservation.save }
         # ReservationMailer.send_new_reservation_notification(@reservation).deliver_later!(wait: 1.minute) # if you want to use active job, use this line.
         ReservationMailer.send_new_reservation_notification(@reservation).deliver_now! # if you don't want to use active job, use this line.
         message_params = {reservation_id: @reservation.id, listing_id: @listing.id, content: I18n.t('alerts.reservation.msg.request', model: Message.model_name.human)}
@@ -25,10 +25,12 @@ class ReservationsController < ApplicationController
           end
           format.json { render :show, status: :created, location: @reservation }
         else
+          # HACK: need to reconsider this implementation about alert message, which concrete error message is preferable to.
           format.html { redirect_to listing_path(@listing), notice: I18n.t('alerts.reservation.save.failure.no_date', model: Reservation.model_name.human) }
           format.json { render json: @reservation.errors, status: :unprocessable_entity }
         end
       else
+        # HACK: need to reconsider this implementation about alert message, which concrete error message is preferable to.
         format.html { redirect_to listing_path(@listing), notice: I18n.t('alerts.reservation.save.failure.no_date', model: Reservation.model_name.human) }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
       end
@@ -38,7 +40,7 @@ class ReservationsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @reservation.update(reservation_params)
+      if @listing.with_lock { @reservation.update(reservation_params) }
         ReservationMailer.send_update_reservation_notification(@reservation, @reservation.guest_id).deliver_now!
         format.html { redirect_to dashboard_guest_reservation_manager_path, notice: I18n.t('alerts.reservation.update.success') }
         format.json { render :show, status: :ok, location: @reservation }
@@ -64,6 +66,8 @@ private
   end
 
   def reservation_params
+    # NOTE: keeping existing value is preferable to replacing the one of listing, perhaps
+    # HACK: might as well replace id base implementation to object base one.
     params \
       .fetch(:reservation, {}) \
       .permit(:schedule, :num_of_people, :content, :progress, :reason, :reservation_time_unit, :time, :in_english) \

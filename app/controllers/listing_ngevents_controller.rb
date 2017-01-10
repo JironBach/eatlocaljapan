@@ -29,7 +29,7 @@ class ListingNgeventsController < ApplicationController
   # POST /listings/1/ngevents.json
   def create
     respond_to do |format|
-      if @ngevent.save
+      if @listing.with_lock { @ngevent.save }
         format.json { render json: {}, status: :created }
       else
         format.json { render json: @ngevent.errors, status: :unprocessable_entity }
@@ -44,7 +44,7 @@ class ListingNgeventsController < ApplicationController
     @ngevent.convert_end_of_day if @ngevent.holiday?
 
     respond_to do |format|
-      if @ngevent.save
+      if @listing.with_lock { @ngevent.save }
         format.json { render json: {}, status: :ok }
       else
         format.json { render json: @ngevent.errors, status: :unprocessable_entity }
@@ -56,7 +56,7 @@ class ListingNgeventsController < ApplicationController
   # DELETE /ngevents/1.json
   def destroy
     respond_to do |format|
-      if @ngevent.destroy
+      if @listing.with_lock { @ngevent.destroy }
         format.json { render json: {}, status: :ok }
       else
         format.json { render json: @ngevent.errors, status: :unprocessable_entity }
