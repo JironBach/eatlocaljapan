@@ -164,6 +164,9 @@ group :development, :test do
   gem 'slim_lint'
   gem 'guard-slimlint'
 
+  # security scanner
+  gem 'brakeman', require: false
+
   # livereload
   gem 'guard-livereload', '2.4.0', require: false
 

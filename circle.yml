@@ -30,6 +30,10 @@ database:
           RAILS_ENV: test
 
 test:
+  pre:
+    - bundle exec brakeman -4 -w 1 -z:
+        environment:
+          RAILS_ENV: test
   override:
     - bundle exec rspec spec:
         environment:
