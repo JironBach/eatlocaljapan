@@ -34,7 +34,7 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = f.input_field :reservation_time_unit, as: :select, collection: [15, 30, 60], selected: @listing.reservation_time_unit || 15
+          = f.input_field :reservation_time_unit, as: :select, collection: [60, 90, 120], selected: @listing.reservation_time_unit || 60
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
