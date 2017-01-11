@@ -1,6 +1,4 @@
 class PaymentMethodsController < ApplicationController
-  force_ssl if: -> { Rails.env.production? }
-
   before_action :authenticate_user!
   before_action :load_payment_methods, only: :index
 

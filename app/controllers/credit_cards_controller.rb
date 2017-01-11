@@ -1,6 +1,4 @@
 class CreditCardsController < ApplicationController
-  force_ssl if: -> { Rails.env.production? }
-
   before_action :authenticate_user!
   before_action :load_credit_card, only: [:edit, :update, :destroy]
   before_action :create_credit_card, only: [:new, :create]
