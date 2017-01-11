@@ -76,8 +76,8 @@ class Reservation < ApplicationRecord
         .references(:lisiting) \
         .where(schedule: date) \
         .where.not(
-          arel_table[:time].gteq(time.since((time_unit || 15).minutes).to_s(:time)) \
-            .or(minutes_since.(arel_table[:time], coalesce.(arel_table[:reservation_time_unit], Arel::Nodes.build_quoted(15))).lteq(time.to_s(:time)))
+          arel_table[:time].gteq(time.since((time_unit || 60).minutes).to_s(:time)) \
+            .or(minutes_since.(arel_table[:time], coalesce.(arel_table[:reservation_time_unit], Arel::Nodes.build_quoted(60))).lteq(time.to_s(:time)))
         )
     end
 
