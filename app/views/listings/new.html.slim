@@ -5,10 +5,13 @@
       div[role='dummy']
       .row.row-space-top-6.row-space-6
         .col-10.col-center.text-center
-          h1.h2
+          h1.h2.row-space-3
             = t('.title')
           p.text-lead
-            = t('.subtitle')
+            i.fa.fa-asterisk.fa-danger.col-space-right-1
+            = t('.is_required')
+          p.text-lead
+            = t('.note_for_requipment')
       div[role='dummy']
     .card-body.card-medium
       .page-container

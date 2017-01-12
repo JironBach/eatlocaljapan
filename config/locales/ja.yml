@@ -136,8 +136,8 @@ ja:
         englishes: 英語対応
         business_hours: 営業時間
         business_hours_remarks: 営業時間　備考
-        shop_description: レストランの説明　日本語
-        shop_description_en: レストランの説明　英語
+        shop_description: お店の紹介文　日本語
+        shop_description_en: お店の紹介文　英語
         price_low: 価格　低　ランチ
         price_high: 価格　高　ランチ
         price_low_dinner: 価格　低　ディナー
@@ -146,8 +146,8 @@ ja:
         tel: 電話番号
         url: 自社WEBサイト
         review_url: レビューサイトへのリンク
-        recommended: お勧めのメニュー・食べ方の説明　日本語
-        recommended_en: お勧めのメニュー・食べ方の説明　英語
+        recommended: 追加説明　日本語
+        recommended_en: 追加説明　英語
         visit_benefits: 来店特典
         visit_benefits_en: 来店特典（英語）
         visit_benefits_another: 来店特典　その他
@@ -277,42 +277,43 @@ ja:
         name: お気に入りリストの名前
     placeholders:
       listing:
-        title: 例) 初心者でも楽しめる店舗情報
-        title_en: e.g. Listing for everybody
+        title: お店の正式名 例) イートローカル　カフェ
+        title_en: ローマ字表記または英文表記(例 Cafe Eatlocal など)を入力してください。
         price: "例) 5000"
         longitude: 軽度
         latitude: 緯度
         description: 例) 初心者の方でも気軽に楽しめる店舗情報です。ぜひお友達も誘ってお越しください。
         description_en: 店舗情報を英語で記入してください
         zipcode: "例) 012-3456"
-        location: 郵便番号を入力すれば自動で出力されます
-        location_en: 住所を英語で入力してください
+        location: 自動出力された住所を確認・修正してください。
+        location_en: 英語表記の住所を入力してください。
         direction: 開催場所までのオススメの移動方法や、迷いそうなポイントなど記入ください
         schedule: 参加する日程
-        smoking_id: 禁煙・喫煙
+        smoking_id: リストから選択してください。
         english: 英語対応
         business_hours: 営業時間
         business_hours_remarks: 営業時間　備考
-        shop_description: レストランの説明　日本語
-        shop_description_en: レストランの説明　英語
-        price_low: 価格　低　ランチ
-        price_high: 価格　高　ランチ
-        price_low_dinner: 価格　低　ディナー
-        price_high_dinner: 価格　高　ディナー
+        shop_description: お店の概要やおすすめメニューなど、アピールしたい点を記入してください。
+        shop_description_en: 英語を空白のまま保存すると、Google自動翻訳で作成された英文が表示されます。英文を入力して保存すれば、そのまま表示され自動翻訳は適用されません。
+        price_low: ランチの平均価格　範囲　xxxx円から　数値のみ入力してください
+        price_high: ランチの平均価格　範囲　xxxx円まで　数値のみ入力してください
+        price_low_dinner: ディナーの平均価格　範囲　xxxx円から　数値のみ入力してください
+        price_high_dinner: ディナーの平均価格　範囲　xxxx円まで　数値のみ入力してください
         address: 所在地
         tel: 電話番号
-        url: 自社ウェブサイト
+        url: URLを入力してください
         review_url: レビューサイトへのリンク
-        recommended: お勧めのメニュー・食べ方の説明　日本語
-        recommended_en: お勧めのメニュー・食べ方の説明　英語
+        recommended: 食べ方の説明やその他の追加説明
+        recommended_en: 英語を空白のまま保存すると、Google自動翻訳で作成された英文が表示されます。英文を入力して保存すれば、そのまま表示され自動翻訳は適用されません。
         visit_benefits: 来店特典
         visit_benefits_en: 来店特典（英語）
         visit_benefits_another: 来店特典　その他
         visit_benefits_another_en: 来店特典　その他（英語）
-        link_tabelog: 食べログ
-        link_yelp: yelp
-        link_tripadvisor: トリップアドバイザー
+        link_tabelog: 「食べログ」お店の記載がある場合店舗トップページのはURLを入力してください
+        link_yelp: 「yelp」にお店の記載がある場合店舗トップページのはURLを入力してください
+        link_tripadvisor: 「TripAdvisor」にお店の記載がある場合店舗トップページのはURLを入力してください
         open: 公開
+        info_admin_id: 通常は「オーナー」をリストから選択してください。
       listing_image:
         caption: "例) こんな感じです"
       confection:
@@ -765,8 +766,9 @@ ja:
       edit: この店舗情報を編集する
       make_listing: 店舗情報を作成
     new:
-      title: 店舗情報を作成しましょう
-      subtitle: 自分の店舗情報は簡単に作れます
+      title: 店舗基本情報
+      is_required: 'は必須項目です。'
+      note_for_requipment: '修正・編集は後からでも可能です。'
     search:
       title: 検索
       no_match:
@@ -864,6 +866,10 @@ ja:
         more_than: "%{num}%{unit}以上"
       busubess_hours_and_lunch_break: "営業時間（休憩時間）"
       holiday: 祝
+      shop_category_description: "（最大3つまで選択してください）"
+      service_description: "（提供しているサービスをすべてチェックしてください。)"
+      business_hours_and_lunch_break_description: "（休憩時間がある場合はカッコ内の時間を設定してください）"
+      cover_image_description: "メイン画像「ファイルを選択」をクリックしてアップロードします。（最大1M程度）"
     host_info:
       name:
         after: さんの紹介
