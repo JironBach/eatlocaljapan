@@ -29,5 +29,14 @@
     #book_it_status
       #book_it_enabled.clearfix
         / HACK: need to rewrite by class and rename
-        #subtotal_area
-          = f.submit t('.submit'), id: 'book_it_button', class: "btn btn-primary btn-large btn-block#{user_signed_in? && (current_user != listing.user) ? '' : ' disabled'} bookIt__submitButton"
+        #subtotal_area.row-space-3
+          - if current_user&.profile&.minimum_requirement?
+            = f.submit t('.submit'), id: 'book_it_button', class: "btn btn-primary btn-large btn-block#{user_signed_in? && (current_user != listing.user) ? '' : ' disabled'} bookIt__submitButton"
+          - else
+            = link_to t('.create_profile'), edit_profile_path, class: 'btn btn-primary btn-large btn-block'
+        ul
+          - unless current_user&.profile&.minimum_requirement?
+            li
+              = t('.request_description_1')
+          li
+            = t('.request_description_2')
