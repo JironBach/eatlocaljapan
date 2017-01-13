@@ -167,7 +167,7 @@ class Listing < ApplicationRecord
   end
 
   def business_hour_on(schedule)
-    HolidayJp.holiday?(schedule) ? holiday_business_hour : weekday_business_hours.find_by(wday: schedule.wday)
+    HolidayJp.holiday?(schedule.to_date) ? holiday_business_hour : weekday_business_hours.find_by(wday: schedule.wday)
   end
 
   def busy_times(schedule)
