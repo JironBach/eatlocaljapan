@@ -20,15 +20,18 @@ $ ->
       language: 'ja'
       clearBtn: true
       format : 'yyyy-mm-dd'
-    .on 'click', (e)->
-      date = if e.date then new Date(e.date) else new Date() 
+    .on 'click changeMonth', (e)->
+      date = e.type == 'click' && $(@).datepicker('getDate') || e.date && new Date(e.date) || new Date()
       $.ajax
         type: 'GET'
         url: new URI(location.href).segmentCoded(['listings', $(@).data('listing-id'),date.getFullYear(), date.getMonth() + 1, 'closed_days']).href()
         dataType: 'json'
         success: (data)=>
-          $(@).datepicker('setDaysOfWeekDisabled', data.w_days)
-          $(@).datepicker('setDatesDisabled', data.dates)
+          datepicker = $(@).data('datepicker')
+          datepicker.setDaysOfWeekDisabled(data.w_days)
+          datepicker.setDatesDisabled(data.dates)
+          datepicker.viewDate = date
+          datepicker.fill()
         error: ->
       return true
     .on 'changeDate', (e)->
