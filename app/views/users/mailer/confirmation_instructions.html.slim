@@ -1,8 +1,8 @@
 p
-  | このサービスへようこそ！
-  = @email
-  | !
+  | eatloclajapanへの登録ありがとうございます！
 p
-  | 下のリンクから、引き続き登録をお願いします。
+  | 下のリンクをクリックして、アカウントを有効化してください。
 p
-  = link_to 'アカウント登録をする', confirmation_url(@resource, confirmation_token: @token)
+  = link_to 'アカウント有効化する', confirmation_url(@resource, confirmation_token: @token)
+p
+  | eatlocaljapan

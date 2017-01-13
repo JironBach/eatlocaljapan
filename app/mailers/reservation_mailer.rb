@@ -10,7 +10,7 @@ class ReservationMailer < ApplicationMailer
     # rubocop:disable Style/SymbolProc
     mail(
       to:      to_user.email,
-      subject: I18n.t('reservation_mailer.send_new_reservation_notification.subject')
+      subject: '予約が完了しました/Your reservation is confirmed'
     ) do |format|
       format.text
     end
@@ -38,7 +38,7 @@ class ReservationMailer < ApplicationMailer
     # rubocop:disable Style/SymbolProc
     mail(
       to:      to_user.email,
-      subject: reservation.subject_of_update_mail
+      subject: '予約がキャンセルされました/Reservation has been canceled'
     ) do |format|
       format.text
     end

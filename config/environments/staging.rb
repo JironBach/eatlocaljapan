@@ -44,7 +44,7 @@ Rails.application.configure do
   # Raises error for missing translations
   config.action_view.raise_on_missing_translations = true
   # Mailer
-  config.action_mailer.default_url_options = {host: 'eatlocaljapan.herokuapp.com'}
+  config.action_mailer.default_url_options = {host: 'eatlocaljapan.herokuapp.com', protocol: 'https'}
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :ses
 end

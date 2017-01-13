@@ -1,11 +1,21 @@
-<%= t '.greeting1' %><%= @to_user_name %><%= t 'prefix' %><%= t '.greeting2' %>
+English follows Japanese
 
-<%= t '.msg1' %><%= @from_user_name %><%= t 'prefix' %><%= t '.msg2' %>
+<%= "【#{@to_user_name}】さん、" %>
 
-<%= t '.msg3' %>
+<%= "【#{@from_user_name}】さんからメッセージが届きました！" %>
+
+以下のリンクから、内容をご確認ください。
 
 <%= message_thread_url(@locale, @message_thread) %>
 
+<%= "Hello, 【#{@to_user_name}】," %>
 
---
-<%= t 'basic_info.service_name' %>
+<%= "You've got a message from 【#{@from_user_name}】." %>
+
+Please click the link below to check the detail.
+
+<%= message_thread_url(@locale, @message_thread) %>
+
+eatlocaljapan
+<%= root_url %>
+<%= root_url(locale: :en) %>

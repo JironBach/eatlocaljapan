@@ -9,7 +9,7 @@ class MessageMailer < ApplicationMailer
     # rubocop:disable Style/SymbolProc
     mail(
       to:      to_user.email,
-      subject: I18n.t('message_mailer.send_new_message_notification.subject')
+      subject: '新しいメッセージが届きました/You received a new message'
     ) do |format|
       format.text
     end
