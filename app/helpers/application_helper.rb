@@ -224,13 +224,7 @@ module ApplicationHelper
 
   def string_of_read(read, sender_flg)
     if read
-      if sender_flg
-        t 'message.already_read.string'
-      else
-        t 'message.read.string'
-      end
-    elsif sender_flg
-      t 'message.waiting_for_read.string'
+      t 'message.read.string'
     else
       t 'message.unread.string'
     end
