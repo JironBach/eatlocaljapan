@@ -4,4 +4,5 @@ Payment.configure do |config|
   config.shop_key = ENV['GMO_SHOP_KEY']
   config.site_id = ENV['GMO_SITE_ID']
   config.site_key = ENV['GMO_SITE_KEY']
+  config.link_endpoint = ENV['GMO_LINK_ENDPOINT']
 end

@@ -1,0 +1,4 @@
+= form_tag(gmo.url, method: 'post') do
+  - [:shop_id, :site_id, :member_id, :order_id, :datetime, :amount, :shop_pass_string, :use_credit, :job_cd, :member_pass_string, :ret_url, :enc, :lang].each do |field|
+    = hidden_field_tag gmo.param_name(field), gmo.send(field)
+  = submit_tag t('.add_payment_method'), class: 'btn btn-primary'

@@ -5,6 +5,6 @@ module CreditCardDecorator
   end
 
   def title
-    crushed_card_no
+    card_no
   end
 end

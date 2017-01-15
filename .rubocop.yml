@@ -63,6 +63,9 @@ Style/RegexpLiteral:
   EnforcedStyle: slashes
   AllowInnerSlashes: true
 
+Style/SignalException:
+  EnforcedStyle: only_raise
+
 Style/SingleLineBlockParams:
   Enabled: false
 

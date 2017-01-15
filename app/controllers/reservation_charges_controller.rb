@@ -38,7 +38,7 @@ class ReservationChargesController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if current_user.with_lock { @charge.destroy }
+      if current_user.with_lock { @charge.cancel }
         format.html { redirect_to listing_reservation_charges_path(@listing), notice: I18n.t(:success, model: Charge.model_name.human, scope: [:alerts, :charges, :destroy]) }
       else
         format.html { redirect_to listing_reservation_charges_path(@listing), alert: I18n.t(:failure, model: Charge.model_name.human, scope: [:alerts, :charges, :destroy]) }

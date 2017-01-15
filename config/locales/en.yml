@@ -62,13 +62,7 @@ en:
         user_id: 'User'
         user: 'User'
         type: 'Payment Method Type'
-        card_no1: 'Card No(first)'
-        card_no2: 'Card No(second)'
-        card_no3: 'Card No(third)'
-        card_no4: 'Card No(fourth)'
         card_no: 'Card No'
-        expired_year: 'Expired Year'
-        expired_month: 'Expired Month'
         expired_on: 'Exprired On'
         gmo_card_seq: 'Card Sequence'
         registered_at: 'Registered At'
@@ -643,6 +637,10 @@ en:
       title: "Edit %{model}"
     new:
       title: "New %{model}"
+    create:
+      header: 'Payment Method'
+      title: "New %{model}"
+      add_payment_method: 'Save'
     form:
       header: 'Payment Method'
       year: ''
@@ -1291,12 +1289,17 @@ en:
         failure: "%{model} couldn't be destroyed."
     credit_cards:
       create:
-        success: "%{model} was successfully created."
+        success: "%{model} was successfully updated."
+        failure: "%{model} couldn't be updated."
       update:
         success: "%{model} was successfully updated."
+        failure: "%{model} couldn't be updated."
       destroy:
         success: "%{model} was successfully destroyed."
         failure: "%{model} couldn't be destroyed."
+    payment_methods:
+      index:
+        failure: "%{model} couldn't be fetched."
     reservation:
       save:
         success: "Requested %{model}. Please confirm your request and wait for %{msg} from %{host}."

@@ -9,4 +9,8 @@ module ChargeDecorator
     service.title
   end
   # rubocop:enable Rails/Delegate
+
+  def status_class
+    Settings.charge.status_classes[status]
+  end
 end

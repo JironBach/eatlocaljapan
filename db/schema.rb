@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161124134305) do
+ActiveRecord::Schema.define(version: 20170113072645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20161124134305) do
     t.integer  "charger_id"
     t.string   "payment_method_type"
     t.integer  "payment_method_id"
-    t.integer  "status"
+    t.integer  "status",              default: 0
     t.integer  "order_no"
     t.date     "expiration_date"
     t.datetime "ordered_at"
@@ -336,20 +336,12 @@ ActiveRecord::Schema.define(version: 20161124134305) do
   create_table "payment_methods", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "type"
-    t.string   "encrypted_card_no1"
-    t.string   "encrypted_card_no1_iv"
-    t.string   "encrypted_card_no2"
-    t.string   "encrypted_card_no2_iv"
-    t.string   "encrypted_card_no3"
-    t.string   "encrypted_card_no3_iv"
-    t.string   "encrypted_card_no4"
-    t.string   "encrypted_card_no4_iv"
-    t.integer  "expired_year"
-    t.integer  "expired_month"
     t.integer  "gmo_card_seq"
     t.datetime "registered_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "card_no"
+    t.string   "expired_on"
   end
 
   create_table "prefectures", force: :cascade do |t|
@@ -478,7 +470,7 @@ ActiveRecord::Schema.define(version: 20161124134305) do
     t.string   "name"
     t.string   "name_en"
     t.string   "code"
-    t.integer  "charge_type"
+    t.integer  "charge_type", default: 0
     t.integer  "amount"
     t.string   "description"
     t.datetime "created_at"

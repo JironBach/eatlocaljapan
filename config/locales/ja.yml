@@ -64,13 +64,7 @@ ja:
         user_id: 'ユーザー'
         user: 'ユーザー'
         type: '支払方法種別'
-        card_no1: 'カード番号(1)'
-        card_no2: 'カード番号(2)'
-        card_no3: 'カード番号(3)'
-        card_no4: 'カード番号(4)'
         card_no: 'カード番号'
-        expired_year: '有効期限(年)'
-        expired_month: '有効期限(月)'
         expired_on: '有効期限'
         gmo_card_seq: 'カード連番'
         registered_at: '登録日時'
@@ -644,6 +638,10 @@ ja:
       title: "%{model}の編集"
     new:
       title: "%{model}の作成"
+    create:
+      header: '支払方法'
+      title: "%{model}の登録"
+      add_payment_method: '登録'
     form:
       header: '支払方法'
       year: 年
@@ -939,8 +937,9 @@ ja:
       title: '%{model}一覧'
       no_payment_method:
         title: '支払方法の登録はありません'
-      add_payment_method: '支払方法を作成'
       destroy: '削除'
+    link:
+      add_payment_method: '支払方法を作成'
   profile_images:
     edit:
       title: "%{model}の編集"
@@ -1292,12 +1291,17 @@ ja:
         failure: "%{model}の削除に失敗しました。"
     credit_cards:
       create:
-        success: "%{model}を登録しました。"
+        success: "%{model}を更新しました。"
+        failure: "%{model}の更新に失敗しました。"
       update:
         success: "%{model}を更新しました。"
+        failure: "%{model}の更新に失敗しました。"
       destroy:
         success: "%{model}を削除しました。"
         failure: "%{model}の削除に失敗しました。"
+    payment_methods:
+      index:
+        failure: '%{model}の取得に失敗しました。'
     reservation:
       save:
         success: "%{model}を申し込みました。ご確認いただき、%{host}の方からの%{msg}をお待ちください。"

@@ -82,6 +82,7 @@ gem 'easy_translate'
 gem 'gmo'
 gem 'aws-ses', '~> 0.6', require: 'aws/ses'
 gem 'attr_encrypted'
+gem 'addressable'
 
 # Use Capistrano for deployment
 group :development, :staging, :production do

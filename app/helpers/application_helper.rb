@@ -25,8 +25,8 @@ module ApplicationHelper
     }
   end
 
-  def i18n_url_for(locale: locale_for, **params)
-    url_for(params.merge(locale: locale_for == I18n.default_locale ? nil : locale_for))
+  def i18n_url_for(locale:, **params)
+    url_for(params.merge(locale: locale == I18n.default_locale ? nil : locale))
   end
 
   def full_title(page_title)
