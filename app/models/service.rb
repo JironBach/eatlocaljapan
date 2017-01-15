@@ -6,7 +6,7 @@
 #  name        :string
 #  name_en     :string
 #  code        :string
-#  charge_type :integer
+#  charge_type :integer          default(0)
 #  amount      :integer
 #  description :string
 #  created_at  :datetime

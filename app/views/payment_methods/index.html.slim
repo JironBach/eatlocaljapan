@@ -10,8 +10,7 @@
           .card-body
             h3
               = t('.no_payment_method.title')
-            = link_to new_credit_card_path, class: 'btn btn-primary' do
-              = t('.add_payment_method')
+            = render 'link', gmo: @gmo_request
     - else
       .col-md-9
         .card
@@ -21,7 +20,7 @@
                 = t('.title', model: PaymentMethod.model_name.human)
               .col-md-12.col-lg-4
                 .pull-right
-                  = link_to t('.add_payment_method'), new_credit_card_path, class: 'btn btn-primary'
+                  = render 'link', gmo: @gmo_request
           .suspension-container
             ul.list-unstyled.list-layout
               - @payment_methods.each do |payment_method|

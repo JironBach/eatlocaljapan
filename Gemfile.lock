@@ -60,6 +60,8 @@ GEM
     adamantium (0.2.0)
       ice_nine (~> 0.11.0)
       memoizable (~> 0.4.0)
+    addressable (2.5.0)
+      public_suffix (~> 2.0, >= 2.0.2)
     airbrussh (1.1.1)
       sshkit (>= 1.6.1, != 1.7.0)
     anbt-sql-formatter (0.0.5)
@@ -438,6 +440,7 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
+    public_suffix (2.0.4)
     puma (3.4.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
@@ -681,6 +684,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
+  addressable
   annotate (= 2.6.8)
   attr_encrypted
   awesome_print (= 1.6.1)

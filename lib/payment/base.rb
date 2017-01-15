@@ -13,7 +13,6 @@ class Payment
       end
     end
 
-  private
     def config
       self.class.config
     end

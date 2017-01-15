@@ -1,0 +1,27 @@
+- provide :title, t('.title', model: CreditCard.model_name.human)
+= render 'shared/subnav'
+.page-container.row-space-top-4.row-space-8
+  .row
+    .col-md-3
+      = render 'shared/user_sidenav'
+    .col-md-9
+      .card.row-space-4
+        = form_tag(@gmo_request.url, method: 'post') do
+          - [:site_id, :member_id, :shop_id, :order_id, :member_pass_string, :ret_url, :cancel_url, :datetime, :enc, :lang].each do |field|
+            = hidden_field_tag @gmo_request.param_name(field), @gmo_request.send(field)
+          .card-header
+            = t '.header'
+          .card-body
+            .row
+              .col-md-10
+                .row.row-condensed.row-space-2
+                  .col-md-4.text-right.text-left--md
+                    label for='card_no'
+                      = CreditCard.human_attribute_name(:card_no)
+                      i.fa.fa-asterisk.fa-danger
+                  = @gmo_response.card_no
+              .col-md-2
+
+          .card-footer
+            .text-reset-center
+              = submit_tag t('.add_payment_method'), class: 'btn btn-primary'

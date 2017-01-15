@@ -56,6 +56,4 @@ Rails.application.configure do
     user_name: Rails.application.secrets.action_mailer_user_name,
     password: Rails.application.secrets.action_mailer_password
   }
-
-  config.action_controller.action_on_unpermitted_parameters = :raise
 end

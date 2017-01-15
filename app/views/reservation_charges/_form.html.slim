@@ -11,7 +11,7 @@
             = Charge.human_attribute_name(:payment_method)
             i.fa.fa-asterisk.fa-danger
         .col-md-9
-            = f.input_field :payment_method_id, as: :select, collection: current_user.credit_cards.available, label_method: :title, value_method: :id
+            = f.input_field :payment_method_id, as: :select, collection: current_user.credit_cards, label_method: :title, value_method: :id
 
     .card-footer
       .text-reset-center

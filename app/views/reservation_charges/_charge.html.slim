@@ -2,7 +2,11 @@ li.listing.card-body
   .row.row-table
     .col-xs-12.col-lg-8
       span.h4
-        = link_to charge.title, edit_listing_reservation_charge_path(charge.charger, charge), class: 'text-normal trans'
+        - unless charge.continuing?
+          = render 'charge_summary', charge: charge
+        - else
+          = link_to edit_listing_reservation_charge_path(charge.charger, charge), class: 'text-normal trans' do
+            = render 'charge_summary', charge: charge
     .col-md-12.col-lg-4
       .pull-right
-        = link_to t('.destroy'), listing_reservation_charge_path(charge.charger, charge), class: 'btn btn-danger', method: :delete, data: {confirm: I18n.t(:confirmation, scope: [:messages, :application, :destroy])}
+        = link_to_if charge.continuing?, t('.destroy'), listing_reservation_charge_path(charge.charger, charge), class: 'btn btn-danger', method: :delete, data: {confirm: I18n.t(:confirmation, scope: [:messages, :application, :destroy])} { }

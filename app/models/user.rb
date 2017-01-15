@@ -54,7 +54,7 @@ class User < ApplicationRecord
   has_many :message_thread_users, dependent: :destroy
   has_many :message_threads, through: :message_thread_users, dependent: :destroy
   has_many :payment_methods, dependent: :destroy
-  has_many :credit_cards
+  has_many :credit_cards, autosave: true
   has_many :charges, as: :charger, dependent: :destroy
   has_many :services, through: :charges
 
@@ -129,5 +129,47 @@ class User < ApplicationRecord
 
   def member_id
     [id, gmo_member_seq].join('-')
+  end
+
+  def regist_member
+    Payment.service(:gmo).api(:site) do |api|
+      begin
+        response = gmo_member_seq.positive? && api.search_member(member_id: member_id)
+      rescue GMO::Payment::APIError => ex
+        # HACK: reconsider implementation around error handling
+        raise unless ex.error_info['ErrInfo'].split('|').include?('E01390002')
+      end
+      # HACK: reconsider irregular case, which is success user registration but failed to update user.
+      unless response
+        self.gmo_member_seq += 1
+        api.save_member(member_id: member_id)
+        Rails.logger.info("member registered: member_id: #{member_id}")
+      end
+    end
+    true
+  rescue GMO::Payment::APIError => ex
+    Rails.logger.error("[error] GMO::Payment::APIError: #{ex.message}")
+    # TODO: reconsider error message
+    errors.add(:base, :gmo_error)
+    false
+  end
+
+  def synchronize_credit_cards
+    Gmo::CreditCard.about(member_id: member_id).each do |card_seq:, default_flag:, card_name: nil, card_no:, expire:, holder_name:, delete_flag:|
+      credit_card = credit_cards.detect { |instance| instance.gmo_card_seq == card_seq.to_i }
+      next unless credit_card || delete_flag != '1'
+      credit_card ||= credit_cards.build(registered_at: Time.zone.now, gmo_card_seq: card_seq)
+      credit_card.assign_attributes(card_no: card_no, expired_on: expire)
+      if delete_flag == '1'
+        credit_card.mark_for_destruction
+        credit_card.charges.each { |charge| charge.status = :terminated if charge.available? }
+      end
+    end
+    true
+  rescue GMO::Payment::APIError => ex
+    Rails.logger.error("[error] GMO::Payment::APIError: #{ex.message}")
+    # TODO: reconsider error message
+    errors.add(:base, :gmo_error)
+    false
   end
 end

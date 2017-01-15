@@ -2,7 +2,7 @@ li.listing.card-body
   .row.row-table
     .col-xs-12.col-lg-8
       span.h4
-        = link_to credit_card.title, edit_credit_card_path(credit_card), class: 'text-normal trans'
+        = credit_card.title
     .col-md-12.col-lg-4
       .pull-right
         = link_to t('.destroy'), credit_card_path(credit_card), class: 'btn btn-danger', method: :delete, data: {confirm: I18n.t(:confirmation, scope: [:messages, :application, :destroy])}
