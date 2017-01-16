@@ -973,7 +973,7 @@ en:
       old: "%{model} you've written"
       no_old: "No person you've written %{model} for"
     form:
-      header: Required
+      header: 'Edit Profile'
       text_closed: No other user can access this information
       text_limited: Only joined user can access this information
       year: Y
