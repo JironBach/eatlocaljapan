@@ -55,5 +55,7 @@ module AirbnbClone
       g.controller_specs false
       g.view_specs false
     end
+
+    config.middleware.use 'Rack::Access', YAML.load(File.open(Rails.root.join('config/access.yml'), &:read))[Rails.env] if Rails.env.staging? || Rails.env.production?
   end
 end

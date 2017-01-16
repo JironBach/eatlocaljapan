@@ -1,0 +1,10 @@
+participant: &participant
+  - 183.77.230.22
+  - 42.146.105.241
+  - 119.245.199.201
+staging:
+  /:
+    *participant
+production:
+  /admin:
+    *participant
