@@ -83,6 +83,7 @@ gem 'gmo'
 gem 'aws-ses', '~> 0.6', require: 'aws/ses'
 gem 'attr_encrypted'
 gem 'addressable'
+gem 'rack-contrib', require: 'rack/contrib'
 
 # Use Capistrano for deployment
 group :development, :staging, :production do
