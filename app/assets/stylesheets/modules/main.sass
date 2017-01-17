@@ -428,7 +428,6 @@ input.checkin
     padding: 15px 20px 10px
 
 #new_reservation
-  margin-top: -40px
   width: 315px
 
 #pricing
@@ -458,13 +457,13 @@ input.checkin
 
 #book_it
   position: absolute
-  width: 315px
   z-index: 10
   border-top: none
   @media (min-width: 1100px)
+    margin-top: -40px
     &.fixed
       position: fixed
-      top: 0
+      top: 40px
       z-index: 1001
 @media (max-width: 767px)
   #book-it-sm-modal + #book_it

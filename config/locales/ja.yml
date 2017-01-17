@@ -882,9 +882,9 @@ ja:
       show_all: すべて見る
       reply_from_host: "ホストの方より返答: "
     request_block:
+      title: '予約リクエスト'
       price:
         per_attend: 1回の料金
-      submit: 予約をリクエスト
       pv:
         text: "こちらの店舗情報は今週%{num}回閲覧されております。"
       share:
@@ -894,6 +894,8 @@ ja:
       cancel:
         text: キャンセルをすると全額返金を求めることができます。
       time: 時間
+    request_form:
+      submit: 予約をリクエスト
       in_english: 英語のご対応が必要ですか?
     similar_listings:
       title: 近くの店舗情報

@@ -68,10 +68,10 @@ $ ->
         dataType: 'json'
         success: (data)->
           if data.spaces <= 0
-            $('.bookIt .bookIt__numOfPeople, .bookIt .bookIt__sumbitButton').prop('disabled', true)
+            $('.bookIt .bookIt__numOfPeople, .bookIt .bookIt__submitButton').prop('disabled', true)
           else
             numOfPeople = $('.bookIt .bookIt__numOfPeople')
-            $('.bookIt .bookIt__numOfPeople, .bookIt .bookIt__sumbitButton').prop('disabled', false)
+            $('.bookIt .bookIt__numOfPeople, .bookIt .bookIt__submitButton').prop('disabled', false)
             numOfPeople.removeClass('disabled')
             numOfPeople.html('')
             for i in [1..data.spaces]
