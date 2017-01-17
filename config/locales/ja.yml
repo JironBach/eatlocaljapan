@@ -882,7 +882,7 @@ ja:
       show_all: すべて見る
       reply_from_host: "ホストの方より返答: "
     request_block:
-      title: '予約リクエスト'
+      title: '予約'
       price:
         per_attend: 1回の料金
       pv:
@@ -895,8 +895,11 @@ ja:
         text: キャンセルをすると全額返金を求めることができます。
       time: 時間
     request_form:
-      submit: 予約をリクエスト
-      in_english: 英語のご対応が必要ですか?
+      submit: 予約する
+      in_english: "英語のメニューがあれば使いたい"
+      create_profile: プロフィールを作成
+      request_description_1: "予約するにはプロフィールを作成してください"
+      request_description_2: "予約は即時確定します"
     similar_listings:
       title: 近くの店舗情報
     subnav:
@@ -906,7 +909,7 @@ ja:
       reviews: レビュー
       host_profile: ホスト紹介
       neighborhood: 開催地
-      request: 予約をリクエスト
+      request: "予約する"
     show:
       title: 店舗情報詳細
       request: "%{rsrv}をリクエスト"

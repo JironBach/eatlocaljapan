@@ -881,7 +881,7 @@ en:
       show_all: Show All
       reply_from_host: "Reply from Host: "
     request_block:
-      title: 'reservation request'
+      title: 'Reservation'
       price:
         per_attend: per attend
       pv:
@@ -894,8 +894,11 @@ en:
         text: Once you cancel, you can request to pay whole fee back.
       time: Time
     request_form:
-      submit: request reservation
-      in_english: English speaking?
+      submit: Reserve Now
+      in_english: prefer English menu, if available
+      create_profile: Create profile
+      request_description_1: "Create profile to make a reservation."
+      request_description_2: "Reservation is immediately confirmed."
     similar_listings:
       title: Similar listings
     subnav:
