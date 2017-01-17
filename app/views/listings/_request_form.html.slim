@@ -1,0 +1,33 @@
+.card-body.card-light
+  = simple_form_for([listing, reservation], html: {class: 'info new-o2-form-inline bookIt_form'}) do |f|
+    = f.hidden_field :progress, value: 'accepted'
+
+    .form-fields
+      .row.row-condensed.row-space-3
+        .col-md-12
+          label.bookIt__checkinLabel[for='checkin']
+            = Reservation.human_attribute_name :schedule
+          = f.text_field :schedule, id: 'checkin', class: 'datepicker bookIt__checkin', data: {'listing_id': listing.id, date_start_date: "+#{listing[:from]}d", date_end_date: "+#{listing[:to]}m"}
+      .row.row-condensed.row-space-3
+        .col-md-12
+          label.bookIt__checkinLabel[for='checkin_time']
+            = Reservation.human_attribute_name :time
+          = f.text_field :time, id: 'checkin_time', class: 'timepicker bookIt__checkinTime', data: {listing_id: listing.id, time_format: 'H:i', step: listing.unit}, placeholder: '12:00', disabled: true, readonly: false
+      .row.row-condensed.row-space-3
+        .col-md-12
+          label[for='num_of_people']
+            = Reservation.human_attribute_name :num_of_people
+          = f.input_field :num_of_people, id: 'num_of_people', disabled: true, class: 'bookIt__numOfPeople', as: :select
+      .row.row-condensed.row-space-3
+        .col-md-12
+          #book_it_button_container
+          .select.select-block
+            label[for='in_english']
+              = f.check_box :in_english
+              = t('.in_english')
+
+    #book_it_status
+      #book_it_enabled.clearfix
+        / HACK: need to rewrite by class and rename
+        #subtotal_area
+          = f.submit t('.submit'), id: 'book_it_button', class: "btn btn-primary btn-large btn-block#{user_signed_in? && (current_user != listing.user) ? '' : ' disabled'} bookIt__submitButton"

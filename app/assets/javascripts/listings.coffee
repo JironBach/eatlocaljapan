@@ -206,13 +206,8 @@ $ ->
 
     # responsive request-block moving
     requestMove = ->
-      modalWrap = $('.bookIt__modal_size_sm')
-      bookWrap = $('.book_it')
-      parentForm = $('.bookIt_form')
-      if $('#request-btn-fixed').css('display') == 'block'
-        bookWrap.appendTo(modalWrap)
-      else
-        bookWrap.appendTo(parentForm)
+      wrap = if $('#request-btn-fixed').css('display') == 'block' then $('.bookIt__modal_size_sm') else $('.bookIt').not('.bookIt__modal_size_sm')
+      wrap.siblings().not(wrap).remove()
 
     requestMove()
     # window resize

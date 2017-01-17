@@ -881,9 +881,9 @@ en:
       show_all: Show All
       reply_from_host: "Reply from Host: "
     request_block:
+      title: 'reservation request'
       price:
         per_attend: per attend
-      submit: request reservation
       pv:
         text: "The num of view in this week is %{num}."
       share:
@@ -893,6 +893,8 @@ en:
       cancel:
         text: Once you cancel, you can request to pay whole fee back.
       time: Time
+    request_form:
+      submit: request reservation
       in_english: English speaking?
     similar_listings:
       title: Similar listings
