@@ -24,13 +24,14 @@
   .card.location-card
     #map
 
-#request-btn-fixed.fixed-btn-wrapper.show--sp
-  - if user_signed_in?
-    button#message-host-link-fixed.btn.btn-large.btn-fixed-bottom.btn-primary
-      = t('.request', rsrv: Reservation.model_name.human)
-  - else
-    =link_to user_session_path, class: 'btn btn-large btn-fixed-bottom btn-primary' do
-      = t('.request', rsrv: Reservation.model_name.human)
+- if @listing.reservation_enabled?
+  #request-btn-fixed.fixed-btn-wrapper.show--sp
+    - if user_signed_in?
+      button#message-host-link-fixed.btn.btn-large.btn-fixed-bottom.btn-primary
+        = t('.request', rsrv: Reservation.model_name.human)
+    - else
+      =link_to user_session_path, class: 'btn btn-large btn-fixed-bottom btn-primary' do
+        = t('.request', rsrv: Reservation.model_name.human)
 
 /#similar-listings.row-space-6.row-space-top-4
 /  = render 'similar_listings'
