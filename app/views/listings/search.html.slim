@@ -11,71 +11,75 @@
     = render 'listings/search/result_block', listings: @listings, conditions: @conditions
   /.card-btn--sp.filters-btn.fixed.show--sp
   /  button.js-small-filter-toggle.btn.btn-large.btn-block.btn-primary 検索条件
-  .card
-    .discovery-container
-      .discovery-section.page-container.page-container-no-padding.row-space-6
   = simple_form_for(:search, url: i18n_url_for(controller: 'listings', action: 'search', locale: locale), html: {method: 'get', id: 'search_form', class: 'hero-searchForm'}) do |f|
-    div align="left"
-      .row.row-space-5.row-space-top-5.row-table
-        .col-xs-4.text-right.col-middle
-          .h4.text-light
-            = Listing.human_attribute_name :title
-        .col-xs-8.fieldset.col-middle
-          .row
-            .col-xs-11
-              = f.input_field :shop_name, class: 'decorative-input', placeholder: t('.shop_name'), required: true
-      .row.row-space-5.row-space-top-5.row-table
-        .col-xs-4.text-right.col-middle
-          .h4.text-light
-            = Listing.human_attribute_name :prefecture
-        .col-xs-8.fieldset.col-middle
-          .row
-            .col-xs-11
-              = f.collection_select :prefectures, Prefecture.all.order(locale == :ja ? :id : :name_en), :id, locale == :ja ? :name : :name_en, include_blank: t('.prefecture')
-      .row.row-space-5.row-space-top-5.row-table
-        .col-xs-4.text-right.col-middle
-          .h4.text-light
-            = Listing.human_attribute_name :shop_category
-        .col-xs-8.fieldset.col-middle
-          .row
-            .col-xs-11
-              = f.collection_check_boxes :shop_categories, ShopCategory.all, :id, (locale == :ja ? :name : :name_en) do |sc|
-                = sc.label { sc.check_box + sc.text }
-    hr
-      .row.row-space-5.row-space-top-5.row-table
-        .col-xs-4.text-right.col-middle
-          .h4.text-light
-            = Listing.human_attribute_name :shop_service
-        .col-xs-8.fieldset.col-middle
-          .row
-            .col-xs-11
-              = f.collection_check_boxes :shop_services, ShopService.all, :id, (locale == :ja ? :name : :name_en) do |ss|
-                = ss.label { ss.check_box + ss.text }
-      hr
-      .row.row-space-5.row-space-top-5.row-table
-        .col-xs-4.text-right.col-middle
-          .h4.text-light
-            = Listing.human_attribute_name :smoking_id
-        .col-xs-8.fieldset.col-middle
-          .row
-            .col-xs-11
-              = f.collection_select :smoking_id, Smoking.all, :id, (locale == :ja ? :name : :name_en)
-      .row
-      .row.row-space-5.row-space-top-5.row-table
-        .col-xs-4.text-right.col-middle
-          .h4.text-light
-            = Listing.human_attribute_name :english
-        .col-xs-8.fieldset.col-middle
-          .row
-            .col-xs-11
-              = f.collection_check_boxes :englishes, English.all, :id, (locale == :ja ? :name : :name_en) do |b|
-                = b.label { b.check_box + b.text }
-      /.row.row-space-5.row-space-top-5.row-table
-      /  .col-xs-4.text-right.col-middle
-      /    .h4.text-light
-      /      = Listing.human_attribute_name :price
-      /  .col-xs-8.fieldset.col-middle
-      /    .row
-      /      .col-xs-11
-      /        = text_field_tag "[search][price]"
-    = button_tag(t('.submit'), type: 'submit', class: 'btn btn-primary btn-large', id: 'submit_location')
+    .page-container-full
+      .card.card-bald.card-wax.row-space-8
+        .card-body.card-medium
+          .discovery-container
+            .discovery-section.page-container.page-container-no-padding.row-space-6
+          div align="left"
+            .row.row-space-5.row-space-top-5.row-table
+              .col-xs-4.text-right.col-middle
+                .h4.text-light
+                  = Listing.human_attribute_name :title
+              .col-xs-8.fieldset.col-middle
+                .row
+                  .col-xs-11
+                    = f.input_field :shop_name, class: 'decorative-input', placeholder: t('.shop_name'), required: true
+            .row.row-space-5.row-space-top-5.row-table
+              .col-xs-4.text-right.col-middle
+                .h4.text-light
+                  = Listing.human_attribute_name :prefecture
+              .col-xs-8.fieldset.col-middle
+                .row
+                  .col-xs-11
+                    = f.collection_select :prefectures, Prefecture.all.order(locale == :ja ? :id : :name_en), :id, locale == :ja ? :name : :name_en, include_blank: t('.prefecture')
+            .row.row-space-5.row-space-top-5.row-table
+              .col-xs-4.text-right.col-middle
+                .h4.text-light
+                  = Listing.human_attribute_name :shop_category
+              .col-xs-8.fieldset.col-middle
+                .row
+                  .col-xs-11
+                    = f.collection_check_boxes :shop_categories, ShopCategory.all, :id, (locale == :ja ? :name : :name_en) do |sc|
+                      = sc.label { sc.check_box + sc.text }
+          hr
+            .row.row-space-5.row-space-top-5.row-table
+              .col-xs-4.text-right.col-middle
+                .h4.text-light
+                  = Listing.human_attribute_name :shop_service
+              .col-xs-8.fieldset.col-middle
+                .row
+                  .col-xs-11
+                    = f.collection_check_boxes :shop_services, ShopService.all, :id, (locale == :ja ? :name : :name_en) do |ss|
+                      = ss.label { ss.check_box + ss.text }
+            hr
+            .row.row-space-5.row-space-top-5.row-table
+              .col-xs-4.text-right.col-middle
+                .h4.text-light
+                  = Listing.human_attribute_name :smoking_id
+              .col-xs-8.fieldset.col-middle
+                .row
+                  .col-xs-11
+                    = f.collection_select :smoking_id, Smoking.all, :id, (locale == :ja ? :name : :name_en)
+            .row
+            .row.row-space-5.row-space-top-5.row-table
+              .col-xs-4.text-right.col-middle
+                .h4.text-light
+                  = Listing.human_attribute_name :english
+              .col-xs-8.fieldset.col-middle
+                .row
+                  .col-xs-11
+                    = f.collection_check_boxes :englishes, English.all, :id, (locale == :ja ? :name : :name_en) do |b|
+                      = b.label { b.check_box + b.text }
+            /.row.row-space-5.row-space-top-5.row-table
+            /  .col-xs-4.text-right.col-middle
+            /    .h4.text-light
+            /      = Listing.human_attribute_name :price
+            /  .col-xs-8.fieldset.col-middle
+            /    .row
+            /      .col-xs-11
+            /        = text_field_tag "[search][price]"
+            .row
+              .col-xs-9.col-offset-3.text-reset-center
+                = button_tag(t('.submit'), type: 'submit', class: 'btn btn-primary btn-large', id: 'submit_location')
