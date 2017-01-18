@@ -128,7 +128,7 @@ class User < ApplicationRecord
   end
 
   def member_id
-    [id, gmo_member_seq].join('-')
+    format('%07d-%d', id, gmo_member_seq)
   end
 
   def regist_member
@@ -155,7 +155,7 @@ class User < ApplicationRecord
   end
 
   def synchronize_credit_cards
-    Gmo::CreditCard.about(member_id: member_id).each do |card_seq:, default_flag:, card_name: nil, card_no:, expire:, holder_name:, delete_flag:|
+    Gmo::CreditCard.about(member_id: member_id).each do |card_seq:, default_flag:, card_name: nil, card_no:, expire:, holder_name:, delete_flag:, **options|
       credit_card = credit_cards.detect { |instance| instance.gmo_card_seq == card_seq.to_i }
       next unless credit_card || delete_flag != '1'
       credit_card ||= credit_cards.build(registered_at: Time.zone.now, gmo_card_seq: card_seq)
