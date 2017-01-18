@@ -44,9 +44,10 @@ private
         Gmo::RegistCreditCardResponse.new(member_id: current_user.member_id).tap { |instance| instance.assign_attributes(permitted_regist_credit_card_response_params) }
       else
         Gmo::CheckCreditCardResponse.new(member_id: current_user.member_id).tap do |instance|
+          locale = I18n.locale == :ja ? :ja : :en
           instance.assign_attributes(permitted_check_credit_card_response_params)
           @gmo_request = \
-            Gmo::RegistCreditCard.new(member_id: current_user.member_id, order_id: instance.order_id, ret_url: credit_cards_url, lang: I18n.locale == :ja ? :ja : :en)
+            Gmo::RegistCreditCard.new(member_id: current_user.member_id, order_id: instance.order_id, ret_url: credit_cards_url, cancel_url: payment_methods_url, lang: locale)
         end
       end
   end
