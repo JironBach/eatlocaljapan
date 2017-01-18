@@ -14,7 +14,7 @@ private
   end
 
   def create_gmo_instance
-    @gmo_request = Gmo::CheckCreditCard.new(member_id: current_user.member_id, ret_url: credit_cards_url, lang: I18n.locale == :ja ? :ja : :en)
+    @gmo_request = Gmo::CheckCreditCard.new(member_id: current_user.member_id, ret_url: credit_cards_url, cancel_url: payment_methods_url, lang: I18n.locale == :ja ? :ja : :en)
   end
 
   def load_payment_methods
