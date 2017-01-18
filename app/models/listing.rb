@@ -171,7 +171,7 @@ class Listing < ApplicationRecord
   end
 
   def busy_times(schedule)
-    UserNgevent.on(schedule).map { |event| [event.start, event.end] } \
+    listing_ngevents.on(schedule).map { |event| [event.start, event.end] } \
       << [(business_hour = business_hour_on(schedule)).lunch_break_start_hour, business_hour.lunch_break_end_hour]
   end
 
