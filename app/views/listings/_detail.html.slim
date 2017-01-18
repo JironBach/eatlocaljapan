@@ -1,9 +1,9 @@
 .page-container
   div class='listings search'
   .row
-    #details-column.col-lg-12
-      .row-space-12.row-space-top-12
-        h4.row-space-12
+    #details-column.col-lg-8
+      .row-space-8.row-space-top-8
+        h4.row-space-4
           = t('.about_this_listing')
         .listing-description
           = simple_format(listing.description)
@@ -21,111 +21,111 @@
         /        = t('.contact_to_host')
       hr
         .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
+          .col-md-3.text-muted
             .h4.text-light
               = Listing.human_attribute_name :title
-          .col-xs-8.fieldset.col-middle
+          .col-xs-9
             .row
               .col-xs-11
                 = listing.title
         hr
         .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
+          .col-md-3.text-muted
             .h4.text-light
               = Listing.human_attribute_name :title_en
-          .col-xs-8.fieldset.col-middle
+          .col-md-9
             .row
               .col-xs-11
                 = listing.title_en
         hr
         .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
+          .col-md-3.text-muted
             .h4.text-light
               = Listing.human_attribute_name :shop_category
-          .col-xs-8.fieldset.col-middle
+          .col-md-9
             .row
               .col-xs-11
                 = listing.shop_categories.pluck((locale == :ja ? :name : :name_en)).join(', ')
         hr
         .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
+          .col-md-3.text-muted
             .h4.text-light
               = Listing.human_attribute_name :shop_service
-          .col-xs-8.fieldset.col-middle
+          .col-md-9
             .row
               .col-xs-11
                 = listing.shop_services.pluck((locale == :ja ? :name : :name_en)).join(', ')
         /hr
         /.row.row-space-5.row-space-top-5.row-table
-        /  .col-xs-4.text-right.col-middle
+        /  .col-md-3.text-muted
         /    .h4.text-light
         /      | #{Listing.human_attribute_name :description}
-        /  .col-xs-8.fieldset.col-middle
+        /  .col-md-9
         /    .row
         /      .col-xs-11
         /        - description_en = listing.description_en.blank? ? EasyTranslate.translate(listing.description, to: :en) : listing.shop_description_en
         /        = locale == :ja ? listing.description : description_en
         /.row.row-space-5.row-space-top-5.row-table
-        /  .col-xs-4.text-right.col-middle
+        /  .col-md-3.text-muted
         /    .h4.text-light
         /      = Listing.human_attribute_name :cover_image
-        /  .col-xs-8.fieldset.col-middle
+        /  .col-md-9
         /    .row
         /      .col-xs-11.regist-pics
         /        = file_field :cover_image, as: :file
         hr
         .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
+          .col-md-3.text-muted
             .h4.text-light
               = Listing.human_attribute_name :zipcode
-          .col-xs-8.fieldset.col-middle
+          .col-md-9
             .row
-              .col-xs-6.col-md-4
+              .col-xs-11.col-md-4
                 = listing.zipcode
               /.question-icon-container
               /  i#zipcode-tooltip.fa.fa-question-circle.tooltip-trigger
         hr
         .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
+          .col-md-3.text-muted
             .h4.text-light
               = Listing.human_attribute_name :location
-          .col-xs-8.fieldset.col-middle
+          .col-md-9
             .row
               .col-xs-11
                 - location_en = listing.location_en.blank? ? EasyTranslate.translate(listing.location, to: :en) : listing.location_en
                 = locale == :ja ? listing.location : location_en
         /.row.row-space-5.row-space-top-5.row-table
-        /  .col-xs-4.text-right.col-middle
+        /  .col-md-3.text-muted
         /    .h4.text-light
         /      = Listing.human_attribute_name :direction
-        /  .col-xs-8.fieldset.col-middle
+        /  .col-md-9
         /    .row
         /      .col-xs-11
         /        = text_area_tag :direction, listing.direction, readonly: :true
         hr
         .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
+          .col-md-3.text-muted
             .h4.text-light
               = Listing.human_attribute_name :smoking_id
-          .col-xs-8.fieldset.col-middle
+          .col-md-9
             .row
               .col-xs-11
                 = Smoking.where(id: listing.smoking_id).pluck(locale == :ja ? :name : :name_en).join
         hr
         .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
+          .col-md-3.text-muted
             .h4.text-light
               = Listing.human_attribute_name :english_id
-          .col-xs-8.fieldset.col-middle
+          .col-md-9
             .row
               .col-xs-11
                 = listing.englishes.pluck((locale == :ja ? :name : :name_en)).join(', ')
         hr
         .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
+          .col-md-3.text-muted
             .h4.text-light
               = Listing.human_attribute_name :business_hours
-          .col-xs-8.fieldset.col-middle
+          .col-md-9
             .row
               .col-xs-11
                 - I18n.t(:abbr_day_names, scope: [:date]).map.with_index do |wday_name, wday|
@@ -151,10 +151,10 @@
                         | -
                         = l holiday_business_hour.end_hour, format: :hour
         /.row.row-space-5.row-space-top-5.row-table
-        /  .col-xs-4.text-right.col-middle
+        /  .col-md-3.text-muted
         /    .h4.text-light
         /      = Listing.human_attribute_name :business_hours_remarks
-        /  .col-xs-8.fieldset.col-middle
+        /  .col-md-9
         /    .row
         /      .col-xs-11
         /        = text_area_tag :business_hours_remarks, listing.business_hours_remarks, readonly: :true
@@ -162,10 +162,10 @@
         - unless locale == :ja
           | English of some restaurant's description was machine translated. It may not be 100% accurate.
         .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
+          .col-md-3.text-muted
             .h4.text-light
               = Listing.human_attribute_name t('.shop_description')
-          .col-xs-8.fieldset.col-middle
+          .col-md-9
             .row
               .col-xs-11
                 - shop_description_en = listing.shop_description_en.blank? && !listing.shop_description.blank? ? '(Translated by Google)' + EasyTranslate.translate(listing.shop_description, to: :en) : listing.shop_description_en
@@ -183,10 +183,10 @@
         / = t('activerecord.placeholders.listing.latitude')
         hr
         .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
+          .col-md-3.text-muted
             .h4.text-light
               = Listing.human_attribute_name :price_range
-          .col-xs-8.fieldset.col-middle
+          .col-md-9
             .row
               .col-xs-11
                 = listing.price_low
@@ -194,10 +194,10 @@
                 = listing.price_high
         hr
         .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
+          .col-md-3.text-muted
             .h4.text-light
               = Listing.human_attribute_name :price_range_dinner
-          .col-xs-8.fieldset.col-middle
+          .col-md-9
             .row
               .col-xs-11
                 = listing.price_low_dinner
@@ -205,46 +205,46 @@
                 = listing.price_high_dinner
         hr
         .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
+          .col-md-3.text-muted
             .h4.text-light
               = Listing.human_attribute_name :tel
-          .col-xs-8.fieldset.col-middle
+          .col-md-9
             .row
               .col-xs-11
                 = listing.tel
         hr
         .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
+          .col-md-3.text-muted
             .h4.text-light
               = Listing.human_attribute_name :url
-          .col-xs-8.fieldset.col-middle
+          .col-md-9
             .row
               .col-xs-11
                 = link_to listing.url, listing.url, target: '_blank' unless listing.url.blank?
         hr
         .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
+          .col-md-3.text-muted
             .h4.text-light
               = Listing.human_attribute_name :link_tabelog
-          .col-xs-8.fieldset.col-middle
+          .col-md-9
             .row
               .col-xs-11
                 = link_to image_tag('logo_tabelog.svg', height: '30'), listing.link_tabelog, target: '_blank' unless listing.link_tabelog.blank?
         hr
         .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
+          .col-md-3.text-muted
             .h4.text-light
               = Listing.human_attribute_name :link_yelp
-          .col-xs-8.fieldset.col-middle
+          .col-md-9
             .row
               .col-xs-11
                 = link_to image_tag('yelp_logo.png', height: '30'), listing.link_yelp, target: '_blank' unless listing.link_yelp.blank?
         hr
         .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
+          .col-md-3.text-muted
             .h4.text-light
               = Listing.human_attribute_name :link_tripadvisor
-          .col-xs-8.fieldset.col-middle
+          .col-md-9
             .row
               .col-xs-11
                 = link_to image_tag('trip_logo.svg', height: '30'), listing.link_tripadvisor, target: '_blank' unless listing.link_tripadvisor.blank?
@@ -252,47 +252,47 @@
         - unless locale == :ja
           | English of some restaurant's description was machine translated. It may not be 100% accurate.
         .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
+          .col-md-3.text-muted
             .h5.text-light
               = Listing.human_attribute_name t('.recommended')
-          .col-xs-8.fieldset.col-middle
+          .col-md-9
             .row
               .col-xs-11
                 - recommended_en = listing.recommended_en.blank? && !listing.recommended.blank? ? '(Translated by Google)' + EasyTranslate.translate(listing.recommended, to: :en) : listing.recommended_en
                 = simple_format(raw(nl2br(h(locale == :ja ? listing.recommended : recommended_en))))
         /.row.row-space-5.row-space-top-5.row-table
-        /  .col-xs-4.text-right.col-middle
+        /  .col-md-3.text-muted
         /    .h4.text-light
         /      = Listing.human_attribute_name :visit_benefits
-        /  .col-xs-8.fieldset.col-middle
+        /  .col-md-9
         /    .row
         /      .col-xs-11
         /        - visit_benefits_en = listing.visit_benefits_en.blank? && listiong.visit_benefits.blank? ? EasyTranslate.translate(listing.visit_benefits, to: :en) : listing.visit_benefits_en
         /        = locale == :ja ? listing.visit_benefits : visit_benefits_en
         /.row.row-space-5.row-space-top-5.row-table
-        /  .col-xs-4.text-right.col-middle
+        /  .col-md-3.text-muted
         /    .h4.text-light
         /      = Listing.human_attribute_name :visit_benefits_another
-        /  .col-xs-8.fieldset.col-middle
+        /  .col-md-9
         /    .row
         /      .col-xs-11
         /        - visit_benefits_another_en = listing.visit_benefits_another_en.blank? && !listing.visit_benefits_another.blank? ? EasyTranslate.translate(listing.visit_benefits_another, to: :en) : listing.visit_benefits_another_en
         /        = locale == :ja ? listing.visit_benefits_another : visit_benefits_another_en
         hr
         .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
+          .col-md-3.text-muted
             .h5.text-light
               = Listing.human_attribute_name :english_messages
-          .col-xs-8.fieldset.col-middle
+          .col-md-9
             .row
               .col-xs-11
                 = listing.english_messages.pluck((locale == :ja ? :name : :name_en)).join(', ')
         hr
         .row.row-space-5.row-space-top-5.row-table
-          .col-xs-4.text-right.col-middle
+          .col-md-3.text-muted
             .h4.text-light
               = Listing.human_attribute_name :info_admin_id
-          .col-xs-8.fieldset.col-middle
+          .col-md-9
             .row
               .col-xs-11
                 = InfoAdmin.where(id: listing.info_admin_id).pluck((locale == :ja ? :name : :name_en)).join
