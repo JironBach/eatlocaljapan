@@ -100,8 +100,8 @@ en:
       listing/holiday_business_hour:
         <<: *holiday_business_hour
       listing:
-        title: Restaurant Name
-        title_en: Restaurant Name(English)
+        title: Name
+        title_en: Name(English)
         shop_category: Category
         shop_categories: Category
         shop_service: Service
@@ -132,15 +132,15 @@ en:
         englishes: English
         business_hours: Business hours
         business_hours_remarks: Business hours remarks
-        shop_description: About the restaurant Japanese
-        shop_description_en: About the restaurant English
+        shop_description: About the shop (Japanese)
+        shop_description_en: About the shop (English)
         price_low: Pricing low lunch
         price_high: Pricing high lunch
         price_low_dinner: Pricing low dinner
         price_high_dinner: Pricing high dinner
         address: Address
         tel: Telephone
-        url: Restaurant Website
+        url: Shop Website
         review_url: Links to the major review sites
         recommended: Chef's recommendation
         recommended_en: Chef's recommendation
@@ -150,9 +150,10 @@ en:
         visit_benefits_another_en: Visit Benefits Engslih
         price_low_dinner: Pricing low dinner
         price_high_dinner: Pricing high dinner
+        location_en: Address in English
         link_tabelog: tabelog
         link_yelp: yelp
-        link_tripadvisor: trip advisor
+        link_tripadvisor: TripAdvisor
         english_messages: Inquiries in English available via
         price_range: Price range - lunch
         price_range_dinner: Price range - dinner
@@ -277,42 +278,43 @@ en:
         name: Name
     placeholders:
       listing:
-        title: e.g. Listing for everybody
-        title_en: e.g. Listing for everybody
+        title: Name of the shop in Japanese
+        title_en: Name of the shop in English (or in alphabetic character)
         price: e.g. 5000
         longitude: Longitude
         latitude: Latitude
         description: e.g. This is a good listing even for beginner. Join us inviting friends.
         description_en: Description English.
         zipcode: "e.g. 012-3456"
-        location: Input zipcode, and the address is automatically show up.
-        location_en: Input address in English
+        location: Address in Japanese
+        location_en: Address in English (alphabetic character), modify if the order of automaticall generated address is not correct
         direction: Write minute direction to your listing location
         schedule: Schedule
-        smoking_id: Smoking
+        smoking_id: Choose from the list
         english_id: English
         business_hours: Business hours
         business_hours_remarks: Business hours remarks
-        shop_description: Shop description Japanese
-        shop_description_en: Shop description English
-        price_low: Price low (lunch)
-        price_high: Price high (lunch)
-        price_low_dinner: Price low (dinner)
-        price_high_dinner: Price high (dinner)
+        shop_description: Shop description in Japanese
+        shop_description_en: When saved blank, Japanese description is automatically translated by Google. If texts are entered, they will be shown as is, not auto translation
+        price_low: Average lunch price starting (in JPY). Enter digits only.
+        price_high: Average lunch price to (in JPY). Enter digits only.
+        price_low_dinner: Average dinner price starting (in JPY). Enter digits only.
+        price_high_dinner: Average dinner price to (in JPY). Enter digits only.
         address: Address
         tel: Tel
-        url: Web Site
+        url: URL of the shop Website
         review_url: Review Site Link
-        recommended: Recommended
-        recommended_en: Recommended
+        recommended: Addtional description such as "how to eat" etc.
+        recommended_en: When saved blank, Japanese description is automatically translated by Google. If texts are entered, they will be shown as is, not auto translation
         visit_benefits: Visit Benefits
         visit_benefits_en: Visit Benefits English
         visit_benefits_another: Visit Benefits
         visit_benefits_another_en: Visit Benefits English
-        link_tabelog: tabelog
-        link_yelp: yelp
-        link_tripadvisor: tripadvisor
+        link_tabelog: If the shop is listed in "Tabelog", enter the top page URL here
+        link_yelp: If the shop is listed in "yelp", enter the top page URL here
+        link_tripadvisor: If the shop is listed in "TripAdvisor", enter the top page URL here
         open: view
+        info_admin_id: Chose  "owner"
       listing_image:
         caption: e.g. Like this....
       confection:
@@ -767,8 +769,9 @@ en:
       edit: Edit this Listing
       make_listing: Make New listing
     new:
-      title: Make New Listing
-      subtitle: You can make listing easily
+      title: Shop Overview
+      is_required: 'is required'
+      note_for_requipment: 'can be edited any time.'
     search:
       title: Search
       no_match:
@@ -865,7 +868,10 @@ en:
         more_than: "more than %{num}"
       busubess_hours_and_lunch_break: Business hours (Lunch break)
       holiday: Holiday
-    host_info:
+      shop_category_description: (Max 3)
+      service_description: (Tick all services offered)
+      business_hours_and_lunch_break_description: Enter break (closed) hours during business hours in the parentheses, if any.
+      cover_image_description: Main Image. Click「ファイルを選択」and upload the file. (Max. 1M)
       name:
         after: "'s info"
       profile:

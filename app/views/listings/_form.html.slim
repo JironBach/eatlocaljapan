@@ -9,6 +9,7 @@
     .col-xs-4.text-right.col-middle
       .h4.text-light
         = Listing.human_attribute_name :title
+        i.fa.fa-asterisk.fa-danger
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
@@ -17,6 +18,7 @@
     .col-xs-4.text-right.col-middle
       .h4.text-light
         = Listing.human_attribute_name :title_en
+        i.fa.fa-asterisk.fa-danger
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
@@ -26,6 +28,9 @@
     .col-xs-4.text-right.col-middle
       .h4.text-light
         = Listing.human_attribute_name :shop_category
+        i.fa.fa-asterisk.fa-danger
+      p
+        = t('.shop_category_description')
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
@@ -40,6 +45,8 @@
     .col-xs-4.text-right.col-middle
       .h4.text-light
         = Listing.human_attribute_name :shop_service
+      p
+        = t('.service_description')
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
@@ -112,11 +119,15 @@
     .col-xs-4.text-right.col-middle
       .h4.text-light
         = Listing.human_attribute_name :cover_image
-    .col-xs-8.fieldset.col-middle
+    .col-xs-4.fieldset.col-middle
       .row
         .col-xs-11.regist-pics
           = f.file_field :cover_image, as: :file
           /= f.input_field :cover_image_caption, placeholder: 'イメージ画像の説明を入力できます', class: 'row-space-top-2'
+    .col-xs-4.fieldset.col-middle
+      .row
+        .col-xs-12
+          = t('.cover_image_description')
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
@@ -170,7 +181,7 @@
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = f.collection_select :smoking_id, Smoking.all, :id, (locale == :ja ? :name : :name_en), include_blank: true
+          = f.collection_select :smoking_id, Smoking.all, :id, (locale == :ja ? :name : :name_en), include_blank: t('activerecord.placeholders.listing.smoking_id')
   .row
   .row.row-space-5.row-space-top-5.row-table.listing__englishesListings
     .col-xs-4.text-right.col-middle
@@ -189,47 +200,55 @@
     .col-xs-4.text-right.col-middle
       .h4.text-light
         = t('.busubess_hours_and_lunch_break')
+        i.fa.fa-asterisk.fa-danger
+      p
+        = t('.business_hours_and_lunch_break_description')
     .col-xs-8.fieldset.col-middle
       .row
-        .col-xs-11
+        .col-xs-12
           ruby:
             defaults = \
               {
                 is_open: true,
                 start_hour: Time.zone.local(1, 1, 1, 11, 30, 0),
                 end_hour: Time.zone.local(1, 1, 1, 23, 0, 0),
-                lunch_break_start_hour: Time.zone.local(1, 1, 1, 12, 0, 0),
-                lunch_break_end_hour: Time.zone.local(1, 1, 1, 13, 0, 0)
+                lunch_break_start_hour: Time.zone.local(1, 1, 1, 15, 0, 0),
+                lunch_break_end_hour: Time.zone.local(1, 1, 1, 15, 0, 0)
               }
           = f.simple_fields_for :weekday_business_hours, I18n.t(:abbr_day_names, scope: [:date]).map.with_index { |wday_name, wday| @listing.weekday_business_hours.detect { |weekday_business_hour| weekday_business_hour.wday == wday } || @listing.weekday_business_hours.build(defaults.merge(wday: wday)) } do |wf|
             p
-              = wf.object.wday_name
-              = wf.hidden_field :wday
-              = wf.check_box :is_open
-              = wf.time_select :start_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
-              = ' - '
-              = wf.time_select :end_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
-              = ' ( '
-              = wf.time_select :lunch_break_start_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
-              = ' - '
-              = wf.time_select :lunch_break_end_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
-              = ' ) '
+              .col-xs-1
+                = wf.object.wday_name
+              .col-xs-11
+                = wf.hidden_field :wday
+                = wf.check_box :is_open
+                = wf.time_select :start_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
+                = ' - '
+                = wf.time_select :end_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
+                = ' ( '
+                = wf.time_select :lunch_break_start_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
+                = ' - '
+                = wf.time_select :lunch_break_end_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
+                = ' ) '
           = f.simple_fields_for :holiday_business_hour, @listing.holiday_business_hour || @listing.build_holiday_business_hour(defaults) do |hf|
             p
-              = t('.holiday')
-              = hf.check_box :is_open
-              = hf.time_select :start_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
-              = ' - '
-              = hf.time_select :end_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
-              = ' ( '
-              = hf.time_select :lunch_break_start_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
-              = ' - '
-              = hf.time_select :lunch_break_end_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
-              = ' ) '
+              .col-xs-1
+                = t('.holiday')
+              .col-xs-11
+                = hf.check_box :is_open
+                = hf.time_select :start_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
+                = ' - '
+                = hf.time_select :end_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
+                = ' ( '
+                = hf.time_select :lunch_break_start_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
+                = ' - '
+                = hf.time_select :lunch_break_end_hour, {minute_step: 15}, style: 'display: inline-block; width: auto;'
+                = ' ) '
   .row.row-space-5.row-space-top-5.row-table
     .col-xs-4.text-right.col-middle
       .h4.text-light
         = Listing.human_attribute_name :shop_description
+        i.fa.fa-asterisk.fa-danger
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
@@ -379,10 +398,11 @@
     .col-xs-4.text-right.col-middle
       .h4.text-light
         = Listing.human_attribute_name :info_admin_id
+        i.fa.fa-asterisk.fa-danger
     .col-xs-8.fieldset.col-middle
       .row
         .col-xs-11
-          = f.collection_select :info_admin_id, InfoAdmin.all, :id, (locale == :ja ? :name : :name_en), include_blank: true
+          = f.collection_select :info_admin_id, InfoAdmin.all, :id, (locale == :ja ? :name : :name_en), include_blank: t('activerecord.placeholders.listing.info_admin_id')
   .row
     .col-xs-9.col-offset-3.text-reset-center
       - if 'edit' == controller.action_name
