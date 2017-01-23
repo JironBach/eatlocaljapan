@@ -938,7 +938,7 @@ ja:
       joined: "メンバー登録: "
     index:
       title: "%{model}一覧"
-      msg: "%{host}に%{msg1}または%{msg2}を送信した場合、ここで%{host}からの返信を見られます。"
+      msg: "予約申し込みまたはメッセージを確認できます。"
     show:
       title: "%{name}さんとの会話"
     my_msg:
