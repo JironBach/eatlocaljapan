@@ -206,8 +206,8 @@ en:
         caption: Caption
         image: Profile Image
       reservation:
-        schedule: Schedule
-        num_of_people: The num of people
+        schedule: Date
+        num_of_people: Guests
         msg: Message
         progress: Progress
         reason: Reason
@@ -224,7 +224,7 @@ en:
         guest: Guest
         ngevent: NG Days
         in_english: Language
-        time: 'Time of reservation'
+        time: 'Time'
         reservation_time_unit: 'Time of one reservaiton'
       review:
         msg: Message
