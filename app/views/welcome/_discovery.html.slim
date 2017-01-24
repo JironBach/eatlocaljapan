@@ -25,5 +25,5 @@
                     .va-middle.text-center.text-contrast
                       .h2.strong
                         'About eatlocaljapan
-          - ShopCategory.find(Settings.categories_for_discovery).each.with_index(2) do |shop_category, index|
+          - Settings.categories_for_discovery.map { |category_id| ShopCategory.find(category_id) }.each.with_index(2) do |shop_category, index|
             = render shop_category, index: index
