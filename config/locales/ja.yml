@@ -569,7 +569,7 @@ ja:
       header: 店舗情報情報
       basic_info: 基本情報
       reservation_charge: 課金登録
-      reservation: 予約情報
+      reservation: 予約情報管理
       image: イメージ画像
       cal: カレンダーの設定
       item: "%{model}%{opt}"
