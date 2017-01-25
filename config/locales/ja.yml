@@ -729,7 +729,7 @@ ja:
       disable_reservations_settings: "予約不可設定"
       select: "選択してください"
       disable_all_day: "終日予約不可"
-      select_time: "時間の指定"
+      select_time: '予約不可時間帯'
       start: "開始"
       end: "終了"
       cancel: "キャンセル"
