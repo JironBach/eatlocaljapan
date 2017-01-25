@@ -569,7 +569,7 @@ en:
       header: Listing Info
       basic_info: Basic Info
       reservation_charge: 'Charge Info'
-      reservation: Reservation Info
+      reservation: 'Booking Info'
       image: Image
       cal: Calendar
       item: "%{model}%{opt}"
