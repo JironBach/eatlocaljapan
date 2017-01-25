@@ -632,7 +632,7 @@ en:
         title: Secure Payment
         text: "You can choose rapid and flexible payment system. Host can receive fees after 24 hr from guest checked in."
     user_sidenav:
-      basic_info: 'Basic Info'
+      basic_info: 'Password'
       payment_method_management: 'Manage Payment Method'
   credit_cards:
     edit:

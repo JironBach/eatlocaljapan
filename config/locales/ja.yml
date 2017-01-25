@@ -632,7 +632,7 @@ ja:
         title: セキュアな支払い
         text: 迅速で融通が利く支払いシステムではお支払い方法をお選びいただけます。ホストの受取金は、ゲストがチェックインして24時間後に送金致します。
     user_sidenav:
-      basic_info: '基本情報'
+      basic_info: 'パスワード'
       payment_method_management: '支払方法管理'
   credit_cards:
     edit:
