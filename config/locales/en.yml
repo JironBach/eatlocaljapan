@@ -729,7 +729,7 @@ en:
       disable_reservations_settings: "Setting disable reservation"
       select: "Please select"
       disable_all_day: "Disable all day"
-      select_time: "Select time"
+      select_time: 'Please select'
       start: "Start"
       end: "End"
       cancel: "Cancel"
