@@ -43,7 +43,7 @@
       .row
         .col-xs-11
           = locale == :ja ? '常に' : 'Always accept from'
-          = f.input_field :from, as: :select, collection: Listing.froms.map { |(key, value)| [Listing.from_text(key), key] }, selected: @listing.from || :a_day_ago
+          = f.input_field :from, as: :select, collection: Listing.froms.map { |(key, value)| [Listing.from_text(key), key] }, selected: @listing.from || :one_day_before
           = locale == :ja ? 'から' : 'to'
           = f.input_field :to, as: :select, collection: Listing.tos.map { |(key, value)| [Listing.to_text(key), key] }, selected: @listing.to || :three_months_later
           = locale == :ja && 'まで予約を受け付ける。'

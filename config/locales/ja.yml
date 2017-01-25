@@ -394,9 +394,9 @@ ja:
     listing:
       from:
         today: '当日'
-        a_day_ago: '1日前'
-        two_days_ago: '2日前'
-        three_days_ago: '3日前'
+        one_day_before: '1日前'
+        two_days_before: '2日前'
+        three_days_before: '3日前'
       to:
         this_month: '今月'
         next_month: '1ヶ月後'
