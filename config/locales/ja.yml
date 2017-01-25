@@ -643,6 +643,7 @@ ja:
       header: '支払方法'
       title: "%{model}の登録"
       add_payment_method: '登録'
+      note: '「登録」→カード名義人を入力して登録が完了します。'
     form:
       header: '支払方法'
       year: 年
@@ -947,10 +948,16 @@ ja:
     index:
       title: '%{model}一覧'
       no_payment_method:
-        title: '支払方法の登録はありません'
+        title: '支払方法は登録されていません'
+      description: '「支払方法の登録」をクリックすると決済管理会社*の画面に移動します。お支払いに使用するカードをご登録ください。カード情報は厳重に管理されております'
+      note: |-
+        カード登録のみでは課金は発生いたしません。
+        予約機能の利用開始は「自社店舗一覧」の「店舗情報」より設定してください。
+        2017年7月まで予約機能も無料でご利用いただけます。
+      foot_note: '* SMBC GMO PAYMENT'
       destroy: '削除'
     link:
-      add_payment_method: '支払方法を作成'
+      add_payment_method: '支払方法の登録'
   profile_images:
     edit:
       title: "%{model}の編集"

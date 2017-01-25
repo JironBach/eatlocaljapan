@@ -10,6 +10,10 @@
           .card-body
             h3
               = t('.no_payment_method.title')
+            = simple_format t('.description')
+            .col-space-left-1
+              = simple_format t('.note'), class: 'small1 text-danger row-space-1'
+              = simple_format t('.foot_note'), class: 'small2 row-space-3'
             = render 'link', gmo: @gmo_request
     - else
       .col-md-9

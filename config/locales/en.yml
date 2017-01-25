@@ -633,7 +633,7 @@ en:
         text: "You can choose rapid and flexible payment system. Host can receive fees after 24 hr from guest checked in."
     user_sidenav:
       basic_info: 'Password'
-      payment_method_management: 'Manage Payment Method'
+      payment_method_management: 'Payment Methods'
   credit_cards:
     edit:
       title: "Edit %{model}"
@@ -643,6 +643,7 @@ en:
       header: 'Payment Method'
       title: "New %{model}"
       add_payment_method: 'Save'
+      note: "Click \"Save\"→Enter card holder's name."
     form:
       header: 'Payment Method'
       year: ''
@@ -946,9 +947,15 @@ en:
     index:
       title: '%{model} Index'
       no_payment_method:
-       title: 'No registered Payment Method'
-      add_payment_method: 'Make new Payment Method'
+       title: 'No Registered Payment Method'
+      description: |-
+        By clicking "Register Payment  Method", you will be moved to settlement agent site*.
+        Please resiter the card you will be using for the service.
+      note: 'You will not be charged until you make a purchase.'
+      foot_note: '* SMBC GMO PAYMENT'
       destroy: 'Delete'
+    link:
+      add_payment_method: 'Register Payment Method'
   profile_images:
     edit:
       title: "Edit %{model}"
