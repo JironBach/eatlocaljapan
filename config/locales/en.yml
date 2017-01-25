@@ -568,7 +568,6 @@ en:
     manage_listing_nav:
       header: Listing Info
       basic_info: Basic Info
-      reservation_charge: 'Charge Info'
       reservation: 'Booking Info'
       image: Image
       cal: Calendar
@@ -580,7 +579,7 @@ en:
       step: "%{num} steps left"
       unpublish: unpublish
       unpublished: now not published
-      charge: Charge
+      charge: 'Booking Setting'
     profile_sidenav:
       edit: Edit Profile
       edit_image: Edit Profile Image
@@ -1009,19 +1008,25 @@ en:
       edit: "Edit %{profile}"
   reservation_charges:
     index:
-      title: '%{model} Index'
+      title: 'Status'
       no_reservation_charge:
-        title: 'No registrered Charge'
-      add_reservation_charge: 'Make new Charge'
+        title: 'No booking settings'
+        note: 'Booking Settings can be used free of charge until the end of July, 2017.'
+      note: 'Booking settings can be used free of charge until the end of July, 2017.'
+      add_reservation_charge: 'Use Booking Setting'
     charge:
       destroy: 'Delete'
     edit:
-      title: "Edit %{model}"
+      title: 'Edit Status'
     new:
-      title: "Make new %{model}"
+      title: 'Use Booking Setting'
     form:
-      header: 'Mange Charges'
-      submit: 'Save'
+      header: 'Booking Setting'
+      description: |-
+        Choose the card and click "Use Booking Setting".
+        To register card, go to  "Account" > "Payment Methods"
+      note: 'Booking Settings can be used free of charge until the end of July, 2017.'
+      submit: 'Use Booking Setting'
   review_replies:
     new:
       text0: "Reply to "
@@ -1300,12 +1305,12 @@ en:
         temporary_closed: %{start}-%{end}
     charges:
       create:
-        success: "%{model} was successfully created."
+        success: "Booking Setting was successfully created."
       update:
-        success: "%{model} was successfully updated."
+        success: "Booking Setting was successfully updated."
       destroy:
-        success: "%{model} was successfully destroyed."
-        failure: "%{model} couldn't be destroyed."
+        success: "Booking Setting was successfully destroyed."
+        failure: "Booking Setting couldn't be destroyed."
     credit_cards:
       create:
         success: "%{model} was successfully updated."

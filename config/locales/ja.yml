@@ -568,7 +568,6 @@ ja:
     manage_listing_nav:
       header: 店舗情報情報
       basic_info: 基本情報
-      reservation_charge: 課金登録
       reservation: 予約情報管理
       image: イメージ画像
       cal: カレンダーの設定
@@ -580,7 +579,7 @@ ja:
       step: "あと%{num}ステップ"
       unpublish: 一時的に非公開にする
       unpublished: 現在非公開中です
-      charge: 課金
+      charge: 予約機能
     profile_sidenav:
       edit: プロフィール編集
       edit_image: プロフィール画像編集
@@ -1011,19 +1010,25 @@ ja:
       edit: "%{profile}を編集する"
   reservation_charges:
     index:
-      title: '%{model}一覧'
+      title: '利用状況'
       no_reservation_charge:
-        title: '課金の登録はありません'
-      add_reservation_charge: '課金登録'
+        title: 'この店舗では予約機能はまだ利用されていません。'
+        note: '2017年7月末までは無料でご利用いただけます。(カードへの課金は発生しません)'
+      note: '2017年7月末まで予約機能は無料でご利用いただけます。課金は発生しません。'
+      add_reservation_charge: '予約機能を利用する'
     charge:
       destroy: '削除'
     edit:
-      title: "%{model}の編集"
+      title: '予約機能の利用状況編集'
     new:
-      title: "%{model}の作成"
+      title: '予約機能の利用登録'
     form:
-      header: '課金登録'
-      submit: '保存する'
+      header: '予約機能の利用'
+      description: |-
+        カード番号を選択して「予約機能を利用する」をクリックしてください。
+        カード情報が未登録の場合は「アカウント」→「支払方法管理」から登録してください。
+      note: '2017年7月末まで予約機能も無料でご利用いただけます。課金は発生しません。'
+      submit: '予約機能を利用する'
   review_replies:
     new:
       text0: ""
@@ -1302,12 +1307,12 @@ ja:
         temporary_closed: %{start}-%{end}
     charges:
       create:
-        success: "%{model}を登録しました。"
+        success: '機能利用を申し込みました。'
       update:
-        success: "%{model}を更新しました。"
+        success: '機能利用状況を更新しました。'
       destroy:
-        success: "%{model}を削除しました。"
-        failure: "%{model}の削除に失敗しました。"
+        success: '機能利用を解除しました。'
+        failure: '機能利用の解除に失敗しました。'
     credit_cards:
       create:
         success: "%{model}を更新しました。"
