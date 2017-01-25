@@ -903,8 +903,9 @@ en:
     request_form:
       submit: Reserve Now
       in_english: prefer English menu, if available
-      create_profile: Create profile
-      request_description_1: "Create profile to make a reservation."
+      create_account: 'Create an account'
+      create_profile: 'Create profile'
+      request_description_1: "Create an account and profile to make a reservation."
       request_description_2: "Reservation is immediately confirmed."
     similar_listings:
       title: Similar listings
