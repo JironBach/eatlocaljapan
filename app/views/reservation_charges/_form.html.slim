@@ -14,5 +14,8 @@
             = f.input_field :payment_method_id, as: :select, collection: current_user.credit_cards, label_method: :title, value_method: :id
 
     .card-footer
-      .text-reset-center
+      .text-reset-center.row-space-3
         = f.button :submit, t('.submit'), class: 'btn btn-primary'
+      .text-left.col-spece-left-2
+        = simple_format t('.description'), class: 'small1 col-space-left2 row-space-1'
+        = simple_format t('.note'), class: 'small2 text-danger col-space-left2'

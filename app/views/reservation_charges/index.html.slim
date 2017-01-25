@@ -8,6 +8,7 @@
           .card-body
             h3
               = t('.no_reservation_charge.title')
+            = simple_format t('.no_reservation_charge.note'), class: 'small1 text-danger col-space-left-2 row-space-3'
             = link_to new_listing_reservation_charge_path(@listing), class: 'btn btn-primary' do
               = t('.add_reservation_charge')
         - else
@@ -22,5 +23,8 @@
             ul.list-unstyled.list-layout
               - @charges.each do |charge|
                 = render 'charge', charge: charge
+          .card-footer
+            .text-left.col-spece-left-2
+              = simple_format t('.note'), class: 'small2 text-danger col-space-left2'
 
     = render 'shared/manage_listing_nav'
