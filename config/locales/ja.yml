@@ -904,8 +904,9 @@ ja:
     request_form:
       submit: 予約する
       in_english: "英語のメニューがあれば使いたい"
+      create_account: メンバー登録
       create_profile: プロフィールを作成
-      request_description_1: "予約するにはプロフィールを作成してください"
+      request_description_1: "予約するにはメンバー登録とプロフィールを作成してください"
       request_description_2: "予約は即時確定します"
     similar_listings:
       title: 近くの店舗情報

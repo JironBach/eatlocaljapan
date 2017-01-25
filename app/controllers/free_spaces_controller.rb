@@ -1,7 +1,6 @@
 class FreeSpacesController < ApplicationController
   include AroundReservation
 
-  before_action :authenticate_user?
   before_action :set_listing, :reservation_enabled?, :set_schedule, :set_requested_time, only: [:show]
 
   authorize_resource :listing, class: Listing
