@@ -136,8 +136,8 @@ class Listing < ApplicationRecord
   enum \
     to: \
       {
-        this_month: 0, next_month: 1, two_months_later: 2, three_months_later: 3, four_months_later: 4, five_months_later: 5, six_months_later: 6, seven_months_later: 7,
-        eight_months_later: 8, nine_months_later: 9, ten_months_later: 10, eleven_months_later: 11, one_year_later: 12
+        this_month: 0, next_month: 1, two_months_before: 2, three_months_before: 3, four_months_before: 4, five_months_before: 5, six_months_before: 6, seven_months_before: 7,
+        eight_months_before: 8, nine_months_before: 9, ten_months_before: 10, eleven_months_before: 11, one_year_before: 12
       }
 
   class << self
