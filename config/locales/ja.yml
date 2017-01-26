@@ -400,17 +400,17 @@ ja:
       to:
         this_month: '今月'
         next_month: '1ヶ月後'
-        two_months_later: '2ヶ月後'
-        three_months_later: '3ヶ月後'
-        four_months_later: '4ヶ月後'
-        five_months_later: '5ヶ月後'
-        six_months_later: '6ヶ月後'
-        seven_months_later: '7ヶ月後'
-        eight_months_later: '8ヶ月後'
-        nine_months_later: '9ヶ月後'
-        ten_months_later: '10ヶ月後'
-        eleven_months_later: '11ヶ月後'
-        one_year_later: '1年後'
+        two_months_before: '2ヶ月後'
+        three_months_before: '3ヶ月後'
+        four_months_before: '4ヶ月後'
+        five_months_before: '5ヶ月後'
+        six_months_before: '6ヶ月後'
+        seven_months_before: '7ヶ月後'
+        eight_months_before: '8ヶ月後'
+        nine_months_before: '9ヶ月後'
+        ten_months_before: '10ヶ月後'
+        eleven_months_before: '11ヶ月後'
+        one_year_before: '1年後'
     profile:
       gender:
         female: 女性
