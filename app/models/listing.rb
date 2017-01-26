@@ -132,7 +132,7 @@ class Listing < ApplicationRecord
   scope :available_price_min?, ->(price_min) { where('price >= ?', price_min) }
   scope :available_price_max?, ->(price_max) { where('price <= ?', price_max) }
 
-  enum from: {today: 0, a_day_ago: 1, two_days_ago: 2, three_days_ago: 3}
+  enum from: {today: 0, one_day_before: 1, two_days_before: 2, three_days_before: 3}
   enum \
     to: \
       {
