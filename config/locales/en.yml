@@ -769,6 +769,8 @@ en:
       add: Add
       edit: Edit this Listing
       make_listing: Make New listing
+      reservation:
+        available: 'Reservation Available'
     new:
       title: Shop Overview
       is_required: 'is required'
