@@ -46,6 +46,9 @@
                           = image_tag(listing_cover_image_url(listing.id), class: 'img-responsive-height')
                     .col-xs-8.col-lg-6
                       span.h4
+                        - if listing.reservation_enabled?
+                          label.label.label-success.col-space-right-1
+                            = t('.reservation.available')
                         = link_to listing, class: 'text-normal trans' do
                           = listing.title
                       .actions.row-space-top-1
@@ -54,12 +57,7 @@
                       .pull-right.pull-change
                         .listing-criteria-header.activation-notification
                           .listing-criteria-header-message
-                            - if listing.open?
-                              = link_to edit_listing_path(listing), class: 'btn btn-primary' do
-                                = t('.open.short')
-                            - else
-                              = link_to edit_listing_path(listing), class: 'btn' do
-                                = t('.closed.short')
+                            = link_to t(listing.open? ? '.open.short' : '.closed.short'), edit_listing_path(listing), class: "btn#{listing.open? ? '' : ' btn-primary'}"
           .card-footer
             .text-reset-center
               = paginate @listings

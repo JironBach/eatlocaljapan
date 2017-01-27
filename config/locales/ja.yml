@@ -765,6 +765,8 @@ ja:
       add: 追加
       edit: この店舗情報を編集する
       make_listing: 店舗情報を作成
+      reservation:
+        available: '予約可'
     new:
       title: 店舗基本情報
       is_required: 'は必須項目です。'

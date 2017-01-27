@@ -12,6 +12,11 @@
           /    = listing['price']
           /    = number_to_yen(listing.price)
           /  sup.h6.text-contrast
+        - if listing.reservation_enabled?
+          - Rails.logger.debug("[debug] id: #{listing.id} available.")
+          .card-overlay-top-left.reservation-button
+            i.fa.fa-calendar-o.fa-white.fa-size-2.outline
+            i.fa.fa-calendar.fa-size-2
         .card-overlay-top-right.wl-social-connection-card
           span.rich-toggle.wishlist-button
             input#wishlist-widget-1 name='' type='checkbox'
