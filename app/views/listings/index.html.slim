@@ -60,3 +60,6 @@
                             - else
                               = link_to edit_listing_path(listing), class: 'btn' do
                                 = t('.closed.short')
+          .card-footer
+            .text-reset-center
+              = paginate @listings
