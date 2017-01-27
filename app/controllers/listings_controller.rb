@@ -10,12 +10,7 @@ class ListingsController < ApplicationController
   # GET /listings
   # GET /listings.json
   def index
-    @listings = \
-      if current_user.admin?
-        Listing.all.order_by_updated_at_desc
-      else
-        Listing.mine(current_user.id).order_by_updated_at_desc
-      end
+    @listings = (current_user.admin? ? Listing.all : Listing.mine(current_user.id)).order_by_updated_at_desc.page(params[:page]).per(50)
   end
 
   # GET /listings/1
