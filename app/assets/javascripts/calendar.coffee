@@ -88,7 +88,7 @@ $ ->
             type: 'DELETE',
             url: event.deletionUrl,
             dataType: 'json',
-            complete: -> calendar.fullCalendar 'refetchEvents'
+            success: (event)-> calendar.fullCalendar('removeEvents', event.id)
     eventResize: (event, delta, revertFunc, jsEvent, ui, view) ->
       calendar = $(@).closest('#calendar')
       $.ajax
@@ -96,7 +96,7 @@ $ ->
         url: event.editingUrl
         data: {event: {end: moment(event.endWas).add(delta)._d}}
         dataType: 'json'
-        complete: -> calendar.fullCalendar 'refetchEvents'
+        success: (event)-> calendar.fullCalendar('refetchEventSources', event)
     eventDrop: (event, delta, revertFunc, jsEvent, ui, view) ->
       calendar = $(@).closest('#calendar')
       $.ajax
@@ -104,7 +104,7 @@ $ ->
         url: event.editingUrl
         data: {event: {start: moment(event.startWas).add(delta)._d, end: moment(event.endWas).add(delta)._d}}
         dataType: 'json'
-        complete: -> calendar.fullCalendar 'refetchEvents'
+        success: (event)-> calendar.fullCalendar('refetchEventSources', event)
   )
 
   $('.listingNgevent__calendar .listingNgevent__calendar__selectModal .listingNgevent__calendar__selectModal__selectDayButton').on 'click', (e)->
@@ -117,7 +117,7 @@ $ ->
       url: form.prop('action')
       data: form.serialize()
       dataType: 'json'
-      complete: -> calendar.fullCalendar 'refetchEvents'
+      success: (event)-> calendar.fullCalendar('renderEvent', event)
 
   $('.listingNgevent__calendar .listingNgevent__calendar__selectModal .listingNgevent__calendar__selectModal__selectTimeButton').on 'click', (e)->
     modal = $('.listingNgevent .listingNgevent__timeModal')
@@ -140,8 +140,9 @@ $ ->
       url: form.prop('action')
       data: form.serialize()
       dataType: 'json'
-      success: -> calendar.find('.modal').modal('hide')
-      complete: -> calendar.fullCalendar 'refetchEvents'
+      success: (event)->
+        calendar.find('.modal').modal('hide')
+        calendar.fullCalendar('renderEvent', event)
 
   # delete_btn
   $('.listingNgevent #calendar').data('deleteMode', false)
