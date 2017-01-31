@@ -6,7 +6,7 @@
       .card
         - if @message_threads.blank?
           .card-body
-            p = t('.msg', host: t('name.host'), msg1: Message.model_name.human, msg2: t('name.reservation_request'))
+            p = t('.msg')
         - else
           ul.list-layout.card-body
             - @message_threads.each do |mt|

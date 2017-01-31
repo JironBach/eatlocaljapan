@@ -941,7 +941,7 @@ en:
       joined: "Joined at: "
     index:
       title: "%{model} Index"
-      msg: "When you send %{msg1} or %{msg2}% to {host}, you can see replies from %{host} here."
+      msg: "Reservation requests and messages will be listed here."
     show:
       title: "Conversation with %{name}"
     my_msg:
