@@ -1,11 +1,19 @@
-<%= t '.greeting1' %><%= @to_user_name %><%= t 'prefix' %><%= t '.greeting2' %>
+English follows Japanese
 
-<%= t '.msg1' %><%= @from_user_name %><%= t 'prefix' %><%= t '.msg2' %>
+<%= @to_user_name %> さん、
 
-<%= t '.msg3' %>
+<%= @from_user_name %> さんからの予約が入りました。
+以下のリンクから、内容をご確認ください。
+<%= dashboard_host_reservation_manager_url %>
+
+Hello, <%= @to_user_name %> ,
+
+You’ve got a new reservation!
+<%= @to_user_name %> has just made a reservation.
+Please click the link below to check the detail.
 
 <%= dashboard_host_reservation_manager_url %>
 
-
---
-<%= t 'basic_info.service_name' %>
+eatlocaljapan
+<%= root_url %>
+<%= root_url(locale: :en) %>
