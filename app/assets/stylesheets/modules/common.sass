@@ -1826,6 +1826,20 @@ body.paper
 .fc-event
   line-height: 1.44
   border-radius: 2px
+  border: none
+  padding: .2em .6em .3em
+  &.fc-event-holiday
+    background-color: #777
+    &:focus, &:hover
+      background-color: #5e5e5e
+  &.fc-event-temporary_closed
+    background-color: #d9534f
+    &:focus, &:hover
+      background-color: #c9302c
+  &.fc-event-canceled
+    background-color: #f0ad4e
+    &:focus, &:hover
+      background-color: #ec971f
 
 #delete_mode
   position: absolute
