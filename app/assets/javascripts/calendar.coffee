@@ -63,7 +63,7 @@ $ ->
     ],
     contentHeight: 500,
     slotEventOverlap: false,
-    events: "#{if I18n.locale == 'ja' then '' else '/en/'}#{$('.listingNgevent #calendar').data('actionUrl').replace(/\/$/, '')}.json",
+    events: $('.listingNgevent #calendar').data('actionUrl'),
     selectable: true,
     selectHelper: true,
     ignoreTimezone: false,

@@ -1,7 +1,7 @@
 .calendar-wrapper.listingNgevent
   #delete_mode.row-space-2.listingNgevent__deleteMode
     = button_tag t('.button'), type: :button
-  = content_tag :div, id: 'calendar', class: 'listingNgevent__calendar', data: {listing_id: @listing.id, action_url: listing_listing_ngevents_path(@listing)} do
+  = content_tag :div, id: 'calendar', class: 'listingNgevent__calendar', data: {listing_id: @listing.id, action_url: listing_listing_ngevents_path(@listing, format: 'json')} do
     .modal.fade#selectModal.listingNgevent__calendar__selectModal
       .modal-dialog
         .modal-content

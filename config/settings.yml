@@ -29,6 +29,10 @@ listing_ngevents:
     holiday: "gray"
     temporary_closed: "#FA8B9F"
     canceled: "#ccc"
+  style:
+    holiday: 'fc-event-holiday'
+    temporary_closed: 'fc-event-temporary_closed'
+    canceled: 'fc-event-canceled'
 # user:
 #   host:
 #     noname: "ホスト"
