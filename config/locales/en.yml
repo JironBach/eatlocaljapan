@@ -511,7 +511,9 @@ en:
         blog: Blog
         shop: About this service
         privacy: Privacy policy
-        terms_of_use: Term of use
+        terms_of_use: "Terms of use"
+        faq: "FAQ"
+        contact: "Contact us"
       recommend:
         title: Recommendation
         one: Pick Up!
