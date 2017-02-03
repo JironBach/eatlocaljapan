@@ -125,6 +125,8 @@
           .col-md-3.text-muted
             .h4.text-light
               = Listing.human_attribute_name :business_hours
+            .h4.text-light.small1
+              = t('.about_business_hours')
           .col-md-9
             .row
               .col-xs-11
@@ -134,22 +136,37 @@
                     .col-xs-2
                       p
                         = weekday_business_hour.wday_name
-                    .col-xs-10
+                    .col-xs-4
                       p
                         = l weekday_business_hour.start_hour, format: :hour
                         | -
                         = l weekday_business_hour.end_hour, format: :hour
+                    / TODO: need to implement visibility controll
+                    .col-xs-6
+                      p
+                        | (
+                        = l weekday_business_hour.lunch_break_start_hour, format: :hour
+                        | -
+                        = l weekday_business_hour.lunch_break_end_hour, format: :hour
+                        | )
                 - holiday_business_hour = listing.holiday_business_hour
                 - if holiday_business_hour.is_open
-                  p
-                    .col-xs-2
-                      p
-                        = t '.holiday'
-                    .col-xs-10
-                      p
-                        = l holiday_business_hour.start_hour, format: :hour
-                        | -
-                        = l holiday_business_hour.end_hour, format: :hour
+                  .col-xs-2
+                    p
+                      = t '.holiday'
+                  .col-xs-4
+                    p
+                      = l holiday_business_hour.start_hour, format: :hour
+                      | -
+                      = l holiday_business_hour.end_hour, format: :hour
+                  / TODO: need to implement visibility controll
+                  .col-xs-6
+                    p
+                      | (
+                      = l holiday_business_hour.lunch_break_start_hour, format: :hour
+                      | -
+                      = l holiday_business_hour.lunch_break_end_hour, format: :hour
+                      | )
         /.row.row-space-5.row-space-top-5.row-table
         /  .col-md-3.text-muted
         /    .h4.text-light
@@ -159,8 +176,6 @@
         /      .col-xs-11
         /        = text_area_tag :business_hours_remarks, listing.business_hours_remarks, readonly: :true
         hr
-        - unless locale == :ja
-          | English of some restaurant's description was machine translated. It may not be 100% accurate.
         .row.row-space-5.row-space-top-5.row-table
           .col-md-3.text-muted
             .h4.text-light
@@ -249,8 +264,6 @@
               .col-xs-11
                 = link_to image_tag('trip_logo.svg', height: '30'), listing.link_tripadvisor, target: '_blank' unless listing.link_tripadvisor.blank?
         hr
-        - unless locale == :ja
-          | English of some restaurant's description was machine translated. It may not be 100% accurate.
         .row.row-space-5.row-space-top-5.row-table
           .col-md-3.text-muted
             .h5.text-light
