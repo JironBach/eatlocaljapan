@@ -994,7 +994,9 @@ en:
       old: "%{model} you've written"
       no_old: "No person you've written %{model} for"
     form:
-      header: 'Edit Profile'
+      header: 'Member Profile'
+      is_required: 'required'
+      is_not_published: 'will not be published'
       text_closed: No other user can access this information
       text_limited: Only joined user can access this information
       year: Y
@@ -1006,6 +1008,8 @@ en:
         location: "Input zipcode, and address roughly be shown up automatically"
       intro: "Write good self-introduction, Let others know you and %{listing} more!"
       submit: Save
+      location: Address
+      self_introduction: Describe Yourself
     edit_link:
       title: "Your %{profile}"
       edit: "Edit %{profile}"

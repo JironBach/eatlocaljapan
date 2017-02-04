@@ -995,7 +995,9 @@ ja:
       old: "過去に書いた%{model}"
       no_old: "%{model}を書いた相手はおりません。"
     form:
-      header: 必須項目
+      header: '会員プロフィール'
+      is_required: 'は必須項目です。'
+      is_not_published: 'は、他のユーザーには公開されません。'
       text_closed: この情報は他のユーザーに公開されません。
       text_limited: この情報は参加が確定したユーザーのみに公開されます。
       year: 年
@@ -1007,6 +1009,8 @@ ja:
         location: "郵便番号を入力すると自動で町名まで出力されます"
       intro: "自己紹介を充実させることであなたの人柄、%{listing}の内容など詳しく知ってもらいましょう。"
       submit: 保存する
+      location: 住所
+      self_introduction: 自己紹介
     edit_link:
       title: "あなたの%{profile}です。"
       edit: "%{profile}を編集する"
