@@ -99,7 +99,7 @@ class User < ApplicationRecord
         end
       end
 
-      auth_obj = Auth.find_bt(user_id: user.id, provider: auth.provider)
+      auth_obj = Auth.find_by(user_id: user.id, provider: auth.provider)
       if auth_obj.present?
         auth_obj.access_token = auth.credentials.token
       else
