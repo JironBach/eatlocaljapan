@@ -755,10 +755,13 @@ en:
       lunch_break: Lunch break
     index:
       no_listing:
-        title: No Scheduled Listing
+        title: 'No Shop Listed.'
         guests_waiting: Someone is waiting for your listing!
         invitation: Invite friends! Let's appeal your listing!
         make_listing: Make New Listing
+      title_description: |-
+        Are you a owner or manager of restaurant in Japan?
+        List your shop for free. You can edit it anytime.
       title: Listings
       all:
         long: All Listings
