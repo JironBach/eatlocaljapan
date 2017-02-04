@@ -602,6 +602,7 @@ en:
       dashboard: Dashboard
       messages: Message Threads
       listings: My Shops
+      host_reservation_manager: Reservation (as Shop Owner)
       guest_reservation_manager: Reservation (Guest)
       profile: Profile
       account: Account
@@ -927,7 +928,7 @@ en:
       placeholder: Write message here
       submit: "Send %{msg_model}"
     listing_block:
-      name: "%{model} name: "
+      name: "Shop name: "
       progress: "%{progress}: "
       schedule: "%{title}: %{schedule}"
       num_of_people: "%{title}: %{num}%{unit}"
