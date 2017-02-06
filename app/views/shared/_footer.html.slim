@@ -3,13 +3,14 @@ footer
     .row
       .col-sm-12.hide--sp.text-center
         ul.list-unstyled
+          - if locale == :ja
+            li
+              = link_to t('.corporate.about'), 'http://eatlocaljapan.com/about_jp', target: '_blank'
           li
-            = link_to t('.corporate.about'), 'http://eatlocaljapan.com/about_jp/', target: '_blank' if locale == :ja
-          li
-            = link_to t('.corporate.shop'), locale == :ja ? 'http://eatlocaljapan.com/owners/' : 'http://eatlocaljapan.com/about/', target: '_blank'
-          li
-            = link_to t('.corporate.privacy'), locale == :ja ? 'http://eatlocaljapan.com/privacypolicy_jp/' : 'http://eatlocaljapan.com/privacypolicy/', target: '_blank'
-          li
+            = link_to t('.corporate.shop'), (Addressable::URI.parse('http://eatlocaljapan.com') + (locale == :ja ? 'owners' : 'about')).to_s, target: '_blank'
+          - [['privacy', 'privacypolicy'], ['terms_of_use', 'terms'], ['faq', 'faq'], ['contact', 'inquiry']].each do |(name, path)|
+            li
+              = link_to t(name, scope: [:shared, :footer, :corporate]), (Addressable::URI.parse('http://eatlocaljapan.com') + "#{path}#{locale == :ja ? '_jp' : ''}").to_s, target: '_blank'
     hr.hide--sp
     .sns-container.text-center
       h5.hide--sp
