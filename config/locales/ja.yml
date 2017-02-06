@@ -144,7 +144,7 @@ ja:
         price_high_dinner: 価格　高　ディナー
         address: 住所
         tel: 電話番号
-        url: 自社WEBサイト
+        url: お店のWEBサイト
         review_url: レビューサイトへのリンク
         recommended: 追加説明　日本語
         recommended_en: 追加説明　英語
@@ -844,7 +844,7 @@ ja:
     delivery_ok_button:
       text: 出張可
     detail:
-      about_this_listing: この店舗情報について
+      about_this_listing: 店舗基本情報
       contact_to_host: こちらのホストに連絡
       delivery: 出張
       option:
@@ -854,9 +854,10 @@ ja:
       dress_codes:
         wafuku_only: 和服でお願いします。
         any: 和服でなくて結構です。
-      shop_description: レストランの説明
+      shop_description: お店の紹介文
       recommended: お勧めのメニュー・食べ方の説明
       holiday: 祝
+      about_business_hours: "カッコ内は休憩時間"
     edit:
       title: 店舗情報編集
     edit_link:

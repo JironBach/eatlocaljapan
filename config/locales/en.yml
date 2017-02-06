@@ -115,7 +115,7 @@ en:
         description_en: Description English
         price: Price
         capacity: Capacity
-        title: Restaurant Name
+        title: Name (Japanese)
         direction: Direction to Listing Location
         cover_image: Cover Image
         cover_image_caption: Caption of Cover Image
@@ -140,7 +140,7 @@ en:
         price_high_dinner: Pricing high dinner
         address: Address
         tel: Telephone
-        url: Shop Website
+        url: Website
         review_url: Links to the major review sites
         recommended: Chef's recommendation
         recommended_en: Chef's recommendation
@@ -151,7 +151,7 @@ en:
         price_low_dinner: Pricing low dinner
         price_high_dinner: Pricing high dinner
         location_en: Address in English
-        link_tabelog: tabelog
+        link_tabelog: Tabelog
         link_yelp: yelp
         link_tripadvisor: TripAdvisor
         english_messages: Inquiries in English available via
@@ -850,7 +850,7 @@ en:
     delivery_ok_button:
       text: delivery
     detail:
-      about_this_listing: About this listing
+      about_this_listing: Shop Overview
       contact_to_host: Contact to this host
       delivery: delivery
       option:
@@ -861,8 +861,9 @@ en:
         wafuku_only: Only wafuku.
         any: Any dress is ok.
       shop_description: About the restaurant
-      recommended: Chef's recommendation
+      recommended: Additional information
       holiday: holiday
+      about_business_hours: (Break/Closed hours)
     edit:
       title: Edit Listing
     edit_link:
