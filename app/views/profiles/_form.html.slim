@@ -3,7 +3,14 @@
       = f.error_notification
       = f.hidden_field :user_id, value: current_user.id
       .card.row-space-4
-        .card-header = t '.header'
+        .card-header
+          = t '.header'
+          | &nbsp;
+          i.fa.fa-asterisk.fa-danger
+          = t '.is_required'
+          | &nbsp;
+          i.fa.fa-asterisk.fa-green
+          = t '.is_not_published'
         .card-body
           .row.row-condensed.row-space-4
             label.text-right.col-3
@@ -51,13 +58,13 @@
               .text-muted.row-space-top-1 = t '.text_closed'
           .row.row-condensed.row-space-4
             label.text-right.col-3[for='user_phone']
-              = Profile.human_attribute_name :location
+              = t '.location'
               i.fa.fa-lock.fa-green
             .col-7
               = f.input_field :location, placeholder: t('.placeholder.location'), class: 'zip-address'
           .row.row-condensed.row-space-4
             label.text-right.col-3[for='user_self_introduction']
-              = Profile.human_attribute_name :self_introduction
+              = t '.self_introduction'
             .col-8
               = f.input_field :self_introduction, as: :text, cols: '30', rows: '5'
               .text-muted.row-space-top-1 = t('.intro', listing: Listing.model_name.human)
