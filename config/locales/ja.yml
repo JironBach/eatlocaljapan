@@ -315,7 +315,7 @@ ja:
         open: 公開
         info_admin_id: 通常は「オーナー」をリストから選択してください。
       listing_image:
-        caption: "例) こんな感じです"
+        caption: "この写真の説明は自動翻訳されませんので、英語を追加される方は、日英併記してください。"
       confection:
         url: http://okashi.com
       tool:
@@ -571,7 +571,7 @@ ja:
       header: 店舗情報情報
       basic_info: 基本情報
       reservation: 予約情報管理
-      image: イメージ画像
+      image: 画像の追加
       cal: カレンダーの設定
       item: "%{model}%{opt}"
       opt1: （オプション１）
@@ -716,10 +716,13 @@ ja:
       submit: 保存する
   listing_images:
     manage:
-      title: "%{listing_image}をもう一枚追加しましょう。"
-      text_html: "%{guest}にあなたの%{listing}の魅力をよく伝えるために、あなたの%{listing}をイメージできる写真を使うことをおすすめします。<br>あなた自身が参加したいと思うような%{listing_image}があれば完璧です。"
+      title: "画像の追加"
+      title_note: "店舗や食事のイメージ画像を追加してください。（追加できる画像数は今後増やす予定です。）"
     form:
       submit: 保存する
+      upload_file_note: |-
+        追加画像
+        (ファイルのアップロード)
   listing_ngevents:
     manage:
       title: 予約受付不可の日時を個別設定します

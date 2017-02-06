@@ -5,9 +5,8 @@
     .manage-listing-content.col-md-9.col-offset-3
       .row-space-top-4
         h3.text-center.row-space-2
-          = t('.title', listing_image: ListingImage.model_name.human)
-        p.text-center.row-space-6
-          = t('.text_html', guest: t('name.guest'), listing: Listing.model_name.human, listing_image: ListingImage.model_name.human)
+          = t('.title')
+        = simple_format t('.title_note'), {class: 'text-center row-space-6'}, wrapper_tag: 'p'
       = render 'form'
 
     = render 'shared/manage_listing_nav'

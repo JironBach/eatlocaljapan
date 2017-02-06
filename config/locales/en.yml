@@ -166,8 +166,8 @@ en:
         to: To
         reservation_time_unit: 'Length of one reservation'
       listing_image:
-        image: Image of Listing
-        caption: Caption of Listing Image
+        image: Additional Photo
+        caption: 'Photo description'
         order_num: Order
       listing_pv:
         pv: PV
@@ -316,7 +316,7 @@ en:
         open: view
         info_admin_id: Chose  "owner"
       listing_image:
-        caption: e.g. Like this....
+        caption: "Describe in English (and/or Japanese)"
       confection:
         url: http://okashi.com
       tool:
@@ -572,7 +572,7 @@ en:
       header: Listing Info
       basic_info: Basic Info
       reservation: 'Booking Info'
-      image: Image
+      image: Add Photo
       cal: Calendar
       item: "%{model}%{opt}"
       opt1: (option1)
@@ -717,10 +717,15 @@ en:
       submit: Save
   listing_images:
     manage:
-      title: "Add more %{listing_image}"
-      text_html: "To appeal your %{listing} to %{guest}, add %{listing_image}"
+      title: "Add Photo"
+      title_note: |-
+        Add  photo*
+        *The number of photos that can be added will be increased soon!
     form:
       submit: Save
+      upload_file_note: |-
+        Upload file
+        (click the button)
   listing_ngevents:
     manage:
       title: "Dates and times reservations are not accepted"
