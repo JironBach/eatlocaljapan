@@ -1331,7 +1331,7 @@ ja:
         failure: '%{model}の取得に失敗しました。'
     reservation:
       save:
-        success: "%{model}を申し込みました。ご確認いただき、%{host}の方からの%{msg}をお待ちください。"
+        success: "%{model}を申し込みました。「予約の進捗」をご確認ください。"
         failure:
           no_date: "%{model}する日付を入力してください。"
       update:

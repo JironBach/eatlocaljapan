@@ -1330,7 +1330,7 @@ en:
         failure: "%{model} couldn't be fetched."
     reservation:
       save:
-        success: "Requested %{model}. Please confirm your request and wait for %{msg} from %{host}."
+        success: '%{model} requested. Please confirm "Status" below.'
         failure:
           no_date: "Input Date"
       update:
