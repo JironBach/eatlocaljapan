@@ -206,10 +206,10 @@ en:
         caption: Caption
         image: Profile Image
       reservation:
-        schedule: Date
-        num_of_people: Guests
+        schedule: Schedule
+        num_of_people: No. of guests
         msg: Message
-        progress: Progress
+        progress: Status
         reason: Reason
         price: Price
         review_mail_sent_at: Review Mail Sent At
@@ -535,12 +535,12 @@ en:
     header:
       new_listing: Make New Listing
       dashboard: Dashboard
-      listings: Listings
-      host_reservation_manager: Reservation Manager
-      guest_reservation_manager: Reservation list
+      listings: My Shops
+      host_reservation_manager: Reservation (Shop Owner)
+      guest_reservation_manager: Reservation (Guest)
       profile: Profile
       account: Account
-      logout: Logout
+      logout: Log out
       login: Login
       signup: Sign Up
       messages: "Messages "
@@ -561,8 +561,8 @@ en:
     host_sidenav:
       text1: Add
       text2: Listing
-      listing: Listing
-      host_reservation_manager: Reservation Management
+      listing: My Shops
+      host_reservation_manager: Reservation (as Shop Owner)
     manage_listing_header:
       to_my_listings: Show My Listings
       preview: Preview
@@ -600,9 +600,10 @@ en:
       logout: Logout
     subnav:
       dashboard: Dashboard
-      messages: Messages
-      listings: Listings
-      guest_reservation_manager: Reserve
+      messages: Message Threads
+      listings: My Shops
+      host_reservation_manager: Reservation (as Shop Owner)
+      guest_reservation_manager: Reservation (Guest)
       profile: Profile
       account: Account
     tooltip:
@@ -676,7 +677,7 @@ en:
       title: "%{rsrv} Status List"
       no_req: "No %{rsrv_req}"
     guest_reservation_manager:
-      title: "Scheduled %{listing}"
+      title: "Reservation (as Guest)"
       no_schedule: No Schedule
       form:
         placeholder: Location
@@ -804,7 +805,7 @@ en:
         hit_count:
           dot: /
       prefecture: Area
-      shop_name: Restaurant Name
+      shop_name: Shop Name
       submit: Show listings
     search_detail:
       title: Search
@@ -927,7 +928,7 @@ en:
       placeholder: Write message here
       submit: "Send %{msg_model}"
     listing_block:
-      name: "%{model} name: "
+      name: "Shop name: "
       progress: "%{progress}: "
       schedule: "%{title}: %{schedule}"
       num_of_people: "%{title}: %{num}%{unit}"
@@ -1239,7 +1240,7 @@ en:
   name:
     reservation_request: Reservation Request
     guest: Guest
-    host: Host
+    host: Shop Owner
   prefix: ''
   to1: "To "
   to2: ""
@@ -1349,7 +1350,9 @@ en:
         configure:
           not_yat: "%{model} couldn't be enabled."
       msg:
-        request: "%{model} request was sent."
+        request: |
+          メッセージをお送りしました。
+          %{model} Sent.
     review:
       save:
         success: "%{model} was successfully posted. Wait for reply from %{host}."

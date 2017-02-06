@@ -535,9 +535,9 @@ ja:
       search: どこで探しますか？
       new_listing: 店舗情報を作る
       dashboard: ダッシュボード
-      listings: 店舗情報
-      host_reservation_manager: 予約管理
-      guest_reservation_manager: 予約する
+      listings: 自社店舗一覧
+      host_reservation_manager: 自社店舗の予約一覧
+      guest_reservation_manager: "訪問予定の予約"
       profile: プロフィール
       account: アカウント
       logout: ログアウト
@@ -561,7 +561,7 @@ ja:
       text1: 店舗情報を
       text2: 追加
       listing: 店舗情報
-      host_reservation_manager: 予約管理
+      host_reservation_manager: 自社店舗の予約一覧
     manage_listing_header:
       to_my_listings: 自分の店舗情報一覧へ
       preview: プレビュー
@@ -599,9 +599,10 @@ ja:
       logout: ログアウト
     subnav:
       dashboard: ダッシュボード
-      messages: メッセージ
-      listings: 店舗情報
-      guest_reservation_manager: 予約一覧
+      messages: メッセージ一覧
+      listings: 自社店舗一覧
+      host_reservation_manager: 自社店舗の予約一覧
+      guest_reservation_manager: 訪問予定の予約
       profile: プロフィール
       account: アカウント
     tooltip:
@@ -675,7 +676,7 @@ ja:
       title: "%{rsrv}状況一覧"
       no_req: "%{rsrv_req}はありません"
     guest_reservation_manager:
-      title: "参加する予定の%{listing}"
+      title: "訪問予定の%{listing}"
       no_schedule: 予定がありません。
       form:
         placeholder: どこで探しますか？
@@ -1240,7 +1241,7 @@ ja:
   name:
     reservation_request: 参加希望
     guest: ゲスト
-    host: ホスト
+    host: オーナー
   prefix: さん
   to1: ""
   to2: "さんへ"
@@ -1350,7 +1351,9 @@ ja:
         configure:
           not_yat: '%{model}は利用できません。'
       msg:
-        request: "%{model}リクエストをお送りしました。"
+        request: |
+          %{model}をお送りしました。
+          Message Sent.
     review:
       save:
         success: "%{model}を投稿しました。%{host}の方からの返信をお待ちください。"
