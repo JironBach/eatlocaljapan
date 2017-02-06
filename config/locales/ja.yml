@@ -923,10 +923,10 @@ ja:
     subnav:
       my_listing: 自分の店舗情報リスト
       photos: 写真
-      details: この店舗情報について
+      details: 店舗基本情報
       reviews: レビュー
       host_profile: ホスト紹介
-      neighborhood: 開催地
+      neighborhood: 所在地
       request: "予約する"
     show:
       title: 店舗情報詳細
