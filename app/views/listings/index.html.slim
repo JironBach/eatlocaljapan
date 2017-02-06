@@ -10,10 +10,7 @@
           .card-body
             h3
               = t('.no_listing.title')
-            p.text-lead.row-space-4
-              = t('.no_listing.guests_waiting')
-              br
-              = t('.no_listing.invitation')
+            = simple_format t('.title_description'), {class: 'text-lead row-space-4'}, wrapper_tag: 'p'
             = link_to new_listing_path, class: 'btn btn-host' do
               = t('.make_listing')
     - else

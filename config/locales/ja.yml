@@ -754,10 +754,13 @@ ja:
       lunch_break: 休憩時間
     index:
       no_listing:
-        title: 店舗情報を開く予定はありません。
+        title: "店舗情報は未掲載です。"
         guests_waiting: あなたの店舗情報を待っているゲストがいます。
         invitation: あなたの好きな人を招いて店舗情報を楽しくしましょう。
         make_listing: 新しく店舗情報を作る
+      title_description: |-
+        飲食店を運営されている方は、店舗情報ページを作成して日本語と英語で公開しましょう。
+        いつでも編集可能です。店舗情報の掲載は完全無料です。
       title: 店舗情報一覧
       all:
         long: すべての店舗情報
