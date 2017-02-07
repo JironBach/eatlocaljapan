@@ -33,6 +33,8 @@ class ReservationMailer < ApplicationMailer
     to_user = User.find(to_user_id)
     @to_user_name = "#{to_user.profile.last_name} #{to_user.profile.first_name}"
 
+    @message_thread = MessageThread.between(from: from_user, to: to_user).first
+
     @progress = reservation.progress_text
 
     # rubocop:disable Style/SymbolProc

@@ -48,7 +48,7 @@ class Reservation < ApplicationRecord
       {
         only_integer: true,
         greater_than_or_equal_to: 0,
-        less_than_or_equal_to: ->(record) { record.listing.free_spaces(record.schedule, record.time, record.reservation_time_unit) }
+        less_than_or_equal_to: ->(record) { record.listing.free_spaces(record.schedule, record.time, record.reservation_time_unit, record) }
       },
     allow_blank: true
 
@@ -61,6 +61,7 @@ class Reservation < ApplicationRecord
   scope :reviewed, -> { where.not(reviewed_at: nil) }
   scope :review_reply_mail_never_be_sent, -> { where(reply_mail_sent_at: nil) }
   scope :review_open?, -> { where(arel_table[:review_opened_at].not_eq(nil)) }
+  scope :available, -> { where([:requested, :holded, :accepted].map { |progress_name| arel_table[:progress].eq(progresses[progress_name]) }.inject(&:or)) }
   scope \
     :at,
     ->(date, time, time_unit) do
