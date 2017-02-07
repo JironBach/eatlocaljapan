@@ -1,11 +1,5 @@
 ja:
   activerecord:
-    errors:
-      models:
-        user_ngevent:
-          attributes:
-            base:
-              overlapped: 予約不可日時に重複があります
     models:
       admin_user: 管理者
       auth: 外部サービスとの連携
@@ -346,8 +340,11 @@ ja:
           attributes:
             end_hour:
               after:  は午前6時まで設定可能です
+            lunch_break_start_hour:
+              after: 'は始業時間よりも後に設定してください'
             lunch_break_end_hour:
               after: は昼休開始時間よりも後に設定してください
+              before: 'は終業時間より前に設定してください'
         holiday_business_hour:
           <<: *business_hour_errors
         weekday_business_hour:
@@ -858,6 +855,7 @@ ja:
       recommended: お勧めのメニュー・食べ方の説明
       holiday: 祝
       about_business_hours: "カッコ内は休憩時間"
+      business_hour_and_lunch_break: "営業時間（休憩時間）"
     edit:
       title: 店舗情報編集
     edit_link:
@@ -876,12 +874,14 @@ ja:
         name: 可能です
       capacity:
         more_than: "%{num}%{unit}以上"
-      busubess_hours_and_lunch_break: "営業時間（休憩時間）"
+      business_hour_and_lunch_break: "営業時間（休憩時間）"
       holiday: 祝
       shop_category_description: "（最大3つまで選択してください）"
       service_description: "（提供しているサービスをすべてチェックしてください。)"
       business_hours_and_lunch_break_description: "（休憩時間がある場合はカッコ内の時間を設定してください）"
       cover_image_description: "メイン画像「ファイルを選択」をクリックしてアップロードします。（最大1M程度）"
+      business_hour: "営業期間"
+      lunch_break: "休憩時間"
     host_info:
       name:
         after: さんの紹介

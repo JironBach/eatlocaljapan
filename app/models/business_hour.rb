@@ -13,6 +13,7 @@
 #  type                   :string
 #  lunch_break_start_hour :time
 #  lunch_break_end_hour   :time
+#  has_lunch_break        :boolean          default(FALSE), not null
 #
 # Indexes
 #
@@ -23,6 +24,8 @@ class BusinessHour < ApplicationRecord
   belongs_to :listing
 
   validates :end_hour, date: {after: :start_hour}, if: ->(record) { record.end_hour > record.end_hour.beginning_of_day.since(6.hours) }
-  # NOTE: coment in on merged changes for #16940.
-  # validates :lunch_break_end_hour, date: {after: :lunch_break_start_hour}
+  with_options(if: :has_lunch_break?) do
+    validates :lunch_break_start_hour, date: {after: :start_hour}
+    validates :lunch_break_end_hour, date: {after: :lunch_break_start_hour, before: :end_hour}
+  end
 end

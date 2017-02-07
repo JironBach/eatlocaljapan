@@ -136,37 +136,35 @@
                     .col-xs-2
                       p
                         = weekday_business_hour.wday_name
-                    .col-xs-4
+                    .col-xs-10
                       p
                         = l weekday_business_hour.start_hour, format: :hour
                         | -
                         = l weekday_business_hour.end_hour, format: :hour
-                    / TODO: need to implement visibility controll
-                    .col-xs-6
-                      p
-                        | (
-                        = l weekday_business_hour.lunch_break_start_hour, format: :hour
-                        | -
-                        = l weekday_business_hour.lunch_break_end_hour, format: :hour
-                        | )
+                        - if weekday_business_hour.has_lunch_break?
+                          | &nbsp;
+                          | (
+                          = l weekday_business_hour.lunch_break_start_hour, format: :hour
+                          | -
+                          = l weekday_business_hour.lunch_break_end_hour, format: :hour
+                          | )
                 - holiday_business_hour = listing.holiday_business_hour
                 - if holiday_business_hour.is_open
                   .col-xs-2
                     p
                       = t '.holiday'
-                  .col-xs-4
+                  .col-xs-10
                     p
                       = l holiday_business_hour.start_hour, format: :hour
                       | -
                       = l holiday_business_hour.end_hour, format: :hour
-                  / TODO: need to implement visibility controll
-                  .col-xs-6
-                    p
-                      | (
-                      = l holiday_business_hour.lunch_break_start_hour, format: :hour
-                      | -
-                      = l holiday_business_hour.lunch_break_end_hour, format: :hour
-                      | )
+                      - if holiday_business_hour.has_lunch_break?
+                        | &nbsp;
+                        | (
+                        = l holiday_business_hour.lunch_break_start_hour, format: :hour
+                        | -
+                        = l holiday_business_hour.lunch_break_end_hour, format: :hour
+                        | )
         /.row.row-space-5.row-space-top-5.row-table
         /  .col-md-3.text-muted
         /    .h4.text-light
