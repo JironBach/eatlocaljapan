@@ -179,8 +179,9 @@ class Listing < ApplicationRecord
     [(business_hour = business_hour_on(schedule)).start_hour, business_hour.end_hour - (reservation_time_unit || 60).minutes]
   end
 
-  def free_spaces(schedule, requested_time, requested_time_unit=nil)
-    occupied_frames = schedule && reservations.at(schedule, requested_time, requested_time_unit || reservation_time_unit || 60).map(&:occupied_frames).compact.inject(&:+) || 0
+  def free_spaces(schedule, requested_time, requested_time_unit=nil, reservation=nil)
+    time_unit = requested_time_unit || reservation_time_unit || 60
+    occupied_frames = schedule && reservations.available.at(schedule, requested_time, time_unit).where.not(id: reservation&.id).map(&:occupied_frames).compact.inject(&:+) || 0
     (capacity - occupied_frames) * reservation_frame
   end
 
