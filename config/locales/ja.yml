@@ -937,7 +937,7 @@ ja:
       placeholder: ここにメッセージをご記入下さい
       submit: "%{msg_model}を送信"
     listing_block:
-      name: "%{model}名: "
+      name: "店舗名: "
       progress: "%{progress}: "
       schedule: "%{title}: %{schedule}"
       num_of_people: "%{title}: %{num}%{unit}"
