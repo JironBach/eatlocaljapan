@@ -1199,6 +1199,8 @@ en:
       msg1: "You got a reservation request from "
       msg2: ""
       msg3: Check the detail through a link below.
+    send_new_reservation_notification_to_guest:
+      subject: 'Your reservation is confirmed'
   settings:
     edit:
       title: "Enter reservation infomation"
@@ -1266,6 +1268,7 @@ en:
   prefix: ''
   to1: "To "
   to2: ""
+  full_name: '%{first_name} %{last_name}'
   message:
     save:
       success: "Sent"

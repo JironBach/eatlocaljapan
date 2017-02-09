@@ -1191,6 +1191,8 @@ ja:
       msg1: ""
       msg2: からの予約・予約リクエストが届いています。
       msg3: 以下のリンクから、内容をご確認ください。
+    send_new_reservation_notification_to_guest:
+      subject: '予約が完了しました'
     send_update_reservation_notification:
       subject:
         canceled: "予約がキャンセルされました。"
@@ -1258,6 +1260,7 @@ ja:
   prefix: さん
   to1: ""
   to2: "さんへ"
+  full_name: '%{last_name} %{first_name}'
   message:
     save:
       success: "送信完了しました。"

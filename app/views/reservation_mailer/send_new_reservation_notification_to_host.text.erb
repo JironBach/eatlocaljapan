@@ -1,0 +1,19 @@
+English follows Japanese
+
+<%= @to_user.full_name(locale: :ja) %> さん、
+
+<%= @from_user.full_name(locale: :ja) %> さんからの予約が入りました。
+以下のリンクから、内容をご確認ください。
+<%= dashboard_host_reservation_manager_url %>
+
+Hello, <%= @to_user.full_name(locale: :en) %>,
+
+You’ve got a new reservation!
+<%= @from_user.full_name(locale: :en) %> has just made a reservation.
+Please click the link below to check the detail.
+
+<%= dashboard_host_reservation_manager_url(locale: :en) %>
+
+eatlocaljapan
+<%= root_url %>
+<%= root_url(locale: :en) %>
