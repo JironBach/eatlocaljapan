@@ -3,7 +3,7 @@
   - host = reservation_to_host(r)
   li.card-body
     .row.row-table
-      .col-md-3
+      .col-md-2
         - if r.requested?
           span.label.text-blue = t '.progress.requested'
         - elsif r.canceled?
@@ -16,7 +16,7 @@
           span.label.text-starlight = t '.progress.holded'
         - else
           span.label.text-danger = t '.progress.unpublished'
-      .col-md-3
+      .col-md-2
         = link_to listing.title, listing_path(r.listing_id)
         br
         = listing.location
@@ -26,6 +26,9 @@
         = l r.schedule, format: :little_short
       .col-md-2
         = r.time && l(r.time, format: :hour)
+      .col-md-2
+        = r.num_of_people
+        = t 'unit.people'
       .link-group
         = link_to_unless(r.canceled?, t('.cancel'), listing_reservation_path(r.listing, r, reservation: {progress: :canceled}), method: :put) { }
         = link_to '#', id: "reservation-item-as-guest-launch-message-#{r.id}", data: {num: r.id} do
