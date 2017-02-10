@@ -6,7 +6,7 @@ English follows Japanese
 
 以下のリンクから、内容をご確認ください。
 
-<%= message_thread_url(@locale, @message_thread) %>
+<%= message_thread_url(@message_thread, locale: nil) %>
 
 <%= "Hello, 【#{@to_user_name}】," %>
 
@@ -14,7 +14,7 @@ English follows Japanese
 
 Please click the link below to check the detail.
 
-<%= message_thread_url(@locale, @message_thread) %>
+<%= message_thread_url(@message_thread, locale: :en) %>
 
 eatlocaljapan
 <%= root_url %>
