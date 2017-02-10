@@ -226,8 +226,8 @@ class Listing < ApplicationRecord
   def easy_translate(prefix: nil, fields: [:description, :shop_description, :location, :recommended, :visit_benefits, :visit_benefits_another])
     assign_attributes \
       fields \
-        .select { |field| attributes[field].present? && attributes[:"#{field}_en"].blank? }
-        .inject({}) { |tranlated, field| translated[:"#{field}_en"] = [prefix, EasyTranslate.translate(attributes[field], to: :en)].compact.join(' ') }
+        .select { |field| attributes[field.to_s].present? && attributes["#{field}_en"].blank? }
+        .each_with_object({}) { |field, translated| translated["#{field}_en"] = [prefix, EasyTranslate.translate(attributes[field.to_s], to: :en)].compact.join(' ') }
   end
 
   def current_user_bookmarked?(user_id)
