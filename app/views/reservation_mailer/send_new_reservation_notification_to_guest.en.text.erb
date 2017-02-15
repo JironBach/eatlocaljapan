@@ -1,0 +1,15 @@
+Hello, <%= @to_user.full_name %>,
+
+Your reservation at <%= @listing.title_en %> is confirmed.
+Please click the link below to check the detail.
+
+<%= dashboard_guest_reservation_manager_url(locale: I18n.locale) %>
+
+You can send a message or cancel your reservation from the dashboard.
+If you wish to modify your reservation, cancel the current reservation first and make a new reservation.
+If you missed the reservation time without proper notice, your reservation will be automatically cancelled after a 30-minute grace period.
+However, please note that depending upon the shop and/or the situation, the grace period may be shorter.
+PLEASE make sure you contact (send a message to) the shop immediately if there are any schedule changes.
+
+eatlocaljapan
+<%= root_url(locale: I18n.locale) %>

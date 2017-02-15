@@ -14,7 +14,9 @@ class ReservationsController < ApplicationController
     respond_to do |format|
       if @listing.with_lock { @reservation.save }
         # ReservationMailer.send_new_reservation_notification(@reservation).deliver_later!(wait: 1.minute) # if you want to use active job, use this line.
-        ReservationMailer.send_new_reservation_notification(@reservation).deliver_now! # if you don't want to use active job, use this line.
+        ReservationMailer.send_new_reservation_notification_to_guest(@reservation).deliver_now! # if you don't want to use active job, use this line.
+        ReservationMailer.send_new_reservation_notification_to_host(@reservation).deliver_now!
+
         message_params = {reservation_id: @reservation.id, listing_id: @listing.id, content: I18n.t('alerts.reservation.msg.request', model: Message.model_name.human)}
 
         if MessageThread.send_message(from: @reservation.guest, to: @reservation.host, message: message_params)
