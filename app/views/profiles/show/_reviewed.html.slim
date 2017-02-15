@@ -14,7 +14,7 @@
                   .media-photo.media-round.row-space-1.text-center
                     = image_tag(user_id_to_profile_image(r.guest_id), width: 68)
                   .text-center.profile-name.text-wrap
-                    = user_id_to_name(r.guest_id)
+                    = r.guest.full_name
                 /.text-muted.date.show-sm
                   = l r.created_at, format: :date
             .col-md-10.col-sm-12

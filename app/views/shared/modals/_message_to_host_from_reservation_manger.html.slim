@@ -4,7 +4,7 @@
       .modal-content
         .card-header
           = link_to '', '#', class: 'modal-close', data: {dismiss: 'modal'}
-          = t('.label', host: r.host.profile.first_name)
+          = t('.label', host: r.host.full_name)
         = form_tag(messages_path, method: 'post', remote: true, class: 'message-to-host-with-reservation-form', id: "message-to-host-with-reservation-form-#{r.id}")
           .card-body
             = hidden_field :message, :to_user_id, value: listing.user_id
@@ -13,7 +13,7 @@
             = hidden_field :message, :reservation_id, value: r.id
             p.h5.row-space-1
               = t '.to1'
-              = user_id_to_name(r.host_id)
+              = r.host.full_name
               = t '.to2'
             - if r.continued?
               span.share-error

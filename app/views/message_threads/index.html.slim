@@ -23,7 +23,7 @@
                           = image_tag(user_id_to_profile_image(counterpart_id), class: 'media-round media-photo size50')
                           /img.media-round.media-photo.size50 alt='' src="#{user_id_to_profile_image(counterpart_id)}"
                       .col-sm-8.thread-name
-                        = user_id_to_name(counterpart_id)
+                        = User.find(counterpart_id).full_name
                         br
                         span.thread-date
                           = l mt.updated_at, format: :little_short

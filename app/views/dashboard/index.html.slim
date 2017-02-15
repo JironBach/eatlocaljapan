@@ -11,7 +11,7 @@
             = image_tag(profile_image, class: 'img-responsive')
         .card-body
           h2.h3.text-center.row-space-1
-            = user_id_to_name(current_user.id)
+            = current_user.full_name
           ul.list-unstyled.text-center
             li
               = link_to t('.profile.show', profile: profile), profile_path(current_user.profile.id)
@@ -59,7 +59,7 @@
                         = link_to message_thread_path(um.message_thread_id) do
                           = image_tag(user_id_to_profile_image(um.from_user_id), class: 'img-round size50')
                       .col-xs-9.col-md-7
-                        = user_obj_to_name(from_user)
+                        = from_user.full_name
                         .small2
                           = l um.created_at, format: :without_year
                   = link_to message_thread_path(um.message_thread_id), class: 'link-reset' do

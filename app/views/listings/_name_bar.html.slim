@@ -21,4 +21,4 @@
     .row.hide--sp
       .col-md-3.text-muted.text-center
         = link_to profile_path(host_info.id), class: 'link-reset.text-wrap' do
-          = user_id_to_name(listing.user_id)
+          = listing.user.full_name

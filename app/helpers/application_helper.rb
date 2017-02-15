@@ -92,19 +92,6 @@ module ApplicationHelper
     end
   end
 
-  def user_obj_to_name(user)
-    "#{user.profile.last_name} #{user.profile.first_name}"
-  end
-
-  def user_id_to_name(user_id)
-    results = User.mine(user_id)
-    if results.size.zero?
-      return Settings.user.left
-    else
-      return "#{results[0].profile.last_name} #{results[0].profile.first_name}" unless results[0].profile.nil?
-    end
-  end
-
   def review_count_of_host(host_id)
     results = Listing.mine(host_id).pluck('review_count')
     review_count = 0

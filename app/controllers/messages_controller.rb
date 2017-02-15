@@ -41,8 +41,8 @@ class MessagesController < ApplicationController
             # rubocop:enable Metrics/BlockNesting
           end
           if @reservation.accepted? || @reservation.rejected? || @reservation.holded? || @reservation.canceled?
-            # ReservationMailer.send_update_reservation_notification(@reservation, current_user.id).deliver_later!(wait: 1.minute)
-            ReservationMailer.send_update_reservation_notification(@reservation, current_user.id).deliver_now! # if you don't want to use active job, use this line.
+            # ReservationMailer.send_update_reservation_notification(@reservation, current_user.id == @reservation.guest.id && :guest || :host)).deliver_later!(wait: 1.minute)
+            ReservationMailer.send_update_reservation_notification(@reservation, current_user.id == @reservation.guest.id && :guest || :host).deliver_now!
           else
             # MessageMailer.send_new_message_notification(message_thread, message_params).deliver_later!(wait: 1.minute) # if you want to use active job, use this line.
             MessageMailer.send_new_message_notification(message_thread, message_params).deliver_now! # if you don't want to use active job, use this line.

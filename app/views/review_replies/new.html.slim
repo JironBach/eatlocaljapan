@@ -9,13 +9,13 @@
             = image_tag(user_id_to_profile_image(counterpart.id), class: 'img-responsive')
         h4.text-center
           .row-space-top-2
-            = user_obj_to_name(counterpart)
+            = counterpart.full_name
     .col-md-9
       .row-space-4
         .h3.row-space-2
           = link_to profile_path(counterpart.id)
             = t '.text0'
-            = t('.name', name: user_obj_to_name(counterpart))
+            = t('.name', name: counterpart.full_name)
             = t '.text1'
         p.row-space-3
           = t('.text2_html', listing: Listing.model_name.human, review: Review.model_name.human)
