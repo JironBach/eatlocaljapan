@@ -171,8 +171,12 @@ class Listing < ApplicationRecord
   end
 
   def busy_times(schedule, requested_time_unit=nil)
+    detector = ->(edge, time) { time > edge ? time : detector.(edge, time.since((unit || 15).minutes)) }
+    normalizer = ->(time) { normalize_on(schedule, time) }
+    lunch_break_block_from = ->(business_hour, time_unit) { detector.(normalizer.(business_hour.lunch_break_start_hour).ago(time_unit), normalizer.(business_hour.start_hour)) }
     time_unit = (requested_time_unit || reservation_time_unit || 60).minutes
-    ((business_hour = business_hour_on(schedule)).has_lunch_break? && [[business_hour.lunch_break_start_hour.ago(time_unit), business_hour.lunch_break_end_hour]] || []) \
+    business_hour = business_hour_on(schedule)
+    (business_hour.has_lunch_break? && [[lunch_break_block_from.(business_hour, time_unit), normalizer.(business_hour.lunch_break_end_hour)]] || []) \
       .unshift(*listing_ngevents.on(schedule).map { |event| [event.start, event.end] })
   end
 
@@ -269,5 +273,9 @@ class Listing < ApplicationRecord
 
   def reservation_enabled?
     reservation_available? && reservation_configured?
+  end
+
+  def normalize_on(schedule, time)
+    (business_hour = business_hour_on(schedule)).overnight? && time < business_hour.end_hour ? time.advance(days: 1) : time
   end
 end
