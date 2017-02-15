@@ -11,7 +11,7 @@
         .col-xs-8.col-lg-12
           .card-body.card-body-condensed
             h4.text-center
-              = user_obj_to_name(counterpart)
+              = counterpart.full_name
             .row.row-condensed
               .col-md-3.hide--sp
                 = image_tag(listing_cover_image_url(@reservation.listing_id), class: 'img-responsive')
@@ -24,7 +24,7 @@
         .h3.row-space-2
           = link_to profile_path(counterpart.id)
             = t('.text0', review: Review.model_name.human)
-            = t('.name', name: user_obj_to_name(counterpart))
+            = t('.name', name: counterpart.full_name)
             = t('.text1', review: Review.model_name.human)
         p.row-space-3
           = t('.msg_html', listing: Listing.model_name.human, review: Review.model_name.human, host: t('name.host'))

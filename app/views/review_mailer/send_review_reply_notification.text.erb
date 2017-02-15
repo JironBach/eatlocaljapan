@@ -1,6 +1,6 @@
-<%= t '.greeting1' %><%= @to_user_name %><%= t 'prefix' %><%= t '.greeting2' %>
+<%= t '.greeting1' %><%= @to_user.full_name %><%= t 'prefix' %><%= t '.greeting2' %>
 
-<%= t('.msg1', listing_title: @listing.title, schedule: @reservation.schedule, guest: @guest_user_name, review: Review.model_name.human) %>
+<%= t('.msg1', listing_title: @listing.title, schedule: @reservation.schedule, guest: @guest_user.full_name, review: Review.model_name.human) %>
 
 <%= t('.msg2', review: Review.model_name.human) %>
 

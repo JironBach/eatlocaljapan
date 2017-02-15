@@ -13,7 +13,7 @@
             = hidden_field :message, :reservation_id, value: 0
             p.h5.row-space-1
               = t('to1')
-              = user_id_to_name(listing.user_id)
+              = listing.user.full_name
               = t('to2')
             span.share-error
             p

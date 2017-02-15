@@ -13,7 +13,7 @@
             = hidden_field :message, :reservation_id, value: r.id
             p.h5.row-space-1
               = t '.to1'
-              = user_id_to_name(r.guest_id)
+              = r.guest.full_name
               = t '.to2'
             - if r.continued?
               = hidden_field :reservation, :id, value: r.id

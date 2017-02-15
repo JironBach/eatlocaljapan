@@ -7,7 +7,7 @@
       .va-middle.msg-pic
         .h4.row-space-1
           = link_to profile_path(counterpart.profile.id), class: 'text-normal' do
-            = t('.name', name: user_id_to_name(counterpart.id))
+            = t('.name', name: counterpart.full_name)
         small
           = counterpart.profile.try('location') || t('.no_location')
         small

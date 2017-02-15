@@ -8,7 +8,7 @@
       .name
         .text-muted.link-reset
           = link_to profile_path(review.guest_id) do
-            = user_id_to_name(review.guest_id)
+            = review.guest.full_name
     .col-md-9
       .row-space-2
         .review-text.expandable
