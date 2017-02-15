@@ -28,4 +28,9 @@ class BusinessHour < ApplicationRecord
     validates :lunch_break_start_hour, date: {after: :start_hour}
     validates :lunch_break_end_hour, date: {after: :lunch_break_start_hour, before: :end_hour}
   end
+
+  # NOTE: keep process to use utc threfore business hours comes from time type columns
+  def overnight?
+    end_hour < Time.utc(*[:year, :month, :day].map { |field| end_hour.send(field) }, 6, 0, 0)
+  end
 end
