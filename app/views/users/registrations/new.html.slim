@@ -10,7 +10,7 @@
               = link_to localized_omniauth_path(provider), class: "btn btn-fb btn-large btn-block icon-btn#{action_name == 'create' ? ' hide' : ''}" do
                 i.fa.fa-facebook
                 = t '.facebook.title'
-          .text-center.social-links.hide
+          div class="text-center social-links#{action_name == 'create' ? '' : ' hide'}"
             - resource_class.omniauth_providers.each do |provider|
               = link_to 'facebook', omniauth_authorize_path(resource_name, provider), class: ''
               = t '.facebook.sub'
