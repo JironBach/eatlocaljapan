@@ -39,6 +39,8 @@ en:
     attributes:
       admin_user:
         email: Mail Address
+        password: 'Password'
+        password_confirmation: 'Password confirmation'
         encrypted_password: Password
         reset_password_sent_at: Password Reset Mail Sent At
         sign_in_count: Login Count
@@ -1104,9 +1106,8 @@ en:
         submit: Change
         back_text: Back to Login?
         back: Back
-        placeholder:
-          password: Password
-          password_confirmation: Password Confirmation
+        hint:
+          password: '%{minimum_length} characters minimum'
     registrations:
       new:
         title: Sign Up
@@ -1120,6 +1121,8 @@ en:
             mail: Mail Address
             pw: Password
             pw_confirm: Password Confirmation
+          hint:
+            password: '%{minimum_length} characters minimum'
         submit: Sign up
         text-1: Password must be at least 8 alphanumeric characters.
         text0: By signing up, I agree to
@@ -1139,6 +1142,8 @@ en:
         new_pw: New Password
         new_pw_confirm: New Password Confirmation
         update: Update Password
+        hint:
+          password: '%{minimum_length} characters minimum'
     sessions:
       new:
         title: Login

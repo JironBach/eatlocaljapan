@@ -4,13 +4,13 @@
     .col-lg-9
       .card.row-space-4
         = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f|
-          = f.error_notification
           #change_your_password
             .card-header
               = t '.header'
             .card-body
               .row
                 .col-md-10
+                  = f.error_notification
                   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
                     p
                       = t '.confirm_msg'
@@ -20,19 +20,19 @@
                       label[for='old_password']
                         = t '.current_pw'
                     .col-md-7
-                      = f.input_field :current_password, required: true
+                      = f.input :current_password, label: false, required: true
                   .row.row-condensed.row-space-2
                     .col-md-5.text-right.text-left--md
                       label[for='user_password']
                         = t '.new_pw'
                     .col-md-7
-                      = f.input_field :password, autocomplete: 'off', required: true, class: 'input-block', size: '30'
+                      = f.input :password, autocomplete: 'off', hint: (t('.hint.password', minimum_length: resource.class.password_length.min) if devise_mapping.validatable? && resource.errors[:password].blank?), label: false, required: true, class: 'input-block', size: '30'
                   .row.row-condensed.row-space-2
                     .col-md-5.text-right.text-left--md
                       label[for='user_password_confirmation']
                         = t '.new_pw_confirm'
                     .col-md-7
-                      = f.input_field :password_confirmation, hint: 'we need your current password to confirm your changes', required: true, class: 'input-block', size: '30'
+                      = f.input :password_confirmation, label: false, required: true, class: 'input-block', size: '30'
                 .col-md-5
 
             .card-footer

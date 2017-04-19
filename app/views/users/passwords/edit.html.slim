@@ -13,9 +13,9 @@
               p.row-space-2
                 = t '.title'
               .control-group.row-space-1
-                = f.input_field :password, placeholder: t('.placeholder.password'), required: true, autofocus: true
+                = f.input :password, hint: (t('.hint.password', minimum_length: resource.class.password_length.min) if devise_mapping.validatable? && resource.errors[:password].blank?), label: false, required: true, autofocus: true
               .control-group.row-space-2
-                = f.input_field :password_confirmation, placeholder: t('.placeholder.password_confirmation'), required: true
+                = f.input :password_confirmation, label: false, required: true
               .form-actions
                 = f.button :submit, t('.submit'), class: 'btn btn-primary btn-large btn-block'
         .card-body
