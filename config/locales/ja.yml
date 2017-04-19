@@ -244,6 +244,8 @@ ja:
       user:
         email: メールアドレス
         username: ユーザー名
+        password: パスワード
+        password_confirmation: パスワード(確認)
         encrypted_password: 暗号化されたパスワード
         reset_password_token: パスワードリセットトークン
         reset_password_sent_at: パスワードリセットの為のメール送信日時
@@ -1096,9 +1098,8 @@ ja:
         submit: 変更する
         back_text: ログイン画面に戻りますか？
         back: 戻る
-        placeholder:
-          password: パスワード
-          password_confirmation: パスワード（確認）
+        hint:
+          password: '%{minimum_length}文字以上'
     registrations:
       new:
         title: 新規登録
@@ -1112,6 +1113,8 @@ ja:
             mail: メールアドレス
             pw: パスワード
             pw_confirm: パスワード（確認）
+          hint:
+            password: '%{minimum_length}文字以上'
         submit: 登録する
         text-1: パスワードは８文字以上、英数字を混ぜて設定してください。
         text0: 登録することで、
@@ -1131,6 +1134,8 @@ ja:
         new_pw: 新しいパスワード
         new_pw_confirm: 新しいパスワード（確認）
         update: パスワードの更新
+        hint:
+          password: '%{minimum_length}文字以上'
     sessions:
       new:
         title: ログイン

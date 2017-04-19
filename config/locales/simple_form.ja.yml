@@ -1,20 +1,20 @@
-en:
+ja:
   simple_form:
-    "yes": 'Yes'
-    "no": 'No'
+    "yes": 'はい'
+    "no": 'いいえ'
     required:
-      text: 'required'
+      text: '必須'
       mark: '*'
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.
       # html: '<abbr title="required">*</abbr>'
     error_notification:
-      default_message: "Please review the problems below:"
+      default_message: "以下の問題を確認下さい。"
     placeholders:
       user:
-        password: Password
-        password_confirmation: 'Password Confirmation'
-        current_password: 'we need your current password to confirm your changes'
+        password: パスワード
+        password_confirmation: パスワード(確認)
+        current_password: '確認のため現在のパスワードをご入力下さい'
     # Examples
     # labels:
     #   defaults:

@@ -7,7 +7,7 @@
           .sns-buttons
             - resource_class.omniauth_providers.each do |provider|
               /= link_to omniauth_authorize_path(resource_name, provider), class: 'btn btn-fb btn-large btn-block icon-btn' do
-              = link_to localized_omniauth_path(provider), class: 'btn btn-fb btn-large btn-block icon-btn' do
+              = link_to localized_omniauth_path(provider), class: "btn btn-fb btn-large btn-block icon-btn#{action_name == 'create' ? ' hide' : ''}" do
                 i.fa.fa-facebook
                 = t '.facebook.title'
           .text-center.social-links.hide
@@ -19,18 +19,18 @@
               = t '.or'
             hr
           .text-center
-            = link_to '#', id: 'to-signup-form', class: 'btn btn-primary btn-large btn-block' do
+            = link_to '#', id: 'to-signup-form', class: "btn btn-primary btn-large btn-block#{action_name == 'create' ? ' hide' : ''}" do
               i.fa.fa-envelope-o
               = t '.mail.title'
           = simple_form_for(resource, as: resource_name, url: user_registration_path) do |f|
-            .signup-form.hide
+            div class="signup-form#{action_name == 'create' ? '' : ' hide'}"
               = f.error_notification
               .control-group.row-space-1
-                = f.input_field :email, class: 'decorative-input', placeholder: t('.mail.placeholder.mail'), required: true
+                = f.input :email, class: 'decorative-input', placeholder: t('.mail.placeholder.mail'), label: false, required: true
               .control-group.row-space-1
-                = f.input_field :password, class: 'decorative-input', placeholder: t('.mail.placeholder.pw'), required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable)
+                = f.input :password, class: 'decorative-input', placeholder: t('.mail.placeholder.pw'), label: false, required: true, hint: (t('.mail.hint.password', minimum_length: @minimum_password_length) if @validatable && resource.errors[:password].blank?)
               .control-group.row-space-1
-                = f.input_field :password_confirmation, class: 'decorative-input', placeholder: t('.mail.placeholder.pw_confirm'), required: true
+                = f.input :password_confirmation, class: 'decorative-input', placeholder: t('.mail.placeholder.pw_confirm'), label: false, required: true
               .row-space-2.row-space-top-2
                 small
                   font color='red'
@@ -46,7 +46,7 @@
                   = t '.text1'
               .form-actions
                 = f.button :submit, t('.submit'), class: 'btn btn-primary btn-large btn-block'
-          .policy-wrapper.row-space-top-2
+          div class="policy-wrapper row-space-top-2#{action_name == 'create' ? ' hide' : ''}"
             small
               font color='red'
                 = t '.text-1'
